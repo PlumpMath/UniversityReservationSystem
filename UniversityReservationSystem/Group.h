@@ -1,13 +1,13 @@
-#ifndef _GROUP_
-#define _GROUP_
 #pragma once
 
 #include "TQueue.h"
 #include "Student.h"
-//#include "Reservation.h"
+#include "Reservation.h"
 
 using namespace std;
 
+class Student;
+class Reservation;
 class Group
 {
 public:
@@ -15,7 +15,7 @@ public:
 	int Year;
 	int GroupNumber;
 	TQueue<Student> Students;
-	//TQueue<Reservation> Reservations;
+	TQueue<Reservation> Reservations;
 
 	Group(string _degreeCourse, int _year, int _groupNumber)
 	{
@@ -24,5 +24,3 @@ public:
 		GroupNumber = _groupNumber;
 	}
 };
-
-#endif

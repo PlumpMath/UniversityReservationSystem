@@ -3,6 +3,7 @@
 #include "Reservation.h"
 #include "TQueue.h"
 
+class Reservation;
 class IRoom
 {
 public:
@@ -21,7 +22,7 @@ public:
 		Reservations.Add(&reservationToAdd);
 	}
 
-	virtual ~IRoom() = 0;
+	virtual ~IRoom();
 };
 
 IRoom::~IRoom() { }
