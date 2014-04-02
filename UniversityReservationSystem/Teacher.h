@@ -1,3 +1,5 @@
+#pragma once
+
 #include "IPerson.h"
 
 class Teacher : public IPerson

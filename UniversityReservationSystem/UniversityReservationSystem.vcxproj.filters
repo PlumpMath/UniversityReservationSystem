@@ -13,30 +13,39 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Person">
+      <UniqueIdentifier>{e8f55e41-d0d1-4843-a6ef-a640ffaeb2fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Room">
+      <UniqueIdentifier>{f582162c-1063-4fbb-8682-8f3673560412}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Student.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IRoom.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IPerson.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Reservation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LabRoom.h">
+    <ClInclude Include="Group.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ExerciseRoom.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="IPerson.h">
+      <Filter>Header Files\Person</Filter>
     </ClInclude>
     <ClInclude Include="Teacher.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Person</Filter>
     </ClInclude>
-    <ClInclude Include="Group.h">
+    <ClInclude Include="Student.h">
+      <Filter>Header Files\Person</Filter>
+    </ClInclude>
+    <ClInclude Include="IRoom.h">
+      <Filter>Header Files\Room</Filter>
+    </ClInclude>
+    <ClInclude Include="LabRoom.h">
+      <Filter>Header Files\Room</Filter>
+    </ClInclude>
+    <ClInclude Include="ExerciseRoom.h">
+      <Filter>Header Files\Room</Filter>
+    </ClInclude>
+    <ClInclude Include="TQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

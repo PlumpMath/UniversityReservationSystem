@@ -1,5 +1,6 @@
+#pragma once
+
 #include "IRoom.h"
-#include <string>
 
 class LabRoom : public IRoom
 {
