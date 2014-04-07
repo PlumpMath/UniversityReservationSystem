@@ -26,6 +26,6 @@ void main()
 	group->Students.Add(student2);
 	room->AddReservation(*res);
 	room2->AddReservation(*res);
-
+	res->BoundGroups.CheckCollisions(*res);
 	cin;
 }

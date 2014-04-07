@@ -23,4 +23,9 @@ public:
 		Year = _year;
 		GroupNumber = _groupNumber;
 	}
+
+	bool CheckCollisions(Reservation& resToCheck)
+	{
+		return true;
+	}
 };

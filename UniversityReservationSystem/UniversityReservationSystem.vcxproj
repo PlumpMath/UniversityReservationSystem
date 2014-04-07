@@ -84,6 +84,8 @@
     <ClInclude Include="IPerson.h" />
     <ClInclude Include="IRoom.h" />
     <ClInclude Include="LabRoom.h" />
+    <ClInclude Include="ReservationController.h" />
+    <ClInclude Include="TAntiCollisionQueue.h" />
     <ClInclude Include="Teacher.h" />
     <ClInclude Include="Reservation.h" />
     <ClInclude Include="Student.h" />

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TQueue.h"
+#include "TAntiCollisionQueue.h"
 #include "Group.h"
 #include "Teacher.h"
 #include "IRoom.h"
@@ -18,7 +18,7 @@ public:
 	time_t DateOfStart;
 	time_t DateOfEnd;
 	Teacher& BoundTeacher;
-	TQueue<Group> BoundGroups;
+	TAntiCollisionQueue<Group> BoundGroups;
 	IRoom& Room;
 
 
