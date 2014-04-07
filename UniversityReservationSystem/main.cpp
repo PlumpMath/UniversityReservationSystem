@@ -20,7 +20,7 @@ void main()
 	Student *student2 = new Student("imie2", "nazwisko2", *group, 6, 4.6);
 	Teacher *teacher = new Teacher("pierwsze", "drugie", "mail", "3423423423", "tytul");
 
-	Reservation *res = new Reservation("nazwa", 666, 66, *teacher, *room);
+	Reservation *res = new Reservation("nazwa", time(0), time(0), *teacher, *room);
 	res->BoundGroups.Add(group);
 	group->Students.Add(student1);
 	group->Students.Add(student2);
