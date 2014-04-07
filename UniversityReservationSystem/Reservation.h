@@ -8,9 +8,10 @@
 
 using namespace std;
 
-class Group;
 class Teacher;
 class IRoom;
+class Group;
+
 class Reservation
 {
 public:

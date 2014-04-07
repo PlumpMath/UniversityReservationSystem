@@ -17,6 +17,11 @@ public:
 		Capacity = _capacity;
 	}
 
+	bool CheckCollisions(Reservation& reservation)
+	{
+		return false;
+	}
+
 	void AddReservation(Reservation &reservationToAdd)
 	{
 		Reservations.Add(&reservationToAdd);

@@ -12,15 +12,15 @@ public:
 	ReservationController(DataContext & _context)
 		: Context(_context) { }
 
-	void AddReservation(Reservation& toAdd)
+	bool AddReservation(Reservation& toAdd)
 	{
-		if (toAdd.BoundGroups.CheckCollisions(toAdd))
-		{
+		if (toAdd.BoundGroups .CheckCollisions(toAdd)) return false;
+		if (toAdd.BoundTeacher.CheckCollisions(toAdd)) return false;
+		if (toAdd.Room        .CheckCollisions(toAdd)) return false;
 
-		}
-
-		toAdd.BoundTeacher.Reservations.Add(&toAdd);
-		toAdd.Room.Reservations.Add(&toAdd);
+		toAdd.BoundGroups.AddReservation(toAdd);
+		toAdd.BoundTeacher.AddReservation(toAdd);
+		toAdd.Room.AddReservation(toAdd);
 		Context.Reservations.Add(&toAdd);
 	}
 };

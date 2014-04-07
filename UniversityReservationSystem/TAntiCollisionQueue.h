@@ -1,7 +1,5 @@
 #pragma once
-
 #include "TQueue.h"
-#include "Reservation.h"
 
 using namespace std;
 
@@ -25,5 +23,13 @@ public:
 		}
 
 		return collisionsDetected;
+	}
+
+	void AddReservation(Reservation & reservation)
+	{
+		for (int i = 0; i < list.size(); i++)
+		{
+			list[i]->AddReservation(reservation);
+		}
 	}
 };

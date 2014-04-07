@@ -1,20 +1,21 @@
 #pragma once
 
-#include "TQueue.h"
+#include "TAntiCollisionQueue.h"
 #include "Student.h"
 #include "Reservation.h"
 
 using namespace std;
 
-class Student;
 class Reservation;
+class Student;
+
 class Group
 {
 public:
 	string DegreeCourse;
 	int Year;
 	int GroupNumber;
-	TQueue<Student> Students;
+	TAntiCollisionQueue<Student> Students;
 	TQueue<Reservation> Reservations;
 
 	Group(string _degreeCourse, int _year, int _groupNumber)
@@ -24,8 +25,16 @@ public:
 		GroupNumber = _groupNumber;
 	}
 
-	bool CheckCollisions(Reservation& resToCheck)
+	bool CheckCollisions(Reservation& reservation)
 	{
-		return true;
+		if (Students.CheckCollisions(reservation)) return true;
+
+		return false;
+	}
+
+	void AddReservation(Reservation& reservation)
+	{
+		Reservations.Add(&reservation);
+		Students.AddReservation(reservation);
 	}
 };

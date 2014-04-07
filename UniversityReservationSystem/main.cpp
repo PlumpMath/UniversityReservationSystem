@@ -1,12 +1,13 @@
 #include <string>
 #include <iostream>
-#include "TQueue.h"
 #include "Student.h"
 #include "Teacher.h"
 #include "Reservation.h"
 #include "Group.h"
 #include "LabRoom.h"
 #include "ExerciseRoom.h"
+#include "DataContext.h"
+#include "ReservationController.h"
 
 
 using namespace std;
@@ -24,8 +25,11 @@ void main()
 	res->BoundGroups.Add(group);
 	group->Students.Add(student1);
 	group->Students.Add(student2);
-	room->AddReservation(*res);
-	room2->AddReservation(*res);
-	res->BoundGroups.CheckCollisions(*res);
+
+
+	DataContext *context = new DataContext();
+	ReservationController *reserv = new ReservationController(*context);
+	reserv->AddReservation(*res);
+
 	cin;
 }
