@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ISerializable.h"
 #include "TAntiCollisionQueue.h"
 #include "Group.h"
 #include "Teacher.h"
@@ -12,10 +13,9 @@ class Teacher;
 class IRoom;
 class Group;
 
-class Reservation
+class Reservation : public ISerializable
 {
 public:
-	int Id;
 	string Name;
 	time_t DateOfStart;
 	time_t DateOfEnd;
@@ -32,5 +32,13 @@ public:
 		DateOfEnd = _dateOfEnd;
 		cout << ctime(&DateOfStart) << endl;
 		cout << ctime(&DateOfEnd);
+	}
+
+	void Serialize(ostream& os) const
+	{
+		ISerializable::Serialize(os);
+		os << " " << Name << " "
+			<< ctime(&DateOfStart) << " " << ctime(&DateOfEnd)
+			<< BoundTeacher.Id << " " << Room.Id;
 	}
 };

@@ -29,7 +29,7 @@ void main()
 
 	DataContext *context = new DataContext("file.txt");
 	ReservationController *reserv = new ReservationController(*context);
-	reserv->AddReservation(*res);
+	reserv->Add(*res);
 
 	cin;
 }

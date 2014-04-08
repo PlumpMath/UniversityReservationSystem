@@ -2,6 +2,8 @@
 
 #include "IPerson.h"
 
+using namespace std;
+
 class Teacher : public IPerson
 {
 public:
@@ -15,5 +17,11 @@ public:
 		Email = _email;
 		PhoneNumber = _phoneNumber;
 		AcademicTitle = _academicTitle;
+	}
+
+	void Serialize(ostream& os) const
+	{
+		IPerson::Serialize(os);
+		os << " " << Email << " " << PhoneNumber << " " << AcademicTitle;
 	}
 };

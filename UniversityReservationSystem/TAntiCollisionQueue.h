@@ -1,12 +1,12 @@
 #pragma once
-#include "TQueue.h"
+#include "TDataQueue.h"
 
 using namespace std;
 
 class Reservation;
 
 template <class T>
-class TAntiCollisionQueue : public TQueue<T>
+class TAntiCollisionQueue : public TDataQueue<T>
 {
 public:
 	bool CheckCollisions(Reservation& reservation)

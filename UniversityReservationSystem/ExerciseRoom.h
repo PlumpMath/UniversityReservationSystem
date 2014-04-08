@@ -14,4 +14,10 @@ public:
 		NumOfChairs = _numOfChairs;
 		NumOfTables = _numOfTables;
 	}
+
+	void Serialize(ostream& os) const 
+	{
+		IRoom::Serialize(os);
+		os << " " << NumOfChairs << " " << NumOfTables;
+	}
 };

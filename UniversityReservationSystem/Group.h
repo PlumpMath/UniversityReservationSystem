@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ISerializable.h"
 #include "TAntiCollisionQueue.h"
 #include "Student.h"
 #include "Reservation.h"
@@ -9,15 +10,14 @@ using namespace std;
 class Reservation;
 class Student;
 
-class Group
+class Group : public ISerializable
 {
 public:
-	int Id;
 	string DegreeCourse;
 	int Year;
 	int GroupNumber;
 	TAntiCollisionQueue<Student> Students;
-	TQueue<Reservation> Reservations;
+	TDataQueue<Reservation> Reservations;
 
 	Group(string _degreeCourse, int _year, int _groupNumber)
 	{
@@ -37,5 +37,11 @@ public:
 	{
 		Reservations.Add(&reservation);
 		Students.AddReservation(reservation);
+	}
+
+	void Serialize(ostream& os) const
+	{
+		os << " " << Id << " " << DegreeCourse << " "
+			<< Year << " " << GroupNumber;
 	}
 };

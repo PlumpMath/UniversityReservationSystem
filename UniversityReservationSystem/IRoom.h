@@ -1,16 +1,17 @@
 #pragma once
 
+#include "ISerializable.h"
 #include "Reservation.h"
-#include "TQueue.h"
+#include "TDataQueue.h"
 
 class Reservation;
-class IRoom
+
+class IRoom : public ISerializable
 {
 public:
-	int Id;
 	string Name;
 	int Capacity;
-	TQueue<Reservation> Reservations;
+	TDataQueue<Reservation> Reservations;
 
 	IRoom(string _name, int _capacity)
 	{
@@ -26,6 +27,12 @@ public:
 	void AddReservation(Reservation &reservationToAdd)
 	{
 		Reservations.Add(&reservationToAdd);
+	}
+
+	virtual void Serialize(ostream& os) const
+	{
+		ISerializable::Serialize(os);
+		os << " " << Capacity;
 	}
 
 	virtual ~IRoom();

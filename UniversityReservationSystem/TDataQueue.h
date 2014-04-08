@@ -4,7 +4,7 @@
 using namespace std;
 
 template <class T>
-class TQueue
+class TDataQueue
 {
 protected:
 	std::vector<T*> list;
@@ -76,11 +76,6 @@ public:
 		return list.size();
 	}
 
-	string GetName()
-	{
-		return name;
-	}
-
 	T& operator[] (int i)
 	{
 		if (i >= 0 && i < list.size())
@@ -90,5 +85,15 @@ public:
 		else throw "Out of range exception";
 	}
 
-	virtual ~TQueue() { }
+	friend ostream& operator<<(ostream& os, T const& object)
+	{
+		for (int i = 0; i < list.size(); i++)
+		{
+			os << *list[i] << "\n";
+		}
+
+		return os;
+	}
+
+	virtual ~TDataQueue() { }
 };

@@ -4,13 +4,13 @@
 #include "Reservation.h"
 #include "DataContext.h"
 
-class ReservationController : public IController
+class ReservationController : public IController<Reservation>
 {
 public:
 	ReservationController(DataContext & _context)
 		: IController(_context) { }
 
-	bool AddReservation(Reservation& toAdd)
+	bool Add(Reservation& toAdd)
 	{
 		if (toAdd.BoundGroups .CheckCollisions(toAdd)) return false;
 		if (toAdd.BoundTeacher.CheckCollisions(toAdd)) return false;
@@ -21,5 +21,16 @@ public:
 		toAdd.Room        .AddReservation(toAdd);
 
 		Context.Reservations.Add(&toAdd, true);
+		return true;
+	}
+
+	bool Edit(Reservation& toEdit)
+	{
+		return true;
+	}
+	
+	bool Delete(Reservation& toDelete)
+	{
+		return true;
 	}
 };

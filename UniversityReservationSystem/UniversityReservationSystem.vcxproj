@@ -86,6 +86,7 @@
     <ClInclude Include="IController.h" />
     <ClInclude Include="IPerson.h" />
     <ClInclude Include="IRoom.h" />
+    <ClInclude Include="ISerializable.h" />
     <ClInclude Include="LabRoom.h" />
     <ClInclude Include="MainPageView.h" />
     <ClInclude Include="ReservationController.h" />
@@ -100,7 +101,7 @@
     <ClInclude Include="Student.h" />
     <ClInclude Include="TeacherController.h" />
     <ClInclude Include="TeachersView.h" />
-    <ClInclude Include="TQueue.h" />
+    <ClInclude Include="TDataQueue.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

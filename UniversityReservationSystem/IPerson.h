@@ -1,18 +1,18 @@
 #pragma once
 
-#include "TQueue.h"
+#include "ISerializable.h"
+#include "TDataQueue.h"
 #include "Reservation.h"
 
 using namespace std;
-
 class Reservation;
-class IPerson
+
+class IPerson : public ISerializable
 {
 public:
-	int Id = -1;
 	string FirstName;
 	string LastName;
-	TQueue<Reservation> Reservations;
+	TDataQueue<Reservation> Reservations;
 
 	IPerson(string _firstName, string _lastName)
 	{
@@ -30,9 +30,13 @@ public:
 		Reservations.Add(&reservationToAdd);
 	}
 
+	virtual void Serialize(ostream& os) const
+	{
+		ISerializable::Serialize(os);
+		os << " " << FirstName << " " << LastName;
+	}
 
-
-	virtual ~IPerson() = 0;
+	virtual ~IPerson();
 };
 
 IPerson::~IPerson() { }

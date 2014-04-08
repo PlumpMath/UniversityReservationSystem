@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TQueue.h"
+#include "TDataQueue.h"
 #include "Reservation.h"
 #include "Group.h"
 #include "IPerson.h"
@@ -8,13 +8,13 @@
 
 class DataContext
 {
-private:
+protected:
 	string filePath;
 public:
-	TQueue<IPerson> People;
-	TQueue<IRoom> Rooms;
-	TQueue<Group> Groups;
-	TQueue<Reservation> Reservations;
+	TDataQueue<IPerson> People;
+	TDataQueue<IRoom> Rooms;
+	TDataQueue<Group> Groups;
+	TDataQueue<Reservation> Reservations;
 
 	DataContext(string _filePath)
 	{
@@ -24,7 +24,7 @@ public:
 
 	void SaveChanges()
 	{
-		// TODO: Serialize + save to files
+		
 	}
 
 	void TryLoadTheBase()

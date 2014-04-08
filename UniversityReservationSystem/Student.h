@@ -2,8 +2,9 @@
 #include "Group.h"
 #include "IPerson.h"
 
-
+using namespace std;
 class Group;
+
 class Student : public IPerson
 {
 public:
@@ -16,5 +17,12 @@ public:
 	{
 		PassedTerms = _passedTerms;
 		AverageOfMarksOfLastTerm = _averageOfMarksOfLastTerm;
+	}
+
+	void Serialize(ostream& os) const
+	{
+		IPerson::Serialize(os);
+		os << " " << PassedTerms << " " << AverageOfMarksOfLastTerm
+		   << " " << StudentGroup.Id;
 	}
 };
