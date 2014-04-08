@@ -15,6 +15,7 @@ class Group;
 class Reservation
 {
 public:
+	int Id;
 	string Name;
 	time_t DateOfStart;
 	time_t DateOfEnd;

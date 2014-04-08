@@ -7,6 +7,7 @@ class Reservation;
 class IRoom
 {
 public:
+	int Id;
 	string Name;
 	int Capacity;
 	TQueue<Reservation> Reservations;

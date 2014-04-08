@@ -1,16 +1,14 @@
 #pragma once
 
+#include "IController.h"
 #include "Reservation.h"
 #include "DataContext.h"
 
-class ReservationController
+class ReservationController : public IController
 {
-private:
-	DataContext& Context;
-
 public:
 	ReservationController(DataContext & _context)
-		: Context(_context) { }
+		: IController(_context) { }
 
 	bool AddReservation(Reservation& toAdd)
 	{
@@ -22,6 +20,6 @@ public:
 		toAdd.BoundTeacher.AddReservation(toAdd);
 		toAdd.Room        .AddReservation(toAdd);
 
-		Context.Reservations.Add(&toAdd);
+		Context.Reservations.Add(&toAdd, true);
 	}
 };

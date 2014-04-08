@@ -12,6 +12,7 @@ class Student;
 class Group
 {
 public:
+	int Id;
 	string DegreeCourse;
 	int Year;
 	int GroupNumber;

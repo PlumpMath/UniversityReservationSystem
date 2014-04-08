@@ -9,6 +9,7 @@ class Reservation;
 class IPerson
 {
 public:
+	int Id = -1;
 	string FirstName;
 	string LastName;
 	TQueue<Reservation> Reservations;
@@ -28,6 +29,8 @@ public:
 	{
 		Reservations.Add(&reservationToAdd);
 	}
+
+
 
 	virtual ~IPerson() = 0;
 };

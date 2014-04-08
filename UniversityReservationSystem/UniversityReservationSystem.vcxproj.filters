@@ -21,6 +21,15 @@
     <Filter Include="Header Files\Models\Room">
       <UniqueIdentifier>{f582162c-1063-4fbb-8682-8f3673560412}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Queues">
+      <UniqueIdentifier>{a30abc02-ce45-4662-9649-50327c5f4f5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Views">
+      <UniqueIdentifier>{62b4b97e-9097-48e3-aa8f-9150e60c000a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Views\ModelsViews">
+      <UniqueIdentifier>{29ac494e-b3d9-476a-8ed8-0306590eaa70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IPerson.h">
@@ -41,9 +50,6 @@
     <ClInclude Include="ExerciseRoom.h">
       <Filter>Header Files\Models\Room</Filter>
     </ClInclude>
-    <ClInclude Include="TQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DataContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -57,7 +63,43 @@
       <Filter>Header Files\Controllers</Filter>
     </ClInclude>
     <ClInclude Include="TAntiCollisionQueue.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Queues</Filter>
+    </ClInclude>
+    <ClInclude Include="TQueue.h">
+      <Filter>Header Files\Queues</Filter>
+    </ClInclude>
+    <ClInclude Include="GroupController.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="IController.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentController.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="TeacherController.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomController.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="MainPageView.h">
+      <Filter>Header Files\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="TeachersView.h">
+      <Filter>Header Files\Views\ModelsViews</Filter>
+    </ClInclude>
+    <ClInclude Include="GroupsView.h">
+      <Filter>Header Files\Views\ModelsViews</Filter>
+    </ClInclude>
+    <ClInclude Include="ReservationsView.h">
+      <Filter>Header Files\Views\ModelsViews</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomsView.h">
+      <Filter>Header Files\Views\ModelsViews</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentsView.h">
+      <Filter>Header Files\Views\ModelsViews</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

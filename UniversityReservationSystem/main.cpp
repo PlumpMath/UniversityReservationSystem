@@ -27,7 +27,7 @@ void main()
 	group->Students.Add(student2);
 
 
-	DataContext *context = new DataContext();
+	DataContext *context = new DataContext("file.txt");
 	ReservationController *reserv = new ReservationController(*context);
 	reserv->AddReservation(*res);
 

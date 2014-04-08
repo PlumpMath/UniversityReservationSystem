@@ -8,12 +8,25 @@ class TQueue
 {
 protected:
 	std::vector<T*> list;
+	
+	int GenerateId()
+	{
+		int max = 0;
+
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list[i]->Id > max) max = list[i]->Id;
+		}
+		return ++max;
+	}
 
 public:
-	virtual bool Add(T* toAdd)
+	virtual bool Add(T* toAdd, bool isDataContext = false)
 	{
 		if (toAdd != NULL)
 		{
+			if (isDataContext) toAdd->Id = GenerateId();
+
 			list.push_back(toAdd);
 			return true;
 		}

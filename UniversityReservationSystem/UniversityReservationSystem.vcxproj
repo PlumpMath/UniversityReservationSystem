@@ -81,14 +81,25 @@
     <ClInclude Include="DataContext.h" />
     <ClInclude Include="ExerciseRoom.h" />
     <ClInclude Include="Group.h" />
+    <ClInclude Include="GroupController.h" />
+    <ClInclude Include="GroupsView.h" />
+    <ClInclude Include="IController.h" />
     <ClInclude Include="IPerson.h" />
     <ClInclude Include="IRoom.h" />
     <ClInclude Include="LabRoom.h" />
+    <ClInclude Include="MainPageView.h" />
     <ClInclude Include="ReservationController.h" />
+    <ClInclude Include="ReservationsView.h" />
+    <ClInclude Include="RoomController.h" />
+    <ClInclude Include="RoomsView.h" />
+    <ClInclude Include="StudentController.h" />
+    <ClInclude Include="StudentsView.h" />
     <ClInclude Include="TAntiCollisionQueue.h" />
     <ClInclude Include="Teacher.h" />
     <ClInclude Include="Reservation.h" />
     <ClInclude Include="Student.h" />
+    <ClInclude Include="TeacherController.h" />
+    <ClInclude Include="TeachersView.h" />
     <ClInclude Include="TQueue.h" />
   </ItemGroup>
   <ItemGroup>
