@@ -12,7 +12,7 @@ public:
 	string AcademicTitle;
 
 	Teacher(string _firstName, string _lastName, string _email, string _phoneNumber, string _academicTitle)
-		: IPerson(_firstName, _lastName)
+		: IPerson(_firstName, _lastName, "Teacher")
 	{
 		Email = _email;
 		PhoneNumber = _phoneNumber;
@@ -22,6 +22,8 @@ public:
 	void Serialize(ostream& os) const
 	{
 		IPerson::Serialize(os);
-		os << " " << Email << " " << PhoneNumber << " " << AcademicTitle;
+		os << Email << endl 
+			<< PhoneNumber << endl
+			<< AcademicTitle << endl;
 	}
 };

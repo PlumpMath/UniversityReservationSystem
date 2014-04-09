@@ -10,12 +10,14 @@ class IRoom : public ISerializable
 {
 public:
 	string Name;
+	string Type;
 	int Capacity;
 	TDataQueue<Reservation> Reservations;
 
-	IRoom(string _name, int _capacity)
+	IRoom(string _name, string _type, int _capacity)
 	{
 		Name = _name;
+		Type = _type;
 		Capacity = _capacity;
 	}
 
@@ -32,7 +34,10 @@ public:
 	virtual void Serialize(ostream& os) const
 	{
 		ISerializable::Serialize(os);
-		os << " " << Capacity;
+		os << Type << endl
+			<< Name << endl
+			<< Type << endl
+			<< Capacity << endl;
 	}
 
 	virtual ~IRoom();

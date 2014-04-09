@@ -13,7 +13,7 @@ public:
 	Group& StudentGroup;
 
 	Student(string _firstName, string _lastName, Group& _group, int _passedTerms, double _averageOfMarksOfLastTerm)
-		: IPerson(_firstName, _lastName), StudentGroup(_group)
+		: IPerson(_firstName, _lastName, "Student"), StudentGroup(_group)
 	{
 		PassedTerms = _passedTerms;
 		AverageOfMarksOfLastTerm = _averageOfMarksOfLastTerm;
@@ -22,7 +22,8 @@ public:
 	void Serialize(ostream& os) const
 	{
 		IPerson::Serialize(os);
-		os << " " << PassedTerms << " " << AverageOfMarksOfLastTerm
-		   << " " << StudentGroup.Id;
+		os << PassedTerms << endl
+			<< AverageOfMarksOfLastTerm << endl
+			<< StudentGroup.Id << endl;
 	}
 };

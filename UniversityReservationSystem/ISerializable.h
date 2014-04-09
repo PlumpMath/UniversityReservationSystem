@@ -5,11 +5,17 @@ using namespace std;
 class ISerializable
 {
 public:
-	int Id = -1;
+	int Id;
+
+	ISerializable()
+	{
+		Id = -1;
+	}
+
 
 	virtual void Serialize(ostream& os) const
 	{
-		os << Id;
+		os << Id << endl;
 	}
 
 	friend ostream& operator<<(ostream& os, ISerializable const& object)

@@ -9,7 +9,7 @@ public:
 	int NumOfTables;
 
 	ExerciseRoom(string _name, int _capacity, int _numOfChairs, int _numOfTables)
-		: IRoom(_name, _capacity)
+		: IRoom(_name, "Exercise", _capacity)
 	{
 		NumOfChairs = _numOfChairs;
 		NumOfTables = _numOfTables;
@@ -18,6 +18,7 @@ public:
 	void Serialize(ostream& os) const 
 	{
 		IRoom::Serialize(os);
-		os << " " << NumOfChairs << " " << NumOfTables;
+		os << NumOfChairs << endl
+			<< NumOfTables << endl;
 	}
 };

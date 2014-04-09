@@ -43,7 +43,10 @@ public:
 		strftime(_dateOfEnd, 25, "%c", localtime(&DateOfEnd));
 
 		ISerializable::Serialize(os);
-		os << " " << Name << " " << _dateOfStart << " " << _dateOfEnd
-			<< " " << BoundTeacher.Id << " " << Room.Id;
+		os << Name << endl
+			<< _dateOfStart << endl
+			<< _dateOfEnd << endl
+			<< BoundTeacher.Id << endl
+			<< Room.Id << endl;
 	}
 };

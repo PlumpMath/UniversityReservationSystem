@@ -41,7 +41,9 @@ public:
 
 	void Serialize(ostream& os) const
 	{
-		os << " " << Id << " " << DegreeCourse << " "
-			<< Year << " " << GroupNumber;
+		ISerializable::Serialize(os);
+		os << DegreeCourse << endl
+			<< Year << endl
+			<< GroupNumber << endl;
 	}
 };

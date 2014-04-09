@@ -3,6 +3,7 @@
 #include "ISerializable.h"
 #include "TDataQueue.h"
 #include "Reservation.h"
+#include <string>
 
 using namespace std;
 class Reservation;
@@ -12,12 +13,14 @@ class IPerson : public ISerializable
 public:
 	string FirstName;
 	string LastName;
+	string Type;
 	TDataQueue<Reservation> Reservations;
 
-	IPerson(string _firstName, string _lastName)
+	IPerson(string _firstName, string _lastName, string _type)
 	{
 		FirstName = _firstName;
 		LastName = _lastName;
+		Type = _type;
 	}
 
 	bool CheckCollisions(Reservation& reservation)
@@ -33,7 +36,8 @@ public:
 	virtual void Serialize(ostream& os) const
 	{
 		ISerializable::Serialize(os);
-		os << " " << FirstName << " " << LastName;
+		os << FirstName << endl
+			<< LastName << endl;
 	}
 
 	virtual ~IPerson();
