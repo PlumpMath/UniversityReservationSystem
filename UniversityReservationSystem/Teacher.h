@@ -22,8 +22,8 @@ public:
 	void Serialize(ostream& os) const
 	{
 		IPerson::Serialize(os);
-		os << Email << endl 
+		os << Email << endl
 			<< PhoneNumber << endl
-			<< AcademicTitle << endl;
+			<< AcademicTitle;
 	}
 };

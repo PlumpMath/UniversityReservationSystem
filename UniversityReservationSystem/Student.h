@@ -24,6 +24,6 @@ public:
 		IPerson::Serialize(os);
 		os << PassedTerms << endl
 			<< AverageOfMarksOfLastTerm << endl
-			<< StudentGroup.Id << endl;
+			<< StudentGroup.Id;
 	}
 };

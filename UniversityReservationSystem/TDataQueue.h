@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -62,6 +63,14 @@ public:
 		return removed;
 	}
 
+	void Clear()
+	{
+		for (int i = 0; i < list.size(); i++)
+		{
+			delete list[i];
+		}
+	}
+
 	bool Remove(int toDeleteIndex)
 	{
 		if (toDeleteIndex < Count())
@@ -89,6 +98,9 @@ public:
 	template <class TT>
 	friend ostream& operator<<(ostream& os, const TDataQueue<TT> &object);
 
+	template <class TT>
+	friend ifstream& operator>>(ifstream& ifs, TDataQueue<TT> &object);
+
 	virtual ~TDataQueue() { }
 };
 
@@ -97,8 +109,17 @@ ostream& operator<<(ostream& os, const TDataQueue<T> &object)
 {
 	for (int i = 0; i < object.list.size(); i++)
 	{
-		os << *(object.list[i]) << "\n";
+		os << *(object.list[i]) << endl;
 	}
 
 	return os;
+}
+
+template<class T>
+ifstream& operator>>(ifstream& ifs, TDataQueue<T> &object)
+{
+	T *newObj = new T(ifs);
+
+
+	return ifs;
 }

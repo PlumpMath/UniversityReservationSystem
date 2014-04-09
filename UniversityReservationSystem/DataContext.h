@@ -7,6 +7,11 @@
 #include "IRoom.h"
 #include <fstream>
 
+#define GROUPS_FILE "groups.txt"
+#define PEOPLE_FILE "people.txt"
+#define ROOMS_FILE "rooms.txt"
+#define RESERVATIONS_FILE "reservations.txt"
+
 using namespace std;
 
 class DataContext
@@ -27,10 +32,14 @@ public:
 
 	void SaveChanges()
 	{
-		ofstream filePeople(filePath + "//people.txt", ofstream::trunc);
-		ofstream fileRooms(filePath + "//rooms.txt", ofstream::trunc);
-		ofstream fileGroups(filePath + "//groups.txt", ofstream::trunc);
-		ofstream fileReservations(filePath + "//reservations.txt", ofstream::trunc);
+		ofstream fileGroups(filePath + "//" + GROUPS_FILE, ofstream::trunc);
+		ofstream filePeople(filePath + "//" + PEOPLE_FILE, ofstream::trunc);
+		ofstream fileRooms(filePath + "//" + ROOMS_FILE, ofstream::trunc);
+		ofstream fileReservations(filePath + "//" + RESERVATIONS_FILE, ofstream::trunc);
+
+		fileGroups.clear();
+		fileGroups << Groups;
+		fileGroups.close();
 
 		filePeople.clear();
 		filePeople << People;
@@ -40,10 +49,6 @@ public:
 		fileRooms << Rooms;
 		fileRooms.close();
 
-		fileGroups.clear();
-		fileGroups << Groups;
-		fileGroups.close();
-
 		fileReservations.clear();
 		fileReservations << Reservations;
 		fileReservations.close();
@@ -51,6 +56,29 @@ public:
 
 	void TryLoadTheBase()
 	{
-		// TODO: Deserialize + load to the memory
+		ifstream fileGroups(filePath + "//" + GROUPS_FILE);
+		ifstream filePeople(filePath + "//" + PEOPLE_FILE);
+		ifstream fileRooms(filePath + "//" + ROOMS_FILE);
+		ifstream fileReservations(filePath + "//" + RESERVATIONS_FILE);
+
+		fileGroups >> Groups;
+		fileGroups.close();
+
+		filePeople >> People;
+		filePeople.close();
+
+		fileRooms >> Rooms;
+		fileRooms.close();
+
+		fileReservations >> Reservations;
+		fileReservations.close();
+	}
+
+	void Clear()
+	{
+		People.Clear();
+		Rooms.Clear();
+		Groups.Clear();
+		Reservations.Clear();
 	}
 };

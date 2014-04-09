@@ -19,6 +19,6 @@ public:
 	{
 		IRoom::Serialize(os);
 		os << NumOfChairs << endl
-			<< NumOfTables << endl;
+			<< NumOfTables;
 	}
 };

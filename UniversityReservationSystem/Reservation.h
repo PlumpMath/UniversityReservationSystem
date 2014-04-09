@@ -47,6 +47,6 @@ public:
 			<< _dateOfStart << endl
 			<< _dateOfEnd << endl
 			<< BoundTeacher.Id << endl
-			<< Room.Id << endl;
+			<< Room.Id;
 	}
 };

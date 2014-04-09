@@ -4,7 +4,6 @@
 #include "TAntiCollisionQueue.h"
 #include "Student.h"
 #include "Reservation.h"
-
 using namespace std;
 
 class Reservation;
@@ -26,6 +25,20 @@ public:
 		GroupNumber = _groupNumber;
 	}
 
+	Group(ifstream& is) : ISerializable(is)
+	{
+		string stringBuffer;
+
+		getline(is, stringBuffer);
+		DegreeCourse = stringBuffer;
+
+		getline(is, stringBuffer);
+		Year = stoi(stringBuffer);
+
+		getline(is, stringBuffer);
+		GroupNumber = stoi(stringBuffer);
+	}
+
 	bool CheckCollisions(Reservation& reservation)
 	{
 		if (Students.CheckCollisions(reservation)) return true;
@@ -44,6 +57,6 @@ public:
 		ISerializable::Serialize(os);
 		os << DegreeCourse << endl
 			<< Year << endl
-			<< GroupNumber << endl;
+			<< GroupNumber;
 	}
 };

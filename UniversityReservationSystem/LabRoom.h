@@ -19,6 +19,6 @@ public:
 	{
 		IRoom::Serialize(os);
 		os << AdditionalEquipment << endl
-			<< NumOfComputers << endl;
+			<< NumOfComputers;
 	}
 };

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <iostream>
+#include <string>
+#include <fstream>
 using namespace std;
 
 class ISerializable
@@ -12,6 +15,12 @@ public:
 		Id = -1;
 	}
 
+	ISerializable(ifstream& is)
+	{
+		string stringBuffer;
+		getline(is, stringBuffer);
+		Id = stoi(stringBuffer);
+	}
 
 	virtual void Serialize(ostream& os) const
 	{
