@@ -36,7 +36,8 @@ public:
 	virtual void Serialize(ostream& os) const
 	{
 		ISerializable::Serialize(os);
-		os << FirstName << endl
+		os << Type << endl
+			<< FirstName << endl
 			<< LastName << endl;
 	}
 

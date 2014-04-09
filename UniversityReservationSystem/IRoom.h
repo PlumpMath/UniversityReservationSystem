@@ -36,7 +36,6 @@ public:
 		ISerializable::Serialize(os);
 		os << Type << endl
 			<< Name << endl
-			<< Type << endl
 			<< Capacity << endl;
 	}
 

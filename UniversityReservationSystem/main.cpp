@@ -29,6 +29,12 @@ void main()
 	DataContext *context = new DataContext("home");
 	ReservationController *reserv = new ReservationController(*context);
 	context->Reservations.Add(res, true);
+	context->Rooms.Add(room, true);
+	context->Rooms.Add(room2, true);
+	context->People.Add(student1, true);
+	context->People.Add(student2, true);
+	context->People.Add(teacher, true);
+	context->Groups.Add(group, true);
 	context->SaveChanges();
 
 	cin;
