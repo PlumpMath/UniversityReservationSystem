@@ -9,7 +9,6 @@
 #include "DataContext.h"
 #include "ReservationController.h"
 
-
 using namespace std;
 
 void main()
@@ -27,9 +26,10 @@ void main()
 	group->Students.Add(student2);
 
 
-	DataContext *context = new DataContext("file.txt");
+	DataContext *context = new DataContext("home");
 	ReservationController *reserv = new ReservationController(*context);
-	reserv->Add(*res);
+	context->Reservations.Add(res, true);
+	context->SaveChanges();
 
 	cin;
 }

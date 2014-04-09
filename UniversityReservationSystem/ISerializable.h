@@ -9,7 +9,7 @@ public:
 
 	virtual void Serialize(ostream& os) const
 	{
-		os << Id << " ";
+		os << Id;
 	}
 
 	friend ostream& operator<<(ostream& os, ISerializable const& object)

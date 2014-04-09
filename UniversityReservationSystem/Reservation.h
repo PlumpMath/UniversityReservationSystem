@@ -36,9 +36,14 @@ public:
 
 	void Serialize(ostream& os) const
 	{
+		char _dateOfStart[25];
+		char _dateOfEnd[25];
+
+		strftime(_dateOfStart, 25, "%c", localtime(&DateOfStart));
+		strftime(_dateOfEnd, 25, "%c", localtime(&DateOfEnd));
+
 		ISerializable::Serialize(os);
-		os << " " << Name << " "
-			<< ctime(&DateOfStart) << " " << ctime(&DateOfEnd)
-			<< BoundTeacher.Id << " " << Room.Id;
+		os << " " << Name << " " << _dateOfStart << " " << _dateOfEnd
+			<< " " << BoundTeacher.Id << " " << Room.Id;
 	}
 };

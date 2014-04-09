@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -85,15 +86,19 @@ public:
 		else throw "Out of range exception";
 	}
 
-	friend ostream& operator<<(ostream& os, T const& object)
-	{
-		for (int i = 0; i < list.size(); i++)
-		{
-			os << *list[i] << "\n";
-		}
-
-		return os;
-	}
+	template <class TT>
+	friend ostream& operator<<(ostream& os, const TDataQueue<TT> &object);
 
 	virtual ~TDataQueue() { }
 };
+
+template<class T>
+ostream& operator<<(ostream& os, const TDataQueue<T> &object)
+{
+	for (int i = 0; i < object.list.size(); i++)
+	{
+		os << *(object.list[i]) << "\n";
+	}
+
+	return os;
+}
