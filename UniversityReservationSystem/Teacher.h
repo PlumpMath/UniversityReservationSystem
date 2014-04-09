@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IPerson.h"
+#include <fstream>
 
 using namespace std;
 
@@ -17,6 +18,20 @@ public:
 		Email = _email;
 		PhoneNumber = _phoneNumber;
 		AcademicTitle = _academicTitle;
+	}
+
+	Teacher(ifstream& is) : IPerson(is, "Teacher")
+	{
+		string stringBuffer;
+
+		getline(is, stringBuffer);
+		Email = stringBuffer;
+
+		getline(is, stringBuffer);
+		PhoneNumber = stringBuffer;
+
+		getline(is, stringBuffer);
+		AcademicTitle = stringBuffer;
 	}
 
 	void Serialize(ostream& os) const

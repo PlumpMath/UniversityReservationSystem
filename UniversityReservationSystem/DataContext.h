@@ -19,9 +19,9 @@ class DataContext
 protected:
 	string filePath;
 public:
+	TDataQueue<Group> Groups;
 	TDataQueue<IPerson> People;
 	TDataQueue<IRoom> Rooms;
-	TDataQueue<Group> Groups;
 	TDataQueue<Reservation> Reservations;
 
 	DataContext(string _filePath)

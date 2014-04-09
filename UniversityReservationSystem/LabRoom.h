@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IRoom.h"
+#include <fstream>
 
 class LabRoom : public IRoom
 {
@@ -13,6 +14,17 @@ public:
 	{
 		AdditionalEquipment = _additionalEquipment;
 		NumOfComputers = _numOfComputers;
+	}
+
+	LabRoom(ifstream& is) : IRoom(is, "Lab")
+	{
+		string stringBuffer;
+
+		getline(is, stringBuffer);
+		AdditionalEquipment = stringBuffer;
+
+		getline(is, stringBuffer);
+		NumOfComputers = stoi(stringBuffer);
 	}
 
 	void Serialize(ostream& os) const

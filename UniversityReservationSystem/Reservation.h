@@ -49,4 +49,14 @@ public:
 			<< BoundTeacher.Id << endl
 			<< Room.Id;
 	}
+
+	bool CheckCollisions(Reservation& toCheck)
+	{
+		if ((toCheck.DateOfStart >= this->DateOfStart && toCheck.DateOfStart <= this->DateOfEnd) ||
+			(this->DateOfStart >= toCheck.DateOfStart && this->DateOfStart <= this->DateOfEnd))
+		{
+			return true;
+		}
+		return false;
+	}
 };

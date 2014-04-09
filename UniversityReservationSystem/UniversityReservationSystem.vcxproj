@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CommonFactory.h" />
     <ClInclude Include="DataContext.h" />
     <ClInclude Include="ExerciseRoom.h" />
     <ClInclude Include="Group.h" />

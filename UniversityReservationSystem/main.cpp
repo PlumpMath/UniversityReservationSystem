@@ -17,32 +17,23 @@ using namespace std;
 void main()
 {
 	{
-		LabRoom *room = new LabRoom("nazwalab", 323, "none eq", 2);
-		ExerciseRoom *room2 = new ExerciseRoom("nazwaEx", 3, 32, 23);
-		Group *group = new Group("degree", 2012, 2);
-		Student *student1 = new Student("imie1", "nazwisko1", *group, 3, 2.3);
-		Student *student2 = new Student("imie2", "nazwisko2", *group, 6, 4.6);
-		Teacher *teacher = new Teacher("pierwsze", "drugie", "mail", "3423423423", "tytul");
+		LabRoom room = LabRoom("nazwalab", 323, "none eq", 2);
+		ExerciseRoom room2 = ExerciseRoom("nazwaEx", 3, 32, 23);
+		Group group = Group("degree", 2012, 2);
+		Student student1 = Student("imie1", "nazwisko1", group, 3, 2.3);
+		Student student2 = Student("imie2", "nazwisko2", group, 6, 4.6);
+		Teacher teacher = Teacher("pierwsze", "drugie", "mail", "3423423423", "tytul");
 
-		Reservation *res = new Reservation("nazwa", time(0), time(0), *teacher, *room);
-		res->BoundGroups.Add(group);
-		group->Students.Add(student1);
-		group->Students.Add(student2);
+		Reservation res = Reservation("nazwa", time(0), time(0), teacher, room);
+		res.BoundGroups.Add(group);
+		group.Students.Add(student1);
+		group.Students.Add(student2);
 
+		DataContext context = DataContext("home");
 
-		DataContext *context = new DataContext("home");
-
-		/*ReservationController *reserv = new ReservationController(*context);
-		context->Reservations.Add(res, true);
-		context->Rooms.Add(room, true);
-		context->Rooms.Add(room2, true);
-		context->People.Add(student1, true);
-		context->People.Add(student2, true);
-		context->People.Add(teacher, true);
-		context->Groups.Add(group, true);
-		context->SaveChanges();
-		_CrtDumpMemoryLeaks();
-		context->Clear();*/
+		ReservationController reserv = ReservationController(context);
+		reserv.Add(res);
+		cout << "hehe";
 	}
 	_CrtDumpMemoryLeaks();
 

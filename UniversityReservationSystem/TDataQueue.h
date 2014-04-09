@@ -23,44 +23,52 @@ protected:
 	}
 
 public:
-	virtual bool Add(T* toAdd, bool isDataContext = false)
+	virtual bool Add(T& toAdd, bool isDataContext = false)
 	{
-		if (toAdd != NULL)
+		if (&toAdd != NULL)
 		{
-			if (isDataContext) toAdd->Id = GenerateId();
+			if (isDataContext) toAdd.Id = GenerateId();
 
-			list.push_back(toAdd);
+			list.push_back(&toAdd);
 			return true;
 		}
 		else throw "Null pointer exception";
 	}
 
-	virtual bool Contains(T* toFind)
+	virtual bool Contains(T& toFind)
 	{
-		if (toFind != NULL)
+		if (&toFind != NULL)
 		{
 			for (int i = 0; i < list.size(); i++)
 			{
-				if (list[i] == toFind) return true;
+				if (list[i] == &toFind) return true;
 			}
 			return false;
 		}
 		else throw "Null pointer exception";
 	}
 
-	int Remove(T* toDelete)
+	void Remove(T& toRemove)
 	{
-		int removed = 0;
-		// From the end because every time we delete, indexes moves
-		for (int i = list.size() - 1; i >= 0; i--)
+		for (int i = 0; i < list.size(); i++)
 		{
-			if (list[i] == toDelete)
+			if (list[i] == &toRemove)
 			{
 				list.erase(list.begin() + i);
-				removed++;
+				break;
 			}
 		}
-		return removed;
+	}
+	
+	void Delete(T& toDelete)
+	{
+		this->Remove(toDelete);
+		delete &toDelete;
+	}
+
+	void DeleteRange(TDataQueue<T> * toDelete)
+	{
+
 	}
 
 	void Clear()
@@ -69,16 +77,6 @@ public:
 		{
 			delete list[i];
 		}
-	}
-
-	bool Remove(int toDeleteIndex)
-	{
-		if (toDeleteIndex < Count())
-		{
-			list.erase(list.begin() + toDeleteIndex);
-			return true;
-		}
-		else throw "Out of range exception";
 	}
 
 	int Count()
@@ -118,8 +116,7 @@ ostream& operator<<(ostream& os, const TDataQueue<T> &object)
 template<class T>
 ifstream& operator>>(ifstream& ifs, TDataQueue<T> &object)
 {
-	T *newObj = new T(ifs);
-
+	string t = typeid(T).name();
 
 	return ifs;
 }

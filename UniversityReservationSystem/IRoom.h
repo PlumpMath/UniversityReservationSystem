@@ -2,7 +2,8 @@
 
 #include "ISerializable.h"
 #include "Reservation.h"
-#include "TDataQueue.h"
+#include "TAntiCollisionQueue.h"
+#include <fstream>
 
 class Reservation;
 
@@ -12,7 +13,7 @@ public:
 	string Name;
 	string Type;
 	int Capacity;
-	TDataQueue<Reservation> Reservations;
+	TAntiCollisionQueue<Reservation> Reservations;
 
 	IRoom(string _name, string _type, int _capacity)
 	{
@@ -21,21 +22,32 @@ public:
 		Capacity = _capacity;
 	}
 
+	IRoom(ifstream& is, string type) : ISerializable(is), Type(type)
+	{
+		string stringBuffer;
+
+		getline(is, stringBuffer);
+		Name = stringBuffer;
+
+		getline(is, stringBuffer);
+		Capacity = stoi(stringBuffer);
+	}
+
 	bool CheckCollisions(Reservation& reservation)
 	{
-		return false;
+		return Reservations.CheckCollisions(reservation);
 	}
 
 	void AddReservation(Reservation &reservationToAdd)
 	{
-		Reservations.Add(&reservationToAdd);
+		Reservations.Add(reservationToAdd);
 	}
 
 	virtual void Serialize(ostream& os) const
 	{
+		os << Type << endl;
 		ISerializable::Serialize(os);
-		os << Type << endl
-			<< Name << endl
+		os << Name << endl
 			<< Capacity << endl;
 	}
 

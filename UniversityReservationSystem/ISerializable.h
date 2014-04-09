@@ -15,7 +15,7 @@ public:
 		Id = -1;
 	}
 
-	ISerializable(ifstream& is)
+	ISerializable(istream& is)
 	{
 		string stringBuffer;
 		getline(is, stringBuffer);

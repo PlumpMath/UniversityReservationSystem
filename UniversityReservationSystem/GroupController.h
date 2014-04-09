@@ -12,7 +12,12 @@ public:
 
 	bool Add(Group& toAdd)
 	{
-		return true;
+		if (!Context.Groups.Contains(toAdd))
+		{
+			Context.Groups.Add(toAdd);
+			return true;
+		}
+		return false;
 	}
 
 	bool Edit(Group& toEdit)
@@ -22,6 +27,11 @@ public:
 
 	bool Delete(Group& toDelete)
 	{
-		return true;
+		Context.Groups.Remove(toDelete);
+		//Context.People.DeleteRange(toDelete.Students);
+		toDelete.Students.Clear();
+		// TODO: FUCK THIS SHIT WITH STORING IDIOTIC GENERIC QUEUES
+
+		delete &toDelete;
 	}
 };

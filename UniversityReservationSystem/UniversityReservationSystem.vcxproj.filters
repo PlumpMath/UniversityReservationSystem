@@ -104,6 +104,9 @@
     <ClInclude Include="ISerializable.h">
       <Filter>Header Files\Models</Filter>
     </ClInclude>
+    <ClInclude Include="CommonFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

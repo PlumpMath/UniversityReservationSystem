@@ -20,7 +20,7 @@ public:
 		toAdd.BoundTeacher.AddReservation(toAdd);
 		toAdd.Room        .AddReservation(toAdd);
 
-		Context.Reservations.Add(&toAdd, true);
+		Context.Reservations.Add(toAdd, true);
 		return true;
 	}
 
@@ -31,6 +31,7 @@ public:
 	
 	bool Delete(Reservation& toDelete)
 	{
-		return true;
+		toDelete.BoundTeacher.Reservations.Remove(toDelete);
+		return false;
 	}
 };

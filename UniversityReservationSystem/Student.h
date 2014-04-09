@@ -1,6 +1,7 @@
 #pragma once
 #include "Group.h"
 #include "IPerson.h"
+#include <fstream>
 
 using namespace std;
 class Group;
@@ -17,6 +18,22 @@ public:
 	{
 		PassedTerms = _passedTerms;
 		AverageOfMarksOfLastTerm = _averageOfMarksOfLastTerm;
+	}
+
+	bool CheckCollisions(Reservation& reservation)
+	{
+		return false;
+	}
+
+	Student(ifstream& is, Group& _group) : IPerson(is, "Student"), StudentGroup(_group)
+	{
+		string stringBuffer;
+
+		getline(is, stringBuffer);
+		PassedTerms = stoi(stringBuffer);
+
+		getline(is, stringBuffer);
+		AverageOfMarksOfLastTerm = stod(stringBuffer);
 	}
 
 	void Serialize(ostream& os) const

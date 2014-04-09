@@ -1,9 +1,10 @@
 #pragma once
 
 #include "ISerializable.h"
-#include "TDataQueue.h"
+#include "TAntiCollisionQueue.h"
 #include "Reservation.h"
 #include <string>
+#include <fstream>
 
 using namespace std;
 class Reservation;
@@ -14,7 +15,7 @@ public:
 	string FirstName;
 	string LastName;
 	string Type;
-	TDataQueue<Reservation> Reservations;
+	TAntiCollisionQueue<Reservation> Reservations;
 
 	IPerson(string _firstName, string _lastName, string _type)
 	{
@@ -23,21 +24,32 @@ public:
 		Type = _type;
 	}
 
-	bool CheckCollisions(Reservation& reservation)
+	IPerson(ifstream& is, string type) : ISerializable(is), Type(type)
 	{
-		return false;
+		string stringBuffer;
+
+		getline(is, stringBuffer);
+		FirstName = stringBuffer;
+
+		getline(is, stringBuffer);
+		LastName = stringBuffer;
+	}
+
+	virtual bool CheckCollisions(Reservation& reservation)
+	{
+		return Reservations.CheckCollisions(reservation);
 	}
 
 	void AddReservation(Reservation &reservationToAdd)
 	{
-		Reservations.Add(&reservationToAdd);
+		Reservations.Add(reservationToAdd);
 	}
 
 	virtual void Serialize(ostream& os) const
 	{
+		os << Type << endl;
 		ISerializable::Serialize(os);
-		os << Type << endl
-			<< FirstName << endl
+		os << FirstName << endl
 			<< LastName << endl;
 	}
 

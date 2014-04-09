@@ -16,7 +16,7 @@ public:
 	int Year;
 	int GroupNumber;
 	TAntiCollisionQueue<Student> Students;
-	TDataQueue<Reservation> Reservations;
+	TAntiCollisionQueue<Reservation> Reservations;
 
 	Group(string _degreeCourse, int _year, int _groupNumber)
 	{
@@ -41,14 +41,12 @@ public:
 
 	bool CheckCollisions(Reservation& reservation)
 	{
-		if (Students.CheckCollisions(reservation)) return true;
-
-		return false;
+		return Reservations.CheckCollisions(reservation);
 	}
 
 	void AddReservation(Reservation& reservation)
 	{
-		Reservations.Add(&reservation);
+		Reservations.Add(reservation);
 		Students.AddReservation(reservation);
 	}
 
