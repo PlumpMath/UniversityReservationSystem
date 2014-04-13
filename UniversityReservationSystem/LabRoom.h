@@ -27,6 +27,13 @@ public:
 		NumOfComputers = stoi(stringBuffer);
 	}
 
+	void Edit(LabRoom roomToEdit)
+	{
+		IRoom::Edit(roomToEdit);
+		this->AdditionalEquipment = roomToEdit.AdditionalEquipment;
+		this->NumOfComputers = roomToEdit.NumOfComputers;
+	}
+
 	void Serialize(ostream& os) const
 	{
 		IRoom::Serialize(os);

@@ -39,6 +39,13 @@ public:
 		GroupNumber = stoi(stringBuffer);
 	}
 
+	void Edit(Group roomToEdit)
+	{
+		this->DegreeCourse = roomToEdit.DegreeCourse;
+		this->Year = roomToEdit.Year;
+		this->GroupNumber = roomToEdit.GroupNumber;
+	}
+
 	bool CheckCollisions(Reservation& reservation)
 	{
 		return Reservations.CheckCollisions(reservation);

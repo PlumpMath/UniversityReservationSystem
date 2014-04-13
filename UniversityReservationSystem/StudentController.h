@@ -13,14 +13,15 @@ public:
 	bool Add(Student& toAdd)
 	{
 		Context.Students.Add(toAdd, true);
+		toAdd.StudentGroup.Students.Add(toAdd);
 		toAdd.Reservations.AddRange(toAdd.StudentGroup.Reservations);
 		return true;
 	}
 
-	bool Edit(Student& toEdit)
+	bool Edit(Student& copyOfStudentToModify)
 	{
-		this->Delete(toEdit);
-		return this->Add(toEdit);
+		Student toEdit = Context.Students.Find(copyOfStudentToModify);
+		toEdit.Edit(copyOfStudentToModify);
 	}
 
 	bool Delete(Student& toFind)

@@ -27,6 +27,16 @@ public:
 		os << Id << endl;
 	}
 
+	bool operator==(const ISerializable& obj)
+	{
+		return this->Id == obj.Id;
+	}
+
+	bool operator!=(const ISerializable& obj)
+	{
+		return this->Id != obj.Id;
+	}
+
 	friend ostream& operator<<(ostream& os, ISerializable const& object)
 	{
 		object.Serialize(os);

@@ -38,6 +38,21 @@ public:
 		AverageOfMarksOfLastTerm = stod(stringBuffer);
 	}
 
+	void Edit(Student& editedStudent)
+	{
+		IPerson::Edit(editedStudent);
+		this->PassedTerms = editedStudent.PassedTerms;
+		this->AverageOfMarksOfLastTerm = editedStudent.AverageOfMarksOfLastTerm;
+
+		if (StudentGroup != editedStudent.StudentGroup)
+		{
+			this->Reservations.Clear();
+			this->StudentGroup.Students.Remove(*this);
+			this->StudentGroup = editedStudent.StudentGroup;
+			this->Reservations.AddRange(editedStudent.StudentGroup.Reservations);
+		}
+	}
+
 	void Serialize(ostream& os) const
 	{
 		IPerson::Serialize(os);

@@ -16,10 +16,10 @@ public:
 		return true;
 	}
 
-	bool Edit(IRoom& toEdit)
+	bool Edit(IRoom& copyOfRoomToModify)
 	{
-		this->Delete(toEdit);
-		return this->Add(toEdit);
+		IRoom toEdit = Context.Rooms.Find(copyOfRoomToModify);
+		toEdit.Edit(copyOfRoomToModify);
 	}
 
 	bool Delete(IRoom& toFind)

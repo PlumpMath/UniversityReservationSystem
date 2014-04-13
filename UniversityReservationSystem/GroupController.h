@@ -16,10 +16,10 @@ public:
 		return true;
 	}
 
-	bool Edit(Group& toEdit)
+	bool Edit(Group& copyOfGroupToEdit)
 	{
-		this->Delete(toEdit);
-		return this->Add(toEdit);
+		Group toEdit = Context.Groups.Find(copyOfGroupToEdit);
+		toEdit.Edit(copyOfGroupToEdit);
 	}
 
 	bool Delete(Group& toFind)

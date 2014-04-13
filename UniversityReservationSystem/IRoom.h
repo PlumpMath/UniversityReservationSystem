@@ -33,6 +33,12 @@ public:
 		Capacity = stoi(stringBuffer);
 	}
 
+	virtual void Edit(IRoom roomToEdit)
+	{
+		this->Name = roomToEdit.Name;
+		this->Capacity = roomToEdit.Capacity;
+	}
+
 	bool CheckCollisions(Reservation& reservation)
 	{
 		return Reservations.CheckCollisions(reservation);

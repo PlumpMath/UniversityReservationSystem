@@ -27,6 +27,13 @@ public:
 		NumOfTables = stoi(stringBuffer);
 	}
 
+	void Edit(ExerciseRoom roomToEdit)
+	{
+		IRoom::Edit(roomToEdit);
+		this->NumOfChairs = roomToEdit.NumOfChairs;
+		this->NumOfTables = roomToEdit.NumOfTables;
+	}
+
 	void Serialize(ostream& os) const 
 	{
 		IRoom::Serialize(os);

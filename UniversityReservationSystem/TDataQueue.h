@@ -35,16 +35,16 @@ public:
 	{
 		for (int i = 0; i < list.size(); i++)
 		{
-			if (list[i]->Id == toFind.Id) return *list[i];
+			if (*list[i] == toFind) return *list[i];
 		}
 		throw "Null pointer exception";
 	}
 
-	void AddRange(TDataQueue<T> toAdd)
+	void AddRange(TDataQueue<T>& toAdd)
 	{
 		for (int i = 0; i < toAdd.Count(); i++)
 		{
-			this->Add(*toAdd[i]);
+			this->Add(toAdd[i]);
 		}
 	}
 
@@ -52,7 +52,7 @@ public:
 	{
 		for (int i = 0; i < list.size(); i++)
 		{
-			if (list[i]->Id == toRemove.Id)
+			if (*list[i] == toRemove)
 			{
 				list.erase(list.begin() + i);
 				break;

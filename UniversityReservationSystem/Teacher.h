@@ -34,6 +34,14 @@ public:
 		AcademicTitle = stringBuffer;
 	}
 
+	void Edit(Teacher& editedTeacher)
+	{
+		IPerson::Edit(editedTeacher);
+		this->Email = editedTeacher.Email;
+		this->PhoneNumber = editedTeacher.PhoneNumber;
+		this->AcademicTitle = editedTeacher.AcademicTitle;
+	}
+
 	void Serialize(ostream& os) const
 	{
 		IPerson::Serialize(os);

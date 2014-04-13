@@ -50,6 +50,12 @@ public:
 		Reservations.Remove(reservationToRemove);
 	}
 
+	virtual void Edit(IPerson personToEdit)
+	{
+		this->FirstName = personToEdit.FirstName;
+		this->LastName = personToEdit.LastName;
+	}
+
 	virtual void Serialize(ostream& os) const
 	{
 		os << Type << endl;

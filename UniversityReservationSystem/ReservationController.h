@@ -24,10 +24,10 @@ public:
 		return true;
 	}
 
-	bool Edit(Reservation& toEdit)
+	bool Edit(Reservation& copyOfReservationToModify)
 	{
-		this->Delete(toEdit);
-		return this->Add(toEdit);
+		Reservation toEdit = Context.Reservations.Find(copyOfReservationToModify);
+		toEdit.Edit(copyOfReservationToModify);
 	}
 	
 	bool Delete(Reservation& toFind)

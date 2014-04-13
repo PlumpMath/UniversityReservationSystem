@@ -50,6 +50,11 @@ public:
 			<< Room.Id;
 	}
 
+	void Edit(Reservation reservationToEdit)
+	{
+		this->Name = reservationToEdit.Name;
+	}
+
 	bool CheckCollisions(Reservation& toCheck)
 	{
 		if ((toCheck.DateOfStart >= this->DateOfStart && toCheck.DateOfStart <= this->DateOfEnd) ||

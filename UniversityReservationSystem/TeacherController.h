@@ -16,15 +16,15 @@ public:
 		return true;
 	}
 
-	bool Edit(Teacher& toEdit)
+	bool Edit(Teacher& copyOfTeacherToModify)
 	{
-		this->Delete(toEdit);
-		return this->Add(toEdit);
+		Teacher toEdit = Context.Teachers.Find(copyOfTeacherToModify);
+		toEdit.Edit(copyOfTeacherToModify);
 	}
 
-	bool Delete(Teacher& toFind)
+	bool Delete(Teacher& copyOfTeacherToDelete)
 	{
-		Teacher toDelete = Context.Teachers.Find(toFind);
+		Teacher toDelete = Context.Teachers.Find(copyOfTeacherToDelete);
 
 		for (int i = 0; i < toDelete.Reservations.Count(); i++)
 		{
