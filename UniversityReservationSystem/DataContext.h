@@ -59,7 +59,7 @@ public:
 
 	void TryLoadTheBase()
 	{
-		ifstream fileGroups(filePath + "//" + GROUPS_FILE);
+		/*ifstream fileGroups(filePath + "//" + GROUPS_FILE);
 		ifstream fileTeachers(filePath + "//" + TEACHERS_FILE);
 		ifstream fileStudents(filePath + "//" + STUDENTS_FILE);
 		ifstream fileRooms(filePath + "//" + ROOMS_FILE);
@@ -78,7 +78,7 @@ public:
 		fileRooms.close();
 
 		Reservations.Deserialize(fileReservations, *this);
-		fileReservations.close();
+		fileReservations.close();*/
 	}
 
 	void Clear()

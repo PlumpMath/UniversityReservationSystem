@@ -43,6 +43,11 @@ public:
 		Reservations.Add(reservationToAdd);
 	}
 
+	void RemoveReservation(Reservation &reservationToRemove)
+	{
+		Reservations.Remove(reservationToRemove);
+	}
+
 	virtual void Serialize(ostream& os) const
 	{
 		os << Type << endl;

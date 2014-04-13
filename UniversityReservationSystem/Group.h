@@ -50,6 +50,12 @@ public:
 		Students.AddReservation(reservation);
 	}
 
+	void RemoveReservation(Reservation &reservationToRemove)
+	{
+		Reservations.Remove(reservationToRemove);
+		Students.RemoveReservation(reservationToRemove);
+	}
+
 	void Serialize(ostream& os) const
 	{
 		ISerializable::Serialize(os);

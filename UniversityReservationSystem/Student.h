@@ -22,6 +22,7 @@ public:
 
 	bool CheckCollisions(Reservation& reservation)
 	{
+		// Since groups have to check it
 		return false;
 	}
 

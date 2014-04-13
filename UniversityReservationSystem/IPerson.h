@@ -40,9 +40,14 @@ public:
 		return Reservations.CheckCollisions(reservation);
 	}
 
-	void AddReservation(Reservation &reservationToAdd)
+	virtual void AddReservation(Reservation &reservationToAdd)
 	{
 		Reservations.Add(reservationToAdd);
+	}
+
+	virtual void RemoveReservation(Reservation &reservationToRemove)
+	{
+		Reservations.Remove(reservationToRemove);
 	}
 
 	virtual void Serialize(ostream& os) const

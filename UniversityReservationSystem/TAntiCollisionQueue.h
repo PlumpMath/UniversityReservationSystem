@@ -32,4 +32,12 @@ public:
 			list[i]->AddReservation(reservation);
 		}
 	}
+
+	void RemoveReservation(Reservation & reservation)
+	{
+		for (int i = 0; i < list.size(); i++)
+		{
+			list[i]->RemoveReservation(reservation);
+		}
+	}
 };

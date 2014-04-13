@@ -26,12 +26,19 @@ public:
 
 	bool Edit(Reservation& toEdit)
 	{
-		return true;
+		this->Delete(toEdit);
+		return this->Add(toEdit);
 	}
 	
-	bool Delete(Reservation& toDelete)
+	bool Delete(Reservation& toFind)
 	{
-		toDelete.BoundTeacher.Reservations.Remove(toDelete);
-		return false;
+		Reservation toDelete = Context.Reservations.Find(toFind);
+
+		toDelete.BoundGroups .RemoveReservation(toDelete);
+		toDelete.BoundTeacher.RemoveReservation(toDelete);
+		toDelete.Room	     .RemoveReservation(toDelete);
+
+		Context.Reservations.Delete(toDelete);
+		return true;
 	}
 };

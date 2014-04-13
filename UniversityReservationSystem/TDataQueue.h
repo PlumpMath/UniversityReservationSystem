@@ -2,11 +2,8 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include "CommonFactory.h"
 
 using namespace std;
-
-class DataContext;
 
 template <class T>
 class TDataQueue
@@ -26,36 +23,28 @@ protected:
 	}
 
 public:
-	virtual bool Add(T& toAdd, bool isDataContext = false)
+	virtual bool Add(T& toAdd, bool newRecord = false)
 	{
-		if (&toAdd != NULL)
-		{
-			if (isDataContext) toAdd.Id = GenerateId();
+		if (newRecord) toAdd.Id = GenerateId();
 
-			list.push_back(&toAdd);
-			return true;
-		}
-		else throw "Null pointer exception";
+		list.push_back(&toAdd);
+		return true;
 	}
 
-	virtual bool Contains(T& toFind)
+	T& Find(T& toFind)
 	{
-		if (&toFind != NULL)
+		for (int i = 0; i < list.size(); i++)
 		{
-			for (int i = 0; i < list.size(); i++)
-			{
-				if (list[i] == &toFind) return true;
-			}
-			return false;
+			if (list[i]->Id == toFind.Id) return *list[i];
 		}
-		else throw "Null pointer exception";
+		throw "Null pointer exception";
 	}
 
 	void Remove(T& toRemove)
 	{
 		for (int i = 0; i < list.size(); i++)
 		{
-			if (list[i] == &toRemove)
+			if (list[i]->Id == toRemove.Id)
 			{
 				list.erase(list.begin() + i);
 				break;
@@ -67,11 +56,6 @@ public:
 	{
 		this->Remove(toDelete);
 		delete &toDelete;
-	}
-
-	void DeleteRange(TDataQueue<T> * toDelete)
-	{
-
 	}
 
 	void Clear()
@@ -96,16 +80,18 @@ public:
 		else throw "Out of range exception";
 	}
 
-	void Deserialize(ifstream& is, DataContext& context)
+	/*void Deserialize(ifstream& is, DataContext& context)
 	{
+		string type = typeid(T).name();
 		int count = 0;
 		is >> count;
 
 		while (count--)
 		{
-			Add(CommonFactory::NewObject(is, context));
+			ISerializable* toAdd = CommonFactory::NewObject(is, context, type);
+			Add(*(dynamic_cast<T*>(toAdd)));
 		}
-	}
+	}*/
 
 	template <class TT>
 	friend ostream& operator<<(ostream& os, const TDataQueue<TT> &object);
