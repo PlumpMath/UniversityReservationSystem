@@ -1,6 +1,7 @@
 #pragma once
 #include "Group.h"
 #include "IPerson.h"
+#include "TDataQueue.h"
 #include <fstream>
 
 using namespace std;

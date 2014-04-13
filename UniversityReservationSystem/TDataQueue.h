@@ -23,7 +23,7 @@ protected:
 	}
 
 public:
-	virtual bool Add(T& toAdd, bool newRecord = false)
+	bool Add(T& toAdd, bool newRecord = false)
 	{
 		if (newRecord) toAdd.Id = GenerateId();
 
@@ -38,6 +38,14 @@ public:
 			if (list[i]->Id == toFind.Id) return *list[i];
 		}
 		throw "Null pointer exception";
+	}
+
+	void AddRange(TDataQueue<T> toAdd)
+	{
+		for (int i = 0; i < toAdd.Count(); i++)
+		{
+			this->Add(*toAdd[i]);
+		}
 	}
 
 	void Remove(T& toRemove)

@@ -12,16 +12,24 @@ public:
 
 	bool Add(Student& toAdd)
 	{
+		Context.Students.Add(toAdd, true);
+		toAdd.Reservations.AddRange(toAdd.StudentGroup.Reservations);
 		return true;
 	}
 
 	bool Edit(Student& toEdit)
 	{
-		return true;
+		this->Delete(toEdit);
+		return this->Add(toEdit);
 	}
 
-	bool Delete(Student& toDelete)
+	bool Delete(Student& toFind)
 	{
+		Student toDelete = Context.Students.Find(toFind);
+
+		toDelete.StudentGroup.Students.Remove(toDelete);
+
+		Context.Students.Delete(toDelete);
 		return true;
 	}
 };

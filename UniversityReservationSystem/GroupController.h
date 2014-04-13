@@ -12,26 +12,33 @@ public:
 
 	bool Add(Group& toAdd)
 	{
-		if (!Context.Groups.Contains(toAdd))
-		{
-			Context.Groups.Add(toAdd);
-			return true;
-		}
-		return false;
+		Context.Groups.Add(toAdd, true);
+		return true;
 	}
 
 	bool Edit(Group& toEdit)
 	{
-		return true;
+		this->Delete(toEdit);
+		return this->Add(toEdit);
 	}
 
-	bool Delete(Group& toDelete)
+	bool Delete(Group& toFind)
 	{
-		Context.Groups.Remove(toDelete);
-		//Context.People.DeleteRange(toDelete.Students);
-		toDelete.Students.Clear();
-		// TODO: FUCK THIS SHIT WITH STORING IDIOTIC GENERIC QUEUES
+		Group toDelete = Context.Groups.Find(toFind);
 
-		delete &toDelete;
+		for (int i = 0; i < toDelete.Reservations.Count(); i++)
+		{
+			toDelete.Reservations[i].BoundTeacher.RemoveReservation(toDelete.Reservations[i]);
+			toDelete.Reservations[i].Room.RemoveReservation(toDelete.Reservations[i]);
+			Context.Reservations.Delete(toDelete.Reservations[i]);
+		}
+
+		for (int i = 0; i < toDelete.Students.Count(); i++)
+		{
+			Context.Students.Remove(toDelete.Students[i]);
+		}
+
+		Context.Groups.Delete(toDelete);
+		return true;
 	}
 };

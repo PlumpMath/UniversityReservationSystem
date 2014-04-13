@@ -12,16 +12,28 @@ public:
 
 	bool Add(Teacher& toAdd)
 	{
+		Context.Teachers.Add(toAdd, true);
 		return true;
 	}
 
 	bool Edit(Teacher& toEdit)
 	{
-		return true;
+		this->Delete(toEdit);
+		return this->Add(toEdit);
 	}
 
-	bool Delete(Teacher& toDelete)
+	bool Delete(Teacher& toFind)
 	{
+		Teacher toDelete = Context.Teachers.Find(toFind);
+
+		for (int i = 0; i < toDelete.Reservations.Count(); i++)
+		{
+			toDelete.Reservations[i].BoundGroups.RemoveReservation(toDelete.Reservations[i]);
+			toDelete.Reservations[i].Room.RemoveReservation(toDelete.Reservations[i]);
+			Context.Reservations.Delete(toDelete.Reservations[i]);
+		}
+
+		Context.Teachers.Delete(toDelete);
 		return true;
 	}
 };
