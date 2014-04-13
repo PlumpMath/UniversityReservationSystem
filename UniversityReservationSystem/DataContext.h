@@ -41,23 +41,18 @@ public:
 		ofstream fileRooms(filePath + "//" + ROOMS_FILE, ofstream::trunc);
 		ofstream fileReservations(filePath + "//" + RESERVATIONS_FILE, ofstream::trunc);
 
-		fileGroups.clear();
 		fileGroups << Groups;
 		fileGroups.close();
 
-		fileTeachers.clear();
 		fileTeachers << Teachers;
 		fileTeachers.close();
 
-		fileStudents.clear();
 		fileStudents << Students;
 		fileStudents.close();
 
-		fileRooms.clear();
 		fileRooms << Rooms;
 		fileRooms.close();
 
-		fileReservations.clear();
 		fileReservations << Reservations;
 		fileReservations.close();
 	}
@@ -70,19 +65,19 @@ public:
 		ifstream fileRooms(filePath + "//" + ROOMS_FILE);
 		ifstream fileReservations(filePath + "//" + RESERVATIONS_FILE);
 
-		fileGroups >> Groups;
+		Groups.Deserialize(fileGroups, *this);
 		fileGroups.close();
 
-		fileTeachers >> Teachers;
+		Teachers.Deserialize(fileTeachers, *this);
 		fileTeachers.close();
 
-		fileStudents >> Students;
+		Students.Deserialize(fileStudents, *this);
 		fileStudents.close();
 
-		fileRooms >> Rooms;
+		Rooms.Deserialize(fileRooms, *this);
 		fileRooms.close();
 
-		fileReservations >> Reservations;
+		Reservations.Deserialize(fileReservations, *this);
 		fileReservations.close();
 	}
 
@@ -93,5 +88,10 @@ public:
 		Students.Clear();
 		Rooms.Clear();
 		Reservations.Clear();
+	}
+
+	~DataContext()
+	{
+		Clear();
 	}
 };

@@ -2,8 +2,11 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include "CommonFactory.h"
 
 using namespace std;
+
+class DataContext;
 
 template <class T>
 class TDataQueue
@@ -93,11 +96,19 @@ public:
 		else throw "Out of range exception";
 	}
 
-	template <class TT>
-	friend ostream& operator<<(ostream& os, const TDataQueue<TT> &object);
+	void Deserialize(ifstream& is, DataContext& context)
+	{
+		int count = 0;
+		is >> count;
+
+		while (count--)
+		{
+			Add(CommonFactory::NewObject(is, context));
+		}
+	}
 
 	template <class TT>
-	friend ifstream& operator>>(ifstream& ifs, TDataQueue<TT> &object);
+	friend ostream& operator<<(ostream& os, const TDataQueue<TT> &object);
 
 	virtual ~TDataQueue() { }
 };
@@ -105,18 +116,13 @@ public:
 template<class T>
 ostream& operator<<(ostream& os, const TDataQueue<T> &object)
 {
+	// Putting the size of the collection in the beginning
+	os << object.list.size() << endl;
+
 	for (int i = 0; i < object.list.size(); i++)
 	{
 		os << *(object.list[i]) << endl;
 	}
 
 	return os;
-}
-
-template<class T>
-ifstream& operator>>(ifstream& ifs, TDataQueue<T> &object)
-{
-	string t = typeid(T).name();
-
-	return ifs;
 }

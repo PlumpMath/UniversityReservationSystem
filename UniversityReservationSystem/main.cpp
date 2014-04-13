@@ -30,10 +30,17 @@ void main()
 		group.Students.Add(student2);
 
 		DataContext context = DataContext("home");
-
-		ReservationController reserv = ReservationController(context);
-		reserv.Add(res);
-		cout << "hehe";
+		//context.SaveChanges();
+		
+		/*ReservationController *reserv = new ReservationController(context);
+		context.Reservations.Add(res, true);
+		context.Rooms.Add(room, true);
+		context.Rooms.Add(room2, true);
+		context.Students.Add(student1, true);
+		context.Students.Add(student2, true);
+		context.Teachers.Add(teacher, true);
+		context.Groups.Add(group, true);
+		context.SaveChanges();*/
 	}
 	_CrtDumpMemoryLeaks();
 
