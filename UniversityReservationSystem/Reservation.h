@@ -30,8 +30,42 @@ public:
 		Name = _name;
 		DateOfStart = _dateOfStart;
 		DateOfEnd = _dateOfEnd;
-		cout << ctime(&DateOfStart) << endl;
-		cout << ctime(&DateOfEnd);
+	}
+
+	Reservation(string _name, time_t _dateOfStart, time_t _dateOfEnd, Teacher& _teacher, IRoom& _room, int _id)
+		: ISerializable(_id), BoundTeacher(_teacher), Room(_room)
+	{
+		Name = _name;
+		DateOfStart = _dateOfStart;
+		DateOfEnd = _dateOfEnd;
+	}
+
+	static Reservation& Deserialize(ifstream& is, DataContext& context)
+	{
+		string stringBuffer;
+
+		getline(is, stringBuffer);
+		int id = stoi(stringBuffer);
+
+		getline(is, stringBuffer);
+		string name = stringBuffer;
+
+		getline(is, stringBuffer);
+		int dateStart = stoi(stringBuffer);
+
+		getline(is, stringBuffer);
+		int dateEnd = stoi(stringBuffer);
+
+		getline(is, stringBuffer);
+		int teacherId = stoi(stringBuffer);
+
+		getline(is, stringBuffer);
+		int roomId = stoi(stringBuffer);
+
+		Teacher& teacher = context.Teachers.FindById(teacherId);
+		IRoom& room = context.Rooms.FindById(roomId);
+
+		return *(new Reservation(name, dateStart, dateEnd, teacher, room, id));
 	}
 
 	void Serialize(ostream& os) const
@@ -48,11 +82,6 @@ public:
 			<< _dateOfEnd << endl
 			<< BoundTeacher.Id << endl
 			<< Room.Id;
-	}
-
-	static Reservation& Deserialize(ifstream& is, DataContext& context)
-	{
-
 	}
 
 	void Edit(Reservation reservationToEdit)

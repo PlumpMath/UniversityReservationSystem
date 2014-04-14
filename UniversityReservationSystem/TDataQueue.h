@@ -44,6 +44,15 @@ public:
 		throw "Null pointer exception";
 	}
 
+	T& FindById(int id)
+	{
+		for (unsigned int i = 0; i < list.size(); i++)
+		{
+			if ((*list[i]).Id == id) return *list[i];
+		}
+		throw "Null pointer exception";
+	}
+
 	void AddRange(TDataQueue<T>& toAdd)
 	{
 		for (unsigned int i = 0; i < toAdd.Count(); i++)
@@ -92,7 +101,7 @@ public:
 		else throw "Out of range exception";
 	}
 
-	void Deserialize(ifstream& is, DataContext context)
+	void Deserialize(ifstream& is, DataContext& context)
 	{
 		string type = typeid(T).name();
 

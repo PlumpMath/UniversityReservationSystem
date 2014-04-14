@@ -16,16 +16,34 @@ public:
 		NumOfTables = _numOfTables;
 	}
 
-	/*ExerciseRoom(ifstream& is) : IRoom(is, "Exercise")
+	ExerciseRoom(string _name, int _capacity, int _numOfChairs, int _numOfTables, int _id)
+		: IRoom(_name, "Exercise", _capacity, _id)
+	{
+		NumOfChairs = _numOfChairs;
+		NumOfTables = _numOfTables;
+	}
+
+	static ExerciseRoom& Deserialize(ifstream& is, DataContext& context)
 	{
 		string stringBuffer;
 
 		getline(is, stringBuffer);
-		NumOfChairs = stoi(stringBuffer);
+		int id = stoi(stringBuffer);
 
 		getline(is, stringBuffer);
-		NumOfTables = stoi(stringBuffer);
-	}*/
+		string name = stringBuffer;
+
+		getline(is, stringBuffer);
+		int capacity = stoi(stringBuffer);
+
+		getline(is, stringBuffer);
+		int numChairs = stoi(stringBuffer);
+
+		getline(is, stringBuffer);
+		int numTables = stoi(stringBuffer);
+
+		return *(new ExerciseRoom(name, capacity, numChairs, numTables, id));
+	}
 
 	void Edit(ExerciseRoom roomToEdit)
 	{

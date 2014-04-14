@@ -21,18 +21,13 @@ public:
 	{
 		FirstName = _firstName;
 		LastName = _lastName;
-
 	}
 
-	IPerson(ifstream& is) : ISerializable(is)
+	IPerson(string _firstName, string _lastName, int _id)
+		: ISerializable(_id)
 	{
-		string stringBuffer;
-
-		getline(is, stringBuffer);
-		FirstName = stringBuffer;
-
-		getline(is, stringBuffer);
-		LastName = stringBuffer;
+		FirstName = _firstName;
+		LastName = _lastName;
 	}
 
 	virtual bool CheckCollisions(Reservation& reservation)

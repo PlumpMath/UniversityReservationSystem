@@ -5,6 +5,7 @@
 #include <fstream>
 
 using namespace std;
+
 class Group;
 
 class Student : public IPerson
@@ -21,6 +22,13 @@ public:
 		AverageOfMarksOfLastTerm = _averageOfMarksOfLastTerm;
 	}
 
+	Student(string _firstName, string _lastName, Group& _group, int _passedTerms, double _averageOfMarksOfLastTerm, int _id)
+		: IPerson(_firstName, _lastName, _id), StudentGroup(_group)
+	{
+		PassedTerms = _passedTerms;
+		AverageOfMarksOfLastTerm = _averageOfMarksOfLastTerm;
+	}
+
 	bool CheckCollisions(Reservation& reservation)
 	{
 		// Since groups have to check it
@@ -32,10 +40,26 @@ public:
 		string stringBuffer;
 
 		getline(is, stringBuffer);
-		/*PassedTerms = stoi(stringBuffer);
+		int id = stoi(stringBuffer);
 
 		getline(is, stringBuffer);
-		AverageOfMarksOfLastTerm = stod(stringBuffer);*/
+		string firstName = stringBuffer;
+
+		getline(is, stringBuffer);
+		string lastName = stringBuffer;
+
+		getline(is, stringBuffer);
+		int passedTerms = stoi(stringBuffer);
+
+		getline(is, stringBuffer);
+		double average = stod(stringBuffer);
+
+		getline(is, stringBuffer);
+		int groupId = stoi(stringBuffer);
+
+		/*Group& group = context.Groups.FindById(groupId);*/
+
+		return *(new Student(firstName, lastName, Group("d",3,3,2), passedTerms, average, id ));
 	}
 
 	void Edit(Student& editedStudent)

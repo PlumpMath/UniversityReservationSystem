@@ -22,15 +22,29 @@ public:
 		Capacity = _capacity;
 	}
 
+	IRoom(string _name, string _type, int _capacity, int _id)
+		: ISerializable(_id)
+	{
+		Name = _name;
+		Type = _type;
+		Capacity = _capacity;
+	}
+
 	static IRoom& Deserialize(ifstream& is, DataContext& context)
 	{
 		string stringBuffer;
 
 		getline(is, stringBuffer);
-		/*Name = stringBuffer;
 
-		getline(is, stringBuffer);
-		Capacity = stoi(stringBuffer);*/
+		if (stringBuffer == "Exercise")
+		{
+			return ExerciseRoom::Deserialize(is, context);
+		}
+		else if (stringBuffer == "Lab")
+		{
+			return LabRoom::Deserialize(is, context);
+		}
+		throw "Blad typu pokoju";
 	}
 
 	virtual void Edit(IRoom roomToEdit)

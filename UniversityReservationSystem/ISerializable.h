@@ -15,11 +15,9 @@ public:
 		Id = -1;
 	}
 
-	ISerializable(istream& is)
+	ISerializable(int _id)
 	{
-		string stringBuffer;
-		getline(is, stringBuffer);
-		Id = stoi(stringBuffer);
+		Id = _id;
 	}
 
 	virtual void Serialize(ostream& os) const
