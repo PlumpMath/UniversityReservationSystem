@@ -13,7 +13,7 @@ public:
 	{
 		bool collisionsDetected = false;
 
-		for (int i = 0; i < list.size(); i++)
+		for (unsigned int i = 0; i < list.size(); i++)
 		{
 			if (list[i]->CheckCollisions(reservation))
 			{
@@ -27,7 +27,7 @@ public:
 
 	void AddReservation(Reservation & reservation)
 	{
-		for (int i = 0; i < list.size(); i++)
+		for (unsigned int i = 0; i < list.size(); i++)
 		{
 			list[i]->AddReservation(reservation);
 		}
@@ -35,7 +35,7 @@ public:
 
 	void RemoveReservation(Reservation & reservation)
 	{
-		for (int i = 0; i < list.size(); i++)
+		for (unsigned int i = 0; i < list.size(); i++)
 		{
 			list[i]->RemoveReservation(reservation);
 		}
