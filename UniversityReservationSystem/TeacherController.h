@@ -20,13 +20,14 @@ public:
 	{
 		Teacher toEdit = Context.Teachers.Find(copyOfTeacherToModify);
 		toEdit.Edit(copyOfTeacherToModify);
+		return true;
 	}
 
 	bool Delete(Teacher& copyOfTeacherToDelete)
 	{
 		Teacher toDelete = Context.Teachers.Find(copyOfTeacherToDelete);
 
-		for (int i = 0; i < toDelete.Reservations.Count(); i++)
+		for (unsigned int i = 0; i < toDelete.Reservations.Count(); i++)
 		{
 			toDelete.Reservations[i].BoundGroups.RemoveReservation(toDelete.Reservations[i]);
 			toDelete.Reservations[i].Room.RemoveReservation(toDelete.Reservations[i]);

@@ -20,20 +20,21 @@ public:
 	{
 		Group toEdit = Context.Groups.Find(copyOfGroupToEdit);
 		toEdit.Edit(copyOfGroupToEdit);
+		return true;
 	}
 
 	bool Delete(Group& toFind)
 	{
 		Group toDelete = Context.Groups.Find(toFind);
 
-		for (int i = 0; i < toDelete.Reservations.Count(); i++)
+		for (unsigned int i = 0; i < toDelete.Reservations.Count(); i++)
 		{
 			toDelete.Reservations[i].BoundTeacher.RemoveReservation(toDelete.Reservations[i]);
 			toDelete.Reservations[i].Room.RemoveReservation(toDelete.Reservations[i]);
 			Context.Reservations.Delete(toDelete.Reservations[i]);
 		}
 
-		for (int i = 0; i < toDelete.Students.Count(); i++)
+		for (unsigned int i = 0; i < toDelete.Students.Count(); i++)
 		{
 			Context.Students.Remove(toDelete.Students[i]);
 		}

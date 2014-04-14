@@ -28,6 +28,7 @@ public:
 	{
 		Reservation toEdit = Context.Reservations.Find(copyOfReservationToModify);
 		toEdit.Edit(copyOfReservationToModify);
+		return true;
 	}
 	
 	bool Delete(Reservation& toFind)

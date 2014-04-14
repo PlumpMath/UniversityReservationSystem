@@ -15,7 +15,7 @@ protected:
 	{
 		int max = 0;
 
-		for (int i = 0; i < list.size(); i++)
+		for (unsigned int i = 0; i < list.size(); i++)
 		{
 			if (list[i]->Id > max) max = list[i]->Id;
 		}
@@ -33,7 +33,7 @@ public:
 
 	T& Find(T& toFind)
 	{
-		for (int i = 0; i < list.size(); i++)
+		for (unsigned int i = 0; i < list.size(); i++)
 		{
 			if (*list[i] == toFind) return *list[i];
 		}
@@ -42,7 +42,7 @@ public:
 
 	void AddRange(TDataQueue<T>& toAdd)
 	{
-		for (int i = 0; i < toAdd.Count(); i++)
+		for (unsigned int i = 0; i < toAdd.Count(); i++)
 		{
 			this->Add(toAdd[i]);
 		}
@@ -50,7 +50,7 @@ public:
 
 	void Remove(T& toRemove)
 	{
-		for (int i = 0; i < list.size(); i++)
+		for (unsigned int i = 0; i < list.size(); i++)
 		{
 			if (*list[i] == toRemove)
 			{
@@ -68,18 +68,18 @@ public:
 
 	void Clear()
 	{
-		for (int i = 0; i < list.size(); i++)
+		for (unsigned int i = 0; i < list.size(); i++)
 		{
 			delete list[i];
 		}
 	}
 
-	int Count()
+	unsigned int Count()
 	{
 		return list.size();
 	}
 
-	T& operator[] (int i)
+	T& operator[] (unsigned int i)
 	{
 		if (i >= 0 && i < list.size())
 		{
@@ -113,7 +113,7 @@ ostream& operator<<(ostream& os, const TDataQueue<T> &object)
 	// Putting the size of the collection in the beginning
 	os << object.list.size() << endl;
 
-	for (int i = 0; i < object.list.size(); i++)
+	for (unsigned int i = 0; i < object.list.size(); i++)
 	{
 		os << *(object.list[i]) << endl;
 	}

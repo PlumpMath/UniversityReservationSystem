@@ -22,6 +22,7 @@ public:
 	{
 		Student toEdit = Context.Students.Find(copyOfStudentToModify);
 		toEdit.Edit(copyOfStudentToModify);
+		return true;
 	}
 
 	bool Delete(Student& toFind)

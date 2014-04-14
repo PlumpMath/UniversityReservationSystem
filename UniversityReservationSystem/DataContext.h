@@ -83,11 +83,12 @@ public:
 
 	void Clear()
 	{
-		Groups.Clear();
-		Teachers.Clear();
 		Students.Clear();
-		Rooms.Clear();
+		Groups.Clear();
 		Reservations.Clear();
+		Teachers.Clear();
+		Rooms.Clear();
+
 	}
 
 	~DataContext()
