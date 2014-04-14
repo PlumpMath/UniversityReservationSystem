@@ -13,25 +13,25 @@ public:
 	string AcademicTitle;
 
 	Teacher(string _firstName, string _lastName, string _email, string _phoneNumber, string _academicTitle)
-		: IPerson(_firstName, _lastName, "Teacher")
+		: IPerson(_firstName, _lastName)
 	{
 		Email = _email;
 		PhoneNumber = _phoneNumber;
 		AcademicTitle = _academicTitle;
 	}
 
-	Teacher(ifstream& is) : IPerson(is, "Teacher")
+	static Teacher& Deserialize(ifstream& is, DataContext& context)
 	{
 		string stringBuffer;
 
 		getline(is, stringBuffer);
-		Email = stringBuffer;
+		/*Email = stringBuffer;
 
 		getline(is, stringBuffer);
 		PhoneNumber = stringBuffer;
 
 		getline(is, stringBuffer);
-		AcademicTitle = stringBuffer;
+		AcademicTitle = stringBuffer;*/
 	}
 
 	void Edit(Teacher& editedTeacher)

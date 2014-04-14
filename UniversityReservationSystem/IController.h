@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DataContext.h"
+class DataContext;
 
 template <class T>
 class IController

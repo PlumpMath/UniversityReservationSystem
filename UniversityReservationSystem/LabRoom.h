@@ -16,7 +16,7 @@ public:
 		NumOfComputers = _numOfComputers;
 	}
 
-	LabRoom(ifstream& is) : IRoom(is, "Lab")
+	/*LabRoom(ifstream& is) : IRoom(is, "Lab")
 	{
 		string stringBuffer;
 
@@ -25,7 +25,7 @@ public:
 
 		getline(is, stringBuffer);
 		NumOfComputers = stoi(stringBuffer);
-	}
+	}*/
 
 	void Edit(LabRoom roomToEdit)
 	{

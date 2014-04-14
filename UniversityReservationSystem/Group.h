@@ -25,18 +25,18 @@ public:
 		GroupNumber = _groupNumber;
 	}
 
-	Group(ifstream& is) : ISerializable(is)
+	static Group& Deserialize(ifstream& is, DataContext& context)
 	{
 		string stringBuffer;
 
 		getline(is, stringBuffer);
-		DegreeCourse = stringBuffer;
+		/*DegreeCourse = stringBuffer;
 
 		getline(is, stringBuffer);
 		Year = stoi(stringBuffer);
 
 		getline(is, stringBuffer);
-		GroupNumber = stoi(stringBuffer);
+		GroupNumber = stoi(stringBuffer);*/
 	}
 
 	void Edit(Group roomToEdit)

@@ -50,6 +50,11 @@ public:
 			<< Room.Id;
 	}
 
+	static Reservation& Deserialize(ifstream& is, DataContext& context)
+	{
+
+	}
+
 	void Edit(Reservation reservationToEdit)
 	{
 		this->Name = reservationToEdit.Name;

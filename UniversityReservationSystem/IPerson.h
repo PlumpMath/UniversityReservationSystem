@@ -17,14 +17,14 @@ public:
 	string Type;
 	TAntiCollisionQueue<Reservation> Reservations;
 
-	IPerson(string _firstName, string _lastName, string _type)
+	IPerson(string _firstName, string _lastName)
 	{
 		FirstName = _firstName;
 		LastName = _lastName;
-		Type = _type;
+
 	}
 
-	IPerson(ifstream& is, string type) : ISerializable(is), Type(type)
+	IPerson(ifstream& is) : ISerializable(is)
 	{
 		string stringBuffer;
 
@@ -58,7 +58,6 @@ public:
 
 	virtual void Serialize(ostream& os) const
 	{
-		os << Type << endl;
 		ISerializable::Serialize(os);
 		os << FirstName << endl
 			<< LastName << endl;

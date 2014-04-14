@@ -65,19 +65,19 @@ public:
 		ifstream fileRooms(filePath + "//" + ROOMS_FILE);
 		ifstream fileReservations(filePath + "//" + RESERVATIONS_FILE);
 
-		Groups.Deserialize(fileGroups, this);
+		Groups.Deserialize(fileGroups, *this);
 		fileGroups.close();
 
-		Teachers.Deserialize(fileTeachers, this);
+		Teachers.Deserialize(fileTeachers, *this);
 		fileTeachers.close();
 
-		Students.Deserialize(fileStudents, this);
+		Students.Deserialize(fileStudents, *this);
 		fileStudents.close();
 
-		Rooms.Deserialize(fileRooms, this);
+		Rooms.Deserialize(fileRooms, *this);
 		fileRooms.close();
 
-		Reservations.Deserialize(fileReservations, this);
+		Reservations.Deserialize(fileReservations, *this);
 		fileReservations.close();
 	}
 

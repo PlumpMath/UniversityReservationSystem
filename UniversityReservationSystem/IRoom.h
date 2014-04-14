@@ -22,15 +22,15 @@ public:
 		Capacity = _capacity;
 	}
 
-	IRoom(ifstream& is, string type) : ISerializable(is), Type(type)
+	static IRoom& Deserialize(ifstream& is, DataContext& context)
 	{
 		string stringBuffer;
 
 		getline(is, stringBuffer);
-		Name = stringBuffer;
+		/*Name = stringBuffer;
 
 		getline(is, stringBuffer);
-		Capacity = stoi(stringBuffer);
+		Capacity = stoi(stringBuffer);*/
 	}
 
 	virtual void Edit(IRoom roomToEdit)

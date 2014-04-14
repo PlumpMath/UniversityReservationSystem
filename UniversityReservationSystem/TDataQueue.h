@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include "ControllerFactory.h"
 
 using namespace std;
 
@@ -91,17 +92,22 @@ public:
 		else throw "Out of range exception";
 	}
 
-	void Deserialize(ifstream& is, DataContext* context)
+	void Deserialize(ifstream& is, DataContext context)
 	{
-		CommonFactory factory(typeid(T).name());
+		string type = typeid(T).name();
+
+		IController<T>& factory
+			= ControllerFactory<T>::CreateController(context, type);
+
 		int count = 0;
 		is >> count;
 
 		while (count-- > 0)
 		{
-			ISerializable * toAdd = factory.TakeNewObject(is, context, type);
-			Add(*(dynamic_cast<T*>(toAdd)));
+			factory.Add(T::Deserialize(is, context));
 		}
+
+		delete &factory;
 	}
 
 	template <class TT>

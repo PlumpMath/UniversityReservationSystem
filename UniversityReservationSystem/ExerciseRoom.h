@@ -16,7 +16,7 @@ public:
 		NumOfTables = _numOfTables;
 	}
 
-	ExerciseRoom(ifstream& is) : IRoom(is, "Exercise")
+	/*ExerciseRoom(ifstream& is) : IRoom(is, "Exercise")
 	{
 		string stringBuffer;
 
@@ -25,7 +25,7 @@ public:
 
 		getline(is, stringBuffer);
 		NumOfTables = stoi(stringBuffer);
-	}
+	}*/
 
 	void Edit(ExerciseRoom roomToEdit)
 	{

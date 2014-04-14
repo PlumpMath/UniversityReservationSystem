@@ -107,6 +107,9 @@
     <ClInclude Include="CommonFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ControllerFactory.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

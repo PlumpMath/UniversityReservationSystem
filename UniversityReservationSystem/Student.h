@@ -15,7 +15,7 @@ public:
 	Group& StudentGroup;
 
 	Student(string _firstName, string _lastName, Group& _group, int _passedTerms, double _averageOfMarksOfLastTerm)
-		: IPerson(_firstName, _lastName, "Student"), StudentGroup(_group)
+		: IPerson(_firstName, _lastName), StudentGroup(_group)
 	{
 		PassedTerms = _passedTerms;
 		AverageOfMarksOfLastTerm = _averageOfMarksOfLastTerm;
@@ -27,15 +27,15 @@ public:
 		return false;
 	}
 
-	Student(ifstream& is, Group& _group) : IPerson(is, "Student"), StudentGroup(_group)
+	static Student& Deserialize(ifstream& is, DataContext& context)
 	{
 		string stringBuffer;
 
 		getline(is, stringBuffer);
-		PassedTerms = stoi(stringBuffer);
+		/*PassedTerms = stoi(stringBuffer);
 
 		getline(is, stringBuffer);
-		AverageOfMarksOfLastTerm = stod(stringBuffer);
+		AverageOfMarksOfLastTerm = stod(stringBuffer);*/
 	}
 
 	void Edit(Student& editedStudent)
