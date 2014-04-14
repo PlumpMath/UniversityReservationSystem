@@ -1,15 +1,27 @@
-//#pragma once
-//
-//using namespace std;
-//
-//#include "Group.h"
-//
-//class DataContext;
-//class CommonFactory
-//{
-//public:
-//	static ISerializable* NewObject(ifstream& is, DataContext& context, string type)
-//	{
-//		return new Group("DFDF", 3, 3);
-//	}
-//};
+#pragma once
+
+#include "Group.h"
+#include "TDataQueue.h"
+
+using namespace std;
+
+class DataContext;
+
+class CommonFactory
+{
+private:
+	string _type;
+public:
+	CommonFactory(string type)
+	{
+		_type = type;
+	}
+
+	ISerializable* TakeNewObject(
+		ifstream& is,
+		DataContext* context,
+		string type)
+	{
+		return new Group("DFDF", 3, 3);
+	}
+};

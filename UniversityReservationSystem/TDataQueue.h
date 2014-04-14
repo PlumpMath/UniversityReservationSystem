@@ -1,9 +1,12 @@
 #pragma once
+
 #include <vector>
 #include <iostream>
 #include <fstream>
 
 using namespace std;
+
+class DataContext;
 
 template <class T>
 class TDataQueue
@@ -88,18 +91,18 @@ public:
 		else throw "Out of range exception";
 	}
 
-	/*void Deserialize(ifstream& is, DataContext& context)
+	void Deserialize(ifstream& is, DataContext* context)
 	{
-		string type = typeid(T).name();
+		CommonFactory factory(typeid(T).name());
 		int count = 0;
 		is >> count;
 
-		while (count--)
+		while (count-- > 0)
 		{
-			ISerializable* toAdd = CommonFactory::NewObject(is, context, type);
+			ISerializable * toAdd = factory.TakeNewObject(is, context, type);
 			Add(*(dynamic_cast<T*>(toAdd)));
 		}
-	}*/
+	}
 
 	template <class TT>
 	friend ostream& operator<<(ostream& os, const TDataQueue<TT> &object);

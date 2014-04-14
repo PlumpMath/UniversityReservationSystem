@@ -14,7 +14,7 @@ int main()
 		DataContext context("home");
 		MainPageView mainView(context);
 		mainView.Test();
-		context.SaveChanges();
+		//context.SaveChanges();
 	}
 
 	// Odd brackets to see eventual memory leaks
