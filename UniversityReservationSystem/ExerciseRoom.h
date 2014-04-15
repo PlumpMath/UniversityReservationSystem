@@ -3,6 +3,8 @@
 #include "IRoom.h"
 #include <fstream>
 
+using namespace std;
+
 class ExerciseRoom : public IRoom
 {
 public:
@@ -23,7 +25,7 @@ public:
 		NumOfTables = _numOfTables;
 	}
 
-	static ExerciseRoom& Deserialize(ifstream& is, DataContext& context)
+	static IRoom& Deserialize(ifstream& is, DataContext& context)
 	{
 		string stringBuffer;
 

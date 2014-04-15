@@ -3,6 +3,8 @@
 #include "IRoom.h"
 #include <fstream>
 
+using namespace std;
+
 class LabRoom : public IRoom
 {
 public:
@@ -23,7 +25,7 @@ public:
 		NumOfComputers = _numOfComputers;
 	}
 
-	static LabRoom& Deserialize(ifstream& is, DataContext& context)
+	static IRoom& Deserialize(ifstream& is, DataContext& context)
 	{
 		string stringBuffer;
 
