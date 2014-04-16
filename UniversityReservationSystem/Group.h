@@ -2,12 +2,13 @@
 
 #include "ISerializable.h"
 #include "TAntiCollisionQueue.h"
-#include "Student.h"
 #include "Reservation.h"
+
 using namespace std;
 
 class Reservation;
 class Student;
+class DataContext;
 
 class Group : public ISerializable
 {
@@ -25,18 +26,31 @@ public:
 		GroupNumber = _groupNumber;
 	}
 
+	Group(string _degreeCourse, int _year, int _groupNumber, int _id)
+		: ISerializable(_id)
+	{
+		DegreeCourse = _degreeCourse;
+		Year = _year;
+		GroupNumber = _groupNumber;
+	}
+
 	static Group& Deserialize(ifstream& is, DataContext& context)
 	{
 		string stringBuffer;
 
 		getline(is, stringBuffer);
-		/*DegreeCourse = stringBuffer;
+		int id = stoi(stringBuffer);
 
 		getline(is, stringBuffer);
-		Year = stoi(stringBuffer);
+		string degreeCourse = stringBuffer;
 
 		getline(is, stringBuffer);
-		GroupNumber = stoi(stringBuffer);*/
+		int year = stoi(stringBuffer);
+
+		getline(is, stringBuffer);
+		int groupNumber = stoi(stringBuffer);
+
+		return *(new Group(degreeCourse, year, groupNumber, id));
 	}
 
 	void Edit(Group roomToEdit)

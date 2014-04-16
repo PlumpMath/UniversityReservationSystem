@@ -1,6 +1,7 @@
+#include "RoomFactory.h"
+#include "Reservation.h"
 #include "Student.h"
 #include "Teacher.h"
-#include "Reservation.h"
 #include "Group.h"
 #include "LabRoom.h"
 #include "ExerciseRoom.h"
@@ -9,7 +10,6 @@
 #include "TeacherController.h"
 #include "RoomController.h"
 #include "ReservationController.h"
-#include "CommonFactory.h"
 
 using namespace std;
 

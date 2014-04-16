@@ -8,7 +8,7 @@ template <class T>
 class ControllerFactory
 {
 public:
-	static IController<T>& CreateController(DataContext context, string type)
+	static IController<T>& CreateController(DataContext& context, string type)
 	{
 		if (type == "class Group")
 		{
@@ -30,5 +30,6 @@ public:
 		{
 			return *(dynamic_cast<IController<T>*>(new ReservationController(context)));
 		}
+		throw 1;
 	}
 };

@@ -1,11 +1,14 @@
 #pragma once
+
+#include "DataContext.h"
 #include "Group.h"
 #include "IPerson.h"
 #include "TDataQueue.h"
-#include <fstream>
 
 using namespace std;
+
 class Group;
+class DataContext;
 
 class Student : public IPerson
 {
@@ -16,6 +19,13 @@ public:
 
 	Student(string _firstName, string _lastName, Group& _group, int _passedTerms, double _averageOfMarksOfLastTerm)
 		: IPerson(_firstName, _lastName), StudentGroup(_group)
+	{
+		PassedTerms = _passedTerms;
+		AverageOfMarksOfLastTerm = _averageOfMarksOfLastTerm;
+	}
+
+	Student(string _firstName, string _lastName, Group& _group, int _passedTerms, double _averageOfMarksOfLastTerm, int _id)
+		: IPerson(_firstName, _lastName, _id), StudentGroup(_group)
 	{
 		PassedTerms = _passedTerms;
 		AverageOfMarksOfLastTerm = _averageOfMarksOfLastTerm;
@@ -32,10 +42,26 @@ public:
 		string stringBuffer;
 
 		getline(is, stringBuffer);
-		/*PassedTerms = stoi(stringBuffer);
+		int id = stoi(stringBuffer);
 
 		getline(is, stringBuffer);
-		AverageOfMarksOfLastTerm = stod(stringBuffer);*/
+		string firstName = stringBuffer;
+
+		getline(is, stringBuffer);
+		string lastName = stringBuffer;
+
+		getline(is, stringBuffer);
+		int passedTerms = stoi(stringBuffer);
+
+		getline(is, stringBuffer);
+		double average = stod(stringBuffer);
+
+		getline(is, stringBuffer);
+		int groupId = stoi(stringBuffer);
+
+		Group& group = context.Groups.FindById(groupId);
+
+		return *(new Student(firstName, lastName, group, passedTerms, average, id ));
 	}
 
 	void Edit(Student& editedStudent)

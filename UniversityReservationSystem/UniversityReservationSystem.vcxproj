@@ -53,6 +53,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -78,7 +79,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CommonFactory.h" />
     <ClInclude Include="ControllerFactory.h" />
     <ClInclude Include="DataContext.h" />
     <ClInclude Include="ExerciseRoom.h" />
@@ -94,6 +94,7 @@
     <ClInclude Include="ReservationController.h" />
     <ClInclude Include="ReservationsView.h" />
     <ClInclude Include="RoomController.h" />
+    <ClInclude Include="RoomFactory.h" />
     <ClInclude Include="RoomsView.h" />
     <ClInclude Include="StudentController.h" />
     <ClInclude Include="StudentsView.h" />

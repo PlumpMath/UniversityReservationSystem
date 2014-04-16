@@ -1,12 +1,11 @@
 #pragma once
 
 #include "ISerializable.h"
-#include "TAntiCollisionQueue.h"
 #include "Reservation.h"
-#include <string>
-#include <fstream>
+#include "TAntiCollisionQueue.h"
 
 using namespace std;
+
 class Reservation;
 
 class IPerson : public ISerializable
@@ -21,18 +20,13 @@ public:
 	{
 		FirstName = _firstName;
 		LastName = _lastName;
-
 	}
 
-	IPerson(ifstream& is) : ISerializable(is)
+	IPerson(string _firstName, string _lastName, int _id)
+		: ISerializable(_id)
 	{
-		string stringBuffer;
-
-		getline(is, stringBuffer);
-		FirstName = stringBuffer;
-
-		getline(is, stringBuffer);
-		LastName = stringBuffer;
+		FirstName = _firstName;
+		LastName = _lastName;
 	}
 
 	virtual bool CheckCollisions(Reservation& reservation)

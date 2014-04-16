@@ -1,8 +1,5 @@
 #pragma once
 
-#include <vector>
-#include <iostream>
-#include <fstream>
 #include "ControllerFactory.h"
 
 using namespace std;
@@ -40,6 +37,15 @@ public:
 		for (unsigned int i = 0; i < list.size(); i++)
 		{
 			if (*list[i] == toFind) return *list[i];
+		}
+		throw "Null pointer exception";
+	}
+
+	T& FindById(int id)
+	{
+		for (unsigned int i = 0; i < list.size(); i++)
+		{
+			if ((*list[i]).Id == id) return *list[i];
 		}
 		throw "Null pointer exception";
 	}
@@ -92,20 +98,32 @@ public:
 		else throw "Out of range exception";
 	}
 
-	void Deserialize(ifstream& is, DataContext context)
+	void Deserialize(ifstream& is, DataContext& context)
 	{
 		string type = typeid(T).name();
 
 		IController<T>& factory
 			= ControllerFactory<T>::CreateController(context, type);
 
-		int count = 0;
-		is >> count;
+		string buffer;
+		getline(is, buffer);
+		int count = stoi(buffer);
 
-		while (count-- > 0)
+		if (type == "class IRoom")
 		{
-			factory.Add(T::Deserialize(is, context));
+			while (count-- > 0)
+			{
+				factory.Add(*dynamic_cast<T*>(&RoomFactory::CreateObject(is, context)));
+			}
 		}
+		else
+		{
+			while (count-- > 0)
+			{
+				factory.Add(T::Deserialize(is, context));
+			}
+		}
+		
 
 		delete &factory;
 	}

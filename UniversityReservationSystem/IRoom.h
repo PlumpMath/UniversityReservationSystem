@@ -1,10 +1,9 @@
 #pragma once
 
-#include "ISerializable.h"
-#include "Reservation.h"
 #include "TAntiCollisionQueue.h"
-#include <fstream>
+#include "ISerializable.h"
 
+class DataContext;
 class Reservation;
 
 class IRoom : public ISerializable
@@ -22,16 +21,16 @@ public:
 		Capacity = _capacity;
 	}
 
-	static IRoom& Deserialize(ifstream& is, DataContext& context)
+	IRoom(string _name, string _type, int _capacity, int _id)
+		: ISerializable(_id)
 	{
-		string stringBuffer;
-
-		getline(is, stringBuffer);
-		/*Name = stringBuffer;
-
-		getline(is, stringBuffer);
-		Capacity = stoi(stringBuffer);*/
+		Name = _name;
+		Type = _type;
+		Capacity = _capacity;
 	}
+
+	// should be never invoked
+	static IRoom& Deserialize(ifstream& is, DataContext& context){ throw 1; }
 
 	virtual void Edit(IRoom roomToEdit)
 	{

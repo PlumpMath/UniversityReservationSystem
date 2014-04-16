@@ -20,18 +20,37 @@ public:
 		AcademicTitle = _academicTitle;
 	}
 
+	Teacher(string _firstName, string _lastName, string _email, string _phoneNumber, string _academicTitle, int _id)
+		: IPerson(_firstName, _lastName, _id)
+	{
+		Email = _email;
+		PhoneNumber = _phoneNumber;
+		AcademicTitle = _academicTitle;
+	}
+
 	static Teacher& Deserialize(ifstream& is, DataContext& context)
 	{
 		string stringBuffer;
 
 		getline(is, stringBuffer);
-		/*Email = stringBuffer;
+		int id = stoi(stringBuffer);
 
 		getline(is, stringBuffer);
-		PhoneNumber = stringBuffer;
+		string firstName = stringBuffer;
 
 		getline(is, stringBuffer);
-		AcademicTitle = stringBuffer;*/
+		string lastName = stringBuffer;
+
+		getline(is, stringBuffer);
+		string email = stringBuffer;
+
+		getline(is, stringBuffer);
+		string phoneNumber = stringBuffer;
+
+		getline(is, stringBuffer);
+		string academicTitle = stringBuffer;
+
+		return *(new Teacher(firstName, lastName, email, phoneNumber, academicTitle, id));
 	}
 
 	void Edit(Teacher& editedTeacher)
