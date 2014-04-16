@@ -54,7 +54,7 @@ public:
 		this->NumOfComputers = roomToEdit.NumOfComputers;
 	}
 
-	void Serialize(ostream& os) const
+	void Serialize(ostream& os)
 	{
 		IRoom::Serialize(os);
 		os << AdditionalEquipment << endl

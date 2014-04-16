@@ -4,8 +4,6 @@
 
 using namespace std;
 
-class DataContext;
-
 template <class T>
 class TDataQueue
 {

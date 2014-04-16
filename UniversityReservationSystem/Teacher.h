@@ -61,7 +61,7 @@ public:
 		this->AcademicTitle = editedTeacher.AcademicTitle;
 	}
 
-	void Serialize(ostream& os) const
+	void Serialize(ostream& os)
 	{
 		IPerson::Serialize(os);
 		os << Email << endl

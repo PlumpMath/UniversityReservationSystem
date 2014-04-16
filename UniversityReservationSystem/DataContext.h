@@ -15,8 +15,6 @@
 
 using namespace std;
 
-class Reservation;
-
 class DataContext
 {
 protected:

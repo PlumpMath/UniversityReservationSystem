@@ -79,7 +79,7 @@ public:
 		}
 	}
 
-	void Serialize(ostream& os) const
+	void Serialize(ostream& os)
 	{
 		IPerson::Serialize(os);
 		os << PassedTerms << endl

@@ -9,13 +9,6 @@
 
 using namespace std;
 
-class Teacher;
-class DataContext;
-class RoomFactory;
-class IPerson;
-class IRoom;
-class Group;
-
 class Reservation : public ISerializable
 {
 public:
@@ -65,14 +58,28 @@ public:
 		getline(is, stringBuffer);
 		int roomId = stoi(stringBuffer);
 
+		getline(is, stringBuffer);
+		int numOfBoundGroups = stoi(stringBuffer);
+
 		Teacher& teacher = context.Teachers.FindById(teacherId);
 		IRoom& room = context.Rooms.FindById(roomId);
 
-		return *(new Reservation(name, dateStart, dateEnd, teacher, room, id));
+		Reservation * toAdd = new Reservation(name, dateStart, dateEnd, teacher, room, id);
+		
+		while (numOfBoundGroups--)
+		{
+			getline(is, stringBuffer);
+			int groupID = stoi(stringBuffer);
+			toAdd->BoundGroups.Add(context.Groups.FindById(groupID));
+		}
+
+		return *toAdd;
 	}
 
-	void Serialize(ostream& os) const
+	void Serialize(ostream& os)
 	{
+		int numOfBoundGroups = BoundGroups.Count();
+
 		char _dateOfStart[25];
 		char _dateOfEnd[25];
 
@@ -84,7 +91,13 @@ public:
 			<< _dateOfStart << endl
 			<< _dateOfEnd << endl
 			<< BoundTeacher.Id << endl
-			<< Room.Id;
+			<< Room.Id << endl
+			<< numOfBoundGroups;
+
+		for (int i = 0; i < numOfBoundGroups; i++)
+		{
+			os << endl << BoundGroups[i].Id;
+		}
 	}
 
 	void Edit(Reservation reservationToEdit)

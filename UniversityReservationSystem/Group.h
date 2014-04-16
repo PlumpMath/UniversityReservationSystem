@@ -6,9 +6,7 @@
 
 using namespace std;
 
-class Reservation;
 class Student;
-class DataContext;
 
 class Group : public ISerializable
 {
@@ -77,7 +75,7 @@ public:
 		Students.RemoveReservation(reservationToRemove);
 	}
 
-	void Serialize(ostream& os) const
+	void Serialize(ostream& os)
 	{
 		ISerializable::Serialize(os);
 		os << DegreeCourse << endl

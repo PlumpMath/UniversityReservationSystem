@@ -54,7 +54,7 @@ public:
 		this->NumOfTables = roomToEdit.NumOfTables;
 	}
 
-	void Serialize(ostream& os) const 
+	void Serialize(ostream& os) 
 	{
 		IRoom::Serialize(os);
 		os << NumOfChairs << endl

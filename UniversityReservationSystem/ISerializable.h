@@ -17,7 +17,7 @@ public:
 		Id = _id;
 	}
 
-	virtual void Serialize(ostream& os) const
+	virtual void Serialize(ostream& os)
 	{
 		os << Id << endl;
 	}
@@ -32,7 +32,7 @@ public:
 		return this->Id != obj.Id;
 	}
 
-	friend ostream& operator<<(ostream& os, ISerializable const& object)
+	friend ostream& operator<<(ostream& os, ISerializable& object)
 	{
 		object.Serialize(os);
 		return os;

@@ -50,7 +50,7 @@ public:
 		this->LastName = personToEdit.LastName;
 	}
 
-	virtual void Serialize(ostream& os) const
+	virtual void Serialize(ostream& os)
 	{
 		ISerializable::Serialize(os);
 		os << FirstName << endl

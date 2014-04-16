@@ -3,9 +3,6 @@
 #include "TAntiCollisionQueue.h"
 #include "ISerializable.h"
 
-class DataContext;
-class Reservation;
-
 class IRoom : public ISerializable
 {
 public:
@@ -53,7 +50,7 @@ public:
 		Reservations.Remove(reservationToRemove);
 	}
 
-	virtual void Serialize(ostream& os) const
+	virtual void Serialize(ostream& os)
 	{
 		os << Type << endl;
 		ISerializable::Serialize(os);
