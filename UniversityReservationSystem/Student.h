@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Group.h"
 #include "IPerson.h"
 #include "TDataQueue.h"

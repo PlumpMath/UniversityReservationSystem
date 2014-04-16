@@ -7,6 +7,7 @@
 #include <fstream>
 
 using namespace std;
+
 class Reservation;
 
 class IPerson : public ISerializable

@@ -16,6 +16,10 @@
 
 using namespace std;
 
+class Group;
+class Student;
+class Reservation;
+
 class DataContext
 {
 protected:

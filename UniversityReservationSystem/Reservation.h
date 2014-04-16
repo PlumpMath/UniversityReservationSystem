@@ -1,15 +1,19 @@
 #pragma once
 
 #include "ISerializable.h"
+#include "DataContext.h"
 #include "TAntiCollisionQueue.h"
+#include "RoomFactory.h"
 #include "Group.h"
 #include "Teacher.h"
-#include "IRoom.h"
 #include <ctime>
 
 using namespace std;
 
 class Teacher;
+class DataContext;
+class RoomFactory;
+class IPerson;
 class IRoom;
 class Group;
 

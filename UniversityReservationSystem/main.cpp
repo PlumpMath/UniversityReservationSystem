@@ -1,11 +1,13 @@
 #include <string>
 #include <iostream>
-#define _CRTDBG_MAP_ALLOC
+#include <ctime>
+#include <fstream>
 #include <stdlib.h>
 #include <crtdbg.h>
 #include "MainPageView.h"
 #include "DataContext.h"
 
+#define _CRTDBG_MAP_ALLOC
 using namespace std;
 
 int main()

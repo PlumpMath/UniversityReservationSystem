@@ -104,11 +104,11 @@
     <ClInclude Include="ISerializable.h">
       <Filter>Header Files\Models</Filter>
     </ClInclude>
-    <ClInclude Include="CommonFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ControllerFactory.h">
       <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomFactory.h">
+      <Filter>Header Files\Models\Room</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

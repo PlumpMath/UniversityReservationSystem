@@ -4,10 +4,12 @@
 #include "TAntiCollisionQueue.h"
 #include "Student.h"
 #include "Reservation.h"
+
 using namespace std;
 
 class Reservation;
 class Student;
+class DataContext;
 
 class Group : public ISerializable
 {

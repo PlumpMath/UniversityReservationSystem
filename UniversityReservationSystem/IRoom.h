@@ -5,7 +5,9 @@
 #include "TAntiCollisionQueue.h"
 #include <fstream>
 
+class DataContext;
 class Reservation;
+class RoomFactory;
 
 class IRoom : public ISerializable
 {
@@ -32,19 +34,13 @@ public:
 
 	static IRoom& Deserialize(ifstream& is, DataContext& context)
 	{
-		string stringBuffer;
+		string type;
+		getline(is, type);
 
-		getline(is, stringBuffer);
+		RoomFactory* f = new RoomFactory();
 
-		if (stringBuffer == "Exercise")
-		{
-			return ExerciseRoom::Deserialize(is, context);
-		}
-		else if (stringBuffer == "Lab")
-		{
-			return LabRoom::Deserialize(is, context);
-		}
-		throw "Blad typu pokoju";
+		return *(new IRoom("D", "D", 3));
+		//return RoomFactory::CreateObject(is, context, type);
 	}
 
 	virtual void Edit(IRoom roomToEdit)
