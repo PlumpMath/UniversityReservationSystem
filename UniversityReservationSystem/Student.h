@@ -1,13 +1,14 @@
 #pragma once
 
+#include "DataContext.h"
 #include "Group.h"
 #include "IPerson.h"
 #include "TDataQueue.h"
-#include <fstream>
 
 using namespace std;
 
 class Group;
+class DataContext;
 
 class Student : public IPerson
 {
@@ -58,9 +59,9 @@ public:
 		getline(is, stringBuffer);
 		int groupId = stoi(stringBuffer);
 
-		/*Group& group = context.Groups.FindById(groupId);*/
+		Group& group = context.Groups.FindById(groupId);
 
-		return *(new Student(firstName, lastName, Group("d",3,3,2), passedTerms, average, id ));
+		return *(new Student(firstName, lastName, group, passedTerms, average, id ));
 	}
 
 	void Edit(Student& editedStudent)

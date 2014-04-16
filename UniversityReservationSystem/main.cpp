@@ -4,6 +4,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include <crtdbg.h>
+#include <vector>
 #include "MainPageView.h"
 #include "DataContext.h"
 

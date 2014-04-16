@@ -1,8 +1,5 @@
 #pragma once
 
-#include <vector>
-#include <iostream>
-#include <fstream>
 #include "ControllerFactory.h"
 
 using namespace std;
@@ -108,13 +105,25 @@ public:
 		IController<T>& factory
 			= ControllerFactory<T>::CreateController(context, type);
 
-		int count = 0;
-		is >> count;
+		string buffer;
+		getline(is, buffer);
+		int count = stoi(buffer);
 
-		while (count-- > 0)
+		if (type == "class IRoom")
 		{
-			factory.Add(T::Deserialize(is, context));
+			while (count-- > 0)
+			{
+				factory.Add(*dynamic_cast<T*>(&RoomFactory::CreateObject(is, context)));
+			}
 		}
+		else
+		{
+			while (count-- > 0)
+			{
+				factory.Add(T::Deserialize(is, context));
+			}
+		}
+		
 
 		delete &factory;
 	}

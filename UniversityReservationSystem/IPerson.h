@@ -1,10 +1,8 @@
 #pragma once
 
 #include "ISerializable.h"
-#include "TAntiCollisionQueue.h"
 #include "Reservation.h"
-#include <string>
-#include <fstream>
+#include "TAntiCollisionQueue.h"
 
 using namespace std;
 

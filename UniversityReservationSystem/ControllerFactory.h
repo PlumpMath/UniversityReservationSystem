@@ -30,5 +30,6 @@ public:
 		{
 			return *(dynamic_cast<IController<T>*>(new ReservationController(context)));
 		}
+		throw 1;
 	}
 };

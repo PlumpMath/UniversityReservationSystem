@@ -1,13 +1,10 @@
 #pragma once
 
-#include "ISerializable.h"
-#include "Reservation.h"
 #include "TAntiCollisionQueue.h"
-#include <fstream>
+#include "ISerializable.h"
 
 class DataContext;
 class Reservation;
-class RoomFactory;
 
 class IRoom : public ISerializable
 {
@@ -32,16 +29,8 @@ public:
 		Capacity = _capacity;
 	}
 
-	static IRoom& Deserialize(ifstream& is, DataContext& context)
-	{
-		string type;
-		getline(is, type);
-
-		RoomFactory* f = new RoomFactory();
-
-		return *(new IRoom("D", "D", 3));
-		//return RoomFactory::CreateObject(is, context, type);
-	}
+	// should be never invoked
+	static IRoom& Deserialize(ifstream& is, DataContext& context){ throw 1; }
 
 	virtual void Edit(IRoom roomToEdit)
 	{

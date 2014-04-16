@@ -4,9 +4,8 @@
 #include "Reservation.h"
 #include "Group.h"
 #include "Teacher.h"
-#include "Student.h"
+
 #include "IRoom.h"
-#include <fstream>
 
 #define GROUPS_FILE "groups.txt"
 #define TEACHERS_FILE "teachers.txt"
@@ -16,8 +15,6 @@
 
 using namespace std;
 
-class Group;
-class Student;
 class Reservation;
 
 class DataContext
