@@ -8,7 +8,7 @@ class TeacherController : public IController<Teacher>
 {
 public:
 	TeacherController(DataContext & _context)
-		: IController(_context) { }
+		: IController(_context, _context.Teachers) { }
 
 	bool Add(Teacher& toAdd)
 	{

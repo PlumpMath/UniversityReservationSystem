@@ -8,7 +8,7 @@ class RoomController : public IController<IRoom>
 {
 public:
 	RoomController(DataContext & _context)
-		: IController(_context) { }
+		: IController(_context, _context.Rooms) { }
 
 	bool Add(IRoom& toAdd)
 	{

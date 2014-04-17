@@ -8,7 +8,7 @@ class ReservationController : public IController<Reservation>
 {
 public:
 	ReservationController(DataContext & _context)
-		: IController(_context) { }
+		: IController(_context, _context.Reservations) { }
 
 	bool Add(Reservation& toAdd)
 	{

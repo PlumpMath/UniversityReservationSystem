@@ -8,7 +8,7 @@ class GroupController : public IController<Group>
 {
 public:
 	GroupController(DataContext & _context)
-		: IController(_context) { }
+		: IController(_context, _context.Groups) { }
 
 	bool Add(Group& toAdd)
 	{
