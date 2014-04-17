@@ -11,6 +11,11 @@ using namespace std;
 
 class Reservation : public ISerializable
 {
+private:
+	void ValidateDates()
+	{
+		if (DateOfEnd <= DateOfStart) throw 1;
+	}
 public:
 	string Name;
 	time_t DateOfStart;
@@ -25,6 +30,7 @@ public:
 		Name = _name;
 		DateOfStart = _dateOfStart;
 		DateOfEnd = _dateOfEnd;
+		ValidateDates();
 	}
 
 	//
@@ -36,6 +42,7 @@ public:
 		Name = _name;
 		DateOfStart = _dateOfStart;
 		DateOfEnd = _dateOfEnd;
+		ValidateDates();
 	}
 
 	static Reservation& Deserialize(ifstream& is, DataContext& context)
