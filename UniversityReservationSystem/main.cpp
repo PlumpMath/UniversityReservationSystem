@@ -10,7 +10,8 @@ int main()
 	{
 		DataContext context("home");
 		MainPageView mainView(context);
-		mainView.Test();
+		//mainView.Test();
+		mainView.Test2();
 		//context.SaveChanges();
 	}
 

@@ -89,6 +89,7 @@
     <ClInclude Include="IPerson.h" />
     <ClInclude Include="IRoom.h" />
     <ClInclude Include="ISerializable.h" />
+    <ClInclude Include="ISpecializedView.h" />
     <ClInclude Include="LabRoom.h" />
     <ClInclude Include="MainPageView.h" />
     <ClInclude Include="ReservationController.h" />

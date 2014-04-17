@@ -1,3 +1,9 @@
+#include "GroupsView.h"
+#include "ReservationsView.h"
+#include "RoomsView.h"
+#include "StudentsView.h"
+#include "TeachersView.h"
+
 using namespace std;
 
 class MainPageView
@@ -29,5 +35,10 @@ public:
 		teacherCtrl.Add(*teacher);
 		roomCtrl.Add(*room);
 		reservationCtrl.Add(*res);
+	}
+
+	void Test2()
+	{
+		ReservationsView view(context);
 	}
 };
