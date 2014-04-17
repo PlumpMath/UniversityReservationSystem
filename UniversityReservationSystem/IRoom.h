@@ -18,6 +18,9 @@ public:
 		Capacity = _capacity;
 	}
 
+	//
+	// Constructor used during deserialization
+	//
 	IRoom(string _name, string _type, int _capacity, int _id)
 		: ISerializable(_id)
 	{

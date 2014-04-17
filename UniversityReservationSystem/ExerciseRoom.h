@@ -18,6 +18,9 @@ public:
 		NumOfTables = _numOfTables;
 	}
 
+	//
+	// Constructor used during deserialization
+	//
 	ExerciseRoom(string _name, int _capacity, int _numOfChairs, int _numOfTables, int _id)
 		: IRoom(_name, "Exercise", _capacity, _id)
 	{

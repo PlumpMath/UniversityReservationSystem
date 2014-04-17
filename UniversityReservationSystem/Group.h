@@ -24,6 +24,9 @@ public:
 		GroupNumber = _groupNumber;
 	}
 
+	//
+	// Constructor used during deserialization
+	//
 	Group(string _degreeCourse, int _year, int _groupNumber, int _id)
 		: ISerializable(_id)
 	{

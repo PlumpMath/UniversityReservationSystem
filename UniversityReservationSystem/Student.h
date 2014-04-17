@@ -24,6 +24,9 @@ public:
 		AverageOfMarksOfLastTerm = _averageOfMarksOfLastTerm;
 	}
 
+	//
+	// Constructor used during deserialization
+	//
 	Student(string _firstName, string _lastName, Group& _group, int _passedTerms, double _averageOfMarksOfLastTerm, int _id)
 		: IPerson(_firstName, _lastName, _id), StudentGroup(_group)
 	{

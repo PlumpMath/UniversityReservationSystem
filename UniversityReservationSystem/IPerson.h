@@ -22,6 +22,9 @@ public:
 		LastName = _lastName;
 	}
 
+	//
+	// Constructor used during deserialization
+	//
 	IPerson(string _firstName, string _lastName, int _id)
 		: ISerializable(_id)
 	{

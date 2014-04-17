@@ -20,6 +20,9 @@ public:
 		AcademicTitle = _academicTitle;
 	}
 
+	//
+	// Constructor used during deserialization
+	//
 	Teacher(string _firstName, string _lastName, string _email, string _phoneNumber, string _academicTitle, int _id)
 		: IPerson(_firstName, _lastName, _id)
 	{

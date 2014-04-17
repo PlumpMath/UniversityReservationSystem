@@ -18,6 +18,9 @@ public:
 		NumOfComputers = _numOfComputers;
 	}
 
+	//
+	// Constructor used during deserialization
+	//
 	LabRoom(string _name, int _capacity, string _additionalEquipment, int _numOfComputers, int _id)
 		: IRoom(_name, "Lab", _capacity, _id)
 	{

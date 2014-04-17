@@ -19,7 +19,6 @@ public:
 	TAntiCollisionQueue<Group> BoundGroups;
 	IRoom& Room;
 
-
 	Reservation(string _name, time_t _dateOfStart, time_t _dateOfEnd, Teacher& _teacher, IRoom& _room)
 		: BoundTeacher(_teacher), Room(_room)
 	{
@@ -28,6 +27,9 @@ public:
 		DateOfEnd = _dateOfEnd;
 	}
 
+	//
+	// Constructor used during deserialization
+	//
 	Reservation(string _name, time_t _dateOfStart, time_t _dateOfEnd, Teacher& _teacher, IRoom& _room, int _id)
 		: ISerializable(_id), BoundTeacher(_teacher), Room(_room)
 	{
@@ -47,10 +49,10 @@ public:
 		string name = stringBuffer;
 
 		getline(is, stringBuffer);
-		int dateStart = stoi(stringBuffer);
+		time_t dateStart = stoi(stringBuffer);
 
 		getline(is, stringBuffer);
-		int dateEnd = stoi(stringBuffer);
+		time_t dateEnd = stoi(stringBuffer);
 
 		getline(is, stringBuffer);
 		int teacherId = stoi(stringBuffer);
@@ -80,20 +82,15 @@ public:
 	{
 		int numOfBoundGroups = BoundGroups.Count();
 
-		char _dateOfStart[25];
-		char _dateOfEnd[25];
-
-		strftime(_dateOfStart, 25, "%c", localtime(&DateOfStart));
-		strftime(_dateOfEnd, 25, "%c", localtime(&DateOfEnd));
-
 		ISerializable::Serialize(os);
 		os << Name << endl
-			<< _dateOfStart << endl
-			<< _dateOfEnd << endl
+			<< DateOfStart << endl
+			<< DateOfEnd << endl
 			<< BoundTeacher.Id << endl
 			<< Room.Id << endl
 			<< numOfBoundGroups;
 
+		// writing reservation's bound groups' IDs 
 		for (int i = 0; i < numOfBoundGroups; i++)
 		{
 			os << endl << BoundGroups[i].Id;
@@ -105,13 +102,12 @@ public:
 		this->Name = reservationToEdit.Name;
 	}
 
+	//
+	// Checking if 'toCheck' date of reservation collides with the object's date of reservation
+	//
 	bool CheckCollisions(Reservation& toCheck)
 	{
-		if ((toCheck.DateOfStart >= this->DateOfStart && toCheck.DateOfStart <= this->DateOfEnd) ||
-			(this->DateOfStart >= toCheck.DateOfStart && this->DateOfStart <= this->DateOfEnd))
-		{
-			return true;
-		}
-		return false;
+		return ((toCheck.DateOfStart >= this->DateOfStart && toCheck.DateOfStart <= this->DateOfEnd) ||
+			(this->DateOfStart >= toCheck.DateOfStart && this->DateOfStart <= this->DateOfEnd));
 	}
 };
