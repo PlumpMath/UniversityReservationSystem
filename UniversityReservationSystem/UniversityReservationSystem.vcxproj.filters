@@ -110,6 +110,9 @@
     <ClInclude Include="RoomFactory.h">
       <Filter>Header Files\Models\Room</Filter>
     </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

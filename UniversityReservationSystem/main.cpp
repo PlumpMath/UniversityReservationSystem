@@ -1,12 +1,6 @@
-#include <string>
-#include <iostream>
-#include <ctime>
-#include <fstream>
-#include <stdlib.h>
-#include <crtdbg.h>
-#include <vector>
-#include "MainPageView.h"
+#include "stdafx.h"
 #include "DataContext.h"
+#include "MainPageView.h"
 
 #define _CRTDBG_MAP_ALLOC
 using namespace std;

@@ -96,6 +96,7 @@
     <ClInclude Include="RoomController.h" />
     <ClInclude Include="RoomFactory.h" />
     <ClInclude Include="RoomsView.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="StudentController.h" />
     <ClInclude Include="StudentsView.h" />
     <ClInclude Include="TAntiCollisionQueue.h" />

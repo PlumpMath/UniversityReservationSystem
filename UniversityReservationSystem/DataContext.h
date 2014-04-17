@@ -1,12 +1,5 @@
 #pragma once
 
-#include "TDataQueue.h"
-#include "Reservation.h"
-#include "Group.h"
-#include "Teacher.h"
-
-#include "IRoom.h"
-
 #define GROUPS_FILE "groups.txt"
 #define TEACHERS_FILE "teachers.txt"
 #define STUDENTS_FILE "students.txt"
@@ -14,6 +7,10 @@
 #define RESERVATIONS_FILE "reservations.txt"
 
 using namespace std;
+
+class Group;
+class Teacher;
+class Student;
 
 class DataContext
 {

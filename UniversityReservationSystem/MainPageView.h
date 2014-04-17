@@ -1,16 +1,3 @@
-#include "RoomFactory.h"
-#include "Reservation.h"
-#include "Student.h"
-#include "Teacher.h"
-#include "Group.h"
-#include "LabRoom.h"
-#include "ExerciseRoom.h"
-#include "GroupController.h"
-#include "StudentController.h"
-#include "TeacherController.h"
-#include "RoomController.h"
-#include "ReservationController.h"
-
 using namespace std;
 
 class MainPageView
