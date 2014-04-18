@@ -17,24 +17,24 @@ extern "C"
 {
 	API bool LoadDB(const char* filePath)
 	{
-		DataContext * context = new DataContext(filePath);
-		bool success = context->TryLoadTheBase();
+		Context = new DataContext(filePath);
+		bool success = Context->TryLoadTheBase();
 
-		groupCtrl		= new GroupController		(*context);
-		studentCtrl		= new StudentController		(*context);
-		teacherCtrl		= new TeacherController		(*context);
-		roomCtrl		= new RoomController		(*context);
-		reservationCtrl = new ReservationController	(*context);
+		groupCtrl		= new GroupController		(*Context);
+		studentCtrl		= new StudentController		(*Context);
+		teacherCtrl		= new TeacherController		(*Context);
+		roomCtrl		= new RoomController		(*Context);
+		reservationCtrl = new ReservationController	(*Context);
 
 		return success;
 	}
 
-	API bool SaveDB()
+	API bool SaveDB(void)
 	{
 		return Context->TrySaveChanges();
 	}
 
-	API void FreeDB()
+	API void FreeDB(void)
 	{
 		delete groupCtrl;
 		delete studentCtrl;

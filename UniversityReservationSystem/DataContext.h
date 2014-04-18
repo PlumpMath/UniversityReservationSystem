@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <direct.h>
 
 #define GROUPS_FILE "groups.txt"
 #define TEACHERS_FILE "teachers.txt"
