@@ -24,7 +24,7 @@ public:
 	TDataQueue<Teacher>		Teachers;
 	TDataQueue<Student>		Students;
 	TDataQueue<IRoom>		Rooms;
-	TDataQueue<Reservation> Reservations;
+	TDataQueue<Reservation>	Reservations;
 
 	DataContext(string _filePath)
 	{
@@ -39,11 +39,11 @@ public:
 		ofstream fileRooms			(filePath + "//" + ROOMS_FILE, ofstream::trunc);
 		ofstream fileReservations	(filePath + "//" + RESERVATIONS_FILE, ofstream::trunc);
 
-		if (fileGroups		.is_open() &&
-			fileTeachers	.is_open() &&
-			fileStudents	.is_open() &&
-			fileRooms		.is_open() &&
-			fileReservations.is_open())
+		if (fileGroups			.is_open() &&
+			fileTeachers		.is_open() &&
+			fileStudents		.is_open() &&
+			fileRooms			.is_open() &&
+			fileReservations	.is_open())
 		{
 			fileGroups << Groups;
 			fileGroups.close();
@@ -73,11 +73,11 @@ public:
 		ifstream fileRooms(filePath + "//" + ROOMS_FILE);
 		ifstream fileReservations(filePath + "//" + RESERVATIONS_FILE);
 
-		if (fileGroups		.is_open() &&
-			fileTeachers	.is_open() &&
-			fileStudents	.is_open() &&
-			fileRooms		.is_open() &&
-			fileReservations.is_open())
+		if (fileGroups			.is_open() &&
+			fileTeachers		.is_open() &&
+			fileStudents		.is_open() &&
+			fileRooms			.is_open() &&
+			fileReservations	.is_open())
 		{
 			Groups.Deserialize(fileGroups, *this);
 			fileGroups.close();
@@ -101,11 +101,11 @@ public:
 
 	void Clear()
 	{
-		Students	.Clear();
-		Groups		.Clear();
-		Reservations.Clear();
-		Teachers	.Clear();
-		Rooms		.Clear();
+		Students		.Clear();
+		Groups			.Clear();
+		Reservations	.Clear();
+		Teachers		.Clear();
+		Rooms			.Clear();
 	}
 
 	~DataContext()

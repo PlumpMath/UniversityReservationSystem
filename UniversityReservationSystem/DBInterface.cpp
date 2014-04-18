@@ -24,7 +24,7 @@ extern "C"
 		studentCtrl		= new StudentController		(*Context);
 		teacherCtrl		= new TeacherController		(*Context);
 		roomCtrl		= new RoomController		(*Context);
-		reservationCtrl = new ReservationController	(*Context);
+		reservationCtrl	= new ReservationController	(*Context);
 
 		return success;
 	}
