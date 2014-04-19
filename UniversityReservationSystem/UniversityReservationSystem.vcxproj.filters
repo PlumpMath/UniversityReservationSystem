@@ -24,12 +24,6 @@
     <Filter Include="Header Files\Queues">
       <UniqueIdentifier>{a30abc02-ce45-4662-9649-50327c5f4f5b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Views">
-      <UniqueIdentifier>{62b4b97e-9097-48e3-aa8f-9150e60c000a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Views\ModelsViews">
-      <UniqueIdentifier>{29ac494e-b3d9-476a-8ed8-0306590eaa70}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IPerson.h">
@@ -80,24 +74,6 @@
     <ClInclude Include="RoomController.h">
       <Filter>Header Files\Controllers</Filter>
     </ClInclude>
-    <ClInclude Include="MainPageView.h">
-      <Filter>Header Files\Views</Filter>
-    </ClInclude>
-    <ClInclude Include="TeachersView.h">
-      <Filter>Header Files\Views\ModelsViews</Filter>
-    </ClInclude>
-    <ClInclude Include="GroupsView.h">
-      <Filter>Header Files\Views\ModelsViews</Filter>
-    </ClInclude>
-    <ClInclude Include="ReservationsView.h">
-      <Filter>Header Files\Views\ModelsViews</Filter>
-    </ClInclude>
-    <ClInclude Include="RoomsView.h">
-      <Filter>Header Files\Views\ModelsViews</Filter>
-    </ClInclude>
-    <ClInclude Include="StudentsView.h">
-      <Filter>Header Files\Views\ModelsViews</Filter>
-    </ClInclude>
     <ClInclude Include="TDataQueue.h">
       <Filter>Header Files\Queues</Filter>
     </ClInclude>
@@ -113,12 +89,9 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ISpecializedView.h">
-      <Filter>Header Files\Views\ModelsViews</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="DBInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
