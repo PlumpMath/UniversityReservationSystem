@@ -1,0 +1,13 @@
+2
+1
+imie1
+n1azwisko1
+3
+2.3
+1
+2
+imie2
+n1azwisko2
+6
+4.6
+1

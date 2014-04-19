@@ -29,12 +29,16 @@ extern "C"
 		return success;
 	}
 
-	API bool SaveDB(void)
+	////////////////////////////////////
+	//////// COMMON
+	////////////////////////////////////
+
+	API bool			SaveDB(void)
 	{
 		return Context->TrySaveChanges();
 	}
 
-	API void FreeDB(void)
+	API void			FreeDB(void)
 	{
 		delete groupCtrl;
 		delete studentCtrl;
@@ -45,43 +49,60 @@ extern "C"
 		delete Context;
 	}
 
-	API int GetID(ISerializable * iserializablePtr)
+	API int				GetID(ISerializable * iserializablePtr)
 	{
-		if (iserializablePtr != NULL)
-		{
-			return iserializablePtr->Id;
-		}
+		if (iserializablePtr == NULL) throw 1;
+		return iserializablePtr->Id;
+	}
+
+	API Group *			GetGroupByIndex(unsigned int groupIndex)
+	{
+		return &(groupCtrl->List[groupIndex]);
+	}
+
+	API Student *		GetStudentByIndex(unsigned int studentIndex)
+	{
+		return &(studentCtrl->List[studentIndex]);
+	}
+
+	API Teacher *		GetTeacherByIndex(unsigned int teacherIndex)
+	{
+		return &(teacherCtrl->List[teacherIndex]);
+	}
+
+	API IRoom *			GetRoomByIndex(unsigned int roomIndex)
+	{
+		return &(roomCtrl->List[roomIndex]);
+	}
+
+	API Reservation *	GetReservationByIndex(unsigned int reservationIndex)
+	{
+		return &(reservationCtrl->List[reservationIndex]);
 	}
 
 	////////////////////////////////////
 	//////// GROUPS
 	////////////////////////////////////
 
-	API const char * GetGroupDegreeCourse(Group * groupPtr)
+	API const char *	GetGroupDegreeCourse(Group * groupPtr)
 	{
-		if (groupPtr != NULL)
-		{
-			return groupPtr->DegreeCourse.c_str();
-		}
+		if (groupPtr == NULL) throw 1;
+		return groupPtr->DegreeCourse.c_str();
 	}
 
-	API int GetGroupYear(Group * groupPtr)
+	API int				GetGroupYear(Group * groupPtr)
 	{
-		if (groupPtr != NULL)
-		{
-			return groupPtr->Year;
-		}
+		if (groupPtr == NULL) throw 1;
+		return groupPtr->Year;
 	}
 
-	API int GetGroupNumber(Group * groupPtr)
+	API int				GetGroupNumber(Group * groupPtr)
 	{
-		if (groupPtr != NULL)
-		{
-			return groupPtr->GroupNumber;
-		}
+		if (groupPtr == NULL) throw 1;
+		return groupPtr->GroupNumber;
 	}
 
-	API Group * CreateNewGroup(const char * degreeCourse, int year, int groupNumber)
+	API Group *			CreateNewGroup(const char * degreeCourse, int year, int groupNumber)
 	{
 		Group * group = new Group(degreeCourse, year, groupNumber);
 		groupCtrl->Add(*group);
@@ -93,43 +114,43 @@ extern "C"
 	//////// STUDENTS
 	////////////////////////////////////
 
-	API Group * GetStudentGroup(Student * studentPtr)
+	API Group *			GetStudentGroup(Student * studentPtr)
 	{
+		if (studentPtr == NULL) throw 1;
 		return &(studentPtr->StudentGroup);
 	}
 
-	API int GetStudentPassedTerms(Student * studentPtr)
+	API int				GetStudentPassedTerms(Student * studentPtr)
 	{
+		if (studentPtr == NULL) throw 1;
 		return studentPtr->PassedTerms;
 	}
 
-	API double GetStudentAvgOfMarks(Student * studentPtr)
+	API double			GetStudentAvgOfMarks(Student * studentPtr)
 	{
+		if (studentPtr == NULL) throw 1;
 		return studentPtr->AverageOfMarksOfLastTerm;
 	}
 
-	API Student * CreateNewStudent(const char * firstName, const char * lastName,
-		Group * group, int passedTerms, double avgOfMarks)
+	API Student *		CreateNewStudent(const char * firstName, const char * lastName, Group * groupPtr, int passedTerms, double avgOfMarks)
 	{
-		Student * student = new Student(firstName, lastName, *group, passedTerms, avgOfMarks);
+		if (groupPtr == NULL) throw 1;
+
+		Student * student = new Student(firstName, lastName, *groupPtr, passedTerms, avgOfMarks);
 		studentCtrl->Add(*student);
 
 		return student;
 	}
 
-	API const char * GetStudentFirstName(Student * studentPtr)
+	API const char *	GetStudentFirstName(Student * studentPtr)
 	{
-		if (studentPtr != NULL)
-		{
-			return studentPtr->FirstName.c_str();
-		}
+		if(studentPtr == NULL) throw 1;
+		return studentPtr->FirstName.c_str();
 	}
 
-	API const char * GetStudentLastName(Student * studentPtr)
+	API const char *	GetStudentLastName(Student * studentPtr)
 	{
-		if (studentPtr != NULL)
-		{
-			return studentPtr->LastName.c_str();
-		}
+		if (studentPtr == NULL) throw 1;
+		return studentPtr->LastName.c_str();
 	}
 }

@@ -33,8 +33,6 @@ namespace UniversityReservationSystem.Interface.Models
         {
             get { return GetStudentAvgOfMarks(Ptr); }
         }
-        
-
 
         public Student(IntPtr thisPtr) : base(thisPtr) { }
 
