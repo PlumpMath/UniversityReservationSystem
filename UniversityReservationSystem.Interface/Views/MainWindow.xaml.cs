@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Windows;
+using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface
 {
@@ -16,6 +14,15 @@ namespace UniversityReservationSystem.Interface
         {
             App.LoadDB("home");
             App.SaveDB();
+            
+
+            var group2 = new Group("nowy", 2023, 3);
+            MessageBox.Show(group2.ToString());
+
+            var stud = new Student("szymon", "bartnik", group2, 3, 3.3);
+            MessageBox.Show(stud.ToString());
+
+            App.FreeDB();
         }
     }
 }
