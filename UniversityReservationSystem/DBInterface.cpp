@@ -46,6 +46,8 @@ extern "C"
 		delete reservationCtrl;
 
 		delete Context;
+
+		_CrtDumpMemoryLeaks();
 	}
 
 	API int				GetID(ISerializable * iserializablePtr)
@@ -120,6 +122,10 @@ extern "C"
 		groupCtrl->Add(*group);
 
 		return group;
+	}
+	API unsigned int	GetGroupNumberOfStudents(Group * groupPtr)
+	{
+		return groupPtr->Students.Count();
 	}
 
 	////////////////////////////////////

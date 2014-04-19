@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Security.RightsManagement;
 
 namespace UniversityReservationSystem.Interface.Models
 {
@@ -20,6 +21,10 @@ namespace UniversityReservationSystem.Interface.Models
         public int GroupNumber
         {
             get { return GetGroupNumber(Ptr); }
+        }
+        public uint NumOfStudents
+        {
+            get { return GetGroupNumberOfStudents(Ptr); }
         }
 
         public Group(IntPtr thisPtr) : base(thisPtr) { }
@@ -46,6 +51,9 @@ namespace UniversityReservationSystem.Interface.Models
 
         [DllImport("UniversityReservationSystem.dll")]
         private static extern IntPtr CreateNewGroup(string degreeCourse, int year, int groupNumber);
+
+        [DllImport("UniversityReservationSystem.dll")]
+        public static extern uint GetGroupNumberOfStudents(IntPtr groupPtr);
 
         #endregion
     }

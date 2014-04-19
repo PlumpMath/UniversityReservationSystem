@@ -23,7 +23,6 @@ namespace UniversityReservationSystem.Interface.Views
             GroupsGrid.ItemsSource = groupsList;
 
             //App.SaveDB();
-            //App.FreeDB();          
         }
     }
 }

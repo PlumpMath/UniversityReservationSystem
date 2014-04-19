@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Windows;
 
 namespace UniversityReservationSystem.Interface
 {
@@ -19,5 +20,11 @@ namespace UniversityReservationSystem.Interface
 
         [DllImport("UniversityReservationSystem.dll")]
         public static extern uint GetGroupsCount();
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            FreeDB();
+            base.OnExit(e);
+        }
     }
 }

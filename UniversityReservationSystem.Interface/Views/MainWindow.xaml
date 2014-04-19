@@ -6,19 +6,19 @@
         Height="450" Width="700" MinWidth="500" MinHeight="300">
     <TabControl Margin="5">
         <TabItem Header="Reservations">
-
+            <views:ReservationsTab />
         </TabItem>
         <TabItem Header="Rooms">
-
+            <views:RoomsTab />
         </TabItem>
         <TabItem Header="Teachers">
-
+            <views:TeachersTab />
         </TabItem>
         <TabItem Header="Groups">
             <views:GroupsTab />
         </TabItem>
         <TabItem Header="Students">
-            
+            <views:StudentsTab />
         </TabItem>
     </TabControl>
 </Window>
