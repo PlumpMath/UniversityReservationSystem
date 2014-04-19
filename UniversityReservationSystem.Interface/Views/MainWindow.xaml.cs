@@ -1,5 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Documents;
 using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface
@@ -9,21 +11,26 @@ namespace UniversityReservationSystem.Interface
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
             App.LoadDB("home");
-            App.SaveDB();
-            
+            //App.SaveDB();
 
-            var group2 = new Group("nowy", 2023, 3);
-            MessageBox.Show(group2.ToString());
+            var groupsList = new ObservableCollection<Group>();
 
-            var stud = new Student("szymon", "bartnik", group2, 3, 3.3);
-            MessageBox.Show(stud.ToString());
+            for (uint i = 0; i < App.GetGroupsCount(); i++)
+            {
+                groupsList.Add(new Group(App.GetGroupByIndex(i)));
+            }
 
-            App.FreeDB();
+            GroupsGrid.ItemsSource = groupsList;
+
+            //var group2 = new Group("nowy", 2023, 3);
+            //MessageBox.Show(group2.ToString());
+
+            //var stud = new Student("szymon", "bartnik", group2, 3, 3.3);
+            //MessageBox.Show(stud.ToString());
+
+            //App.FreeDB();
         }
     }
 }

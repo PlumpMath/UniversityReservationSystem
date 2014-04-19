@@ -1,9 +1,28 @@
 ﻿<Window x:Class="UniversityReservationSystem.Interface.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="233,132,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-
-    </Grid>
+        Title="MainWindow" Height="425" Width="705">
+    <TabControl>
+        <TabItem Header="Reservations">
+            
+        </TabItem>
+        <TabItem Header="Rooms">
+            
+        </TabItem>
+        <TabItem Header="Teachers">
+            
+        </TabItem>
+        <TabItem Header="Groups">
+            <DataGrid AutoGenerateColumns="False" x:Name="GroupsGrid">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=DegreeCourse}" Header="Degree Course" />
+                    <DataGridTextColumn Binding="{Binding Path=Year}" Header="Year"/>
+                    <DataGridTextColumn Binding="{Binding Path=GroupNumber}" Header="Group Number" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+        <TabItem Header="Students">
+            
+        </TabItem>
+    </TabControl>
 </Window>
