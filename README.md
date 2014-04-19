@@ -1,4 +1,4 @@
-UniversityReservationSystem
+University Reservation System
 ===========================
 
 Project of reservation system of rooms in universities.
