@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="MonthCalendar.MonthCalendarControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+             HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+             MinHeight="340" MinWidth="500">
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="GrayGradientBrush" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="White" Offset="0"/>
+            <GradientStop Color="#7F95B2" Offset="1"/>
+        </LinearGradientBrush>
+        <Style x:Key="WeekDayLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Margin" Value="2,0,0,2" />
+            <Setter Property="Padding" Value="0,1,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="BorderThickness" Value="0,0,1,0" />
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="0 5" HorizontalAlignment="Center">
+            <Grid Width="10" />
+            <Button x:Name="MonthGoPrev" Click="MonthGoPrev_OnClick" Background="LightSlateGray">
+                <Image Source="Resources/back.png" Margin="6,0,6,0" />
+            </Button>
+            <Grid Width="10" />
+            <Button x:Name="MonthGoNext" Click="MonthGoNext_OnClick" Background="LightSlateGray">
+                <Image Source="Resources/next.png" Margin="6,0,6,0"/>
+            </Button>
+            <Label x:Name="MonthYearLabel" Width="130" Content="March 2009" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+        </StackPanel>
+        <Border Grid.Row="1" Margin="-1 0" BorderThickness="2" BorderBrush="LightSlateGray">
+            <Grid Background="{DynamicResource GrayGradientBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Poniedziałek" Style="{StaticResource WeekDayLabelStyle}" />
+                <Label Grid.Column="1" Content="Wtorek" Style="{StaticResource WeekDayLabelStyle}"/>
+                <Label Grid.Column="2" Content="Środa" Style="{StaticResource WeekDayLabelStyle}"/>
+                <Label Grid.Column="3" Content="Czwartek" Style="{StaticResource WeekDayLabelStyle}"/>
+                <Label Grid.Column="4" Content="Piątek" Style="{StaticResource WeekDayLabelStyle}"/>
+                <Label Grid.Column="5" Content="Sobota" Style="{StaticResource WeekDayLabelStyle}"/>
+                <Label Grid.Column="6" Content="Niedziela" Style="{StaticResource WeekDayLabelStyle}"/>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="3" x:Name="MonthViewGrid" /> 
+    </Grid>
+</UserControl>
+
