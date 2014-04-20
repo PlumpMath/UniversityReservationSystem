@@ -1,8 +1,9 @@
-﻿using System.Windows.Controls;
+﻿using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace MonthCalendar
 {
-    public partial class DayBoxControl : UserControl
+    public partial class DayBoxControl : Button
     {
         public DayBoxControl()
         {

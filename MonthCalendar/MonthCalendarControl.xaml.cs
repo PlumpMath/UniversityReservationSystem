@@ -87,10 +87,15 @@ namespace MonthCalendar
 		        dayBox.MouseDoubleClick += DayBox_DoubleClick;
 
 			    //-- customize daybox for today:
-			    if ((new DateTime(_displayYear, _displayMonth, i)) == DateTime.Today) {
-				    dayBox.DayLabelRowBorder.Background = (Brush)dayBox.TryFindResource("TodayGradient");
-			        dayBox.DayAppointmentsStack.Background = new SolidColorBrush(Color.FromArgb(87,188,206,125));
-			    }
+		        if ((new DateTime(_displayYear, _displayMonth, i)) == DateTime.Today)
+		        {
+		            dayBox.DayLabelRowBorder.Background = (Brush) dayBox.TryFindResource("TodayGradient");
+		            dayBox.DayAppointmentsStack.Background = new SolidColorBrush(Color.FromArgb(87, 188, 206, 125));
+		        }
+		        else
+		        {
+                    dayBox.DayAppointmentsStack.Background = new SolidColorBrush(Color.FromArgb(87, 255, 255, 255));
+		        }
 
 			    //-- for design mode, add appointments to random days for show...
 			    if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this)) {
@@ -104,12 +109,11 @@ namespace MonthCalendar
 				    //   "hint" suggests declaring another var and set equal to iterator var
 				    int iday = i;
 				    var aptInDay = _monthAppointments.FindAll(apt => Convert.ToDateTime(apt.StartTime).Day == iday);
-				    foreach (Appointment a in aptInDay) {
+				    foreach (var a in aptInDay) {
 					    var apt = new DayBoxAppointmentControl {DisplayText = {Text = a.Subject}, Tag = a.AppointmentId};
 				        apt.MouseDoubleClick += Appointment_DoubleClick;
 					    dayBox.DayAppointmentsStack.Children.Add(apt);
 				    }
-
 			    }
 
 			    Grid.SetColumn(dayBox, (i - (iWeekCount * 7)) + iOffsetDays);
@@ -124,9 +128,7 @@ namespace MonthCalendar
 		    MonthViewGrid.RowDefinitions.Clear();
 		    var rowHeight = new GridLength(60, GridUnitType.Star);
 
-		    int endOffSetDays = 7 - (Convert.ToInt32(Enum.ToObject(typeof(DayOfWeek), _DisplayStartDate.AddDays(daysInMonth - 1).DayOfWeek)) /* + 1 for US calendar format */);
-
-		    for (int i = 1; i <= Convert.ToInt32((daysInMonth + offSetDays + endOffSetDays) / 7); i++) {
+		    for (int i = 1; i <= Convert.ToInt32((daysInMonth + offSetDays) / 7 + 1); i++) {
 			    dynamic rowDef = new RowDefinition();
 			    rowDef.Height = rowHeight;
 			    MonthViewGrid.RowDefinitions.Add(rowDef);
@@ -196,18 +198,18 @@ namespace MonthCalendar
 	    #endregion
     }
 
-    public struct MonthChangedEventArgs
+    public class MonthChangedEventArgs : EventArgs
     {
-	    public DateTime OldDisplayStartDate;
-	    public DateTime NewDisplayStartDate;
+        public DateTime OldDisplayStartDate { get; set; }
+        public DateTime NewDisplayStartDate { get; set; }
     }
 
-    public struct NewAppointmentEventArgs
+    public class NewAppointmentEventArgs : EventArgs
     {
-	    public DateTime? StartDate;
-	    public DateTime? EndDate;
-	    public int? CandidateId;
-	    public int? RequirementId;
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public int? CandidateId { get; set; }
+        public int? RequirementId { get; set; }
     }
 
     public static class Utilities
@@ -215,9 +217,11 @@ namespace MonthCalendar
 	    //-- Many thanks to Bea Stollnitz, on whose blog I found the original C# version of below in a drag-drop helper class... 
 	    public static FrameworkElement FindVisualAncestor(Type ancestorType, Visual visual)
 	    {
-		    while ((visual != null && !ancestorType.IsInstanceOfType(visual))) 
-			    visual = (Visual)VisualTreeHelper.GetParent(visual);
-		    return (FrameworkElement)visual;
+	        while ((visual != null && !ancestorType.IsInstanceOfType(visual)))
+	        {
+	            visual = (Visual) VisualTreeHelper.GetParent(visual);
+	        }
+	        return (FrameworkElement)visual;
 	    }
     }
 }

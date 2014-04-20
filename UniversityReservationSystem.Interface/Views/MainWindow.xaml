@@ -4,7 +4,7 @@
         xmlns:views="clr-namespace:UniversityReservationSystem.Interface.Views"
         xmlns:cal="clr-namespace:MonthCalendar;assembly=MonthCalendar"
         Title="University Reservation System (by Szymon Bartnik for dr Roman Starosolski)"
-        Height="450" Width="700" MinWidth="500" MinHeight="300">
+        Height="650" Width="1000" MinWidth="500" MinHeight="300">
     <TabControl Margin="5">
         <TabItem Header="Reservations">
             <views:ReservationsTab />
@@ -22,7 +22,7 @@
             <views:StudentsTab />
         </TabItem>
         <TabItem Header="Calendar Test">
-            <cal:MonthCalendarControl Margin="10" />
+            <cal:MonthCalendarControl DisplayMonthChanged="DisplayMonthChanged" x:Name="CalendarControl" Margin="10" />
         </TabItem>
     </TabControl>
 </Window>
