@@ -52,7 +52,6 @@ extern "C"
 
 	API int				GetID(ISerializable * iserializablePtr)
 	{
-		if (iserializablePtr == NULL) throw 1;
 		return iserializablePtr->Id;
 	}
 	API Group *			GetGroupByIndex(unsigned int groupIndex)
@@ -103,17 +102,14 @@ extern "C"
 
 	API const char *	GetGroupDegreeCourse(Group * groupPtr)
 	{
-		if (groupPtr == NULL) throw 1;
 		return groupPtr->DegreeCourse.c_str();
 	}
 	API int				GetGroupYear(Group * groupPtr)
 	{
-		if (groupPtr == NULL) throw 1;
 		return groupPtr->Year;
 	}
 	API int				GetGroupNumber(Group * groupPtr)
 	{
-		if (groupPtr == NULL) throw 1;
 		return groupPtr->GroupNumber;
 	}
 	API Group *			CreateNewGroup(const char * degreeCourse, int year, int groupNumber)
@@ -134,23 +130,18 @@ extern "C"
 
 	API Group *			GetStudentGroup(Student * studentPtr)
 	{
-		if (studentPtr == NULL) throw 1;
 		return &(studentPtr->StudentGroup);
 	}
 	API int				GetStudentPassedTerms(Student * studentPtr)
 	{
-		if (studentPtr == NULL) throw 1;
 		return studentPtr->PassedTerms;
 	}
 	API double			GetStudentAvgOfMarks(Student * studentPtr)
 	{
-		if (studentPtr == NULL) throw 1;
 		return studentPtr->AverageOfMarksOfLastTerm;
 	}
 	API Student *		CreateNewStudent(const char * firstName, const char * lastName, Group * groupPtr, int passedTerms, double avgOfMarks)
 	{
-		if (groupPtr == NULL) throw 1;
-
 		Student * student = new Student(firstName, lastName, *groupPtr, passedTerms, avgOfMarks);
 		studentCtrl->Add(*student);
 
@@ -158,12 +149,10 @@ extern "C"
 	}
 	API const char *	GetStudentFirstName(Student * studentPtr)
 	{
-		if(studentPtr == NULL) throw 1;
 		return studentPtr->FirstName.c_str();
 	}
 	API const char *	GetStudentLastName(Student * studentPtr)
 	{
-		if (studentPtr == NULL) throw 1;
 		return studentPtr->LastName.c_str();
 	}
 }
