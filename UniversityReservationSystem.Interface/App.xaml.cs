@@ -13,7 +13,7 @@ namespace UniversityReservationSystem.Interface
         public static extern bool SaveDB();
 
         [DllImport("UniversityReservationSystem.dll")]
-        public static extern bool FreeDB();
+        private static extern bool FreeDB();
 
         [DllImport("UniversityReservationSystem.dll")]
         public static extern IntPtr GetGroupByIndex(uint groupIndex);

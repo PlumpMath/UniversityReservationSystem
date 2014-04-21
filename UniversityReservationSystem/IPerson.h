@@ -13,7 +13,6 @@ class IPerson : public ISerializable
 public:
 	string FirstName;
 	string LastName;
-	string Type;
 	TAntiCollisionQueue<Reservation> Reservations;
 
 	IPerson(string _firstName, string _lastName)

@@ -14,7 +14,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Year}" Width="1*" Header="Year" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
                 <DataGridTextColumn Binding="{Binding DegreeCourse}" Width="6*" Header="Degree Course" />
-                <DataGridTextColumn Binding="{Binding GroupNumber}" Width="1*" Header="Group #" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                <DataGridTextColumn Binding="{Binding GroupsCount}" Width="1*" Header="Group #" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
                 <DataGridTextColumn Binding="{Binding NumOfStudents}" Width="1*" Header="Students" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
                 <DataGridTextColumn Width="2*" Header="Reservations" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
             </DataGrid.Columns>

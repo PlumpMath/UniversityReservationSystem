@@ -3,6 +3,8 @@
 
 #define _CRTDBG_MAP_ALLOC
 #define API __declspec(dllexport)
+#define uint unsigned int
+#define strPtr const char *
 using namespace std;
 
 DataContext * Context;
@@ -15,24 +17,23 @@ ReservationController	* reservationCtrl;
 
 extern "C"
 {
-	API bool LoadDB(const char* filePath)
-	{
-		Context = new DataContext(filePath);
-		bool success = Context->TryLoadTheBase();
-
-		groupCtrl		= new GroupController		(*Context);
-		studentCtrl		= new StudentController		(*Context);
-		teacherCtrl		= new TeacherController		(*Context);
-		roomCtrl		= new RoomController		(*Context);
-		reservationCtrl	= new ReservationController	(*Context);
-
-		return success;
-	}
-
 	////////////////////////////////////
 	//////// COMMON
 	////////////////////////////////////
 
+	API bool			LoadDB(strPtr filePath)
+	{
+		Context = new DataContext(filePath);
+		bool success = Context->TryLoadTheBase();
+
+		groupCtrl = new GroupController(*Context);
+		studentCtrl = new StudentController(*Context);
+		teacherCtrl = new TeacherController(*Context);
+		roomCtrl = new RoomController(*Context);
+		reservationCtrl = new ReservationController(*Context);
+
+		return success;
+	}
 	API bool			SaveDB(void)
 	{
 		return Context->TrySaveChanges();
@@ -54,44 +55,44 @@ extern "C"
 	{
 		return iserializablePtr->Id;
 	}
-	API Group *			GetGroupByIndex(unsigned int groupIndex)
+	API Group *			GetGroupByIndex(uint groupIndex)
 	{
 		return &(groupCtrl->List[groupIndex]);
 	}
-	API Student *		GetStudentByIndex(unsigned int studentIndex)
+	API Student *		GetStudentByIndex(uint studentIndex)
 	{
 		return &(studentCtrl->List[studentIndex]);
 	}
-	API Teacher *		GetTeacherByIndex(unsigned int teacherIndex)
+	API Teacher *		GetTeacherByIndex(uint teacherIndex)
 	{
 		return &(teacherCtrl->List[teacherIndex]);
 	}
-	API IRoom *			GetRoomByIndex(unsigned int roomIndex)
+	API IRoom *			GetRoomByIndex(uint roomIndex)
 	{
 		return &(roomCtrl->List[roomIndex]);
 	}
-	API Reservation *	GetReservationByIndex(unsigned int reservationIndex)
+	API Reservation *	GetReservationByIndex(uint reservationIndex)
 	{
 		return &(reservationCtrl->List[reservationIndex]);
 	}
 
-	API unsigned int	GetGroupsCount()
+	API uint			GetGroupsCount()
 	{
 		return groupCtrl->List.Count();
 	}
-	API unsigned int	GetStudentsCount()
+	API uint			GetStudentsCount()
 	{
 		return studentCtrl->List.Count();
 	}
-	API unsigned int	GetTeachersCount()
+	API uint			GetTeachersCount()
 	{
 		return teacherCtrl->List.Count();
 	}
-	API unsigned int	GetRoomsCount()
+	API uint			GetRoomsCount()
 	{
 		return roomCtrl->List.Count();
 	}
-	API unsigned int	GetReservationsCount()
+	API uint			GetReservationsCount()
 	{
 		return reservationCtrl->List.Count();
 	}
@@ -100,7 +101,7 @@ extern "C"
 	//////// GROUPS
 	////////////////////////////////////
 
-	API const char *	GetGroupDegreeCourse(Group * groupPtr)
+	API strPtr			GetGroupDegreeCourse(Group * groupPtr)
 	{
 		return groupPtr->DegreeCourse.c_str();
 	}
@@ -112,16 +113,29 @@ extern "C"
 	{
 		return groupPtr->GroupNumber;
 	}
-	API Group *			CreateNewGroup(const char * degreeCourse, int year, int groupNumber)
+	API Group *			CreateNewGroup(strPtr degreeCourse, int year, int groupNumber)
 	{
 		Group * group = new Group(degreeCourse, year, groupNumber);
 		groupCtrl->Add(*group);
 
 		return group;
 	}
-	API unsigned int	GetGroupNumberOfStudents(Group * groupPtr)
+	API uint			GetGroupStudentsCount(Group * groupPtr)
 	{
 		return groupPtr->Students.Count();
+	}
+
+	////////////////////////////////////
+	//////// PEOPLE
+	////////////////////////////////////
+
+	API strPtr			GetPersonFirstName(IPerson * personPtr)
+	{
+		return personPtr->FirstName.c_str();
+	}
+	API strPtr			GetPersonLastName(IPerson * personPtr)
+	{
+		return personPtr->LastName.c_str();
 	}
 
 	////////////////////////////////////
@@ -140,19 +154,84 @@ extern "C"
 	{
 		return studentPtr->AverageOfMarksOfLastTerm;
 	}
-	API Student *		CreateNewStudent(const char * firstName, const char * lastName, Group * groupPtr, int passedTerms, double avgOfMarks)
+	API Student *		CreateNewStudent(strPtr firstName, strPtr lastName, Group * groupPtr, int passedTerms, double avgOfMarks)
 	{
 		Student * student = new Student(firstName, lastName, *groupPtr, passedTerms, avgOfMarks);
 		studentCtrl->Add(*student);
 
 		return student;
 	}
-	API const char *	GetStudentFirstName(Student * studentPtr)
+
+	////////////////////////////////////
+	//////// TEACHERS
+	////////////////////////////////////
+
+	API strPtr			GetTeacherEmail(Teacher * teacherPtr)
 	{
-		return studentPtr->FirstName.c_str();
+		return teacherPtr->Email.c_str();
 	}
-	API const char *	GetStudentLastName(Student * studentPtr)
+	API strPtr			GetTeacherPhoneNumber(Teacher * teacherPtr)
 	{
-		return studentPtr->LastName.c_str();
+		return teacherPtr->PhoneNumber.c_str();
+	}
+	API strPtr			GetTeacherAcademicTitle(Teacher * teacherPtr)
+	{
+		return teacherPtr->AcademicTitle.c_str();
+	}
+	API Teacher *		CreateNewTeacher(strPtr firstName, strPtr lastName, strPtr email, strPtr phoneNumber, strPtr academicTitle)
+	{
+		Teacher * teacher = new Teacher(firstName, lastName, email, phoneNumber, academicTitle);
+		teacherCtrl->Add(*teacher);
+
+		return teacher;
+	}
+
+	////////////////////////////////////
+	//////// ROOMS
+	////////////////////////////////////
+
+	API strPtr			GetRoomName(IRoom * roomPtr)
+	{
+		return roomPtr->Name.c_str();
+	}
+	API int				GetRoomCapacity(IRoom * roomPtr)
+	{
+		return roomPtr->Capacity;
+	}
+
+	////////////////////////////////////
+	//////// RESERVATIONS
+	////////////////////////////////////
+
+	API strPtr			GetReservationName(Reservation * reservationPtr)
+	{
+		return reservationPtr->Name.c_str();
+	}
+	API long int		GetReservationDateOfStart(Reservation * reservationPtr)
+	{
+		return reservationPtr->DateOfStart;
+	}
+	API long int		GetReservationDateOfEnd(Reservation * reservationPtr)
+	{
+		return reservationPtr->DateOfEnd;
+	}
+	API Teacher *		GetReservationTeacher(Reservation * reservationPtr)
+	{
+		return &(reservationPtr->BoundTeacher);
+	}
+	API IRoom *			GetReservationRoom(Reservation * reservationPtr)
+	{
+		return &(reservationPtr->Room);
+	}
+	API uint			GetReservationGroupsCount(Reservation * reservationPtr)
+	{
+		return reservationPtr->BoundGroups.Count();
+	}
+	API Reservation *	CreateNewReservation(strPtr name, long int dateOfStart, long int dateOfEnd, Teacher * teacher, IRoom * room)
+	{
+		Reservation * reservation = new Reservation(name, dateOfStart, dateOfEnd, *teacher, *room);
+		reservationCtrl->Add(*reservation);
+
+		return reservation;
 	}
 }

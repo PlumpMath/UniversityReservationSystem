@@ -1,30 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
+// ReSharper disable once CheckNamespace
 namespace UniversityReservationSystem.Interface.Models
 {
-    public class Student : ISerializable
+    public class Student : IPerson
     {
-        public string FirstName
-        {
-            get
-            {
-                return Marshal.PtrToStringAnsi(
-                    GetStudentFirstName(Ptr));
-            }
-        }
-        public string LastName
-        {
-            get
-            {
-                return Marshal.PtrToStringAnsi(
-                    GetStudentLastName(Ptr));
-            }
-        }
         public int PassedTerms
         {
             get { return GetStudentPassedTerms(Ptr); }
@@ -55,12 +36,6 @@ namespace UniversityReservationSystem.Interface.Models
 
         [DllImport("UniversityReservationSystem.dll")]
         private static extern double GetStudentAvgOfMarks(IntPtr studentPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetStudentFirstName(IntPtr studentPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetStudentLastName(IntPtr studentPtr);
 
         [DllImport("UniversityReservationSystem.dll")]
         private static extern IntPtr CreateNewStudent(

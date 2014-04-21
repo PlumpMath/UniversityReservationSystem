@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Security.RightsManagement;
 
 namespace UniversityReservationSystem.Interface.Models
 {
@@ -18,13 +17,13 @@ namespace UniversityReservationSystem.Interface.Models
         {
             get { return GetGroupYear(Ptr); }
         }
-        public int GroupNumber
+        public int GroupsCount
         {
             get { return GetGroupNumber(Ptr); }
         }
         public uint NumOfStudents
         {
-            get { return GetGroupNumberOfStudents(Ptr); }
+            get { return GetGroupStudentsCount(Ptr); }
         }
 
         public Group(IntPtr thisPtr) : base(thisPtr) { }
@@ -34,8 +33,8 @@ namespace UniversityReservationSystem.Interface.Models
 
         public override string ToString()
         {
-            return String.Format("ID: {0}, DegreeCourse: {1}, Year: {2}, GroupNumber: {3}",
-                Id, DegreeCourse, Year, GroupNumber);
+            return String.Format("ID: {0}, DegreeCourse: {1}, Year: {2}, GroupNumber: {3}, NumOfStudents: {4}",
+                Id, DegreeCourse, Year, GroupsCount, NumOfStudents);
         }
 
         #region InterOp Stuff
@@ -50,10 +49,10 @@ namespace UniversityReservationSystem.Interface.Models
         private static extern int GetGroupNumber(IntPtr groupPtr);
 
         [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr CreateNewGroup(string degreeCourse, int year, int groupNumber);
+        private static extern uint GetGroupStudentsCount(IntPtr groupPtr);
 
         [DllImport("UniversityReservationSystem.dll")]
-        public static extern uint GetGroupNumberOfStudents(IntPtr groupPtr);
+        private static extern IntPtr CreateNewGroup(string degreeCourse, int year, int groupNumber);
 
         #endregion
     }
