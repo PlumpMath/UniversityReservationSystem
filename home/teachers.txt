@@ -1,0 +1,91 @@
+15
+1
+Gabriel
+Drabik
+gabriel.drabik@polsl.pl
+515 234 234
+dr in¿.
+2
+Urszula
+Stañczyk
+urszula.stanczyk@polsl.pl
+522 254 134
+dr in¿.
+3
+Zdzis³aw
+Filus
+zdislaw.filus@polsl.pl
+453 863 926
+dr hab. in¿. prof. nzw w Pol.Œl.
+4
+Roman
+Starosolski
+roman.starosolski@polsl.pl
+605 211 678
+dr in¿.
+5
+Boles³aw
+Pochopieñ
+boleslaw.pochopien@polsl.pl
+839 291 390
+prof. dr hab. in¿.
+6
+Ewa
+£obos
+ewa.lobos@polsl.pl
+324 954 134
+dr
+7
+Jacek
+Widuch
+jacek.widuch@polsl.pl
+563 632 864
+dr in¿.
+8
+Adam
+Opara
+adam.opara@polsl.pl
+454 744 337
+dr in¿.
+9
+£ukasz
+Myrda
+lukasz.myrda@gmail.com
+515 342 158
+mgr
+10
+Piotr
+Zem³a
+piotr.zemla@polsl.pl
+844 135 146
+dr in¿.
+11
+Robert
+Tutajewicz
+robert.tutajewicz@polsl.pl
+854 783 246
+dr in¿.
+12
+Jerzy
+Rutkowski
+jerzy.rutkowski@polsl.pl
+789 246 890
+prof. dr hab. in¿.
+13
+Janusz
+Sroka
+janusz.sroka@polsl.pl
+245 790 563
+mgr
+14
+Katarzyna
+St¹por
+katarzyna.stapor@polsl.pl
+906 324 424
+prof. dr hab. in¿.
+15
+Marcin
+Skowronek
+marcin.skowronek@polsl.pl
+976 545 446
+dr in¿.
