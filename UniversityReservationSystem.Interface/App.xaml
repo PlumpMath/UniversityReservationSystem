@@ -1,22 +1,26 @@
 ﻿<Application x:Class="UniversityReservationSystem.Interface.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="Views/MainWindow.xaml">
-    <Application.Resources>
-        <Style x:Key="HorizontalCenterHeaderStyle" TargetType="DataGridColumnHeader">
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-        </Style>
-        <Style x:Key="HorizontalCenterCellStyle" TargetType="DataGridCell">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="DataGridCell">
-                        <Grid Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" />
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Application.Resources>
+             StartupUri="Views/MainWindow.xaml" d1p1:Ignorable="d"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:UniversityReservationSystem.Interface.ViewModels">
+  <Application.Resources>
+    <Style x:Key="HorizontalCenterHeaderStyle" TargetType="DataGridColumnHeader">
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="HorizontalCenterCellStyle" TargetType="DataGridCell">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="DataGridCell">
+            <Grid Background="{TemplateBinding Background}">
+              <ContentPresenter HorizontalAlignment="Center" />
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <viewModels:ViewModelLocator x:Key="ViewModelLocator" d:IsDataSource="True" />
+  </Application.Resources>
 </Application>

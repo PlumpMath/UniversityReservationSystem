@@ -3,14 +3,15 @@
          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
          x:Class="UniversityReservationSystem.Interface.Views.GroupsTab" 
-         mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400">
+         mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+         DataContext="{Binding Groups, Source={StaticResource ViewModelLocator}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" x:Name="GroupsGrid" RowHeaderWidth="0"
-			ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0">
+        <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0"
+			ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding Groups}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Year}" Width="1*" Header="Year" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
                 <DataGridTextColumn Binding="{Binding DegreeCourse}" Width="6*" Header="Degree Course" />
