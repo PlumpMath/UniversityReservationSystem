@@ -25,10 +25,8 @@ public:
 		return true;
 	}
 
-	bool Delete(Student& toFind)
+	bool Delete(Student& toDelete)
 	{
-		Student& toDelete = Context.Students.Find(toFind);
-
 		toDelete.StudentGroup.Students.Remove(toDelete);
 
 		Context.Students.Delete(toDelete);

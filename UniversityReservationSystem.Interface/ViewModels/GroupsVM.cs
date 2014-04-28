@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using GalaSoft.MvvmLight.Command;
 using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
@@ -77,13 +76,6 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SelectedItem = Groups.FirstOrDefault();
         }
 
-        protected override void UpdateAfterSelection()
-        {
-            Year = SelectedItem.Year;
-            DegreeCourse = SelectedItem.DegreeCourse;
-            GroupNumber = SelectedItem.GroupNumber;
-        }
-
         protected override void Add()
         {
             var groupToAdd = new Group(
@@ -99,9 +91,18 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SelectedItem.Edit(Year, DegreeCourse, GroupNumber);
         }
 
+        protected override void UpdateAfterSelection()
+        {
+            Year = SelectedItem.Year;
+            DegreeCourse = SelectedItem.DegreeCourse;
+            GroupNumber = SelectedItem.GroupNumber;
+        }
+
         protected override void Delete()
         {
-            throw new NotImplementedException();
+            SelectedItem.Delete();
+            Groups.Remove(SelectedItem);
+            SelectedItem = Groups.FirstOrDefault();
         }
     }
 }

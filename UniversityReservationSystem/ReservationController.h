@@ -31,10 +31,8 @@ public:
 		return true;
 	}
 	
-	bool Delete(Reservation& toFind)
+	bool Delete(Reservation& toDelete)
 	{
-		Reservation& toDelete = Context.Reservations.Find(toFind);
-
 		toDelete.BoundGroups .RemoveReservation(toDelete);
 		toDelete.BoundTeacher.RemoveReservation(toDelete);
 		toDelete.Room	     .RemoveReservation(toDelete);

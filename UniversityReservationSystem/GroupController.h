@@ -23,10 +23,8 @@ public:
 		return true;
 	}
 
-	bool Delete(Group& toFind)
+	bool Delete(Group& toDelete)
 	{
-		Group& toDelete = Context.Groups.Find(toFind);
-
 		for (unsigned int i = 0; i < toDelete.Reservations.Count(); i++)
 		{
 			toDelete.Reservations[i].BoundTeacher.RemoveReservation(toDelete.Reservations[i]);

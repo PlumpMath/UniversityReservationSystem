@@ -43,6 +43,11 @@ namespace UniversityReservationSystem.Interface.Models
             OnPropertyChanged("Year");
         }
 
+        public void Delete()
+        {
+            DeleteGroup(Ptr);
+        }
+
         public override string ToString()
         {
             return String.Format("ID: {0}, DegreeCourse: {1}, Year: {2}, GroupNumber: {3}, NumOfStudents: {4}",
@@ -68,6 +73,9 @@ namespace UniversityReservationSystem.Interface.Models
 
         [DllImport("UniversityReservationSystem.dll")]
         private static extern void EditGroup(IntPtr groupPtr, string degreeCourse, int year, int groupNumber);
+
+        [DllImport("UniversityReservationSystem.dll")]
+        private static extern void DeleteGroup(IntPtr groupPtr);
 
         #endregion
 

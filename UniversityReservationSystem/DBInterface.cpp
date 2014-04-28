@@ -134,6 +134,10 @@ extern "C"
 
 		groupCtrl->Edit(copy);
 	}
+	API void			DeleteGroup(Group * groupPtr)
+	{
+		groupCtrl->Delete(*groupPtr);
+	}
 
 	////////////////////////////////////
 	//////// PEOPLE
