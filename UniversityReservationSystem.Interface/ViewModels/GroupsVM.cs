@@ -91,18 +91,27 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SelectedItem.Edit(Year, DegreeCourse, GroupNumber);
         }
 
-        protected override void UpdateAfterSelection()
+        protected override void UpdateAfterSelection(bool isNull)
         {
-            Year = SelectedItem.Year;
-            DegreeCourse = SelectedItem.DegreeCourse;
-            GroupNumber = SelectedItem.GroupNumber;
+            if (!isNull)
+            {
+                Year = SelectedItem.Year;
+                DegreeCourse = SelectedItem.DegreeCourse;
+                GroupNumber = SelectedItem.GroupNumber;
+            }
+            else
+            {
+                Year = 0;
+                DegreeCourse = String.Empty;
+                GroupNumber = 0;
+            }
         }
 
         protected override void Delete()
         {
             SelectedItem.Delete();
             Groups.Remove(SelectedItem);
-            SelectedItem = Groups.FirstOrDefault();
+            SelectedItem = Groups.LastOrDefault();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 if (_selectedItem != value)
                 {
                     _selectedItem = value;
-                    UpdateAfterSelection();
+                    UpdateAfterSelection(value == null);
                     RaisePropertyChanged("SelectedItem");
                 }
             }
@@ -36,7 +36,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
         protected abstract void Add();
         protected abstract void SaveChanges();
         protected abstract void Delete();
-        protected abstract void UpdateAfterSelection();
+        protected abstract void UpdateAfterSelection(bool isNull);
 
         public RelayCommand AddCommand { get; private set; }
         public RelayCommand SaveChangesCommand { get; private set; }

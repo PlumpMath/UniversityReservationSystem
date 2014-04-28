@@ -6,12 +6,15 @@
          x:Class="UniversityReservationSystem.Interface.Views.GroupsTab" 
          mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
          DataContext="{Binding Groups, Source={StaticResource ViewModelLocator}}">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+        <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsReadOnly="True"
 			ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding Groups}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Year}" Width="1*" Header="Year" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
@@ -28,7 +31,8 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Button Content="Add new" Grid.Column="0" Command="{Binding AddCommand}" />
-            <Grid Grid.Column="1" VerticalAlignment="Center">
+            <Grid Grid.Column="1" VerticalAlignment="Center"
+                  IsEnabled="{Binding SelectedItem, TargetNullValue=False}" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -40,13 +44,16 @@
                 </Grid.ColumnDefinitions>
                 
                 <TextBlock HorizontalAlignment="Center" Text="Year" Grid.Row="0" Grid.Column="0" />
-                <TextBox Margin="5 0 5 0" Text="{Binding Year}" TextAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" />
+                <TextBox Margin="5 0 5 0" Text="{Binding Year}" TextAlignment="Center" HorizontalAlignment="Stretch"
+                         Grid.Row="1" Grid.Column="0" />
 
                 <TextBlock HorizontalAlignment="Center" Text="Degree course" Grid.Row="0" Grid.Column="1" />
-                <TextBox Margin="5 0 5 0" helpers:FocusExtension.IsFocused="{Binding IsDegreeFocused}" Text="{Binding DegreeCourse}" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" />
+                <TextBox Margin="5 0 5 0" helpers:FocusExtension.IsFocused="{Binding IsDegreeFocused}"
+                         Text="{Binding DegreeCourse}" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" />
 
                 <TextBlock HorizontalAlignment="Center" Text="Group number" Grid.Row="0" Grid.Column="2" />
-                <TextBox Margin="5 0 5 0" Text="{Binding GroupNumber}" TextAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2" />
+                <TextBox Margin="5 0 5 0" Text="{Binding GroupNumber}" TextAlignment="Center"
+                         HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2" />
             </Grid>
 
             <Grid Grid.Column="2">
@@ -55,8 +62,10 @@
                     <RowDefinition Height="3" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Button Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
-                <Button Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
+                <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                        Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
+                <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                        Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
             </Grid>
         </Grid>
     </Grid>

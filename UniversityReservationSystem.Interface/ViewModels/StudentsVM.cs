@@ -20,7 +20,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
             throw new System.NotImplementedException();
         }
 
-        protected override void UpdateAfterSelection()
+        protected override void UpdateAfterSelection(bool isNull)
         {
             throw new System.NotImplementedException();
         }
