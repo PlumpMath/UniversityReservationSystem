@@ -54,11 +54,11 @@ public:
 		return *(new Group(degreeCourse, year, groupNumber, id));
 	}
 
-	void Edit(Group roomToEdit)
+	void Edit(Group& groupToEdit)
 	{
-		this->DegreeCourse = roomToEdit.DegreeCourse;
-		this->Year = roomToEdit.Year;
-		this->GroupNumber = roomToEdit.GroupNumber;
+		this->DegreeCourse = groupToEdit.DegreeCourse;
+		this->Year = groupToEdit.Year;
+		this->GroupNumber = groupToEdit.GroupNumber;
 	}
 
 	bool CheckCollisions(Reservation& reservation)

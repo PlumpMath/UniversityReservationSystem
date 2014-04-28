@@ -32,7 +32,7 @@ public:
 	// should be never invoked
 	static IRoom& Deserialize(ifstream& is, DataContext& context){ throw 1; }
 
-	virtual void Edit(IRoom roomToEdit)
+	virtual void Edit(IRoom& roomToEdit)
 	{
 		this->Name = roomToEdit.Name;
 		this->Capacity = roomToEdit.Capacity;

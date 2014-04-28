@@ -124,6 +124,16 @@ extern "C"
 	{
 		return groupPtr->Students.Count();
 	}
+	API void			EditGroup(Group * groupPtr, strPtr degreeCourse, int year, int groupNumber)
+	{
+		Group copy(*groupPtr);
+
+		copy.DegreeCourse = degreeCourse;
+		copy.Year = year;
+		copy.GroupNumber = groupNumber;
+
+		groupCtrl->Edit(copy);
+	}
 
 	////////////////////////////////////
 	//////// PEOPLE

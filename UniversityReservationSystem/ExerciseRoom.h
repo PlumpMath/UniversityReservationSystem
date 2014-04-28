@@ -50,7 +50,7 @@ public:
 		return *(new ExerciseRoom(name, capacity, numChairs, numTables, id));
 	}
 
-	void Edit(ExerciseRoom roomToEdit)
+	void Edit(ExerciseRoom& roomToEdit)
 	{
 		IRoom::Edit(roomToEdit);
 		this->NumOfChairs = roomToEdit.NumOfChairs;

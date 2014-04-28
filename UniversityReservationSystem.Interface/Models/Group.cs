@@ -1,10 +1,14 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using UniversityReservationSystem.Interface.Annotations;
 
 namespace UniversityReservationSystem.Interface.Models
 {
-    public class Group : ISerializable
+    public class Group : ISerializable, INotifyPropertyChanged
     {
+        
         public string DegreeCourse
         {
             get
@@ -17,7 +21,7 @@ namespace UniversityReservationSystem.Interface.Models
         {
             get { return GetGroupYear(Ptr); }
         }
-        public int GroupsCount
+        public int GroupNumber
         {
             get { return GetGroupNumber(Ptr); }
         }
@@ -31,10 +35,18 @@ namespace UniversityReservationSystem.Interface.Models
         public Group(string degreeCourse, int year, int groupNumber)
             : base(CreateNewGroup(degreeCourse, year, groupNumber)) { }
 
+        public void Edit(int year, string degreeCourse, int groupNumber)
+        {
+            EditGroup(Ptr, degreeCourse, year, groupNumber);
+            OnPropertyChanged("DegreeCourse");
+            OnPropertyChanged("GroupNumber");
+            OnPropertyChanged("Year");
+        }
+
         public override string ToString()
         {
             return String.Format("ID: {0}, DegreeCourse: {1}, Year: {2}, GroupNumber: {3}, NumOfStudents: {4}",
-                Id, DegreeCourse, Year, GroupsCount, NumOfStudents);
+                Id, DegreeCourse, Year, GroupNumber, NumOfStudents);
         }
 
         #region InterOp Stuff
@@ -54,6 +66,18 @@ namespace UniversityReservationSystem.Interface.Models
         [DllImport("UniversityReservationSystem.dll")]
         private static extern IntPtr CreateNewGroup(string degreeCourse, int year, int groupNumber);
 
+        [DllImport("UniversityReservationSystem.dll")]
+        private static extern void EditGroup(IntPtr groupPtr, string degreeCourse, int year, int groupNumber);
+
         #endregion
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

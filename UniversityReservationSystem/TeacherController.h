@@ -18,14 +18,14 @@ public:
 
 	bool Edit(Teacher& copyOfTeacherToModify)
 	{
-		Teacher toEdit = Context.Teachers.Find(copyOfTeacherToModify);
+		Teacher& toEdit = Context.Teachers.Find(copyOfTeacherToModify);
 		toEdit.Edit(copyOfTeacherToModify);
 		return true;
 	}
 
 	bool Delete(Teacher& copyOfTeacherToDelete)
 	{
-		Teacher toDelete = Context.Teachers.Find(copyOfTeacherToDelete);
+		Teacher& toDelete = Context.Teachers.Find(copyOfTeacherToDelete);
 
 		for (unsigned int i = 0; i < toDelete.Reservations.Count(); i++)
 		{

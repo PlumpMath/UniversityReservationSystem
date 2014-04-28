@@ -18,14 +18,14 @@ public:
 
 	bool Edit(Group& copyOfGroupToEdit)
 	{
-		Group toEdit = Context.Groups.Find(copyOfGroupToEdit);
+		Group& toEdit = Context.Groups.Find(copyOfGroupToEdit);
 		toEdit.Edit(copyOfGroupToEdit);
 		return true;
 	}
 
 	bool Delete(Group& toFind)
 	{
-		Group toDelete = Context.Groups.Find(toFind);
+		Group& toDelete = Context.Groups.Find(toFind);
 
 		for (unsigned int i = 0; i < toDelete.Reservations.Count(); i++)
 		{

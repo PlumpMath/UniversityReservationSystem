@@ -20,14 +20,14 @@ public:
 
 	bool Edit(Student& copyOfStudentToModify)
 	{
-		Student toEdit = Context.Students.Find(copyOfStudentToModify);
+		Student& toEdit = Context.Students.Find(copyOfStudentToModify);
 		toEdit.Edit(copyOfStudentToModify);
 		return true;
 	}
 
 	bool Delete(Student& toFind)
 	{
-		Student toDelete = Context.Students.Find(toFind);
+		Student& toDelete = Context.Students.Find(toFind);
 
 		toDelete.StudentGroup.Students.Remove(toDelete);
 

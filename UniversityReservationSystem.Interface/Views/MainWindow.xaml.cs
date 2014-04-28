@@ -13,21 +13,21 @@ namespace UniversityReservationSystem.Interface.Views
 
             Loaded += (sender, args) =>
             {
-                var rand = new Random(DateTime.Now.Second);
+                //var rand = new Random(DateTime.Now.Second);
 
-                for (int i = 1; i <= 50; i++)
-                {
-                    var apt = new Appointment();
+                //for (int i = 1; i <= 50; i++)
+                //{
+                //    var apt = new Appointment();
 
-                    apt.AppointmentId = i;
-                    apt.StartTime = new DateTime(DateTime.Now.Year, rand.Next(1, 12),
-                        rand.Next(1, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)));
-                    apt.EndTime = apt.StartTime;
-                    apt.Subject = "Random apt";
+                //    apt.AppointmentId = i;
+                //    apt.StartTime = new DateTime(DateTime.Now.Year, rand.Next(1, 12),
+                //        rand.Next(1, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)));
+                //    apt.EndTime = apt.StartTime;
+                //    apt.Subject = "Random apt";
 
-                    _myAppointmentsList.Add(apt);
-                }
-                SetAppointments();
+                //    _myAppointmentsList.Add(apt);
+                //}
+                //SetAppointments();
             };
 
         }

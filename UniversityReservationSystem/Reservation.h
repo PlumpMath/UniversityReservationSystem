@@ -104,7 +104,7 @@ public:
 		}
 	}
 
-	void Edit(Reservation reservationToEdit)
+	void Edit(Reservation& reservationToEdit)
 	{
 		this->Name = reservationToEdit.Name;
 	}

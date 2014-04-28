@@ -46,7 +46,7 @@ public:
 		Reservations.Remove(reservationToRemove);
 	}
 
-	virtual void Edit(IPerson personToEdit)
+	virtual void Edit(IPerson& personToEdit)
 	{
 		this->FirstName = personToEdit.FirstName;
 		this->LastName = personToEdit.LastName;

@@ -50,7 +50,7 @@ public:
 		return *(new LabRoom(name, capacity, addEquipment, numComputers, id));
 	}
 
-	void Edit(LabRoom roomToEdit)
+	void Edit(LabRoom& roomToEdit)
 	{
 		IRoom::Edit(roomToEdit);
 		this->AdditionalEquipment = roomToEdit.AdditionalEquipment;

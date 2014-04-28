@@ -26,14 +26,14 @@ public:
 
 	bool Edit(Reservation& copyOfReservationToModify)
 	{
-		Reservation toEdit = Context.Reservations.Find(copyOfReservationToModify);
+		Reservation& toEdit = Context.Reservations.Find(copyOfReservationToModify);
 		toEdit.Edit(copyOfReservationToModify);
 		return true;
 	}
 	
 	bool Delete(Reservation& toFind)
 	{
-		Reservation toDelete = Context.Reservations.Find(toFind);
+		Reservation& toDelete = Context.Reservations.Find(toFind);
 
 		toDelete.BoundGroups .RemoveReservation(toDelete);
 		toDelete.BoundTeacher.RemoveReservation(toDelete);
