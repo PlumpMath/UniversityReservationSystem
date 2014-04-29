@@ -5,22 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:UniversityReservationSystem.Interface.ViewModels">
-  <Application.Resources>
-    <Style x:Key="HorizontalCenterHeaderStyle" TargetType="DataGridColumnHeader">
-      <Setter Property="HorizontalAlignment" Value="Stretch" />
-      <Setter Property="HorizontalContentAlignment" Value="Center" />
-    </Style>
-    <Style x:Key="HorizontalCenterCellStyle" TargetType="DataGridCell">
-      <Setter Property="Template">
-        <Setter.Value>
-          <ControlTemplate TargetType="DataGridCell">
-            <Grid Background="{TemplateBinding Background}">
-              <ContentPresenter HorizontalAlignment="Center" />
-            </Grid>
-          </ControlTemplate>
-        </Setter.Value>
-      </Setter>
-    </Style>
-    <viewModels:ViewModelLocator x:Key="ViewModelLocator" d:IsDataSource="True" />
-  </Application.Resources>
+    <Application.Resources>
+        <Style x:Key="HorizontalCenterHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="HorizontalCenterCellStyle" TargetType="DataGridCell">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <viewModels:ViewModelLocator x:Key="ViewModelLocator" d:IsDataSource="True" />
+    </Application.Resources>
 </Application>
