@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
@@ -25,6 +28,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
             }
         }
         public ObservableCollection<Group> Groups { get; set; }
+        public RelayCommand<IntPtr> ShowStudentsOfGroupCommand { get; private set; }
 
         public int Year
         {
@@ -74,6 +78,13 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 Groups.Add(new Group(App.GetGroupByIndex(i)));
             }
             SelectedItem = Groups.FirstOrDefault();
+
+            ShowStudentsOfGroupCommand = new RelayCommand<IntPtr>(ShowStudentsOfGroup);
+        }
+
+        private void ShowStudentsOfGroup(IntPtr ptr)
+        {
+            MessageBox.Show(ptr.ToString());
         }
 
         protected override void Add()

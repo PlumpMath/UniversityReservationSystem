@@ -13,13 +13,26 @@
         </Grid.RowDefinitions>
         <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsReadOnly="True"
                   ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding Groups}"
-                  SelectionMode="Single">
+                  SelectionMode="Single" x:Name="DataGridElement">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Year}" Width="1*" Header="Year" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
                 <DataGridTextColumn Binding="{Binding DegreeCourse}" Width="6*" Header="Degree Course" />
                 <DataGridTextColumn Binding="{Binding GroupNumber}" Width="1*" Header="Group #" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
                 <DataGridHyperlinkColumn Binding="{Binding NumOfStudents}" Width="1*" Header="Students" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
                 <DataGridTextColumn Width="2*" Header="Reservations" CellStyle="{StaticResource HorizontalCenterCellStyle}"  />
+                <DataGridTemplateColumn Header="Client Name">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                                <Hyperlink Command="{Binding ElementName=DataGridElement, Path=DataContext.ShowStudentsOfGroupCommand}" CommandParameter="{Binding Ptr}">
+                                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                                     <TextBlock Text="{Binding NumOfStudents}" />
+                                </Hyperlink>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="1" Margin="5">

@@ -8,7 +8,6 @@ namespace UniversityReservationSystem.Interface.Models
 {
     public class Group : ISerializable, INotifyPropertyChanged
     {
-        
         public string DegreeCourse
         {
             get

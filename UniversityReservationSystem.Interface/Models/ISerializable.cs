@@ -5,7 +5,7 @@ namespace UniversityReservationSystem.Interface.Models
 {
     public abstract class ISerializable
     {
-        public readonly IntPtr Ptr;
+        public IntPtr Ptr { get; private set; }
         public int Id
         {
             get { return GetID(Ptr); }
