@@ -1,28 +1,65 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
 {
     public class StudentsVM : IViewModel<Student>
     {
+        public ObservableCollection<Student> Students { get; set; }
+
+
+        public StudentsVM()
+        {
+            Students = new ObservableCollection<Student>();
+
+            if (IsInDesignMode) return;
+
+            for (uint i = 0; i < App.GetStudentsCount(); i++)
+            {
+                Students.Add(new Student(App.GetStudentByIndex(i)));
+            }
+            SelectedItem = Students.FirstOrDefault();
+        }
+
+
         protected override void Add()
         {
-            throw new System.NotImplementedException();
+            //var studentToAdd = new Student(
+            //    "Type here the desired degree course name",
+            //    DateTime.Today.Year, 1);
+            //Students.Add(studentToAdd);
+            //SelectedItem = Students.Last();
+            //IsDegreeFocused = true;
         }
 
         protected override void SaveChanges()
         {
-            throw new System.NotImplementedException();
-        }
-
-        protected override void Delete()
-        {
-            throw new System.NotImplementedException();
+            //SelectedItem.Edit(Year, DegreeCourse, GroupNumber);
         }
 
         protected override void UpdateAfterSelection(bool isNull)
         {
-            throw new System.NotImplementedException();
+            //if (!isNull)
+            //{
+            //    Year = SelectedItem.Year;
+            //    DegreeCourse = SelectedItem.DegreeCourse;
+            //    GroupNumber = SelectedItem.GroupNumber;
+            //}
+            //else
+            //{
+            //    Year = 0;
+            //    DegreeCourse = String.Empty;
+            //    GroupNumber = 0;
+            //}
+        }
+
+        protected override void Delete()
+        {
+            //SelectedItem.Delete();
+            //Groups.Remove(SelectedItem);
+            //SelectedItem = Groups.LastOrDefault();
         }
     }
 }

@@ -10,6 +10,8 @@ namespace UniversityReservationSystem.Interface.ViewModels
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<GroupsVM>();
+            SimpleIoc.Default.Register<StudentsVM>();
+            SimpleIoc.Default.Register<TeachersVM>();
         }
 
         public static GroupsVM Groups
@@ -17,6 +19,22 @@ namespace UniversityReservationSystem.Interface.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<GroupsVM>();
+            }
+        }
+
+        public static StudentsVM Students
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<StudentsVM>();
+            }
+        }
+
+        public static TeachersVM Teachers
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<TeachersVM>();
             }
         }
         

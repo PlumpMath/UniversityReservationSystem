@@ -1,25 +1,44 @@
 ﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:monthCalendar="clr-namespace:MonthCalendar;assembly=MonthCalendar"
              x:Class="UniversityReservationSystem.Interface.Views.TeachersTab" 
-         mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400">
+             mc:Ignorable="d" d:DesignWidth="866" d:DesignHeight="544"
+             DataContext="{Binding Teachers, Source={StaticResource ViewModelLocator}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" x:Name="TeachersGrid" RowHeaderWidth="0"
-			ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0">
+        <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsReadOnly="True"
+                  ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding Teachers}"
+                  SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Year}" Width="1*" Header="Year" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
-                <DataGridTextColumn Binding="{Binding DegreeCourse}" Width="6*" Header="Degree Course" />
-                <DataGridTextColumn Binding="{Binding GroupNumber}" Width="1*" Header="Group #" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
-                <DataGridTextColumn Binding="{Binding NumOfStudents}" Width="1*" Header="Students" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
-                <DataGridTextColumn Width="2*" Header="Reservations" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                <DataGridTextColumn Binding="{Binding FirstName}" Width="2*" Header="First Name" />
+                <DataGridTextColumn Binding="{Binding LastName}" Width="2*" Header="Last Name" />
+                <DataGridTextColumn Binding="{Binding PhoneNumber}" Width="2*" Header="Phone Number" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                <DataGridTextColumn Binding="{Binding Email}" Width="2*" Header="Email" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="1" Margin="5">
+
+        <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+
+        <Grid Grid.Row="2" MaxHeight="400">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <GridSplitter Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+            <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged" x:Name="CalendarStudents" Margin="10" />
+        </Grid>
+
+
+        <Grid Grid.Row="3" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="6*" />
@@ -35,16 +54,21 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock HorizontalAlignment="Center" Text="Year" Grid.Row="0" Grid.Column="0" />
-                <TextBox Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" />
-
-                <TextBlock HorizontalAlignment="Center" Text="Degree course" Grid.Row="0" Grid.Column="1" />
-                <TextBox Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" />
-
-                <TextBlock HorizontalAlignment="Center" Text="Group #" Grid.Row="0" Grid.Column="2" />
-                <TextBox Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2" />
+                <TextBlock HorizontalAlignment="Center" Text="First Name" Grid.Row="0" Grid.Column="0" />
+                <TextBox Margin="5 0 5 0" Text="{Binding FirstName}" TextAlignment="Center" HorizontalAlignment="Stretch"
+                         Grid.Row="1" Grid.Column="0" />
+                <TextBlock HorizontalAlignment="Center" Text="Last Name" Grid.Row="0" Grid.Column="1" />
+                <TextBox Margin="5 0 5 0" Text="{Binding LastName}" TextAlignment="Center" HorizontalAlignment="Stretch"
+                         Grid.Row="1" Grid.Column="1" />
+                <TextBlock HorizontalAlignment="Center" Text="Phone Number" Grid.Row="0" Grid.Column="2" />
+                <TextBox Margin="5 0 5 0" Text="{Binding PhoneNumber}" TextAlignment="Center" HorizontalAlignment="Stretch"
+                         Grid.Row="1" Grid.Column="2" />
+                <TextBlock HorizontalAlignment="Center" Text="Email" Grid.Row="0" Grid.Column="3" />
+                <TextBox Margin="5 0 5 0" Text="{Binding Email}" TextAlignment="Center" HorizontalAlignment="Stretch"
+                         Grid.Row="1" Grid.Column="3" />
             </Grid>
 
             <Grid Grid.Column="2">

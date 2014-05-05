@@ -1,14 +1,17 @@
 ﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-         xmlns:helpers="clr-namespace:UniversityReservationSystem.Interface.Helpers"
-         x:Class="UniversityReservationSystem.Interface.Views.GroupsTab" 
-         mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
-         DataContext="{Binding Groups, Source={StaticResource ViewModelLocator}}">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:helpers="clr-namespace:UniversityReservationSystem.Interface.Helpers"
+             xmlns:monthCalendar="clr-namespace:MonthCalendar;assembly=MonthCalendar"
+             x:Class="UniversityReservationSystem.Interface.Views.GroupsTab" 
+             mc:Ignorable="d" d:DesignWidth="1052" d:DesignHeight="678"
+             DataContext="{Binding Groups, Source={StaticResource ViewModelLocator}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsReadOnly="True"
@@ -18,24 +21,24 @@
                 <DataGridTextColumn Binding="{Binding Year}" Width="1*" Header="Year" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
                 <DataGridTextColumn Binding="{Binding DegreeCourse}" Width="6*" Header="Degree Course" />
                 <DataGridTextColumn Binding="{Binding GroupNumber}" Width="1*" Header="Group #" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
-                <DataGridHyperlinkColumn Binding="{Binding NumOfStudents}" Width="1*" Header="Students" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
-                <DataGridTextColumn Width="2*" Header="Reservations" CellStyle="{StaticResource HorizontalCenterCellStyle}"  />
-                <DataGridTemplateColumn Header="Client Name">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock>
-                                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                                <Hyperlink Command="{Binding ElementName=DataGridElement, Path=DataContext.ShowStudentsOfGroupCommand}" CommandParameter="{Binding Ptr}">
-                                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                                     <TextBlock Text="{Binding NumOfStudents}" />
-                                </Hyperlink>
-                            </TextBlock>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="1" Margin="5">
+
+        <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+
+        <Grid Grid.Row="2" MaxHeight="400">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            
+            <GridSplitter Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+            <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged" x:Name="CalendarGroups" Margin="10" />
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="6*" />
@@ -58,11 +61,11 @@
                 <TextBox Margin="5 0 5 0" Text="{Binding Year}" TextAlignment="Center" HorizontalAlignment="Stretch"
                          Grid.Row="1" Grid.Column="0" />
 
-                <TextBlock HorizontalAlignment="Center" Text="Degree course" Grid.Row="0" Grid.Column="1" />
+                <TextBlock HorizontalAlignment="Center" Text="Degree Course" Grid.Row="0" Grid.Column="1" />
                 <TextBox Margin="5 0 5 0" helpers:FocusExtension.IsFocused="{Binding IsDegreeFocused}"
                          Text="{Binding DegreeCourse}" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" />
 
-                <TextBlock HorizontalAlignment="Center" Text="Group number" Grid.Row="0" Grid.Column="2" />
+                <TextBlock HorizontalAlignment="Center" Text="Group Number" Grid.Row="0" Grid.Column="2" />
                 <TextBox Margin="5 0 5 0" Text="{Binding GroupNumber}" TextAlignment="Center"
                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2" />
             </Grid>

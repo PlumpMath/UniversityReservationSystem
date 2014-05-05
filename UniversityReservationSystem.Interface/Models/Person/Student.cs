@@ -6,6 +6,10 @@ namespace UniversityReservationSystem.Interface.Models
 {
     public class Student : IPerson
     {
+        public Group Group
+        {
+            get { return new Group(GetStudentGroup(Ptr));}
+        }
         public int PassedTerms
         {
             get { return GetStudentPassedTerms(Ptr); }

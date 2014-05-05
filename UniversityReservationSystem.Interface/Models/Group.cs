@@ -29,6 +29,7 @@ namespace UniversityReservationSystem.Interface.Models
             get { return GetGroupStudentsCount(Ptr); }
         }
 
+        public string Info { get { return DegreeCourse + " " + Year; } }
         public Group(IntPtr thisPtr) : base(thisPtr) { }
 
         public Group(string degreeCourse, int year, int groupNumber)

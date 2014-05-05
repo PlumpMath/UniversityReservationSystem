@@ -21,8 +21,5 @@
         <TabItem Header="Students">
             <Grid><views:StudentsTab /></Grid>
         </TabItem>
-        <TabItem Header="Calendar Test">
-            <cal:MonthCalendarControl DisplayMonthChanged="DisplayMonthChanged" x:Name="CalendarControl" Margin="10" />
-        </TabItem>
     </TabControl>
 </Window>
