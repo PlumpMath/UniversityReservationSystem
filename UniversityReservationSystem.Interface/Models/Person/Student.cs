@@ -31,6 +31,8 @@ namespace UniversityReservationSystem.Interface.Models
         public void Edit(string firstName, string lastName, Group group, int passedTerms, double avgOfMarks)
         {
             EditStudent(Ptr, firstName, lastName, group.Ptr, passedTerms, avgOfMarks);
+            Group = App.Groups.SingleOrDefault(x => x.Ptr == GetStudentGroup(Ptr));
+
             OnPropertyChanged("FirstName");
             OnPropertyChanged("LastName");
             OnPropertyChanged("Group");

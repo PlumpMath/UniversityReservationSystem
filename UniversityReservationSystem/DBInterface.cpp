@@ -158,7 +158,7 @@ extern "C"
 
 	API Group *			GetStudentGroup(Student * studentPtr)
 	{
-		return &(studentPtr->StudentGroup);
+		return studentPtr->StudentGroup;
 	}
 	API int				GetStudentPassedTerms(Student * studentPtr)
 	{
@@ -170,7 +170,7 @@ extern "C"
 	}
 	API Student *		CreateNewStudent(strPtr firstName, strPtr lastName, Group * groupPtr, int passedTerms, double avgOfMarks)
 	{
-		Student * student = new Student(firstName, lastName, *groupPtr, passedTerms, avgOfMarks);
+		Student * student = new Student(firstName, lastName, groupPtr, passedTerms, avgOfMarks);
 		studentCtrl->Add(*student);
 
 		return student;
@@ -181,7 +181,7 @@ extern "C"
 
 		copy.FirstName = firstName;
 		copy.LastName = lastName;
-		copy.StudentGroup = *groupPtr;
+		copy.StudentGroup = groupPtr;
 		copy.PassedTerms = passedTerms;
 		copy.AverageOfMarksOfLastTerm = avgOfMarks;
 

@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsReadOnly="True"
                   ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding Students}"
-                  SelectionMode="Single">
+                  SelectionMode="Single" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding FirstName}" Width="2*" Header="First Name" />
                 <DataGridTextColumn Binding="{Binding LastName}" Width="2*" Header="Last Name" />
