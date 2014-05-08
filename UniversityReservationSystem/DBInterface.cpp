@@ -175,6 +175,22 @@ extern "C"
 
 		return student;
 	}
+	API void			EditStudent(Student * studentPtr, strPtr firstName, strPtr lastName, Group * groupPtr, int passedTerms, double avgOfMarks)
+	{
+		Student copy(*studentPtr);
+
+		copy.FirstName = firstName;
+		copy.LastName = lastName;
+		copy.StudentGroup = *groupPtr;
+		copy.PassedTerms = passedTerms;
+		copy.AverageOfMarksOfLastTerm = avgOfMarks;
+
+		studentCtrl->Edit(copy);
+	}
+	API void			DeleteStudent(Student * studentPtr)
+	{
+		studentCtrl->Delete(*studentPtr);
+	}
 
 	////////////////////////////////////
 	//////// TEACHERS

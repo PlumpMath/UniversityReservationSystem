@@ -15,9 +15,11 @@ namespace UniversityReservationSystem.Interface
         [DllImport("UniversityReservationSystem.dll")] private static extern bool LoadDB(string filePath);
         [DllImport("UniversityReservationSystem.dll")] private static extern bool SaveDB();
         [DllImport("UniversityReservationSystem.dll")] private static extern bool FreeDB();
+
         [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetGroupByIndex(uint groupIndex);
         [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetStudentByIndex(uint studentIndex);
         [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetTeacherByIndex(uint teacherIndex);
+
         [DllImport("UniversityReservationSystem.dll")] private static extern uint GetGroupsCount();
         [DllImport("UniversityReservationSystem.dll")] private static extern uint GetStudentsCount();
         [DllImport("UniversityReservationSystem.dll")] private static extern uint GetTeachersCount();

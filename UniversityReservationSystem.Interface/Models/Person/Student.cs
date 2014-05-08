@@ -28,6 +28,21 @@ namespace UniversityReservationSystem.Interface.Models
             Group = group;
         }
 
+        public void Edit(string firstName, string lastName, Group group, int passedTerms, double avgOfMarks)
+        {
+            EditStudent(Ptr, firstName, lastName, group.Ptr, passedTerms, avgOfMarks);
+            OnPropertyChanged("FirstName");
+            OnPropertyChanged("LastName");
+            OnPropertyChanged("Group");
+            OnPropertyChanged("PassedTerms");
+            OnPropertyChanged("AvgOfMarks");
+        }
+
+        public void Delete()
+        {
+            DeleteStudent(Ptr);
+        }
+
         public override string ToString()
         {
             return String.Format("ID: {0}, FirstName: {1}, LastName: {2}, PassedTerms: {3}, AvgOfMarks: {4}",
@@ -49,6 +64,12 @@ namespace UniversityReservationSystem.Interface.Models
         private static extern IntPtr CreateNewStudent(
             string firstName, string lastName, IntPtr groupPtr,
             int passedTerms, double avgOfMarks);
+
+        [DllImport("UniversityReservationSystem.dll")]
+        private static extern void EditStudent(IntPtr studentPtr, string firstName, string lastName, IntPtr groupPtr, int passedTerms, double avgOfMarks);
+
+        [DllImport("UniversityReservationSystem.dll")]
+        private static extern void DeleteStudent(IntPtr studentPtr);
 
         #endregion
     }

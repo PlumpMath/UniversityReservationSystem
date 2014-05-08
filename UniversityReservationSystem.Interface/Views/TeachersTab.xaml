@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsReadOnly="True"
+        <!--<DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsReadOnly="True"
                   ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding Teachers}"
                   SelectionMode="Single">
             <DataGrid.Columns>
@@ -22,7 +22,7 @@
                 <DataGridTextColumn Binding="{Binding PhoneNumber}" Width="2*" Header="Phone Number" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
                 <DataGridTextColumn Binding="{Binding Email}" Width="2*" Header="Email" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid>-->
 
         <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
 
@@ -57,7 +57,7 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock HorizontalAlignment="Center" Text="First Name" Grid.Row="0" Grid.Column="0" />
+                <!--<TextBlock HorizontalAlignment="Center" Text="First Name" Grid.Row="0" Grid.Column="0" />
                 <TextBox Margin="5 0 5 0" Text="{Binding FirstName}" TextAlignment="Center" HorizontalAlignment="Stretch"
                          Grid.Row="1" Grid.Column="0" />
                 <TextBlock HorizontalAlignment="Center" Text="Last Name" Grid.Row="0" Grid.Column="1" />
@@ -68,7 +68,7 @@
                          Grid.Row="1" Grid.Column="2" />
                 <TextBlock HorizontalAlignment="Center" Text="Email" Grid.Row="0" Grid.Column="3" />
                 <TextBox Margin="5 0 5 0" Text="{Binding Email}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="3" />
+                         Grid.Row="1" Grid.Column="3" />-->
             </Grid>
 
             <Grid Grid.Column="2">

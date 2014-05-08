@@ -1,12 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using UniversityReservationSystem.Interface.Annotations;
 
 namespace UniversityReservationSystem.Interface.Models
 {
-    public class Group : ISerializable, INotifyPropertyChanged
+    public class Group : ISerializable
     {
         public string DegreeCourse
         {
@@ -30,6 +27,7 @@ namespace UniversityReservationSystem.Interface.Models
         }
 
         public string Info { get { return DegreeCourse + " " + Year; } }
+        public string ExInfo { get { return DegreeCourse + " " + Year + " Group: " + GroupNumber; } }
         public Group(IntPtr thisPtr) : base(thisPtr) { }
 
         public Group(string degreeCourse, int year, int groupNumber)
@@ -78,14 +76,5 @@ namespace UniversityReservationSystem.Interface.Models
         private static extern void DeleteGroup(IntPtr groupPtr);
 
         #endregion
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

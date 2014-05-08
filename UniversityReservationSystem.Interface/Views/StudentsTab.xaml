@@ -3,6 +3,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:monthCalendar="clr-namespace:MonthCalendar;assembly=MonthCalendar"
+             xmlns:helpers="clr-namespace:UniversityReservationSystem.Interface.Helpers"
              x:Class="UniversityReservationSystem.Interface.Views.StudentsTab" 
              mc:Ignorable="d" d:DesignWidth="999.5" d:DesignHeight="505.5"
              DataContext="{Binding Students, Source={StaticResource ViewModelLocator}}">
@@ -46,7 +47,7 @@
                 <ColumnDefinition Width="6*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Button Content="Add new" Grid.Column="0" />
+            <Button Content="Add new" Grid.Column="0" Command="{Binding AddCommand}" />
             <Grid Grid.Column="1" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -55,24 +56,24 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock HorizontalAlignment="Center" Text="First Name" Grid.Row="0" Grid.Column="0" />
                 <TextBox Margin="5 0 5 0" Text="{Binding FirstName}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="0" />
+                         Grid.Row="1" Grid.Column="0" helpers:FocusExtension.IsFocused="{Binding IsFirstNameFocused}" />
                 <TextBlock HorizontalAlignment="Center" Text="Last Name" Grid.Row="0" Grid.Column="1" />
                 <TextBox Margin="5 0 5 0" Text="{Binding LastName}" TextAlignment="Center" HorizontalAlignment="Stretch"
                          Grid.Row="1" Grid.Column="1" />
                 <TextBlock HorizontalAlignment="Center" Text="Group" Grid.Row="0" Grid.Column="2" />
-                <ComboBox Margin="5 0 5 0" Text="{Binding SelectedGroup}" ItemsSource="{Binding Groups}" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="2" />
+                <ComboBox Margin="5 0 5 0" DisplayMemberPath="ExInfo" ItemsSource="{Binding Groups}"
+                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2" SelectedItem="{Binding SelectedGroup}" />
                 <TextBlock HorizontalAlignment="Center" Text="Passed Terms" Grid.Row="0" Grid.Column="3" />
                 <TextBox Margin="5 0 5 0" Text="{Binding PassedTerms}" TextAlignment="Center" HorizontalAlignment="Stretch"
                          Grid.Row="1" Grid.Column="3" />
-                <TextBlock HorizontalAlignment="Center" Text="Average Of Marks" Grid.Row="0" Grid.Column="4" />
+                <TextBlock HorizontalAlignment="Center" Text="Avg Of Marks" Grid.Row="0" Grid.Column="4" />
                 <TextBox Margin="5 0 5 0" Text="{Binding AverageOfMarks}" TextAlignment="Center" HorizontalAlignment="Stretch"
                          Grid.Row="1" Grid.Column="4" />
             </Grid>
@@ -83,8 +84,10 @@
                     <RowDefinition Height="3" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Button Content="Edit" Grid.Row="0" />
-                <Button Content="Delete" Grid.Row="2" />
+                <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                        Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
+                <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                        Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
             </Grid>
         </Grid>
     </Grid>

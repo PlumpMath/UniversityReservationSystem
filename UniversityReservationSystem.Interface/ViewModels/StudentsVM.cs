@@ -7,13 +7,93 @@ namespace UniversityReservationSystem.Interface.ViewModels
 {
     public class StudentsVM : IViewModel<Student>
     {
-        public ObservableCollection<Student> Students { get; set; }
+        private Group _selectedGroup;
+        private string _firstName;
+        private string _lastName;
+        private int _passedTerms;
+        private double _averageOfMarks;
+        private bool _isFirstNameFocused;
 
+        public ObservableCollection<Student> Students { get; set; }
+        public ObservableCollection<Group> Groups { get; private set; }
+        public string FirstName
+        {
+            get { return _firstName; }
+            set
+            {
+                if (_firstName != value)
+                {
+                    _firstName = value;
+                    RaisePropertyChanged("FirstName");
+                }
+            }
+        }
+        public string LastName
+        {
+            get { return _lastName; }
+            set
+            {
+                if (_lastName != value)
+                {
+                    _lastName = value;
+                    RaisePropertyChanged("LastName");
+                }
+            }
+        }
+        public int PassedTerms
+        {
+            get { return _passedTerms; }
+            set
+            {
+                if (_passedTerms != value)
+                {
+                    _passedTerms = value;
+                    RaisePropertyChanged("PassedTerms");
+                }
+            }
+        }
+        public double AverageOfMarks
+        {
+            get { return _averageOfMarks; }
+            set
+            {
+                if (_averageOfMarks != value)
+                {
+                    _averageOfMarks = value;
+                    RaisePropertyChanged("AverageOfMarks");
+                }
+            }
+        }
+        public Group SelectedGroup
+        {
+            get { return _selectedGroup; }
+            set
+            {
+                if (_selectedGroup != value)
+                {
+                    _selectedGroup = value;
+                    RaisePropertyChanged("SelectedGroup");
+                }
+            }
+        }
+        public bool IsFirstNameFocused
+        {
+            get { return _isFirstNameFocused; }
+            set
+            {
+                if (_isFirstNameFocused != value)
+                {
+                    _isFirstNameFocused = value;
+                    RaisePropertyChanged("IsFirstNameFocused");
+                }
+            }
+        }
 
         public StudentsVM()
         {
             if (IsInDesignMode) return;
 
+            Groups = App.Groups;
             Students = App.Students;
             SelectedItem = Students.FirstOrDefault();
         }
@@ -21,40 +101,44 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         protected override void Add()
         {
-            //var studentToAdd = new Student(
-            //    "Type here the desired degree course name",
-            //    DateTime.Today.Year, 1);
-            //Students.Add(studentToAdd);
-            //SelectedItem = Students.Last();
-            //IsDegreeFocused = true;
+            var studentToAdd = new Student(
+                "Type first name", "Type last name",
+                App.Groups.First(), 0, 0);
+            Students.Add(studentToAdd);
+            SelectedItem = Students.Last();
+            IsFirstNameFocused = true;
         }
 
         protected override void SaveChanges()
         {
-            //SelectedItem.Edit(Year, DegreeCourse, GroupNumber);
+            SelectedItem.Edit(FirstName, LastName, SelectedGroup, PassedTerms, AverageOfMarks);
         }
 
         protected override void UpdateAfterSelection(bool isNull)
         {
-            //if (!isNull)
-            //{
-            //    Year = SelectedItem.Year;
-            //    DegreeCourse = SelectedItem.DegreeCourse;
-            //    GroupNumber = SelectedItem.GroupNumber;
-            //}
-            //else
-            //{
-            //    Year = 0;
-            //    DegreeCourse = String.Empty;
-            //    GroupNumber = 0;
-            //}
+            if (!isNull)
+            {
+                FirstName = SelectedItem.FirstName;
+                LastName = SelectedItem.LastName;
+                PassedTerms = SelectedItem.PassedTerms;
+                AverageOfMarks = SelectedItem.AvgOfMarks;
+                SelectedGroup = SelectedItem.Group;
+            }
+            else
+            {
+                FirstName = String.Empty;
+                LastName = String.Empty;
+                PassedTerms = 0;
+                AverageOfMarks = 0;
+                SelectedGroup = null;
+            }
         }
 
         protected override void Delete()
         {
-            //SelectedItem.Delete();
-            //Groups.Remove(SelectedItem);
-            //SelectedItem = Groups.LastOrDefault();
+            SelectedItem.Delete();
+            Students.Remove(SelectedItem);
+            SelectedItem = Students.LastOrDefault();
         }
     }
 }
