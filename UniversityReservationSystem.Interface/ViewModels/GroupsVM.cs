@@ -27,7 +27,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 }
             }
         }
-        public ObservableCollection<Group> Groups { get; set; }
+        public ObservableCollection<Group> Groups { get; private set; }
 
         public int Year
         {
@@ -68,14 +68,9 @@ namespace UniversityReservationSystem.Interface.ViewModels
         
         public GroupsVM()
         {
-            Groups = new ObservableCollection<Group>();
-
             if (IsInDesignMode) return;
 
-            for (uint i = 0; i < App.GetGroupsCount(); i++)
-            {
-                Groups.Add(new Group(App.GetGroupByIndex(i)));
-            }
+            Groups = App.Groups;
             SelectedItem = Groups.FirstOrDefault();
         }
 

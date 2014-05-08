@@ -12,14 +12,9 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         public StudentsVM()
         {
-            Students = new ObservableCollection<Student>();
-
             if (IsInDesignMode) return;
 
-            for (uint i = 0; i < App.GetStudentsCount(); i++)
-            {
-                Students.Add(new Student(App.GetStudentByIndex(i)));
-            }
+            Students = App.Students;
             SelectedItem = Students.FirstOrDefault();
         }
 

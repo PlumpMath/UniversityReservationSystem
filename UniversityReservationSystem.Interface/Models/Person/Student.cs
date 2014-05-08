@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 // ReSharper disable once CheckNamespace
@@ -6,10 +7,7 @@ namespace UniversityReservationSystem.Interface.Models
 {
     public class Student : IPerson
     {
-        public Group Group
-        {
-            get { return new Group(GetStudentGroup(Ptr));}
-        }
+        public Group Group { get; private set; }
         public int PassedTerms
         {
             get { return GetStudentPassedTerms(Ptr); }
@@ -19,10 +17,16 @@ namespace UniversityReservationSystem.Interface.Models
             get { return GetStudentAvgOfMarks(Ptr); }
         }
 
-        public Student(IntPtr thisPtr) : base(thisPtr) { }
+        public Student(IntPtr thisPtr) : base(thisPtr)
+        {
+            Group = App.Groups.SingleOrDefault(x => x.Ptr == GetStudentGroup(thisPtr));
+        }
 
         public Student(string firstName, string lastName, Group group, int passedTerms, double avgOfMarks)
-            : base(CreateNewStudent(firstName, lastName, group.Ptr, passedTerms, avgOfMarks)) { }
+            : base(CreateNewStudent(firstName, lastName, group.Ptr, passedTerms, avgOfMarks))
+        {
+            Group = group;
+        }
 
         public override string ToString()
         {
