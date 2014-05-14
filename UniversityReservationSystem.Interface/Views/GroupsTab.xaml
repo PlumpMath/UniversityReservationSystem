@@ -20,7 +20,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Year}" Width="1*" Header="Year" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
                 <DataGridTextColumn Binding="{Binding DegreeCourse}" Width="6*" Header="Degree Course" />
-                <DataGridTextColumn Binding="{Binding GroupNumber}" Width="1*" Header="Group #" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                <DataGridTextColumn Binding="{Binding GroupNumber}" Width="2*" Header="Group #" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                <DataGridTextColumn Binding="{Binding NumOfStudents}" Width="2*" Header="Number Of Students" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -32,8 +33,18 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            
-            
+
+            <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" IsReadOnly="True"
+                  ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding StudentsOfSelectedGroup}"
+                  SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding FirstName}" Width="2*" Header="First Name" />
+                    <DataGridTextColumn Binding="{Binding LastName}" Width="2*" Header="Last Name" />
+                    <DataGridTextColumn Binding="{Binding PassedTerms}" Width="2*" Header="Passed terms" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                    <DataGridTextColumn Binding="{Binding AvgOfMarks}" Width="2*" Header="Average of marks" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
             <GridSplitter Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
             <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged" x:Name="CalendarGroups" Margin="10" />
         </Grid>

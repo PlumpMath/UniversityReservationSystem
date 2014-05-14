@@ -15,6 +15,9 @@ namespace UniversityReservationSystem.Interface.ViewModels
         private int _groupNumber;
         private bool _isDegreeFocused;
 
+        public ObservableCollection<Group> Groups { get; private set; }
+        public ObservableCollection<Student> StudentsOfSelectedGroup { get; set; }
+
         public bool IsDegreeFocused
         {
             get { return _isDegreeFocused; }
@@ -27,8 +30,6 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 }
             }
         }
-        public ObservableCollection<Group> Groups { get; private set; }
-
         public int Year
         {
             get { return _year; }
@@ -72,6 +73,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
             Groups = App.Groups;
             SelectedItem = Groups.FirstOrDefault();
+            StudentsOfSelectedGroup = new ObservableCollection<Student>();
         }
 
         protected override void Add()
@@ -93,6 +95,8 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             if (!isNull)
             {
+                if (StudentsOfSelectedGroup != null)
+                    SelectedItem.GetStudents(StudentsOfSelectedGroup);
                 Year = SelectedItem.Year;
                 DegreeCourse = SelectedItem.DegreeCourse;
                 GroupNumber = SelectedItem.GroupNumber;

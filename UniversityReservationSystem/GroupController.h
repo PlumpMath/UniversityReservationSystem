@@ -40,4 +40,9 @@ public:
 		Context.Groups.Delete(toDelete);
 		return true;
 	}
+
+	Student ** GetStudents(Group * group)
+	{
+		return group->Students.GetArrayOfPointers();
+	}
 };

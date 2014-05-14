@@ -41,4 +41,16 @@ public:
 			list[i]->RemoveReservation(reservation);
 		}
 	}
+
+	T** GetArrayOfPointers()
+	{
+		T** toReturn = new T*[this->Count()];
+
+		for (int i = 0; i < this->Count(); i++)
+		{
+			toReturn[i] = &((*this)[i]);
+		}
+
+		return toReturn;
+	}
 };

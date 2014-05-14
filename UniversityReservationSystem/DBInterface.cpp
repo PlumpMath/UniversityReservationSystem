@@ -138,6 +138,15 @@ extern "C"
 	{
 		groupCtrl->Delete(*groupPtr);
 	}
+	API uint			FreeArrayOfPointersOnStudents(Student** array)
+	{
+		delete[] array;
+		return 0;
+	}
+	API Student**		GetArrayOfPointersOnStudents(Group * groupPtr)
+	{
+		return groupCtrl->GetStudents(groupPtr);
+	}
 
 	////////////////////////////////////
 	//////// PEOPLE

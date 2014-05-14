@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace UniversityReservationSystem.Interface.Models
@@ -41,6 +43,24 @@ namespace UniversityReservationSystem.Interface.Models
             OnPropertyChanged("Year");
         }
 
+        public void GetStudents(ObservableCollection<Student> collection)
+        {
+            var ptr = GetArrayOfPointersOnStudents(Ptr);
+            var count = GetGroupStudentsCount(Ptr);
+
+            var studentsOfGroup = new IntPtr[count];
+            Marshal.Copy(ptr, studentsOfGroup, 0, (int)count);
+
+            collection.Clear();
+
+            foreach (var studentPtr in studentsOfGroup)
+            {
+                collection.Add(App.Students.First(x => x.Ptr == studentPtr));
+            }
+
+            FreeArrayOfPointersOnStudents(ptr);
+        }
+
         public void Delete()
         {
             DeleteGroup(Ptr);
@@ -74,6 +94,12 @@ namespace UniversityReservationSystem.Interface.Models
 
         [DllImport("UniversityReservationSystem.dll")]
         private static extern void DeleteGroup(IntPtr groupPtr);
+
+        [DllImport("UniversityReservationSystem.dll")]
+        private static extern uint FreeArrayOfPointersOnStudents(IntPtr groupPtr);
+
+        [DllImport("UniversityReservationSystem.dll")]
+        private static extern IntPtr GetArrayOfPointersOnStudents(IntPtr groupPtr);
 
         #endregion
     }
