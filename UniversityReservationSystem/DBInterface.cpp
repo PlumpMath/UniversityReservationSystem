@@ -215,6 +215,22 @@ extern "C"
 
 		return teacher;
 	}
+	API void			EditTeacher(Teacher * teacherPtr, strPtr academicTitle, strPtr firstName, strPtr lastName, strPtr phoneNumber, strPtr email)
+	{
+		Teacher copy(*teacherPtr);
+
+		copy.FirstName = firstName;
+		copy.LastName = lastName;
+		copy.AcademicTitle = academicTitle;
+		copy.PhoneNumber = phoneNumber;
+		copy.Email = email;
+
+		teacherCtrl->Edit(copy);
+	}
+	API void			DeleteTeacher(Teacher * teacherPtr)
+	{
+		teacherCtrl->Delete(*teacherPtr);
+	}
 
 	////////////////////////////////////
 	//////// ROOMS

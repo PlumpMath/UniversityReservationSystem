@@ -7,8 +7,87 @@ namespace UniversityReservationSystem.Interface.ViewModels
 {
     public class TeachersVM : IViewModel<Teacher>
     {
+        private string _firstName;
+        private string _lastName;
+        private string _phoneNumber;
+        private string _email;
+        private string _academicTitle;
+        private bool _isFirstNameFocused;
+
         public ObservableCollection<Teacher> Teachers { get; set; }
 
+        public string FirstName
+        {
+            get { return _firstName; }
+            set
+            {
+                if (_firstName != value)
+                {
+                    _firstName = value;
+                    RaisePropertyChanged("FirstName");
+                }
+            }
+        }
+        public string LastName
+        {
+            get { return _lastName; }
+            set
+            {
+                if (_lastName != value)
+                {
+                    _lastName = value;
+                    RaisePropertyChanged("LastName");
+                }
+            }
+        }
+        public string PhoneNumber
+        {
+            get { return _phoneNumber; }
+            set
+            {
+                if (_phoneNumber != value)
+                {
+                    _phoneNumber = value;
+                    RaisePropertyChanged("PhoneNumber");
+                }
+            }
+        }
+        public string Email
+        {
+            get { return _email; }
+            set
+            {
+                if (_email != value)
+                {
+                    _email = value;
+                    RaisePropertyChanged("Email");
+                }
+            }
+        }
+        public string AcademicTitle
+        {
+            get { return _academicTitle; }
+            set
+            {
+                if (_academicTitle != value)
+                {
+                    _academicTitle = value;
+                    RaisePropertyChanged("AcademicTitle");
+                }
+            }
+        }
+        public bool IsFirstNameFocused
+        {
+            get { return _isFirstNameFocused; }
+            set
+            {
+                if (_isFirstNameFocused != value)
+                {
+                    _isFirstNameFocused = value;
+                    RaisePropertyChanged("IsFirstNameFocused");
+                }
+            }
+        }
 
         public TeachersVM()
         {
@@ -21,40 +100,44 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         protected override void Add()
         {
-            //var studentToAdd = new Student(
-            //    "Type here the desired degree course name",
-            //    DateTime.Today.Year, 1);
-            //Students.Add(studentToAdd);
-            //SelectedItem = Students.Last();
-            //IsDegreeFocused = true;
+            var teacherToAdd = new Teacher(
+                "Type first name", "Type last name",
+                "Type email", "Type number",
+                "dr");
+            Teachers.Add(teacherToAdd);
+            SelectedItem = Teachers.Last();
+            IsFirstNameFocused = true;
         }
 
         protected override void SaveChanges()
         {
-            //SelectedItem.Edit(Year, DegreeCourse, GroupNumber);
+            SelectedItem.Edit(AcademicTitle, FirstName, LastName, PhoneNumber, Email);
         }
 
         protected override void UpdateAfterSelection(bool isNull)
         {
-            //if (!isNull)
-            //{
-            //    Year = SelectedItem.Year;
-            //    DegreeCourse = SelectedItem.DegreeCourse;
-            //    GroupNumber = SelectedItem.GroupNumber;
-            //}
-            //else
-            //{
-            //    Year = 0;
-            //    DegreeCourse = String.Empty;
-            //    GroupNumber = 0;
-            //}
+            if (!isNull)
+            {
+                AcademicTitle = SelectedItem.AcademicTitle;
+                FirstName = SelectedItem.FirstName;
+                LastName = SelectedItem.LastName;
+                Email = SelectedItem.Email;
+                PhoneNumber = SelectedItem.PhoneNumber;
+            }
+            else
+            {
+                FirstName = String.Empty;
+                LastName = String.Empty;
+                Email = String.Empty;
+                PhoneNumber = String.Empty;
+            }
         }
 
         protected override void Delete()
         {
-            //SelectedItem.Delete();
-            //Groups.Remove(SelectedItem);
-            //SelectedItem = Groups.LastOrDefault();
+            SelectedItem.Delete();
+            Teachers.Remove(SelectedItem);
+            SelectedItem = Teachers.LastOrDefault();
         }
     }
 }

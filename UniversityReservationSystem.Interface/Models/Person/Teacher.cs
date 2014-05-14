@@ -36,6 +36,22 @@ namespace UniversityReservationSystem.Interface.Models
         public Teacher(string firstName, string lastName, string email, string phoneNumber, string academicTitle)
             : base(CreateNewTeacher(firstName, lastName, email, phoneNumber, academicTitle)) { }
 
+        public void Edit(string academicTitle, string firstName, string lastName, string phoneNumber, string email)
+        {
+            EditTeacher(Ptr, academicTitle, firstName, lastName, phoneNumber, email);
+
+            OnPropertyChanged("AcademicTitle");
+            OnPropertyChanged("FirstName");
+            OnPropertyChanged("LastName");
+            OnPropertyChanged("PhoneNumber");
+            OnPropertyChanged("Email");
+        }
+
+        public void Delete()
+        {
+            DeleteTeacher(Ptr);
+        }
+
         public override string ToString()
         {
             return String.Format("ID: {0}, FirstName: {1}, LastName: {2}, Email: {3}, PhoneNumber: {4}, AcademicTitle: {5}",
@@ -57,6 +73,12 @@ namespace UniversityReservationSystem.Interface.Models
         private static extern IntPtr CreateNewTeacher(
             string firstName, string lastName, string email,
             string phoneNumber, string academicTitle);
+
+        [DllImport("UniversityReservationSystem.dll")]
+        private static extern void EditTeacher(IntPtr studentPtr, string academicTitle, string firstName, string LastName, string phoneNumber, string email);
+
+        [DllImport("UniversityReservationSystem.dll")]
+        private static extern void DeleteTeacher(IntPtr teacherPtr);
 
         #endregion
     }
