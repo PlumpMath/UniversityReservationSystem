@@ -23,6 +23,11 @@ namespace UniversityReservationSystem.Interface.Models
             }
         }
 
+        public virtual string FullName
+        {
+            get { return FirstName + " " + LastName; }
+        }
+
         protected IPerson(IntPtr thisPtr) : base(thisPtr) { }
 
         #region InterOp Stuff

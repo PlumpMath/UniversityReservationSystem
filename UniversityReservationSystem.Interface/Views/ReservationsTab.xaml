@@ -3,20 +3,23 @@
          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
          x:Class="UniversityReservationSystem.Interface.Views.ReservationsTab" 
-         mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400">
+         mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+             DataContext="{Binding Reservations, Source={StaticResource ViewModelLocator}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" x:Name="ReservationsGrid" RowHeaderWidth="0"
-			ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0">
+        <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" IsReadOnly="True"
+                  ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding Reservations}"
+                  SelectionMode="Single" >
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Year}" Width="1*" Header="Year" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
-                <DataGridTextColumn Binding="{Binding DegreeCourse}" Width="6*" Header="Degree Course" />
-                <DataGridTextColumn Binding="{Binding GroupNumber}" Width="1*" Header="Group #" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
-                <DataGridTextColumn Binding="{Binding NumOfStudents}" Width="1*" Header="Students" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
-                <DataGridTextColumn Width="2*" Header="Reservations" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                <DataGridTextColumn Binding="{Binding Name}" Width="2*" Header="Description" />
+                <DataGridTextColumn Binding="{Binding DateOfStart, StringFormat=dd MMM yyyy\, HH:mm}" Width="2*" Header="Date Of Start" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                <DataGridTextColumn Binding="{Binding DateOfEnd, StringFormat=dd MMM yyyy\, HH:mm}" Width="2*" Header="Date Of End" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                <DataGridTextColumn Binding="{Binding Room.Name}" Width="2*" Header="Room" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                <DataGridTextColumn Binding="{Binding Teacher.FullName}" Width="2*" Header="Teacher" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                <DataGridTextColumn Binding="{Binding Group.ExInfo}" Width="2*" Header="Group" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="1" Margin="5">

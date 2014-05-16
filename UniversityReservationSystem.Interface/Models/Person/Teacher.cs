@@ -31,6 +31,11 @@ namespace UniversityReservationSystem.Interface.Models
             }
         }
 
+        public override string FullName
+        {
+            get { return AcademicTitle + " " + base.FullName; }
+        }
+
         public Teacher(IntPtr thisPtr) : base(thisPtr) { }
 
         public Teacher(string firstName, string lastName, string email, string phoneNumber, string academicTitle)
