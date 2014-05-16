@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace UniversityReservationSystem.Interface.Models
 {
-    public abstract class IRoom : ISerializable
+    public class IRoom : ISerializable
     {
         public string Name
         {
@@ -20,7 +20,7 @@ namespace UniversityReservationSystem.Interface.Models
             get { return GetRoomCapacity(Ptr); }
         }
 
-        protected IRoom(IntPtr thisPtr) : base(thisPtr) { }
+        public IRoom(IntPtr thisPtr) : base(thisPtr) { }
 
         #region InterOp Stuff
 

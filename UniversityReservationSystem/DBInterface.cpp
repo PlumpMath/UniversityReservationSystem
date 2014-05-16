@@ -272,21 +272,52 @@ extern "C"
 	}
 	API Teacher *		GetReservationTeacher(Reservation * reservationPtr)
 	{
-		return &(reservationPtr->BoundTeacher);
+		return reservationPtr->BoundTeacher;
 	}
 	API IRoom *			GetReservationRoom(Reservation * reservationPtr)
 	{
-		return &(reservationPtr->Room);
+		return reservationPtr->Room;
 	}
 	API uint			GetReservationGroupsCount(Reservation * reservationPtr)
 	{
 		return reservationPtr->BoundGroups.Count();
 	}
-	API Reservation *	CreateNewReservation(strPtr name, long int dateOfStart, long int dateOfEnd, Teacher * teacher, IRoom * room)
+	API Group *			GetReservationGroup(Reservation * reservationPtr)
 	{
-		Reservation * reservation = new Reservation(name, dateOfStart, dateOfEnd, *teacher, *room);
+		return &(reservationPtr->BoundGroups[0]);
+	}
+	API bool			CheckCollisions(long int dateOfStart, long int dateOfEnd, Teacher * teacher, IRoom * room, Group * group)
+	{
+		Reservation * reservation = new Reservation("test", dateOfStart, dateOfEnd, teacher, room);
+		reservation->BoundGroups.Add(*group);
+
+		return reservationCtrl->CheckCollisions(*reservation);
+	}
+	API Reservation *	CreateNewReservation(strPtr name, long int dateOfStart, long int dateOfEnd, Teacher * teacher, IRoom * room, Group * group)
+	{
+		Reservation * reservation = new Reservation(name, dateOfStart, dateOfEnd, teacher, room);
+
+		reservation->BoundGroups.Add(*group);
 		reservationCtrl->Add(*reservation);
 
 		return reservation;
+	}
+	API bool			EditReservation(Reservation * reservationPtr, strPtr name, long int dateOfStart, long int dateOfEnd, Teacher * teacher, IRoom * room, Group * group)
+	{
+		Reservation copy(*reservationPtr);
+
+		copy.Name = name;
+		copy.DateOfStart = dateOfStart;
+		copy.DateOfEnd = dateOfEnd;
+		copy.BoundTeacher = teacher;
+		copy.Room = room;
+		copy.BoundGroups.Clear(true);
+		copy.BoundGroups.Add(*group);
+
+		return reservationCtrl->Edit(copy);
+	}
+	API void			DeleteReservation(Reservation * reservationPtr)
+	{
+		reservationCtrl->Delete(*reservationPtr);
 	}
 }

@@ -74,8 +74,14 @@ public:
 		delete &toDelete;
 	}
 
-	void Clear()
+	void Clear(bool withoutDeleting = false)
 	{
+		if (withoutDeleting)
+		{
+			list.clear();
+			return;
+		}
+
 		for (unsigned int i = 0; i < list.size(); i++)
 		{
 			delete list[i];
