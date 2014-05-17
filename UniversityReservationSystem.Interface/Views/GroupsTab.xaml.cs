@@ -11,6 +11,7 @@ namespace UniversityReservationSystem.Interface.Views
         public GroupsTab()
         {
             InitializeComponent();
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this)) return;
         }
 
         private void DisplayMonthChanged(MonthChangedEventArgs e)

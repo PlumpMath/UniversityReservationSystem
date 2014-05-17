@@ -34,32 +34,37 @@ namespace UniversityReservationSystem.Interface
         {
             LoadDB("home");
 
+            uint n = GetGroupsCount();
             Groups = new ObservableCollection<Group>();
-            for (uint i = 0; i < GetGroupsCount(); i++)
+            for (uint i = 0; i < n; i++)
             {
                 Groups.Add(new Group(GetGroupByIndex(i)));
             }
 
+            n = GetStudentsCount();
             Students = new ObservableCollection<Student>();
-            for (uint i = 0; i < GetStudentsCount(); i++)
+            for (uint i = 0; i < n; i++)
             {
                 Students.Add(new Student(GetStudentByIndex(i)));
             }
 
+            n = GetTeachersCount();
             Teachers = new ObservableCollection<Teacher>();
-            for (uint i = 0; i < GetTeachersCount(); i++)
+            for (uint i = 0; i < n; i++)
             {
                 Teachers.Add(new Teacher(GetTeacherByIndex(i)));
             }
 
+            n = GetRoomsCount();
             Rooms = new ObservableCollection<IRoom>();
-            for (uint i = 0; i < GetRoomsCount(); i++)
+            for (uint i = 0; i < n; i++)
             {
                 Rooms.Add(new IRoom(GetRoomByIndex(i)));
             }
 
+            n = GetReservationsCount();
             Reservations = new ObservableCollection<Reservation>();
-            for (uint i = 0; i < GetReservationsCount(); i++)
+            for (uint i = 0; i < n; i++)
             {
                 Reservations.Add(new Reservation(GetReservationByIndex(i)));
             }

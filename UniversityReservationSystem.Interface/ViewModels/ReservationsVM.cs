@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using UniversityReservationSystem.Interface.Models;
 
@@ -13,6 +15,8 @@ namespace UniversityReservationSystem.Interface.ViewModels
         private Teacher _selectedTeacher;
         private DateTime? _dateOfStart;
         private DateTime? _dateOfEnd;
+        private bool _isNameFocused;
+
         public ObservableCollection<Group> Groups { get; set; }
         public ObservableCollection<IRoom> Rooms { get; set; }
         public ObservableCollection<Teacher> Teachers { get; set; }
@@ -70,7 +74,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
             get { return _dateOfStart; }
             set
             {
-                if (value != _dateOfStart)
+                if (value != _dateOfStart && value != null)
                 {
                     _dateOfStart = value;
                     RaisePropertyChanged("DateOfStart");
@@ -89,6 +93,18 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 }
             }
         }
+        public bool IsNameFocused
+        {
+            get { return _isNameFocused; }
+            set
+            {
+                if (_isNameFocused != value)
+                {
+                    _isNameFocused = value;
+                    RaisePropertyChanged("IsNameFocused");
+                }
+            }
+        }
 
         public ReservationsVM()
         {
@@ -98,21 +114,38 @@ namespace UniversityReservationSystem.Interface.ViewModels
             Rooms = App.Rooms;
             Teachers = App.Teachers;
             Reservations = App.Reservations;
+            SelectedItem = Reservations.FirstOrDefault();
         }
 
         protected override void Add()
         {
-            throw new System.NotImplementedException();
+            var reservationToAdd = new Reservation(
+                "Type description", DateTime.Today.AddYears(10),
+                DateTime.Today.AddYears(10).AddHours(1),
+                Teachers.First(), Rooms.First(), Groups.First());
+
+            Reservations.Add(reservationToAdd);
+            SelectedItem = Reservations.Last();
+            IsNameFocused = true;
         }
 
         protected override void SaveChanges()
         {
-            throw new System.NotImplementedException();
+            if (DateOfEnd == null || DateOfStart == null) return;
+
+            if (!SelectedItem.Edit(
+                Name, DateOfStart.Value, DateOfEnd.Value,
+                SelectedTeacher, SelectedRoom, SelectedGroup))
+            {
+                MessageBox.Show("Collisions detected! Changes not accepted!");
+            }
         }
 
         protected override void Delete()
         {
-            throw new System.NotImplementedException();
+            SelectedItem.Delete();
+            Reservations.Remove(SelectedItem);
+            SelectedItem = Reservations.LastOrDefault();
         }
 
         protected override void UpdateAfterSelection(bool isNull)

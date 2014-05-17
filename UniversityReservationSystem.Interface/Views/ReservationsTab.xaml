@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              x:Class="UniversityReservationSystem.Interface.Views.ReservationsTab" 
              mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400" xmlns:ex="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:helpers="clr-namespace:UniversityReservationSystem.Interface.Helpers"
              DataContext="{Binding Reservations, Source={StaticResource ViewModelLocator}}">
     <Grid>
         <Grid.RowDefinitions>
@@ -45,17 +46,18 @@
 
                 <TextBlock HorizontalAlignment="Center" Text="Description" Grid.Row="0" Grid.Column="0" />
                 <TextBox Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Text="{Binding Name}"
-                         HorizontalContentAlignment="Center"/>
+                         HorizontalContentAlignment="Center" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                         helpers:FocusExtension.IsFocused="{Binding IsNameFocused}"/>
 
                 <TextBlock HorizontalAlignment="Center" Text="Date Of Start" Grid.Row="0" Grid.Column="1" />
                 <ex:DateTimePicker Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1"
                                    HorizontalContentAlignment="Center" Value="{Binding DateOfStart}"
-                                   TextAlignment="Center"/>
+                                   TextAlignment="Center" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"/>
 
                 <TextBlock HorizontalAlignment="Center" Text="Date Of End" Grid.Row="0" Grid.Column="2" />
                 <ex:DateTimePicker Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2"
                                    HorizontalContentAlignment="Center" Value="{Binding DateOfEnd}"
-                                   TextAlignment="Center"/>
+                                   TextAlignment="Center" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"/>
 
                 <TextBlock HorizontalAlignment="Center" Text="Room" Grid.Row="0" Grid.Column="3" />
                 <ComboBox Margin="5 0 5 0" DisplayMemberPath="Name" ItemsSource="{Binding Rooms}" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"

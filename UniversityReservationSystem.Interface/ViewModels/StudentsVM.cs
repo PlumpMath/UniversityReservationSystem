@@ -103,7 +103,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             var studentToAdd = new Student(
                 "Type first name", "Type last name",
-                App.Groups.First(), 0, 0);
+                Groups.First(), 0, 0);
             Students.Add(studentToAdd);
             SelectedItem = Students.Last();
             IsFirstNameFocused = true;

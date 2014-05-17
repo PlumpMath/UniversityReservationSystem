@@ -95,10 +95,10 @@ namespace UniversityReservationSystem.Interface.Models
         private static extern IntPtr GetReservationName(IntPtr reservPtr);
 
         [DllImport("UniversityReservationSystem.dll")]
-        private static extern long GetReservationDateOfStart(IntPtr reservPtr);
+        private static extern int GetReservationDateOfStart(IntPtr reservPtr);
 
         [DllImport("UniversityReservationSystem.dll")]
-        private static extern long GetReservationDateOfEnd(IntPtr reservPtr);
+        private static extern int GetReservationDateOfEnd(IntPtr reservPtr);
 
         [DllImport("UniversityReservationSystem.dll")]
         private static extern IntPtr GetReservationTeacher(IntPtr reservPtr);
