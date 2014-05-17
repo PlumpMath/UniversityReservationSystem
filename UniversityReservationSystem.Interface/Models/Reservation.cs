@@ -59,7 +59,7 @@ namespace UniversityReservationSystem.Interface.Models
 
         public bool Edit(string name, DateTime dateOfStart, DateTime dateOfEnd, Teacher teacher, IRoom room, Group group)
         {
-            if (EditReservation(Ptr, name, dateOfStart.ToUnixTimestamp(), dateOfEnd.ToUnixTimestamp(), Teacher.Ptr, Room.Ptr, Group.Ptr))
+            if (EditReservation(Ptr, name, dateOfStart.ToUnixTimestamp(), dateOfEnd.ToUnixTimestamp(), teacher.Ptr, room.Ptr, group.Ptr))
             {
                 Teacher = App.Teachers.SingleOrDefault(x => x.Ptr == GetReservationTeacher(Ptr));
                 Room = App.Rooms.SingleOrDefault(x => x.Ptr == GetReservationRoom(Ptr));
@@ -114,16 +114,18 @@ namespace UniversityReservationSystem.Interface.Models
 
         [DllImport("UniversityReservationSystem.dll")]
         private static extern IntPtr CreateNewReservation(
-            string name, long dateOfStart, long dateOfEnd,
+            string name, int dateOfStart, int dateOfEnd,
             IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
 
         [DllImport("UniversityReservationSystem.dll")]
-        private static extern bool CheckCollisions( long dateOfStart,
-            long dateOfEnd, IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
+        [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool CheckCollisions(int dateOfStart,
+            int dateOfEnd, IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
 
         [DllImport("UniversityReservationSystem.dll")]
+        [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool EditReservation(IntPtr reservPtr, 
-            string name, long dateOfStart, long dateOfEnd,
+            string name, int dateOfStart, int dateOfEnd,
             IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
 
         [DllImport("UniversityReservationSystem.dll")]

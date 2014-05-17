@@ -4,9 +4,9 @@ namespace UniversityReservationSystem.Interface.Helpers
 {
     public static class DateTimeHelpers
     {
-        public static long ToUnixTimestamp(this DateTime dateTime)
+        public static int ToUnixTimestamp(this DateTime dateTime)
         {
-            return  (int)((dateTime - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds);
+            return (int)((dateTime - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds);
         }
 
         public static DateTime ToDateTime(this int timeStamp)

@@ -22,8 +22,6 @@ public:
 
 	bool Edit(Reservation& copyOfReservationToModify)
 	{
-		bool collisionsDetected = false;
-
 		Reservation& toEdit = Context.Reservations.Find(copyOfReservationToModify);
 
 		toEdit.BoundGroups.RemoveReservation(toEdit);
