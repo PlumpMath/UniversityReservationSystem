@@ -1,16 +1,16 @@
 ﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-         x:Class="UniversityReservationSystem.Interface.Views.ReservationsTab" 
-         mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             x:Class="UniversityReservationSystem.Interface.Views.ReservationsTab" 
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400" xmlns:ex="http://schemas.xceed.com/wpf/xaml/toolkit"
              DataContext="{Binding Reservations, Source={StaticResource ViewModelLocator}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" IsReadOnly="True"
+        <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" IsReadOnly="True" SelectedItem="{Binding SelectedItem}"
                   ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding Reservations}"
                   SelectionMode="Single" >
             <DataGrid.Columns>
@@ -24,30 +24,50 @@
         </DataGrid>
         <Grid Grid.Row="1" Margin="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="6*" />
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Content="Add new" Grid.Column="0" />
+            <Button Content="Add new" Grid.Column="0" Command="{Binding AddCommand}" Padding="8 0"  />
             <Grid Grid.Column="1" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock HorizontalAlignment="Center" Text="Year" Grid.Row="0" Grid.Column="0" />
-                <TextBox Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" />
+                <TextBlock HorizontalAlignment="Center" Text="Description" Grid.Row="0" Grid.Column="0" />
+                <TextBox Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Text="{Binding Name}"
+                         HorizontalContentAlignment="Center"/>
 
-                <TextBlock HorizontalAlignment="Center" Text="Degree course" Grid.Row="0" Grid.Column="1" />
-                <TextBox Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" />
+                <TextBlock HorizontalAlignment="Center" Text="Date Of Start" Grid.Row="0" Grid.Column="1" />
+                <ex:DateTimePicker Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1"
+                                   HorizontalContentAlignment="Center" Value="{Binding DateOfStart}"
+                                   TextAlignment="Center"/>
 
-                <TextBlock HorizontalAlignment="Center" Text="Group #" Grid.Row="0" Grid.Column="2" />
-                <TextBox Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2" />
+                <TextBlock HorizontalAlignment="Center" Text="Date Of End" Grid.Row="0" Grid.Column="2" />
+                <ex:DateTimePicker Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2"
+                                   HorizontalContentAlignment="Center" Value="{Binding DateOfEnd}"
+                                   TextAlignment="Center"/>
+
+                <TextBlock HorizontalAlignment="Center" Text="Room" Grid.Row="0" Grid.Column="3" />
+                <ComboBox Margin="5 0 5 0" DisplayMemberPath="Name" ItemsSource="{Binding Rooms}" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="3" SelectedItem="{Binding SelectedRoom}" HorizontalContentAlignment="Center" />
+
+                <TextBlock HorizontalAlignment="Center" Text="Teacher" Grid.Row="0" Grid.Column="4" />
+                <ComboBox Margin="5 0 5 0" DisplayMemberPath="FullName" ItemsSource="{Binding Teachers}" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="4" SelectedItem="{Binding SelectedTeacher}" HorizontalContentAlignment="Center" />
+
+                <TextBlock HorizontalAlignment="Center" Text="Group" Grid.Row="0" Grid.Column="5" />
+                <ComboBox Margin="5 0 5 0" DisplayMemberPath="ExInfo" ItemsSource="{Binding Groups}" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="5" SelectedItem="{Binding SelectedGroup}" HorizontalContentAlignment="Center" />
             </Grid>
 
             <Grid Grid.Column="2">
@@ -56,8 +76,10 @@
                     <RowDefinition Height="3" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Button Content="Edit" Grid.Row="0" />
-                <Button Content="Delete" Grid.Row="2" />
+                <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                        Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
+                <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}" Padding="8 0"
+                        Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
             </Grid>
         </Grid>
     </Grid>
