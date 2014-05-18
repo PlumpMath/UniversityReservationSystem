@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using UniversityReservationSystem.Interface.Models;
@@ -109,7 +110,6 @@ namespace UniversityReservationSystem.Interface.ViewModels
         public ReservationsVM()
         {
             if (IsInDesignMode) return;
-
             Groups = App.Groups;
             Rooms = App.Rooms;
             Teachers = App.Teachers;
@@ -172,7 +172,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         public override void Refresh()
         {
-            
+
         }
     }
 }

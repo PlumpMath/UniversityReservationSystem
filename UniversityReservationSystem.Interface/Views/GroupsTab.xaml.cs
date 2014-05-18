@@ -29,7 +29,11 @@ namespace UniversityReservationSystem.Interface.Views
 
         private void CalendarGroups_OnReservationClicked(IntPtr reservationptr)
         {
-            throw new NotImplementedException();
+            var vm = DataContext as GroupsVM;
+            if (vm != null)
+            {
+                vm.ReservationClicked(reservationptr);
+            }
         }
     }
 }

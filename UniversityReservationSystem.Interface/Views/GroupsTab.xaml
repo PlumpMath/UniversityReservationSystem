@@ -68,7 +68,7 @@
             </Grid>
             <GridSplitter Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
             <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged"
-                                                x:Name="CalendarGroups" Margin="10" ReservationClicked="CalendarGroups_OnReservationClicked" />
+                      x:Name="CalendarGroups" Margin="10" ReservationClicked="CalendarGroups_OnReservationClicked" />
         </Grid>
 
         <Grid Grid.Row="3" Margin="5">

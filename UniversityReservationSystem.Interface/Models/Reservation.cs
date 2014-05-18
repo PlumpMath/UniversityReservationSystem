@@ -117,8 +117,8 @@ namespace UniversityReservationSystem.Interface.Models
 
         public override string ToString()
         {
-            return String.Format("ID: {0}, Name: {1}, DateOfStart: {2}, DateOfEnd: {3}",
-                Id, Name, DateOfStart, DateOfEnd);
+            return String.Format("Reservation Details:\nID: {0}, Name: {1},\nDateOfStart: {2},\nDateOfEnd: {3}\n\nTeacher:\n{4}\n\nRoom:\n{5}\n\nGroup:\n{6}",
+                Id, Name, DateOfStart, DateOfEnd, Teacher, Room, Group);
         }
 
         #region InterOp Stuff
