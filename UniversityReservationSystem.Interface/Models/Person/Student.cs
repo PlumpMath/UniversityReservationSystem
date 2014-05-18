@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.InteropServices;
+using UniversityReservationSystem.Interface.Views;
 
 // ReSharper disable once CheckNamespace
 namespace UniversityReservationSystem.Interface.Models
@@ -35,9 +36,9 @@ namespace UniversityReservationSystem.Interface.Models
 
             OnPropertyChanged("FirstName");
             OnPropertyChanged("LastName");
-            OnPropertyChanged("Group");
             OnPropertyChanged("PassedTerms");
             OnPropertyChanged("AvgOfMarks");
+            InvokePropertyChanged();
         }
 
         public void Delete()
@@ -61,5 +62,10 @@ namespace UniversityReservationSystem.Interface.Models
         [DllImport("UniversityReservationSystem.dll")] private static extern void DeleteStudent(IntPtr studentPtr);
 
         #endregion
+
+        public void InvokePropertyChanged()
+        {
+            OnPropertyChanged("Group");
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
@@ -143,13 +144,10 @@ namespace UniversityReservationSystem.Interface.ViewModels
             }
         }
 
-        public override void Refresh()
-        {
-            
-        }
-
         protected override void Delete()
         {
+            ViewModelLocator.Groups.StudentsOfSelectedGroup.Remove(SelectedItem);
+
             SelectedItem.Delete();
             Students.Remove(SelectedItem);
             SelectedItem = Students.LastOrDefault();

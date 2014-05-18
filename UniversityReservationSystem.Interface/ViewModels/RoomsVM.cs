@@ -23,10 +23,5 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             throw new System.NotImplementedException();
         }
-
-        public override void Refresh()
-        {
-            
-        }
     }
 }

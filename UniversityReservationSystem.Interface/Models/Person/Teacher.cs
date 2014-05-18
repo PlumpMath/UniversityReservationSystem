@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
+using UniversityReservationSystem.Interface.ViewModels;
 
 // ReSharper disable once CheckNamespace
 namespace UniversityReservationSystem.Interface.Models
@@ -50,6 +52,8 @@ namespace UniversityReservationSystem.Interface.Models
             OnPropertyChanged("LastName");
             OnPropertyChanged("PhoneNumber");
             OnPropertyChanged("Email");
+
+            App.Reservations.Where(x => x.Teacher.Ptr == Ptr).ToList().ForEach(x => x.InvokePropertyChanged());
         }
 
         public void Delete()

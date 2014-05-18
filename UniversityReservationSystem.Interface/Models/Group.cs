@@ -38,9 +38,13 @@ namespace UniversityReservationSystem.Interface.Models
         public void Edit(int year, string degreeCourse, int groupNumber)
         {
             EditGroup(Ptr, degreeCourse, year, groupNumber);
+
             OnPropertyChanged("DegreeCourse");
             OnPropertyChanged("GroupNumber");
             OnPropertyChanged("Year");
+
+            App.Students.Where(x => x.Group.Ptr == Ptr).ToList().ForEach(x => x.InvokePropertyChanged());
+            App.Reservations.Where(x => x.Group.Ptr == Ptr).ToList().ForEach(x => x.InvokePropertyChanged());
         }
 
         public void GetStudents(ObservableCollection<Student> collection)

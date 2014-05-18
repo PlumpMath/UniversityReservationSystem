@@ -97,12 +97,10 @@ namespace UniversityReservationSystem.Interface.Models
                 Room = App.Rooms.SingleOrDefault(x => x.Ptr == GetReservationRoom(Ptr));
                 Group = App.Groups.SingleOrDefault(x => x.Ptr == GetReservationGroup(Ptr));
 
-                OnPropertyChanged("Teacher");
-                OnPropertyChanged("Room");
-                OnPropertyChanged("Group");
                 OnPropertyChanged("Name");
                 OnPropertyChanged("DateOfStart");
                 OnPropertyChanged("DateOfEnd");
+                InvokePropertyChanged();
 
                 return true;
             }
@@ -137,5 +135,12 @@ namespace UniversityReservationSystem.Interface.Models
         [DllImport("UniversityReservationSystem.dll")] private static extern void DeleteReservation(IntPtr reservPtr);
 
         #endregion
+
+        public void InvokePropertyChanged()
+        {
+            OnPropertyChanged("Teacher");
+            OnPropertyChanged("Room");
+            OnPropertyChanged("Group");
+        }
     }
 }

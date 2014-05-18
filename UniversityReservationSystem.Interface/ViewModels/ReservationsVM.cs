@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -129,6 +130,11 @@ namespace UniversityReservationSystem.Interface.ViewModels
             IsNameFocused = true;
         }
 
+        private void RefreshDependencies()
+        {
+            ViewModelLocator.Groups.RefreshCalendar();
+        }
+
         protected override void SaveChanges()
         {
             if (DateOfEnd == null || DateOfStart == null) return;
@@ -139,13 +145,21 @@ namespace UniversityReservationSystem.Interface.ViewModels
             {
                 MessageBox.Show("Collisions detected! Changes not accepted!");
             }
+
+            RefreshDependencies();
         }
 
         protected override void Delete()
         {
+            ViewModelLocator.Groups.ReservationsOfSelectedGroup.Remove(SelectedItem);
+            ViewModelLocator.Students.ReservationsOfSelectedStudent.Remove(SelectedItem);
+            ViewModelLocator.Teachers.ReservationsOfSelectedTeacher.Remove(SelectedItem);
+
             SelectedItem.Delete();
             Reservations.Remove(SelectedItem);
             SelectedItem = Reservations.LastOrDefault();
+
+            RefreshDependencies();
         }
 
         protected override void UpdateAfterSelection(bool isNull)
@@ -168,11 +182,6 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 SelectedRoom = null;
                 SelectedTeacher = null;
             }
-        }
-
-        public override void Refresh()
-        {
-
         }
     }
 }

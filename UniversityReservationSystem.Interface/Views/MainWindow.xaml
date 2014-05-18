@@ -4,7 +4,7 @@
         xmlns:views="clr-namespace:UniversityReservationSystem.Interface.Views"
         Title="University Reservation System (by Szymon Bartnik for dr Roman Starosolski)"
         Height="700" Width="1150" MinWidth="700" MinHeight="500">
-    <TabControl Margin="5" SelectionChanged="Selector_OnSelectionChanged">
+    <TabControl Margin="5">
         <TabItem Header="Reservations" x:Name="ReservationsTab">
             <Grid><views:ReservationsTab x:Name="ReservationsTabInside" /></Grid>
         </TabItem>

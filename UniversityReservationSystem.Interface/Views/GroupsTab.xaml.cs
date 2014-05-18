@@ -10,7 +10,6 @@ namespace UniversityReservationSystem.Interface.Views
 {
     public partial class GroupsTab : UserControl
     {
-        private List<ReservationOnCalendar> _reservation = new List<ReservationOnCalendar>();
         public GroupsTab()
         {
             InitializeComponent();
@@ -22,8 +21,7 @@ namespace UniversityReservationSystem.Interface.Views
             var vm = DataContext as GroupsVM;
             if (vm != null)
             {
-                vm.MonthChanged(_reservation, e.NewDisplayStartDate);
-                CalendarGroups.MonthReservations = _reservation;
+                vm.MonthChanged(e.NewDisplayStartDate);
             }
         }
 

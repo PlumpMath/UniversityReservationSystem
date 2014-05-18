@@ -36,11 +36,12 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="228*" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="25*" />
+                    <RowDefinition Height="202*"/>
                 </Grid.RowDefinitions>
-                
+
                 <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" IsReadOnly="True"
                       ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding StudentsOfSelectedGroup}"
                       SelectionMode="Single">
@@ -53,10 +54,10 @@
                 </DataGrid>
 
                 <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-                
+
                 <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" IsReadOnly="True"
                       ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="2" ItemsSource="{Binding ReservationsOfSelectedGroup}"
-                      SelectionMode="Single">
+                      SelectionMode="Single" Grid.RowSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Name}" Width="2*" Header="Description" />
                         <DataGridTextColumn Binding="{Binding DateOfStart, StringFormat=dd MMM yyyy\, HH:mm}" Width="2*" Header="Date Of Start" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
@@ -67,7 +68,7 @@
                 </DataGrid>
             </Grid>
             <GridSplitter Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
-            <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged"
+            <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged" MonthReservations="{Binding ReservationsOnCalendar}"
                       x:Name="CalendarGroups" Margin="10" ReservationClicked="CalendarGroups_OnReservationClicked" />
         </Grid>
 

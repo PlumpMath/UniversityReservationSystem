@@ -142,11 +142,6 @@ namespace UniversityReservationSystem.Interface.ViewModels
             }
         }
 
-        public override void Refresh()
-        {
-            
-        }
-
         protected override void Delete()
         {
             SelectedItem.Delete();

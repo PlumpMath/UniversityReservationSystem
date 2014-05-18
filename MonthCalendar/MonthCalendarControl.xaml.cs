@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
@@ -17,7 +19,6 @@ namespace MonthCalendar
 	    private int _displayYear;
 	    private System.Globalization.Calendar sysCal;
 
-        private List<ReservationOnCalendar> _monthReservations;
 	    public event DisplayMonthChangedEventHandler DisplayMonthChanged;
 	    public delegate void DisplayMonthChangedEventHandler(MonthChangedEventArgs e);
 	    public event DayBoxDoubleClickedEventHandler DayBoxDoubleClicked;
@@ -45,19 +46,46 @@ namespace MonthCalendar
 		    }
 	    }
 
-	    public List<ReservationOnCalendar> MonthReservations {
-		    get { return _monthReservations; }
-		    set {
-			    _monthReservations = value;
+	    public ObservableCollection<ReservationOnCalendar> MonthReservations {
+		    get { return (ObservableCollection<ReservationOnCalendar>)GetValue(ReservationsOfMonthProperty); }
+		    set
+            {
+			    SetValue(ReservationsOfMonthProperty, value);
 			    BuildCalendarUi();
 		    }
 	    }
 
-	    private void MonthView_Loaded(object sender, RoutedEventArgs e)
+        public static readonly DependencyProperty ReservationsOfMonthProperty =
+            DependencyProperty.Register("MonthReservations", typeof(ObservableCollection<ReservationOnCalendar>),
+            typeof(MonthCalendarControl), new PropertyMetadata(new ObservableCollection<ReservationOnCalendar>(), MonthValuesChanged));
+
+        private static void MonthValuesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (MonthCalendarControl)sender;
+            var oldCollection = e.OldValue as INotifyCollectionChanged;
+            var newCollection = e.NewValue as INotifyCollectionChanged;
+
+            if (oldCollection != null)
+            {
+                oldCollection.CollectionChanged -= control.MonthReservationsChanged;
+            }
+
+            if (newCollection != null)
+            {
+                newCollection.CollectionChanged += control.MonthReservationsChanged;
+            }
+        }
+
+        private void MonthReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            BuildCalendarUi();
+        }
+
+        private void MonthView_Loaded(object sender, RoutedEventArgs e)
 	    {
 		    //-- Want to have the calendar show up, even if no appoints are assigned 
 		    //   Note - in my own app, appointments are loaded by a backgroundWorker thread to avoid a laggy UI
-		    if (_monthReservations == null)
+		    if (MonthReservations == null)
 			    BuildCalendarUi();
 	    }
 
@@ -105,11 +133,13 @@ namespace MonthCalendar
 				        dayBox.DayAppointmentsStack.Children.Add(apt);
 				    }
 
-			    } else if (_monthReservations != null) {
+                }
+                else if (MonthReservations != null)
+                {
 				    //-- Compiler warning about unpredictable results if using i (the iterator) in lambda, the 
 				    //   "hint" suggests declaring another var and set equal to iterator var
 				    int iday = i;
-				    var aptInDay = _monthReservations.FindAll(apt => Convert.ToDateTime(apt.StartTime).Day == iday);
+                    var aptInDay = MonthReservations.Where(apt => Convert.ToDateTime(apt.StartTime).Day == iday);
 				    foreach (var a in aptInDay) {
 					    var apt = new DayBoxAppointmentControl {DisplayText = {Text = a.Subject}, Tag = a.Ptr};
                         apt.Click += Reservation_Click;
