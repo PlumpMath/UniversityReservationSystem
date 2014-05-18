@@ -65,25 +65,12 @@ namespace UniversityReservationSystem.Interface.Models
 
         #region InterOp Stuff
 
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetTeacherEmail(IntPtr teacherPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetTeacherPhoneNumber(IntPtr teacherPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetTeacherAcademicTitle(IntPtr teacherPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr CreateNewTeacher(
-            string firstName, string lastName, string email,
-            string phoneNumber, string academicTitle);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern void EditTeacher(IntPtr studentPtr, string academicTitle, string firstName, string LastName, string phoneNumber, string email);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern void DeleteTeacher(IntPtr teacherPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetTeacherEmail(IntPtr teacherPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetTeacherPhoneNumber(IntPtr teacherPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetTeacherAcademicTitle(IntPtr teacherPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr CreateNewTeacher(string firstName, string lastName, string email, string phoneNumber, string academicTitle);
+        [DllImport("UniversityReservationSystem.dll")] private static extern void EditTeacher(IntPtr studentPtr, string academicTitle, string firstName, string LastName, string phoneNumber, string email);
+        [DllImport("UniversityReservationSystem.dll")] private static extern void DeleteTeacher(IntPtr teacherPtr);
 
         #endregion
     }

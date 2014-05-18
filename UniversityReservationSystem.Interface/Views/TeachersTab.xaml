@@ -5,7 +5,7 @@
              xmlns:monthCalendar="clr-namespace:MonthCalendar;assembly=MonthCalendar"
              xmlns:helpers="clr-namespace:UniversityReservationSystem.Interface.Helpers"
              x:Class="UniversityReservationSystem.Interface.Views.TeachersTab" 
-             mc:Ignorable="d" d:DesignWidth="866" d:DesignHeight="544"
+             mc:Ignorable="d" d:DesignWidth="999" d:DesignHeight="505"
              DataContext="{Binding Teachers, Source={StaticResource ViewModelLocator}}">
     <Grid>
         <Grid.RowDefinitions>
@@ -35,6 +35,18 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
+            <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" IsReadOnly="True"
+                      ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding ReservationsOfSelectedTeacher}"
+                      SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Width="2*" Header="Description" />
+                    <DataGridTextColumn Binding="{Binding DateOfStart, StringFormat=dd MMM yyyy\, HH:mm}" Width="2*" Header="Date Of Start" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                    <DataGridTextColumn Binding="{Binding DateOfEnd, StringFormat=dd MMM yyyy\, HH:mm}" Width="2*" Header="Date Of End" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                    <DataGridTextColumn Binding="{Binding Room.Name}" Width="2*" Header="Room" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                    <DataGridTextColumn Binding="{Binding Teacher.FullName}" Width="2*" Header="Teacher" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            
             <GridSplitter Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
             <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged" x:Name="CalendarStudents" Margin="10" />
         </Grid>

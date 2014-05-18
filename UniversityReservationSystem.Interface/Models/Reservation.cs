@@ -91,45 +91,18 @@ namespace UniversityReservationSystem.Interface.Models
 
         #region InterOp Stuff
 
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetReservationName(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationName(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern int GetReservationDateOfStart(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern int GetReservationDateOfEnd(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationTeacher(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationRoom(IntPtr reservPtr);
 
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern int GetReservationDateOfStart(IntPtr reservPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern int GetReservationDateOfEnd(IntPtr reservPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetReservationTeacher(IntPtr reservPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetReservationRoom(IntPtr reservPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern uint GetReservationGroupsCount(IntPtr reservPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetReservationGroup(IntPtr reservPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr CreateNewReservation(
-            string name, int dateOfStart, int dateOfEnd,
-            IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        [return: MarshalAs(UnmanagedType.I1)]
-        private static extern bool CheckCollisions(int dateOfStart,
-            int dateOfEnd, IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        [return: MarshalAs(UnmanagedType.I1)]
-        private static extern bool EditReservation(IntPtr reservPtr, 
-            string name, int dateOfStart, int dateOfEnd,
-            IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern void DeleteReservation(IntPtr reservPtr);
+        //[DllImport("UniversityReservationSystem.dll")] private static extern uint GetReservationGroupsCount(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationGroup(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr CreateNewReservation(string name, int dateOfStart, int dateOfEnd, IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.dll")] [return: MarshalAs(UnmanagedType.I1)] private static extern bool CheckCollisions(int dateOfStart, int dateOfEnd, IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.dll")] [return: MarshalAs(UnmanagedType.I1)] private static extern bool EditReservation(IntPtr reservPtr, string name, int dateOfStart, int dateOfEnd, IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern void DeleteReservation(IntPtr reservPtr);
 
         #endregion
     }

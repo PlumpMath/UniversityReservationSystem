@@ -97,6 +97,15 @@ extern "C"
 		return reservationCtrl->List.Count();
 	}
 
+	API uint			GetReservationsOfReservableCount(IReservable * reservablePtr)
+	{
+		return reservablePtr->Reservations.Count();
+	}
+	API Reservation *	GetReservationOfReservableByIndex(IReservable * reservablePtr, uint reservationIndex)
+	{
+		return &(reservablePtr->Reservations[reservationIndex]);
+	}
+
 	////////////////////////////////////
 	//////// GROUPS
 	////////////////////////////////////

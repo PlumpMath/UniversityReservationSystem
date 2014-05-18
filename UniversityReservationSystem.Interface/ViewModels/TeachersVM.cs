@@ -15,6 +15,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
         private bool _isFirstNameFocused;
 
         public ObservableCollection<Teacher> Teachers { get; set; }
+        public ObservableCollection<Reservation> ReservationsOfSelectedTeacher { get; set; }
 
         public string FirstName
         {
@@ -95,6 +96,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
             Teachers = App.Teachers;
             SelectedItem = Teachers.FirstOrDefault();
+            ReservationsOfSelectedTeacher = new ObservableCollection<Reservation>();
         }
 
 
@@ -118,6 +120,10 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             if (!isNull)
             {
+                if (ReservationsOfSelectedTeacher != null)
+                {
+                    SelectedItem.GetReservations(ReservationsOfSelectedTeacher);
+                }
                 AcademicTitle = SelectedItem.AcademicTitle;
                 FirstName = SelectedItem.FirstName;
                 LastName = SelectedItem.LastName;

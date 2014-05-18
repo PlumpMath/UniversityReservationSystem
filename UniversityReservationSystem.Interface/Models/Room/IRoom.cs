@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+
 // ReSharper disable once CheckNamespace
-
-
 namespace UniversityReservationSystem.Interface.Models
 {
-    public class IRoom : ISerializable
+    public class IRoom : IReservable
     {
         public string Name
         {
@@ -24,11 +23,8 @@ namespace UniversityReservationSystem.Interface.Models
 
         #region InterOp Stuff
 
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetRoomName(IntPtr roomPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern int GetRoomCapacity(IntPtr roomPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetRoomName(IntPtr roomPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern int GetRoomCapacity(IntPtr roomPtr);
 
         #endregion
     }

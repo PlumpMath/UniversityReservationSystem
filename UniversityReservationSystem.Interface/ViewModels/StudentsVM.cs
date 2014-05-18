@@ -16,6 +16,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         public ObservableCollection<Student> Students { get; set; }
         public ObservableCollection<Group> Groups { get; private set; }
+        public ObservableCollection<Reservation> ReservationsOfSelectedStudent { get; set; }
         public string FirstName
         {
             get { return _firstName; }
@@ -96,6 +97,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
             Groups = App.Groups;
             Students = App.Students;
             SelectedItem = Students.FirstOrDefault();
+            ReservationsOfSelectedStudent = new ObservableCollection<Reservation>();
         }
 
 
@@ -118,6 +120,10 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             if (!isNull)
             {
+                if (ReservationsOfSelectedStudent != null)
+                {
+                    SelectedItem.GetReservations(ReservationsOfSelectedStudent);
+                }
                 FirstName = SelectedItem.FirstName;
                 LastName = SelectedItem.LastName;
                 PassedTerms = SelectedItem.PassedTerms;

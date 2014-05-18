@@ -53,25 +53,12 @@ namespace UniversityReservationSystem.Interface.Models
 
         #region InterOp Stuff
 
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetStudentGroup(IntPtr studentPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern int GetStudentPassedTerms(IntPtr studentPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern double GetStudentAvgOfMarks(IntPtr studentPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr CreateNewStudent(
-            string firstName, string lastName, IntPtr groupPtr,
-            int passedTerms, double avgOfMarks);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern void EditStudent(IntPtr studentPtr, string firstName, string lastName, IntPtr groupPtr, int passedTerms, double avgOfMarks);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern void DeleteStudent(IntPtr studentPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetStudentGroup(IntPtr studentPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern int GetStudentPassedTerms(IntPtr studentPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern double GetStudentAvgOfMarks(IntPtr studentPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr CreateNewStudent(string firstName, string lastName, IntPtr groupPtr, int passedTerms, double avgOfMarks);
+        [DllImport("UniversityReservationSystem.dll")] private static extern void EditStudent(IntPtr studentPtr, string firstName, string lastName, IntPtr groupPtr, int passedTerms, double avgOfMarks);
+        [DllImport("UniversityReservationSystem.dll")] private static extern void DeleteStudent(IntPtr studentPtr);
 
         #endregion
     }

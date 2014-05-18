@@ -12,9 +12,9 @@ public:
 		Id = -1;
 	}
 
-	ISerializable(int _id)
+	ISerializable(int id)
 	{
-		Id = _id;
+		Id = id;
 	}
 
 	virtual void Serialize(ostream& os)

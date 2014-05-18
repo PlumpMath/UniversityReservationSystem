@@ -86,6 +86,7 @@
     <ClInclude Include="GroupController.h" />
     <ClInclude Include="IController.h" />
     <ClInclude Include="IPerson.h" />
+    <ClInclude Include="IReservable.h" />
     <ClInclude Include="IRoom.h" />
     <ClInclude Include="ISerializable.h" />
     <ClInclude Include="LabRoom.h" />

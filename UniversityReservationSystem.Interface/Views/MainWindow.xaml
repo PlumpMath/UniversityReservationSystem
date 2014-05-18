@@ -8,7 +8,7 @@
         <TabItem Header="Reservations">
             <Grid><views:ReservationsTab /></Grid>
         </TabItem>
-        <!--<TabItem Header="Rooms">
+        <TabItem Header="Rooms">
             <Grid><views:RoomsTab /></Grid>
         </TabItem>
         <TabItem Header="Teachers">
@@ -19,6 +19,6 @@
         </TabItem>
         <TabItem Header="Students">
             <Grid><views:StudentsTab /></Grid>
-        </TabItem>-->
+        </TabItem>
     </TabControl>
 </Window>

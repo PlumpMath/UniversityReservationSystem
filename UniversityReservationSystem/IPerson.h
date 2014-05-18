@@ -8,12 +8,11 @@ using namespace std;
 
 class Reservation;
 
-class IPerson : public ISerializable
+class IPerson : public IReservable
 {
 public:
 	string FirstName;
 	string LastName;
-	TAntiCollisionQueue<Reservation> Reservations;
 
 	IPerson(string _firstName, string _lastName)
 	{
@@ -25,7 +24,7 @@ public:
 	// Constructor used during deserialization
 	//
 	IPerson(string _firstName, string _lastName, int _id)
-		: ISerializable(_id)
+		: IReservable(_id)
 	{
 		FirstName = _firstName;
 		LastName = _lastName;

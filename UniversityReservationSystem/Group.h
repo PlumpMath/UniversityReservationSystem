@@ -8,14 +8,13 @@ using namespace std;
 
 class Student;
 
-class Group : public ISerializable
+class Group : public IReservable
 {
 public:
 	string DegreeCourse;
 	int Year;
 	int GroupNumber;
 	TAntiCollisionQueue<Student> Students;
-	TAntiCollisionQueue<Reservation> Reservations;
 
 	Group(string _degreeCourse, int _year, int _groupNumber)
 	{
@@ -28,7 +27,7 @@ public:
 	// Constructor used during deserialization
 	//
 	Group(string _degreeCourse, int _year, int _groupNumber, int _id)
-		: ISerializable(_id)
+		: IReservable(_id)
 	{
 		DegreeCourse = _degreeCourse;
 		Year = _year;
@@ -80,7 +79,7 @@ public:
 
 	void Serialize(ostream& os)
 	{
-		ISerializable::Serialize(os);
+		IReservable::ISerializable::Serialize(os);
 		os << DegreeCourse << endl
 			<< Year << endl
 			<< GroupNumber;

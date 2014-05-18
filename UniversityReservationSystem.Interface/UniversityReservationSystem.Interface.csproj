@@ -104,6 +104,7 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\DateTimeHelpers.cs" />
     <Compile Include="Helpers\FocusExtension.cs" />
+    <Compile Include="Models\IReservable.cs" />
     <Compile Include="Models\Room\IRoom.cs" />
     <Compile Include="Models\Person\IPerson.cs" />
     <Compile Include="Models\Person\Teacher.cs" />
