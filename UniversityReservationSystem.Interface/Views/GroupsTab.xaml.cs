@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using MonthCalendar;
+using UniversityReservationSystem.Interface.ViewModels;
 
 namespace UniversityReservationSystem.Interface.Views
 {
     public partial class GroupsTab : UserControl
     {
-        private List<Appointment> _myAppointmentsList = new List<Appointment>();
+        private List<ReservationOnCalendar> _reservation = new List<ReservationOnCalendar>();
         public GroupsTab()
         {
             InitializeComponent();
@@ -16,15 +19,17 @@ namespace UniversityReservationSystem.Interface.Views
 
         private void DisplayMonthChanged(MonthChangedEventArgs e)
         {
-            SetAppointments();
+            var vm = DataContext as GroupsVM;
+            if (vm != null)
+            {
+                vm.MonthChanged(_reservation, e.NewDisplayStartDate);
+                CalendarGroups.MonthReservations = _reservation;
+            }
         }
 
-        private void SetAppointments()
+        private void CalendarGroups_OnReservationClicked(IntPtr reservationptr)
         {
-            CalendarGroups.MonthAppointments = _myAppointmentsList.FindAll((apt) =>
-                apt.StartTime != null &&
-                Convert.ToDateTime(apt.StartTime).Month == CalendarGroups.DisplayStartDate.Month &&
-                Convert.ToDateTime(apt.StartTime).Year == CalendarGroups.DisplayStartDate.Year);
+            throw new NotImplementedException();
         }
     }
 }

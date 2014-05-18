@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight.Command;
 
 namespace UniversityReservationSystem.Interface.ViewModels
 {
-    public abstract class IViewModel<T> : ViewModelBase
+    public abstract class IViewModel<T> : ViewModelBase, IRefreshable
         where T: class
     {
         private T _selectedItem;
@@ -37,9 +37,15 @@ namespace UniversityReservationSystem.Interface.ViewModels
         protected abstract void SaveChanges();
         protected abstract void Delete();
         protected abstract void UpdateAfterSelection(bool isNull);
+        public abstract void Refresh();
 
         public RelayCommand AddCommand { get; private set; }
         public RelayCommand SaveChangesCommand { get; private set; }
         public RelayCommand DeleteCommand { get; private set; }
+    }
+
+    public interface IRefreshable
+    {
+        void Refresh();
     }
 }

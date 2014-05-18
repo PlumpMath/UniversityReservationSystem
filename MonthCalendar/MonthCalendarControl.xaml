@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
              HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-             MinHeight="340" MinWidth="500">
+             MinHeight="440" MinWidth="500">
     <UserControl.Resources>
         <LinearGradientBrush x:Key="GrayGradientBrush" EndPoint="0,1" StartPoint="0,0">
             <GradientStop Color="White" Offset="0"/>

@@ -7,9 +7,40 @@ namespace UniversityReservationSystem.Interface.Models
 {
     public class Reservation : ISerializable
     {
-        public Teacher Teacher { get; private set; }
-        public IRoom Room { get; private set; }
-        public Group Group { get; private set; }
+        private Teacher _teacher;
+        private IRoom _room;
+        private Group _group;
+
+        public Teacher Teacher
+        {
+            get { return _teacher; }
+            private set
+            {
+                if (Equals(value, _teacher)) return;
+                _teacher = value;
+                OnPropertyChanged();
+            }
+        }
+        public IRoom Room
+        {
+            get { return _room; }
+            private set
+            {
+                if (Equals(value, _room)) return;
+                _room = value;
+                OnPropertyChanged();
+            }
+        }
+        public Group Group
+        {
+            get { return _group; }
+            private set
+            {
+                if (Equals(value, _group)) return;
+                _group = value;
+                OnPropertyChanged();
+            }
+        }
         public string Name
         {
             get
@@ -32,6 +63,7 @@ namespace UniversityReservationSystem.Interface.Models
                 return GetReservationDateOfEnd(Ptr).ToDateTime();
             }
         }
+
         //public uint GroupsCount
         //{
         //    get { return GetReservationGroupsCount(Ptr); }

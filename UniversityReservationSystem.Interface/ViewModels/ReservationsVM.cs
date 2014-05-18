@@ -169,5 +169,10 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 SelectedTeacher = null;
             }
         }
+
+        public override void Refresh()
+        {
+            
+        }
     }
 }

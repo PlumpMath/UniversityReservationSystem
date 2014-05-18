@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MonthCalendar;
 using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
@@ -14,7 +16,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         public ObservableCollection<Group> Groups { get; private set; }
         public ObservableCollection<Student> StudentsOfSelectedGroup { get; set; }
-        public ObservableCollection<Reservation> ReservationsOfSelectedGroup { get; set; } 
+        public ObservableCollection<Reservation> ReservationsOfSelectedGroup { get; set; }
 
         public bool IsDegreeFocused
         {
@@ -73,6 +75,19 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SelectedItem = Groups.FirstOrDefault();
             StudentsOfSelectedGroup = new ObservableCollection<Student>();
             ReservationsOfSelectedGroup = new ObservableCollection<Reservation>();
+
+            UpdateAfterSelection(false);
+        }
+
+        public void MonthChanged(List<ReservationOnCalendar> reservationsOfMonth, DateTime newDisplayStartDate)
+        {
+            reservationsOfMonth.Clear();
+            reservationsOfMonth.AddRange(ReservationsOfSelectedGroup.Where(x =>
+                x.DateOfStart.Month == newDisplayStartDate.Month && x.DateOfStart.Year == newDisplayStartDate.Year)
+                .Select(item => new ReservationOnCalendar
+                {
+                    Ptr = item.Ptr, StartTime = item.DateOfStart, Subject = item.Name,
+                }));
         }
 
         protected override void Add()
@@ -90,7 +105,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SelectedItem.Edit(Year, DegreeCourse, GroupNumber);
         }
 
-        protected override void UpdateAfterSelection(bool isNull)
+        protected override sealed void UpdateAfterSelection(bool isNull)
         {
             if (!isNull)
             {
@@ -108,7 +123,14 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 Year = 0;
                 DegreeCourse = String.Empty;
                 GroupNumber = 0;
+                StudentsOfSelectedGroup.Clear();
+                ReservationsOfSelectedGroup.Clear();
             }
+        }
+
+        public override void Refresh()
+        {
+            
         }
 
         protected override void Delete()

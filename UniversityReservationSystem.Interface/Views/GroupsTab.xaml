@@ -27,7 +27,7 @@
 
         <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
 
-        <Grid Grid.Row="2" MaxHeight="400">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -67,7 +67,8 @@
                 </DataGrid>
             </Grid>
             <GridSplitter Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
-            <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged" x:Name="CalendarGroups" Margin="10" />
+            <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged"
+                                                x:Name="CalendarGroups" Margin="10" ReservationClicked="CalendarGroups_OnReservationClicked" />
         </Grid>
 
         <Grid Grid.Row="3" Margin="5">

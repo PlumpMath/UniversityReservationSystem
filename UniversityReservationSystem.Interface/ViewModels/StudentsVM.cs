@@ -98,6 +98,8 @@ namespace UniversityReservationSystem.Interface.ViewModels
             Students = App.Students;
             SelectedItem = Students.FirstOrDefault();
             ReservationsOfSelectedStudent = new ObservableCollection<Reservation>();
+
+            UpdateAfterSelection(false);
         }
 
 
@@ -116,7 +118,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SelectedItem.Edit(FirstName, LastName, SelectedGroup, PassedTerms, AverageOfMarks);
         }
 
-        protected override void UpdateAfterSelection(bool isNull)
+        protected override sealed void UpdateAfterSelection(bool isNull)
         {
             if (!isNull)
             {
@@ -137,7 +139,13 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 PassedTerms = 0;
                 AverageOfMarks = 0;
                 SelectedGroup = null;
+                ReservationsOfSelectedStudent.Clear();
             }
+        }
+
+        public override void Refresh()
+        {
+            
         }
 
         protected override void Delete()

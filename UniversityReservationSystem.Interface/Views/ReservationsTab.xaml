@@ -37,11 +37,11 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="3*" />
                     <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock HorizontalAlignment="Center" Text="Description" Grid.Row="0" Grid.Column="0" />
@@ -52,12 +52,14 @@
                 <TextBlock HorizontalAlignment="Center" Text="Date Of Start" Grid.Row="0" Grid.Column="1" />
                 <ex:DateTimePicker Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1"
                                    HorizontalContentAlignment="Center" Value="{Binding DateOfStart}"
-                                   TextAlignment="Center" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"/>
+                                   TextAlignment="Center" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                                   TimeFormatString="dd MM yyyy\, HH:mm"/>
 
                 <TextBlock HorizontalAlignment="Center" Text="Date Of End" Grid.Row="0" Grid.Column="2" />
                 <ex:DateTimePicker Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2"
                                    HorizontalContentAlignment="Center" Value="{Binding DateOfEnd}"
-                                   TextAlignment="Center" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"/>
+                                   TextAlignment="Center" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                                   TimeFormatString="dd MM yyyy\, HH:mm"/>
 
                 <TextBlock HorizontalAlignment="Center" Text="Room" Grid.Row="0" Grid.Column="3" />
                 <ComboBox Margin="5 0 5 0" DisplayMemberPath="Name" ItemsSource="{Binding Rooms}" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"

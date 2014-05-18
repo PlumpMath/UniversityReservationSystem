@@ -3,22 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:UniversityReservationSystem.Interface.Views"
         Title="University Reservation System (by Szymon Bartnik for dr Roman Starosolski)"
-        Height="650" Width="1000" MinWidth="500" MinHeight="300">
-    <TabControl Margin="5">
-        <TabItem Header="Reservations">
-            <Grid><views:ReservationsTab /></Grid>
+        Height="700" Width="1150" MinWidth="700" MinHeight="500">
+    <TabControl Margin="5" SelectionChanged="Selector_OnSelectionChanged">
+        <TabItem Header="Reservations" x:Name="ReservationsTab">
+            <Grid><views:ReservationsTab x:Name="ReservationsTabInside" /></Grid>
         </TabItem>
-        <TabItem Header="Rooms">
-            <Grid><views:RoomsTab /></Grid>
+        <TabItem Header="Rooms" x:Name="RoomsTab">
+            <Grid><views:RoomsTab x:Name="RoomsTabInside" /></Grid>
         </TabItem>
-        <TabItem Header="Teachers">
-            <Grid><views:TeachersTab /></Grid>
+        <TabItem Header="Teachers" x:Name="TeachersTab">
+            <Grid><views:TeachersTab x:Name="TeachersTabbInside" /></Grid>
         </TabItem>
-        <TabItem Header="Groups">
-            <Grid><views:GroupsTab /></Grid>
+        <TabItem Header="Groups" x:Name="GroupsTab">
+            <Grid><views:GroupsTab x:Name="GroupsTabInside" /></Grid>
         </TabItem>
-        <TabItem Header="Students">
-            <Grid><views:StudentsTab /></Grid>
+        <TabItem Header="Students" x:Name="StudentsTab">
+            <Grid><views:StudentsTab x:Name="StudentsTabInside" /></Grid>
         </TabItem>
     </TabControl>
 </Window>

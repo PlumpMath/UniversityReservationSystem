@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
@@ -16,13 +17,13 @@ namespace MonthCalendar
 	    private int _displayYear;
 	    private System.Globalization.Calendar sysCal;
 
-	    private List<Appointment> _monthAppointments;
+        private List<ReservationOnCalendar> _monthReservations;
 	    public event DisplayMonthChangedEventHandler DisplayMonthChanged;
 	    public delegate void DisplayMonthChangedEventHandler(MonthChangedEventArgs e);
 	    public event DayBoxDoubleClickedEventHandler DayBoxDoubleClicked;
 	    public delegate void DayBoxDoubleClickedEventHandler(NewAppointmentEventArgs e);
-	    public event AppointmentDblClickedEventHandler AppointmentDblClicked;
-	    public delegate void AppointmentDblClickedEventHandler(int appointmentId);
+	    public event ReservationClickedEventHandler ReservationClicked;
+	    public delegate void ReservationClickedEventHandler(IntPtr reservationPtr);
 
         public MonthCalendarControl()
         {
@@ -44,10 +45,10 @@ namespace MonthCalendar
 		    }
 	    }
 
-	    public List<Appointment> MonthAppointments {
-		    get { return _monthAppointments; }
+	    public List<ReservationOnCalendar> MonthReservations {
+		    get { return _monthReservations; }
 		    set {
-			    _monthAppointments = value;
+			    _monthReservations = value;
 			    BuildCalendarUi();
 		    }
 	    }
@@ -56,7 +57,7 @@ namespace MonthCalendar
 	    {
 		    //-- Want to have the calendar show up, even if no appoints are assigned 
 		    //   Note - in my own app, appointments are loaded by a backgroundWorker thread to avoid a laggy UI
-		    if (_monthAppointments == null)
+		    if (_monthReservations == null)
 			    BuildCalendarUi();
 	    }
 
@@ -104,14 +105,14 @@ namespace MonthCalendar
 				        dayBox.DayAppointmentsStack.Children.Add(apt);
 				    }
 
-			    } else if (_monthAppointments != null) {
+			    } else if (_monthReservations != null) {
 				    //-- Compiler warning about unpredictable results if using i (the iterator) in lambda, the 
 				    //   "hint" suggests declaring another var and set equal to iterator var
 				    int iday = i;
-				    var aptInDay = _monthAppointments.FindAll(apt => Convert.ToDateTime(apt.StartTime).Day == iday);
+				    var aptInDay = _monthReservations.FindAll(apt => Convert.ToDateTime(apt.StartTime).Day == iday);
 				    foreach (var a in aptInDay) {
-					    var apt = new DayBoxAppointmentControl {DisplayText = {Text = a.Subject}, Tag = a.AppointmentId};
-				        apt.MouseDoubleClick += Appointment_DoubleClick;
+					    var apt = new DayBoxAppointmentControl {DisplayText = {Text = a.Subject}, Tag = a.Ptr};
+                        apt.Click += Reservation_Click;
 					    dayBox.DayAppointmentsStack.Children.Add(apt);
 				    }
 			    }
@@ -139,7 +140,7 @@ namespace MonthCalendar
 	    {
 		    var ev = new MonthChangedEventArgs {OldDisplayStartDate = _DisplayStartDate};
 	        DisplayStartDate = _DisplayStartDate.AddMonths(monthsToAdd);
-		    ev.NewDisplayStartDate = _DisplayStartDate;
+		    ev.NewDisplayStartDate = DisplayStartDate;
 		    if (DisplayMonthChanged != null) {
 			    DisplayMonthChanged(ev);
 		    }
@@ -158,15 +159,15 @@ namespace MonthCalendar
 		    UpdateMonth(1);
 	    }
 
-	    private void Appointment_DoubleClick(object sender, MouseButtonEventArgs e)
+	    private void Reservation_Click(object sender, RoutedEventArgs e)
 	    {
 		    if (e.Source is DayBoxAppointmentControl) 
             {
 			    if (((DayBoxAppointmentControl)e.Source).Tag != null) 
                 {
 				    //-- You could put your own call to your appointment-displaying code or whatever here..
-				    if (AppointmentDblClicked != null) 
-					    AppointmentDblClicked(Convert.ToInt32(((DayBoxAppointmentControl)e.Source).Tag));
+				    if (ReservationClicked != null) 
+					    ReservationClicked((IntPtr)((DayBoxAppointmentControl)e.Source).Tag);
 			    }
 			    e.Handled = true;
 		    }

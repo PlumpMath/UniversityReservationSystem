@@ -97,6 +97,8 @@ namespace UniversityReservationSystem.Interface.ViewModels
             Teachers = App.Teachers;
             SelectedItem = Teachers.FirstOrDefault();
             ReservationsOfSelectedTeacher = new ObservableCollection<Reservation>();
+
+            UpdateAfterSelection(false);
         }
 
 
@@ -116,7 +118,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SelectedItem.Edit(AcademicTitle, FirstName, LastName, PhoneNumber, Email);
         }
 
-        protected override void UpdateAfterSelection(bool isNull)
+        protected override sealed void UpdateAfterSelection(bool isNull)
         {
             if (!isNull)
             {
@@ -136,7 +138,13 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 LastName = String.Empty;
                 Email = String.Empty;
                 PhoneNumber = String.Empty;
+                ReservationsOfSelectedTeacher.Clear();
             }
+        }
+
+        public override void Refresh()
+        {
+            
         }
 
         protected override void Delete()
