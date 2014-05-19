@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
+using UniversityReservationSystem.Interface.ViewModels;
 
 namespace UniversityReservationSystem.Interface.Models
 {
@@ -68,6 +69,8 @@ namespace UniversityReservationSystem.Interface.Models
         public void Delete()
         {
             DeleteGroup(Ptr);
+
+            App.Reservations.Where(x => x.Group.Ptr == Ptr).ToList().ForEach(x => App.Reservations.Remove(x));
         }
 
         public override string ToString()

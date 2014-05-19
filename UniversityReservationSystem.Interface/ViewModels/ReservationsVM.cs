@@ -150,6 +150,8 @@ namespace UniversityReservationSystem.Interface.ViewModels
             }
 
             RefreshDependencies();
+            ViewModelLocator.Groups.ReloadData();
+            ViewModelLocator.Students.ReloadData();
         }
 
         protected override void Delete()

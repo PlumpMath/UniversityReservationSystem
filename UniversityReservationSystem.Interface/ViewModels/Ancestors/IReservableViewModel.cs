@@ -38,6 +38,12 @@ namespace UniversityReservationSystem.Interface.ViewModels
             }
         }
 
+        public void ReloadData()
+        {
+            UpdateAfterSelection(false);
+            RefreshCalendar();
+        }
+
         public void RefreshCalendar()
         {
             MonthChanged(_currentDateOnCalendar);
