@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Controls;
 using MonthCalendar;
+using UniversityReservationSystem.Interface.ViewModels;
 
 namespace UniversityReservationSystem.Interface.Views
 {
     public partial class StudentsTab : UserControl
     {
-        private List<ReservationOnCalendar> _myAppointmentsList = new List<ReservationOnCalendar>();
-
         public StudentsTab()
         {
             InitializeComponent();
@@ -17,12 +15,20 @@ namespace UniversityReservationSystem.Interface.Views
 
         private void DisplayMonthChanged(MonthChangedEventArgs e)
         {
-            SetAppointments();
+            var vm = DataContext as StudentsVM;
+            if (vm != null)
+            {
+                vm.MonthChanged(e.NewDisplayStartDate);
+            }
         }
 
-        private void SetAppointments()
+        private void Calendar_OnReservationClicked(IntPtr reservationptr)
         {
-            
+            var vm = DataContext as StudentsVM;
+            if (vm != null)
+            {
+                vm.ReservationClicked(reservationptr);
+            }
         }
     }
 }

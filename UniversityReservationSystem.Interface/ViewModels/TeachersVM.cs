@@ -5,7 +5,7 @@ using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
 {
-    public class TeachersVM : IViewModel<Teacher>
+    public class TeachersVM : IReservableViewModel<Teacher>
     {
         private string _firstName;
         private string _lastName;
@@ -15,7 +15,6 @@ namespace UniversityReservationSystem.Interface.ViewModels
         private bool _isFirstNameFocused;
 
         public ObservableCollection<Teacher> Teachers { get; set; }
-        public ObservableCollection<Reservation> ReservationsOfSelectedTeacher { get; set; }
 
         public string FirstName
         {
@@ -96,7 +95,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
             Teachers = App.Teachers;
             SelectedItem = Teachers.FirstOrDefault();
-            ReservationsOfSelectedTeacher = new ObservableCollection<Reservation>();
+            ReservationsOfSelected = new ObservableCollection<Reservation>();
 
             UpdateAfterSelection(false);
         }
@@ -122,9 +121,9 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             if (!isNull)
             {
-                if (ReservationsOfSelectedTeacher != null)
+                if (ReservationsOfSelected != null)
                 {
-                    SelectedItem.GetReservations(ReservationsOfSelectedTeacher);
+                    SelectedItem.GetReservations(ReservationsOfSelected);
                 }
                 AcademicTitle = SelectedItem.AcademicTitle;
                 FirstName = SelectedItem.FirstName;
@@ -138,7 +137,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 LastName = String.Empty;
                 Email = String.Empty;
                 PhoneNumber = String.Empty;
-                ReservationsOfSelectedTeacher.Clear();
+                ReservationsOfSelected.Clear();
             }
         }
 
@@ -147,6 +146,11 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SelectedItem.Delete();
             Teachers.Remove(SelectedItem);
             SelectedItem = Teachers.LastOrDefault();
+        }
+
+        public void ReservationClicked(IntPtr reservationptr)
+        {
+            throw new NotImplementedException();
         }
     }
 }

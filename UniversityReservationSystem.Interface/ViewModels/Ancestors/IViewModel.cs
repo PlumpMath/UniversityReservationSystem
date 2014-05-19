@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
+// ReSharper disable once CheckNamespace
 namespace UniversityReservationSystem.Interface.ViewModels
 {
     public abstract class IViewModel<T> : ViewModelBase

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
 using MonthCalendar;
 using UniversityReservationSystem.Interface.ViewModels;
@@ -25,7 +22,7 @@ namespace UniversityReservationSystem.Interface.Views
             }
         }
 
-        private void CalendarGroups_OnReservationClicked(IntPtr reservationptr)
+        private void Calendar_OnReservationClicked(IntPtr reservationptr)
         {
             var vm = DataContext as GroupsVM;
             if (vm != null)

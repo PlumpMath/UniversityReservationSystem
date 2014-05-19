@@ -6,7 +6,7 @@ using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
 {
-    public class StudentsVM : IViewModel<Student>
+    public class StudentsVM : IReservableViewModel<Student>
     {
         private Group _selectedGroup;
         private string _firstName;
@@ -17,7 +17,6 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         public ObservableCollection<Student> Students { get; set; }
         public ObservableCollection<Group> Groups { get; private set; }
-        public ObservableCollection<Reservation> ReservationsOfSelectedStudent { get; set; }
         public string FirstName
         {
             get { return _firstName; }
@@ -98,7 +97,6 @@ namespace UniversityReservationSystem.Interface.ViewModels
             Groups = App.Groups;
             Students = App.Students;
             SelectedItem = Students.FirstOrDefault();
-            ReservationsOfSelectedStudent = new ObservableCollection<Reservation>();
 
             UpdateAfterSelection(false);
         }
@@ -123,9 +121,10 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             if (!isNull)
             {
-                if (ReservationsOfSelectedStudent != null)
+                if (ReservationsOfSelected != null)
                 {
-                    SelectedItem.GetReservations(ReservationsOfSelectedStudent);
+                    SelectedItem.GetReservations(ReservationsOfSelected);
+                    MonthChanged(_currentDateOnCalendar);
                 }
                 FirstName = SelectedItem.FirstName;
                 LastName = SelectedItem.LastName;
@@ -140,7 +139,8 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 PassedTerms = 0;
                 AverageOfMarks = 0;
                 SelectedGroup = null;
-                ReservationsOfSelectedStudent.Clear();
+                ReservationsOfSelected.Clear();
+                ReservationsOfSelectedOnCalendar.Clear();
             }
         }
 
@@ -151,6 +151,11 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SelectedItem.Delete();
             Students.Remove(SelectedItem);
             SelectedItem = Students.LastOrDefault();
+        }
+
+        public void ReservationClicked(IntPtr reservationptr)
+        {
+            throw new NotImplementedException();
         }
     }
 }

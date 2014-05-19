@@ -1,8 +1,9 @@
-﻿using UniversityReservationSystem.Interface.Models;
+﻿using System;
+using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
 {
-    public class RoomsVM : IViewModel<IRoom>
+    public class RoomsVM : IReservableViewModel<IRoom>
     {
         protected override void Add()
         {
@@ -22,6 +23,11 @@ namespace UniversityReservationSystem.Interface.ViewModels
         protected override void UpdateAfterSelection(bool isNull)
         {
             throw new System.NotImplementedException();
+        }
+
+        public void ReservationClicked(IntPtr reservationptr)
+        {
+            throw new NotImplementedException();
         }
     }
 }

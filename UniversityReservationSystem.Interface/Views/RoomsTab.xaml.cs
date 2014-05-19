@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
+using MonthCalendar;
+using UniversityReservationSystem.Interface.ViewModels;
 
 namespace UniversityReservationSystem.Interface.Views
 {
@@ -8,6 +11,24 @@ namespace UniversityReservationSystem.Interface.Views
         {
             InitializeComponent();
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this)) return;
+        }
+
+        private void DisplayMonthChanged(MonthChangedEventArgs e)
+        {
+            var vm = DataContext as RoomsVM;
+            if (vm != null)
+            {
+                vm.MonthChanged(e.NewDisplayStartDate);
+            }
+        }
+
+        private void Calendar_OnReservationClicked(IntPtr reservationptr)
+        {
+            var vm = DataContext as RoomsVM;
+            if (vm != null)
+            {
+                vm.ReservationClicked(reservationptr);
+            }
         }
     }
 }

@@ -111,7 +111,8 @@
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\GroupsVM.cs" />
-    <Compile Include="ViewModels\IViewModel.cs" />
+    <Compile Include="ViewModels\Ancestors\IReservableViewModel.cs" />
+    <Compile Include="ViewModels\Ancestors\IViewModel.cs" />
     <Compile Include="ViewModels\ReservationsVM.cs" />
     <Compile Include="ViewModels\RoomsVM.cs" />
     <Compile Include="ViewModels\StudentsVM.cs" />

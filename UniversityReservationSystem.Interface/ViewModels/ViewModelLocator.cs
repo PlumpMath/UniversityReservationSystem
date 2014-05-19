@@ -13,6 +13,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SimpleIoc.Default.Register<StudentsVM>();
             SimpleIoc.Default.Register<TeachersVM>();
             SimpleIoc.Default.Register<ReservationsVM>();
+            SimpleIoc.Default.Register<RoomsVM>();
         }
 
         public static GroupsVM Groups
@@ -44,6 +45,14 @@ namespace UniversityReservationSystem.Interface.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<ReservationsVM>();
+            }
+        }
+
+        public static RoomsVM Rooms
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<RoomsVM>();
             }
         }
         

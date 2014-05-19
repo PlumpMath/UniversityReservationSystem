@@ -36,7 +36,7 @@
             </Grid.ColumnDefinitions>
 
             <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" IsReadOnly="True"
-                      ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding ReservationsOfSelectedTeacher}"
+                      ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding ReservationsOfSelected}"
                       SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}" Width="2*" Header="Description" />
@@ -48,7 +48,8 @@
             </DataGrid>
             
             <GridSplitter Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
-            <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged" x:Name="CalendarStudents" Margin="10" />
+            <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged" MonthReservations="{Binding ReservationsOfSelectedOnCalendar}"
+                      Margin="10" ReservationClicked="Calendar_OnReservationClicked" />
         </Grid>
 
 

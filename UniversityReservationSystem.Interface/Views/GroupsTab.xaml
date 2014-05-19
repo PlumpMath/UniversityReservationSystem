@@ -56,7 +56,7 @@
                 <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
 
                 <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" IsReadOnly="True"
-                      ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="2" ItemsSource="{Binding ReservationsOfSelectedGroup}"
+                      ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="2" ItemsSource="{Binding ReservationsOfSelected}"
                       SelectionMode="Single" Grid.RowSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Name}" Width="2*" Header="Description" />
@@ -68,8 +68,8 @@
                 </DataGrid>
             </Grid>
             <GridSplitter Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
-            <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged" MonthReservations="{Binding ReservationsOnCalendar}"
-                      x:Name="CalendarGroups" Margin="10" ReservationClicked="CalendarGroups_OnReservationClicked" />
+            <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged" MonthReservations="{Binding ReservationsOfSelectedOnCalendar}"
+                      Margin="10" ReservationClicked="Calendar_OnReservationClicked" />
         </Grid>
 
         <Grid Grid.Row="3" Margin="5">

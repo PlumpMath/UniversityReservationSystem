@@ -7,18 +7,15 @@ using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
 {
-    public class GroupsVM : IViewModel<Group>
+    public class GroupsVM : IReservableViewModel<Group>
     {
         private int _year;
         private string _degreeCourse;
         private int _groupNumber;
         private bool _isDegreeFocused;
-        private DateTime _currentDateOnCalendar = DateTime.Now;
 
         public ObservableCollection<Group> Groups { get; private set; }
         public ObservableCollection<Student> StudentsOfSelectedGroup { get; set; }
-        public ObservableCollection<Reservation> ReservationsOfSelectedGroup { get; set; }
-        public ObservableCollection<ReservationOnCalendar> ReservationsOnCalendar { get; set; }
 
         public bool IsDegreeFocused
         {
@@ -73,33 +70,11 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             if (IsInDesignMode) return;
 
+            StudentsOfSelectedGroup = new ObservableCollection<Student>();
             Groups = App.Groups;
             SelectedItem = Groups.FirstOrDefault();
-            StudentsOfSelectedGroup = new ObservableCollection<Student>();
-            ReservationsOfSelectedGroup = new ObservableCollection<Reservation>();
-            ReservationsOnCalendar = new ObservableCollection<ReservationOnCalendar>();
 
             UpdateAfterSelection(false);
-        }
-
-        public void MonthChanged(DateTime newDisplayStartDate)
-        {
-            _currentDateOnCalendar = newDisplayStartDate;
-            ReservationsOnCalendar.Clear();
-
-            foreach (var item in ReservationsOfSelectedGroup.Where(x =>
-                x.DateOfStart.Month == newDisplayStartDate.Month && x.DateOfStart.Year == newDisplayStartDate.Year))
-            {
-                ReservationsOnCalendar.Add(new ReservationOnCalendar
-                {
-                    Ptr = item.Ptr, StartTime = item.DateOfStart, Subject = item.Name,
-                });
-            }
-        }
-
-        public void RefreshCalendar()
-        {
-            MonthChanged(_currentDateOnCalendar);
         }
 
         protected override void Add()
@@ -121,10 +96,10 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             if (!isNull)
             {
-                if (ReservationsOfSelectedGroup != null)
+                if (ReservationsOfSelected != null)
                 {
                     SelectedItem.GetStudents(StudentsOfSelectedGroup);
-                    SelectedItem.GetReservations(ReservationsOfSelectedGroup);
+                    SelectedItem.GetReservations(ReservationsOfSelected);
                     MonthChanged(_currentDateOnCalendar);
                 }
 
@@ -138,8 +113,8 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 DegreeCourse = String.Empty;
                 GroupNumber = 0;
                 StudentsOfSelectedGroup.Clear();
-                ReservationsOfSelectedGroup.Clear();
-                ReservationsOnCalendar.Clear();
+                ReservationsOfSelected.Clear();
+                ReservationsOfSelectedOnCalendar.Clear();
             }
         }
 
