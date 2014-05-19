@@ -124,6 +124,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 if (ReservationsOfSelected != null)
                 {
                     SelectedItem.GetReservations(ReservationsOfSelected);
+                    MonthChanged(_currentDateOnCalendar);
                 }
                 AcademicTitle = SelectedItem.AcademicTitle;
                 FirstName = SelectedItem.FirstName;
