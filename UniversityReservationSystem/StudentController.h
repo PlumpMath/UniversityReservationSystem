@@ -13,8 +13,8 @@ public:
 	bool Add(Student& toAdd)
 	{
 		Context.Students.Add(toAdd, true);
-		toAdd.StudentGroup.Students.Add(toAdd);
-		toAdd.Reservations.AddRange(toAdd.StudentGroup.Reservations);
+		toAdd.StudentGroup->Students.Add(toAdd);
+		toAdd.Reservations.AddRange(toAdd.StudentGroup->Reservations);
 		return true;
 	}
 
@@ -27,7 +27,7 @@ public:
 
 	bool Delete(Student& toDelete)
 	{
-		toDelete.StudentGroup.Students.Remove(toDelete);
+		toDelete.StudentGroup->Students.Remove(toDelete);
 
 		Context.Students.Delete(toDelete);
 		return true;

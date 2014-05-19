@@ -19,9 +19,6 @@ namespace UniversityReservationSystem.Interface.Models
             Ptr = thisPtr;
         }
 
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern int GetID(IntPtr groupPtr);
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -30,5 +27,11 @@ namespace UniversityReservationSystem.Interface.Models
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #region InterOpStuff
+
+        [DllImport("UniversityReservationSystem.dll")] private static extern int GetID(IntPtr groupPtr);
+
+        #endregion
     }
 }

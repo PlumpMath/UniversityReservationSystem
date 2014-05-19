@@ -28,7 +28,7 @@ public:
 		for (unsigned int i = 0; i < toDelete.Reservations.Count(); i++)
 		{
 			toDelete.Reservations[i].BoundGroups.RemoveReservation(toDelete.Reservations[i]);
-			toDelete.Reservations[i].BoundTeacher.RemoveReservation(toDelete.Reservations[i]);
+			toDelete.Reservations[i].BoundTeacher->RemoveReservation(toDelete.Reservations[i]);
 			Context.Reservations.Delete(toDelete.Reservations[i]);
 		}
 

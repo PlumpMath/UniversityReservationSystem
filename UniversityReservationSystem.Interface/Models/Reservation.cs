@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using UniversityReservationSystem.Interface.Helpers;
 
@@ -6,6 +7,40 @@ namespace UniversityReservationSystem.Interface.Models
 {
     public class Reservation : ISerializable
     {
+        private Teacher _teacher;
+        private IRoom _room;
+        private Group _group;
+
+        public Teacher Teacher
+        {
+            get { return _teacher; }
+            private set
+            {
+                if (Equals(value, _teacher)) return;
+                _teacher = value;
+                OnPropertyChanged();
+            }
+        }
+        public IRoom Room
+        {
+            get { return _room; }
+            private set
+            {
+                if (Equals(value, _room)) return;
+                _room = value;
+                OnPropertyChanged();
+            }
+        }
+        public Group Group
+        {
+            get { return _group; }
+            private set
+            {
+                if (Equals(value, _group)) return;
+                _group = value;
+                OnPropertyChanged();
+            }
+        }
         public string Name
         {
             get
@@ -28,47 +63,84 @@ namespace UniversityReservationSystem.Interface.Models
                 return GetReservationDateOfEnd(Ptr).ToDateTime();
             }
         }
-        public uint GroupsCount
+
+        //public uint GroupsCount
+        //{
+        //    get { return GetReservationGroupsCount(Ptr); }
+        //}
+
+        public Reservation(IntPtr thisPtr) : base(thisPtr)
         {
-            get { return GetReservationGroupsCount(Ptr); }
+            Teacher = App.Teachers.SingleOrDefault(x => x.Ptr == GetReservationTeacher(thisPtr));
+            Room = App.Rooms.SingleOrDefault(x => x.Ptr == GetReservationRoom(thisPtr));
+            Group = App.Groups.SingleOrDefault(x => x.Ptr == GetReservationGroup(thisPtr));
         }
 
-        public Reservation(IntPtr thisPtr) : base(thisPtr) { }
+        public Reservation(string name, DateTime dateOfStart, DateTime dateOfEnd, Teacher teacher, IRoom room, Group group)
+            : base(CreateNewReservation(name, dateOfStart.ToUnixTimestamp(), dateOfEnd.ToUnixTimestamp(), teacher.Ptr, room.Ptr, group.Ptr))
+        {
+            Teacher = teacher;
+            Room = room;
+            Group = group;
+        }
 
-        public Reservation(string name, DateTime dateOfStart, DateTime dateOfEnd, Teacher teacher, IRoom room)
-            : base(CreateNewReservation(name, dateOfStart.ToUnixTimestamp(), dateOfEnd.ToUnixTimestamp(), teacher.Ptr, room.Ptr)) { }
+        public static bool CheckCollisionsBeforeAdding(DateTime dateOfStart, DateTime dateOfEnd, Teacher teacher, IRoom room, Group group)
+        {
+            return CheckCollisions(dateOfStart.ToUnixTimestamp(), dateOfEnd.ToUnixTimestamp(), teacher.Ptr, room.Ptr, group.Ptr);
+        }
+
+        public bool Edit(string name, DateTime dateOfStart, DateTime dateOfEnd, Teacher teacher, IRoom room, Group group)
+        {
+            if (EditReservation(Ptr, name, dateOfStart.ToUnixTimestamp(), dateOfEnd.ToUnixTimestamp(), teacher.Ptr, room.Ptr, group.Ptr))
+            {
+                Teacher = App.Teachers.SingleOrDefault(x => x.Ptr == GetReservationTeacher(Ptr));
+                Room = App.Rooms.SingleOrDefault(x => x.Ptr == GetReservationRoom(Ptr));
+                Group = App.Groups.SingleOrDefault(x => x.Ptr == GetReservationGroup(Ptr));
+
+                OnPropertyChanged("Name");
+                OnPropertyChanged("DateOfStart");
+                OnPropertyChanged("DateOfEnd");
+                InvokePropertyChanged();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public void Delete()
+        {
+            DeleteReservation(Ptr);
+        }
 
         public override string ToString()
         {
-            return String.Format("ID: {0}, Name: {1}, DateOfStart: {2}, DateOfEnd: {3}, GroupsCount: {4}",
-                Id, Name, DateOfStart, DateOfEnd, GroupsCount);
+            return String.Format("Reservation Details:\nID: {0}, Name: {1},\nDateOfStart: {2},\nDateOfEnd: {3}\n\nTeacher:\n{4}\n\nRoom:\n{5}\n\nGroup:\n{6}",
+                Id, Name, DateOfStart, DateOfEnd, Teacher, Room, Group);
         }
 
         #region InterOp Stuff
 
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetReservationName(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationName(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern int GetReservationDateOfStart(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern int GetReservationDateOfEnd(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationTeacher(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationRoom(IntPtr reservPtr);
 
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern long GetReservationDateOfStart(IntPtr reservPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern long GetReservationDateOfEnd(IntPtr reservPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetReservationTeacher(IntPtr reservPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetReservationRoom(IntPtr reservPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern uint GetReservationGroupsCount(IntPtr reservPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr CreateNewReservation(
-            string name, long dateOfStart, long dateOfEnd,
-            IntPtr teacherPtr, IntPtr roomPtr);
+        //[DllImport("UniversityReservationSystem.dll")] private static extern uint GetReservationGroupsCount(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationGroup(IntPtr reservPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr CreateNewReservation(string name, int dateOfStart, int dateOfEnd, IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.dll")] [return: MarshalAs(UnmanagedType.I1)] private static extern bool CheckCollisions(int dateOfStart, int dateOfEnd, IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.dll")] [return: MarshalAs(UnmanagedType.I1)] private static extern bool EditReservation(IntPtr reservPtr, string name, int dateOfStart, int dateOfEnd, IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern void DeleteReservation(IntPtr reservPtr);
 
         #endregion
+
+        public void InvokePropertyChanged()
+        {
+            OnPropertyChanged("Teacher");
+            OnPropertyChanged("Room");
+            OnPropertyChanged("Group");
+        }
     }
 }

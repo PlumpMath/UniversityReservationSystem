@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 // ReSharper disable once CheckNamespace
 namespace UniversityReservationSystem.Interface.Models
 {
-    public abstract class IPerson : ISerializable
+    public abstract class IPerson : IReservable
     {
         public string FirstName
         {
@@ -23,15 +23,17 @@ namespace UniversityReservationSystem.Interface.Models
             }
         }
 
+        public virtual string FullName
+        {
+            get { return FirstName + " " + LastName; }
+        }
+
         protected IPerson(IntPtr thisPtr) : base(thisPtr) { }
 
         #region InterOp Stuff
 
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetPersonFirstName(IntPtr personPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetPersonLastName(IntPtr personPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetPersonFirstName(IntPtr personPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetPersonLastName(IntPtr personPtr);
 
         #endregion
     }

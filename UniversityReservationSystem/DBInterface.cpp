@@ -97,6 +97,15 @@ extern "C"
 		return reservationCtrl->List.Count();
 	}
 
+	API uint			GetReservationsOfReservableCount(IReservable * reservablePtr)
+	{
+		return reservablePtr->Reservations.Count();
+	}
+	API Reservation *	GetReservationOfReservableByIndex(IReservable * reservablePtr, uint reservationIndex)
+	{
+		return &(reservablePtr->Reservations[reservationIndex]);
+	}
+
 	////////////////////////////////////
 	//////// GROUPS
 	////////////////////////////////////
@@ -138,6 +147,15 @@ extern "C"
 	{
 		groupCtrl->Delete(*groupPtr);
 	}
+	API uint			FreeArrayOfPointersOnStudents(Student** array)
+	{
+		delete[] array;
+		return 0;
+	}
+	API Student**		GetArrayOfPointersOnStudents(Group * groupPtr)
+	{
+		return groupCtrl->GetStudents(groupPtr);
+	}
 
 	////////////////////////////////////
 	//////// PEOPLE
@@ -158,7 +176,7 @@ extern "C"
 
 	API Group *			GetStudentGroup(Student * studentPtr)
 	{
-		return &(studentPtr->StudentGroup);
+		return studentPtr->StudentGroup;
 	}
 	API int				GetStudentPassedTerms(Student * studentPtr)
 	{
@@ -170,7 +188,7 @@ extern "C"
 	}
 	API Student *		CreateNewStudent(strPtr firstName, strPtr lastName, Group * groupPtr, int passedTerms, double avgOfMarks)
 	{
-		Student * student = new Student(firstName, lastName, *groupPtr, passedTerms, avgOfMarks);
+		Student * student = new Student(firstName, lastName, groupPtr, passedTerms, avgOfMarks);
 		studentCtrl->Add(*student);
 
 		return student;
@@ -181,7 +199,7 @@ extern "C"
 
 		copy.FirstName = firstName;
 		copy.LastName = lastName;
-		copy.StudentGroup = *groupPtr;
+		copy.StudentGroup = groupPtr;
 		copy.PassedTerms = passedTerms;
 		copy.AverageOfMarksOfLastTerm = avgOfMarks;
 
@@ -215,6 +233,22 @@ extern "C"
 
 		return teacher;
 	}
+	API void			EditTeacher(Teacher * teacherPtr, strPtr academicTitle, strPtr firstName, strPtr lastName, strPtr phoneNumber, strPtr email)
+	{
+		Teacher copy(*teacherPtr);
+
+		copy.FirstName = firstName;
+		copy.LastName = lastName;
+		copy.AcademicTitle = academicTitle;
+		copy.PhoneNumber = phoneNumber;
+		copy.Email = email;
+
+		teacherCtrl->Edit(copy);
+	}
+	API void			DeleteTeacher(Teacher * teacherPtr)
+	{
+		teacherCtrl->Delete(*teacherPtr);
+	}
 
 	////////////////////////////////////
 	//////// ROOMS
@@ -247,21 +281,52 @@ extern "C"
 	}
 	API Teacher *		GetReservationTeacher(Reservation * reservationPtr)
 	{
-		return &(reservationPtr->BoundTeacher);
+		return reservationPtr->BoundTeacher;
 	}
 	API IRoom *			GetReservationRoom(Reservation * reservationPtr)
 	{
-		return &(reservationPtr->Room);
+		return reservationPtr->Room;
 	}
 	API uint			GetReservationGroupsCount(Reservation * reservationPtr)
 	{
 		return reservationPtr->BoundGroups.Count();
 	}
-	API Reservation *	CreateNewReservation(strPtr name, long int dateOfStart, long int dateOfEnd, Teacher * teacher, IRoom * room)
+	API Group *			GetReservationGroup(Reservation * reservationPtr)
 	{
-		Reservation * reservation = new Reservation(name, dateOfStart, dateOfEnd, *teacher, *room);
+		return &(reservationPtr->BoundGroups[0]);
+	}
+	API bool			CheckCollisions(long int dateOfStart, long int dateOfEnd, Teacher * teacher, IRoom * room, Group * group)
+	{
+		Reservation * reservation = new Reservation("test", dateOfStart, dateOfEnd, teacher, room);
+		reservation->BoundGroups.Add(*group);
+
+		return reservationCtrl->CheckCollisions(*reservation);
+	}
+	API Reservation *	CreateNewReservation(strPtr name, long int dateOfStart, long int dateOfEnd, Teacher * teacher, IRoom * room, Group * group)
+	{
+		Reservation * reservation = new Reservation(name, dateOfStart, dateOfEnd, teacher, room);
+
+		reservation->BoundGroups.Add(*group);
 		reservationCtrl->Add(*reservation);
 
 		return reservation;
+	}
+	API bool			EditReservation(Reservation * reservationPtr, strPtr name, long int dateOfStart, long int dateOfEnd, Teacher * teacher, IRoom * room, Group * group)
+	{
+		Reservation copy(*reservationPtr);
+
+		copy.Name = name;
+		copy.DateOfStart = dateOfStart;
+		copy.DateOfEnd = dateOfEnd;
+		copy.BoundTeacher = teacher;
+		copy.Room = room;
+		copy.BoundGroups.Clear(true);
+		copy.BoundGroups.Add(*group);
+
+		return reservationCtrl->Edit(copy);
+	}
+	API void			DeleteReservation(Reservation * reservationPtr)
+	{
+		reservationCtrl->Delete(*reservationPtr);
 	}
 }

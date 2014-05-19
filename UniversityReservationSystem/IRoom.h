@@ -1,15 +1,15 @@
 #pragma once
 
 #include "TAntiCollisionQueue.h"
+#include "IReservable.h"
 #include "ISerializable.h"
 
-class IRoom : public ISerializable
+class IRoom : public IReservable
 {
 public:
 	string Name;
 	string Type;
 	int Capacity;
-	TAntiCollisionQueue<Reservation> Reservations;
 
 	IRoom(string _name, string _type, int _capacity)
 	{
@@ -22,7 +22,7 @@ public:
 	// Constructor used during deserialization
 	//
 	IRoom(string _name, string _type, int _capacity, int _id)
-		: ISerializable(_id)
+		: IReservable(_id)
 	{
 		Name = _name;
 		Type = _type;

@@ -2,8 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
+using MonthCalendar;
 using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
@@ -14,6 +13,12 @@ namespace UniversityReservationSystem.Interface.ViewModels
         private string _degreeCourse;
         private int _groupNumber;
         private bool _isDegreeFocused;
+        private DateTime _currentDateOnCalendar = DateTime.Now;
+
+        public ObservableCollection<Group> Groups { get; private set; }
+        public ObservableCollection<Student> StudentsOfSelectedGroup { get; set; }
+        public ObservableCollection<Reservation> ReservationsOfSelectedGroup { get; set; }
+        public ObservableCollection<ReservationOnCalendar> ReservationsOnCalendar { get; set; }
 
         public bool IsDegreeFocused
         {
@@ -27,8 +32,6 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 }
             }
         }
-        public ObservableCollection<Group> Groups { get; private set; }
-
         public int Year
         {
             get { return _year; }
@@ -72,6 +75,31 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
             Groups = App.Groups;
             SelectedItem = Groups.FirstOrDefault();
+            StudentsOfSelectedGroup = new ObservableCollection<Student>();
+            ReservationsOfSelectedGroup = new ObservableCollection<Reservation>();
+            ReservationsOnCalendar = new ObservableCollection<ReservationOnCalendar>();
+
+            UpdateAfterSelection(false);
+        }
+
+        public void MonthChanged(DateTime newDisplayStartDate)
+        {
+            _currentDateOnCalendar = newDisplayStartDate;
+            ReservationsOnCalendar.Clear();
+
+            foreach (var item in ReservationsOfSelectedGroup.Where(x =>
+                x.DateOfStart.Month == newDisplayStartDate.Month && x.DateOfStart.Year == newDisplayStartDate.Year))
+            {
+                ReservationsOnCalendar.Add(new ReservationOnCalendar
+                {
+                    Ptr = item.Ptr, StartTime = item.DateOfStart, Subject = item.Name,
+                });
+            }
+        }
+
+        public void RefreshCalendar()
+        {
+            MonthChanged(_currentDateOnCalendar);
         }
 
         protected override void Add()
@@ -89,10 +117,17 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SelectedItem.Edit(Year, DegreeCourse, GroupNumber);
         }
 
-        protected override void UpdateAfterSelection(bool isNull)
+        protected override sealed void UpdateAfterSelection(bool isNull)
         {
             if (!isNull)
             {
+                if (ReservationsOfSelectedGroup != null)
+                {
+                    SelectedItem.GetStudents(StudentsOfSelectedGroup);
+                    SelectedItem.GetReservations(ReservationsOfSelectedGroup);
+                    MonthChanged(_currentDateOnCalendar);
+                }
+
                 Year = SelectedItem.Year;
                 DegreeCourse = SelectedItem.DegreeCourse;
                 GroupNumber = SelectedItem.GroupNumber;
@@ -102,14 +137,29 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 Year = 0;
                 DegreeCourse = String.Empty;
                 GroupNumber = 0;
+                StudentsOfSelectedGroup.Clear();
+                ReservationsOfSelectedGroup.Clear();
+                ReservationsOnCalendar.Clear();
             }
         }
 
         protected override void Delete()
         {
+            var studentsToDelete = App.Students.Where(student => student.Group.Ptr == SelectedItem.Ptr).ToList();
+
+            foreach (var student in studentsToDelete)
+            {
+                App.Students.Remove(student);
+            }
+
             SelectedItem.Delete();
             Groups.Remove(SelectedItem);
             SelectedItem = Groups.LastOrDefault();
+        }
+
+        public void ReservationClicked(IntPtr reservationptr)
+        {
+            MessageBox.Show(App.Reservations.Single(x => x.Ptr == reservationptr).ToString());
         }
     }
 }

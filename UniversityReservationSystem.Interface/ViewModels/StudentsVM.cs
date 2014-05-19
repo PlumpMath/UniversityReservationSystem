@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
@@ -16,6 +17,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         public ObservableCollection<Student> Students { get; set; }
         public ObservableCollection<Group> Groups { get; private set; }
+        public ObservableCollection<Reservation> ReservationsOfSelectedStudent { get; set; }
         public string FirstName
         {
             get { return _firstName; }
@@ -96,6 +98,9 @@ namespace UniversityReservationSystem.Interface.ViewModels
             Groups = App.Groups;
             Students = App.Students;
             SelectedItem = Students.FirstOrDefault();
+            ReservationsOfSelectedStudent = new ObservableCollection<Reservation>();
+
+            UpdateAfterSelection(false);
         }
 
 
@@ -103,7 +108,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             var studentToAdd = new Student(
                 "Type first name", "Type last name",
-                App.Groups.First(), 0, 0);
+                Groups.First(), 0, 0);
             Students.Add(studentToAdd);
             SelectedItem = Students.Last();
             IsFirstNameFocused = true;
@@ -114,10 +119,14 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SelectedItem.Edit(FirstName, LastName, SelectedGroup, PassedTerms, AverageOfMarks);
         }
 
-        protected override void UpdateAfterSelection(bool isNull)
+        protected override sealed void UpdateAfterSelection(bool isNull)
         {
             if (!isNull)
             {
+                if (ReservationsOfSelectedStudent != null)
+                {
+                    SelectedItem.GetReservations(ReservationsOfSelectedStudent);
+                }
                 FirstName = SelectedItem.FirstName;
                 LastName = SelectedItem.LastName;
                 PassedTerms = SelectedItem.PassedTerms;
@@ -131,11 +140,14 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 PassedTerms = 0;
                 AverageOfMarks = 0;
                 SelectedGroup = null;
+                ReservationsOfSelectedStudent.Clear();
             }
         }
 
         protected override void Delete()
         {
+            ViewModelLocator.Groups.StudentsOfSelectedGroup.Remove(SelectedItem);
+
             SelectedItem.Delete();
             Students.Remove(SelectedItem);
             SelectedItem = Students.LastOrDefault();

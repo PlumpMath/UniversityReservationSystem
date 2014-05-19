@@ -7,8 +7,6 @@ namespace UniversityReservationSystem.Interface.Views
 {
     public partial class TeachersTab : UserControl
     {
-        private List<Appointment> _myAppointmentsList = new List<Appointment>();
-
         public TeachersTab()
         {
             InitializeComponent();
@@ -22,10 +20,7 @@ namespace UniversityReservationSystem.Interface.Views
 
         private void SetAppointments()
         {
-            CalendarStudents.MonthAppointments = _myAppointmentsList.FindAll((apt) =>
-                apt.StartTime != null &&
-                Convert.ToDateTime(apt.StartTime).Month == CalendarStudents.DisplayStartDate.Month &&
-                Convert.ToDateTime(apt.StartTime).Year == CalendarStudents.DisplayStartDate.Year);
+            
         }
     }
 }

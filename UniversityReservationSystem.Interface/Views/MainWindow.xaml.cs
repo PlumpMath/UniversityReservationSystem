@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using MonthCalendar;
+using System.Windows.Controls;
+using UniversityReservationSystem.Interface.ViewModels;
+using Xceed.Wpf.AvalonDock.Controls;
 
 namespace UniversityReservationSystem.Interface.Views
 {
     public partial class MainWindow
     {
-        private List<Appointment> _myAppointmentsList = new List<Appointment>();
-
         public MainWindow()
         {
             InitializeComponent();

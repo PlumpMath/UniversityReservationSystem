@@ -20,11 +20,11 @@ public:
 	string Name;
 	time_t DateOfStart;
 	time_t DateOfEnd;
-	Teacher& BoundTeacher;
+	Teacher* BoundTeacher;
 	TAntiCollisionQueue<Group> BoundGroups;
-	IRoom& Room;
+	IRoom* Room;
 
-	Reservation(string _name, time_t _dateOfStart, time_t _dateOfEnd, Teacher& _teacher, IRoom& _room)
+	Reservation(string _name, time_t _dateOfStart, time_t _dateOfEnd, Teacher* _teacher, IRoom* _room)
 		: BoundTeacher(_teacher), Room(_room)
 	{
 		Name = _name;
@@ -36,7 +36,7 @@ public:
 	//
 	// Constructor used during deserialization
 	//
-	Reservation(string _name, time_t _dateOfStart, time_t _dateOfEnd, Teacher& _teacher, IRoom& _room, int _id)
+	Reservation(string _name, time_t _dateOfStart, time_t _dateOfEnd, Teacher* _teacher, IRoom* _room, int _id)
 		: ISerializable(_id), BoundTeacher(_teacher), Room(_room)
 	{
 		Name = _name;
@@ -70,8 +70,8 @@ public:
 		getline(is, stringBuffer);
 		int numOfBoundGroups = stoi(stringBuffer);
 
-		Teacher& teacher = context.Teachers.FindById(teacherId);
-		IRoom& room = context.Rooms.FindById(roomId);
+		Teacher* teacher = &(context.Teachers.FindById(teacherId));
+		IRoom* room = &(context.Rooms.FindById(roomId));
 
 		Reservation * toAdd = new Reservation(name, dateStart, dateEnd, teacher, room, id);
 		
@@ -93,8 +93,8 @@ public:
 		os << Name << endl
 			<< DateOfStart << endl
 			<< DateOfEnd << endl
-			<< BoundTeacher.Id << endl
-			<< Room.Id << endl
+			<< BoundTeacher->Id << endl
+			<< Room->Id << endl
 			<< numOfBoundGroups;
 
 		// writing reservation's bound groups' IDs 
@@ -114,7 +114,7 @@ public:
 	//
 	bool CheckCollisions(Reservation& toCheck)
 	{
-		return ((toCheck.DateOfStart >= this->DateOfStart && toCheck.DateOfStart <= this->DateOfEnd) ||
-			(this->DateOfStart >= toCheck.DateOfStart && this->DateOfStart <= this->DateOfEnd));
+		return !((toCheck.DateOfStart >= this->DateOfStart && toCheck.DateOfStart <= this->DateOfEnd) ||
+			(this->DateOfStart >= toCheck.DateOfStart && this->DateOfStart <= toCheck.DateOfEnd));
 	}
 };

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.InteropServices;
+using UniversityReservationSystem.Interface.Views;
 
 // ReSharper disable once CheckNamespace
 namespace UniversityReservationSystem.Interface.Models
@@ -31,11 +32,13 @@ namespace UniversityReservationSystem.Interface.Models
         public void Edit(string firstName, string lastName, Group group, int passedTerms, double avgOfMarks)
         {
             EditStudent(Ptr, firstName, lastName, group.Ptr, passedTerms, avgOfMarks);
+            Group = App.Groups.SingleOrDefault(x => x.Ptr == GetStudentGroup(Ptr));
+
             OnPropertyChanged("FirstName");
             OnPropertyChanged("LastName");
-            OnPropertyChanged("Group");
             OnPropertyChanged("PassedTerms");
             OnPropertyChanged("AvgOfMarks");
+            InvokePropertyChanged();
         }
 
         public void Delete()
@@ -51,26 +54,18 @@ namespace UniversityReservationSystem.Interface.Models
 
         #region InterOp Stuff
 
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr GetStudentGroup(IntPtr studentPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern int GetStudentPassedTerms(IntPtr studentPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern double GetStudentAvgOfMarks(IntPtr studentPtr);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern IntPtr CreateNewStudent(
-            string firstName, string lastName, IntPtr groupPtr,
-            int passedTerms, double avgOfMarks);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern void EditStudent(IntPtr studentPtr, string firstName, string lastName, IntPtr groupPtr, int passedTerms, double avgOfMarks);
-
-        [DllImport("UniversityReservationSystem.dll")]
-        private static extern void DeleteStudent(IntPtr studentPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetStudentGroup(IntPtr studentPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern int GetStudentPassedTerms(IntPtr studentPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern double GetStudentAvgOfMarks(IntPtr studentPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr CreateNewStudent(string firstName, string lastName, IntPtr groupPtr, int passedTerms, double avgOfMarks);
+        [DllImport("UniversityReservationSystem.dll")] private static extern void EditStudent(IntPtr studentPtr, string firstName, string lastName, IntPtr groupPtr, int passedTerms, double avgOfMarks);
+        [DllImport("UniversityReservationSystem.dll")] private static extern void DeleteStudent(IntPtr studentPtr);
 
         #endregion
+
+        public void InvokePropertyChanged()
+        {
+            OnPropertyChanged("Group");
+        }
     }
 }

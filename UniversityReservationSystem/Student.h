@@ -15,9 +15,9 @@ class Student : public IPerson
 public:
 	int PassedTerms;
 	double AverageOfMarksOfLastTerm;
-	Group& StudentGroup;
+	Group* StudentGroup;
 
-	Student(string _firstName, string _lastName, Group& _group, int _passedTerms, double _averageOfMarksOfLastTerm)
+	Student(string _firstName, string _lastName, Group* _group, int _passedTerms, double _averageOfMarksOfLastTerm)
 		: IPerson(_firstName, _lastName), StudentGroup(_group)
 	{
 		PassedTerms = _passedTerms;
@@ -27,7 +27,7 @@ public:
 	//
 	// Constructor used during deserialization
 	//
-	Student(string _firstName, string _lastName, Group& _group, int _passedTerms, double _averageOfMarksOfLastTerm, int _id)
+	Student(string _firstName, string _lastName, Group* _group, int _passedTerms, double _averageOfMarksOfLastTerm, int _id)
 		: IPerson(_firstName, _lastName, _id), StudentGroup(_group)
 	{
 		PassedTerms = _passedTerms;
@@ -62,7 +62,7 @@ public:
 		getline(is, stringBuffer);
 		int groupId = stoi(stringBuffer);
 
-		Group& group = context.Groups.FindById(groupId);
+		Group* group = &context.Groups.FindById(groupId);
 
 		return *(new Student(firstName, lastName, group, passedTerms, average, id ));
 	}
@@ -73,12 +73,13 @@ public:
 		this->PassedTerms = editedStudent.PassedTerms;
 		this->AverageOfMarksOfLastTerm = editedStudent.AverageOfMarksOfLastTerm;
 
-		if (StudentGroup != editedStudent.StudentGroup)
+		if (*StudentGroup != *editedStudent.StudentGroup)
 		{
 			this->Reservations.Clear();
-			this->StudentGroup.Students.Remove(*this);
+			this->StudentGroup->Students.Remove(*this);
+			editedStudent.StudentGroup->Students.Add(*this);
 			this->StudentGroup = editedStudent.StudentGroup;
-			this->Reservations.AddRange(editedStudent.StudentGroup.Reservations);
+			this->Reservations.AddRange(this->StudentGroup->Reservations);
 		}
 	}
 
@@ -87,6 +88,6 @@ public:
 		IPerson::Serialize(os);
 		os << PassedTerms << endl
 			<< AverageOfMarksOfLastTerm << endl
-			<< StudentGroup.Id;
+			<< StudentGroup->Id;
 	}
 };

@@ -1,4 +1,7 @@
-﻿using System.Globalization;
+﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
@@ -16,13 +19,12 @@ namespace MonthCalendar
 	    private int _displayYear;
 	    private System.Globalization.Calendar sysCal;
 
-	    private List<Appointment> _monthAppointments;
 	    public event DisplayMonthChangedEventHandler DisplayMonthChanged;
 	    public delegate void DisplayMonthChangedEventHandler(MonthChangedEventArgs e);
 	    public event DayBoxDoubleClickedEventHandler DayBoxDoubleClicked;
 	    public delegate void DayBoxDoubleClickedEventHandler(NewAppointmentEventArgs e);
-	    public event AppointmentDblClickedEventHandler AppointmentDblClicked;
-	    public delegate void AppointmentDblClickedEventHandler(int appointmentId);
+	    public event ReservationClickedEventHandler ReservationClicked;
+	    public delegate void ReservationClickedEventHandler(IntPtr reservationPtr);
 
         public MonthCalendarControl()
         {
@@ -44,19 +46,46 @@ namespace MonthCalendar
 		    }
 	    }
 
-	    public List<Appointment> MonthAppointments {
-		    get { return _monthAppointments; }
-		    set {
-			    _monthAppointments = value;
+	    public ObservableCollection<ReservationOnCalendar> MonthReservations {
+		    get { return (ObservableCollection<ReservationOnCalendar>)GetValue(ReservationsOfMonthProperty); }
+		    set
+            {
+			    SetValue(ReservationsOfMonthProperty, value);
 			    BuildCalendarUi();
 		    }
 	    }
 
-	    private void MonthView_Loaded(object sender, RoutedEventArgs e)
+        public static readonly DependencyProperty ReservationsOfMonthProperty =
+            DependencyProperty.Register("MonthReservations", typeof(ObservableCollection<ReservationOnCalendar>),
+            typeof(MonthCalendarControl), new PropertyMetadata(new ObservableCollection<ReservationOnCalendar>(), MonthValuesChanged));
+
+        private static void MonthValuesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (MonthCalendarControl)sender;
+            var oldCollection = e.OldValue as INotifyCollectionChanged;
+            var newCollection = e.NewValue as INotifyCollectionChanged;
+
+            if (oldCollection != null)
+            {
+                oldCollection.CollectionChanged -= control.MonthReservationsChanged;
+            }
+
+            if (newCollection != null)
+            {
+                newCollection.CollectionChanged += control.MonthReservationsChanged;
+            }
+        }
+
+        private void MonthReservationsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            BuildCalendarUi();
+        }
+
+        private void MonthView_Loaded(object sender, RoutedEventArgs e)
 	    {
 		    //-- Want to have the calendar show up, even if no appoints are assigned 
 		    //   Note - in my own app, appointments are loaded by a backgroundWorker thread to avoid a laggy UI
-		    if (_monthAppointments == null)
+		    if (MonthReservations == null)
 			    BuildCalendarUi();
 	    }
 
@@ -104,14 +133,16 @@ namespace MonthCalendar
 				        dayBox.DayAppointmentsStack.Children.Add(apt);
 				    }
 
-			    } else if (_monthAppointments != null) {
+                }
+                else if (MonthReservations != null)
+                {
 				    //-- Compiler warning about unpredictable results if using i (the iterator) in lambda, the 
 				    //   "hint" suggests declaring another var and set equal to iterator var
 				    int iday = i;
-				    var aptInDay = _monthAppointments.FindAll(apt => Convert.ToDateTime(apt.StartTime).Day == iday);
+                    var aptInDay = MonthReservations.Where(apt => Convert.ToDateTime(apt.StartTime).Day == iday);
 				    foreach (var a in aptInDay) {
-					    var apt = new DayBoxAppointmentControl {DisplayText = {Text = a.Subject}, Tag = a.AppointmentId};
-				        apt.MouseDoubleClick += Appointment_DoubleClick;
+					    var apt = new DayBoxAppointmentControl {DisplayText = {Text = a.Subject}, Tag = a.Ptr};
+                        apt.Click += Reservation_Click;
 					    dayBox.DayAppointmentsStack.Children.Add(apt);
 				    }
 			    }
@@ -139,7 +170,7 @@ namespace MonthCalendar
 	    {
 		    var ev = new MonthChangedEventArgs {OldDisplayStartDate = _DisplayStartDate};
 	        DisplayStartDate = _DisplayStartDate.AddMonths(monthsToAdd);
-		    ev.NewDisplayStartDate = _DisplayStartDate;
+		    ev.NewDisplayStartDate = DisplayStartDate;
 		    if (DisplayMonthChanged != null) {
 			    DisplayMonthChanged(ev);
 		    }
@@ -158,15 +189,15 @@ namespace MonthCalendar
 		    UpdateMonth(1);
 	    }
 
-	    private void Appointment_DoubleClick(object sender, MouseButtonEventArgs e)
+	    private void Reservation_Click(object sender, RoutedEventArgs e)
 	    {
 		    if (e.Source is DayBoxAppointmentControl) 
             {
 			    if (((DayBoxAppointmentControl)e.Source).Tag != null) 
                 {
 				    //-- You could put your own call to your appointment-displaying code or whatever here..
-				    if (AppointmentDblClicked != null) 
-					    AppointmentDblClicked(Convert.ToInt32(((DayBoxAppointmentControl)e.Source).Tag));
+				    if (ReservationClicked != null) 
+					    ReservationClicked((IntPtr)((DayBoxAppointmentControl)e.Source).Tag);
 			    }
 			    e.Handled = true;
 		    }

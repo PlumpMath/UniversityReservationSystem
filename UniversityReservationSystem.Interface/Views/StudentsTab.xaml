@@ -5,7 +5,7 @@
              xmlns:monthCalendar="clr-namespace:MonthCalendar;assembly=MonthCalendar"
              xmlns:helpers="clr-namespace:UniversityReservationSystem.Interface.Helpers"
              x:Class="UniversityReservationSystem.Interface.Views.StudentsTab" 
-             mc:Ignorable="d" d:DesignWidth="999.5" d:DesignHeight="505.5"
+             mc:Ignorable="d" d:DesignWidth="999.5" 
              DataContext="{Binding Students, Source={StaticResource ViewModelLocator}}">
     <Grid>
         <Grid.RowDefinitions>
@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsReadOnly="True"
                   ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding Students}"
-                  SelectionMode="Single">
+                  SelectionMode="Single" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding FirstName}" Width="2*" Header="First Name" />
                 <DataGridTextColumn Binding="{Binding LastName}" Width="2*" Header="Last Name" />
@@ -29,12 +29,24 @@
 
         <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
 
-        <Grid Grid.Row="2" MaxHeight="400">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+
+            <DataGrid AutoGenerateColumns="False" RowHeaderWidth="0" IsReadOnly="True"
+                      ColumnHeaderStyle="{StaticResource HorizontalCenterHeaderStyle}" Grid.Row="0" ItemsSource="{Binding ReservationsOfSelectedStudent}"
+                      SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Width="2*" Header="Description" />
+                    <DataGridTextColumn Binding="{Binding DateOfStart, StringFormat=dd MMM yyyy\, HH:mm}" Width="2*" Header="Date Of Start" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                    <DataGridTextColumn Binding="{Binding DateOfEnd, StringFormat=dd MMM yyyy\, HH:mm}" Width="2*" Header="Date Of End" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                    <DataGridTextColumn Binding="{Binding Room.Name}" Width="2*" Header="Room" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                    <DataGridTextColumn Binding="{Binding Teacher.FullName}" Width="2*" Header="Teacher" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
 
             <GridSplitter Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
             <monthCalendar:MonthCalendarControl Grid.Column="2" DisplayMonthChanged="DisplayMonthChanged" x:Name="CalendarStudents" Margin="10" />
@@ -43,11 +55,11 @@
 
         <Grid Grid.Row="3" Margin="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="6*" />
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Content="Add new" Grid.Column="0" Command="{Binding AddCommand}" />
+            <Button Content="Add new" Grid.Column="0" Command="{Binding AddCommand}" IsEnabled="{Binding Groups.Count}" Padding="8 0"  />
             <Grid Grid.Column="1" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -63,19 +75,20 @@
 
                 <TextBlock HorizontalAlignment="Center" Text="First Name" Grid.Row="0" Grid.Column="0" />
                 <TextBox Margin="5 0 5 0" Text="{Binding FirstName}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="0" helpers:FocusExtension.IsFocused="{Binding IsFirstNameFocused}" />
+                         Grid.Row="1" Grid.Column="0" helpers:FocusExtension.IsFocused="{Binding IsFirstNameFocused}"
+                         IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
                 <TextBlock HorizontalAlignment="Center" Text="Last Name" Grid.Row="0" Grid.Column="1" />
                 <TextBox Margin="5 0 5 0" Text="{Binding LastName}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="1" />
+                         Grid.Row="1" Grid.Column="1" IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
                 <TextBlock HorizontalAlignment="Center" Text="Group" Grid.Row="0" Grid.Column="2" />
-                <ComboBox Margin="5 0 5 0" DisplayMemberPath="ExInfo" ItemsSource="{Binding Groups}"
+                <ComboBox Margin="5 0 5 0" DisplayMemberPath="ExInfo" ItemsSource="{Binding Groups}" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
                           HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2" SelectedItem="{Binding SelectedGroup}" />
                 <TextBlock HorizontalAlignment="Center" Text="Passed Terms" Grid.Row="0" Grid.Column="3" />
                 <TextBox Margin="5 0 5 0" Text="{Binding PassedTerms}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="3" />
+                         Grid.Row="1" Grid.Column="3" IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
                 <TextBlock HorizontalAlignment="Center" Text="Avg Of Marks" Grid.Row="0" Grid.Column="4" />
                 <TextBox Margin="5 0 5 0" Text="{Binding AverageOfMarks}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="4" />
+                         Grid.Row="1" Grid.Column="4" IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
             </Grid>
 
             <Grid Grid.Column="2">
@@ -86,7 +99,7 @@
                 </Grid.RowDefinitions>
                 <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
                         Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
-                <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}" Padding="8 0"
                         Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
             </Grid>
         </Grid>

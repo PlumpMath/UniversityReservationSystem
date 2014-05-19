@@ -6,10 +6,10 @@ namespace UniversityReservationSystem.Interface.Helpers
     {
         public static int ToUnixTimestamp(this DateTime dateTime)
         {
-            return  (int)((dateTime - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds);
+            return (int)((dateTime - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds);
         }
 
-        public static DateTime ToDateTime(this long timeStamp)
+        public static DateTime ToDateTime(this int timeStamp)
         {
             var unixEpochDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             return unixEpochDateTime.AddSeconds(timeStamp).ToLocalTime();

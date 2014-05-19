@@ -12,18 +12,15 @@ class TAntiCollisionQueue : public TDataQueue<T>
 public:
 	bool CheckCollisions(Reservation& reservation)
 	{
-		bool collisionsDetected = false;
-
 		for (unsigned int i = 0; i < list.size(); i++)
 		{
-			if (list[i]->CheckCollisions(reservation))
+			if (!(list[i]->CheckCollisions(reservation)))
 			{
-				collisionsDetected;
-				break;
+				return false;
 			}
 		}
 
-		return collisionsDetected;
+		return true;
 	}
 
 	void AddReservation(Reservation & reservation)
@@ -40,5 +37,17 @@ public:
 		{
 			list[i]->RemoveReservation(reservation);
 		}
+	}
+
+	T** GetArrayOfPointers()
+	{
+		T** toReturn = new T*[this->Count()];
+
+		for (int i = 0; i < this->Count(); i++)
+		{
+			toReturn[i] = &((*this)[i]);
+		}
+
+		return toReturn;
 	}
 };

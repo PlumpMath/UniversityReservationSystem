@@ -52,7 +52,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Appointment.cs" />
+    <Compile Include="ReservationOnCalendar.cs" />
     <Compile Include="DayBoxAppointmentControl.xaml.cs">
       <DependentUpon>DayBoxAppointmentControl.xaml</DependentUpon>
     </Compile>
