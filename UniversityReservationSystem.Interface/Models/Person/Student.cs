@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.InteropServices;
+using UniversityReservationSystem.Interface.ViewModels;
 using UniversityReservationSystem.Interface.Views;
 
 // ReSharper disable once CheckNamespace
@@ -38,12 +39,19 @@ namespace UniversityReservationSystem.Interface.Models
             OnPropertyChanged("LastName");
             OnPropertyChanged("PassedTerms");
             OnPropertyChanged("AvgOfMarks");
+
+            ViewModelLocator.Students.ReloadData();
+            ViewModelLocator.Groups.ReloadData();
             InvokePropertyChanged();
         }
 
         public void Delete()
         {
             DeleteStudent(Ptr);
+
+            ViewModelLocator.Students.ReloadData();
+            ViewModelLocator.Groups.ReloadData();
+            InvokePropertyChanged();
         }
 
         public override string ToString()

@@ -113,6 +113,13 @@ namespace UniversityReservationSystem.Interface.Models
             DeleteReservation(Ptr);
         }
 
+        public void InvokePropertyChanged()
+        {
+            OnPropertyChanged("Teacher");
+            OnPropertyChanged("Room");
+            OnPropertyChanged("Group");
+        }
+
         public override string ToString()
         {
             return String.Format("Reservation Details:\nID: {0}, Name: {1},\nDateOfStart: {2},\nDateOfEnd: {3}\n\nTeacher:\n{4}\n\nRoom:\n{5}\n\nGroup:\n{6}",
@@ -135,12 +142,5 @@ namespace UniversityReservationSystem.Interface.Models
         [DllImport("UniversityReservationSystem.dll")] private static extern void DeleteReservation(IntPtr reservPtr);
 
         #endregion
-
-        public void InvokePropertyChanged()
-        {
-            OnPropertyChanged("Teacher");
-            OnPropertyChanged("Room");
-            OnPropertyChanged("Group");
-        }
     }
 }
