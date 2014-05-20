@@ -14,6 +14,15 @@ namespace UniversityReservationSystem.Interface.Models
                     GetRoomName(Ptr));
             }
         }
+        public string Type
+        {
+            get
+            {
+                return Marshal.PtrToStringAnsi(
+                    GetRoomType(Ptr));
+            }
+
+        }
         public int Capacity
         {
             get { return GetRoomCapacity(Ptr); }
@@ -23,12 +32,13 @@ namespace UniversityReservationSystem.Interface.Models
 
         public override string ToString()
         {
-            return String.Format("ID: {0}, Name: {1}, Capacity: {2}", Id, Name, Capacity);
+            return String.Format("{0} {1}\nCapacity: {2}", Type, Name, Capacity);
         }
 
         #region InterOp Stuff
 
         [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetRoomName(IntPtr roomPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetRoomType(IntPtr roomPtr);
         [DllImport("UniversityReservationSystem.dll")] private static extern int GetRoomCapacity(IntPtr roomPtr);
 
         #endregion

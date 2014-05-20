@@ -63,8 +63,8 @@ namespace UniversityReservationSystem.Interface.Models
 
         public override string ToString()
         {
-            return String.Format("ID: {0}, FirstName: {1}, LastName: {2}, Email: {3}, PhoneNumber: {4}, AcademicTitle: {5}",
-                Id, FirstName, LastName, Email, PhoneNumber, AcademicTitle);
+            return String.Format("{0} {1} {2}\nEmail: {3}\nPhoneNumber: {4}",
+                AcademicTitle, FirstName, LastName, Email, PhoneNumber);
         }
 
         #region InterOp Stuff

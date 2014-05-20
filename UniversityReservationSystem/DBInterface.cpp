@@ -258,9 +258,71 @@ extern "C"
 	{
 		return roomPtr->Name.c_str();
 	}
+	API strPtr			GetRoomType(IRoom * roomPtr)
+	{
+		return roomPtr->Type.c_str();
+	}
 	API int				GetRoomCapacity(IRoom * roomPtr)
 	{
 		return roomPtr->Capacity;
+	}
+	API void			DeleteRoom(IRoom * roomPtr)
+	{
+		roomCtrl->Delete(*roomPtr);
+	}
+
+	API strPtr			GetLabRoomAdditionalEquipment(LabRoom * labPtr)
+	{
+		return labPtr->AdditionalEquipment.c_str();
+	}
+	API int				GetLabRoomNumOfComputers(LabRoom * labPtr)
+	{
+		return labPtr->NumOfComputers;
+	}
+	API IRoom *			CreateNewLabRoom(strPtr name, int capacity, strPtr additionalEquipment, int numOfComputers)
+	{
+		LabRoom * room = new LabRoom(name, capacity, additionalEquipment, numOfComputers);
+		roomCtrl->Add(*room);
+
+		return room;
+	}
+	API void			EditLabRoom(LabRoom * labPtr, strPtr name, int capacity, strPtr additionalEquipment, int numOfComputers)
+	{
+		LabRoom copy(*labPtr);
+
+		copy.Name = name;
+		copy.Capacity = capacity;
+		copy.AdditionalEquipment = additionalEquipment;
+		copy.NumOfComputers = numOfComputers;
+
+		roomCtrl->Edit(copy);
+	}
+
+	API int				GetExerciseRoomNumOfTables(ExerciseRoom * exRoomPtr)
+	{
+		return exRoomPtr->NumOfTables;
+	}
+	API int				GetExerciseRoomNumOfChairs(ExerciseRoom * exRoomPtr)
+	{
+		return exRoomPtr->NumOfChairs;
+	}
+	API IRoom *			CreateNewExerciseRoom(strPtr name, int capacity, int numOfChairs, int numOfTables)
+	{
+		ExerciseRoom * room = new ExerciseRoom(name, capacity, numOfChairs, numOfTables);
+		roomCtrl->Add(*room);
+
+		return room;
+	}
+	API void			EditExerciseRoom(ExerciseRoom * exRoomPtr, strPtr name, int capacity, int numOfChairs, int numOfTables)
+	{
+		ExerciseRoom copy(*exRoomPtr);
+
+		copy.Name = name;
+		copy.Capacity = capacity;
+		copy.NumOfChairs = numOfChairs;
+		copy.NumOfTables = numOfTables;
+
+		roomCtrl->Edit(copy);
 	}
 
 	////////////////////////////////////

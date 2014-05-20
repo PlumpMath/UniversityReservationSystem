@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
@@ -151,7 +152,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         public void ReservationClicked(IntPtr reservationptr)
         {
-            throw new NotImplementedException();
+            MessageBox.Show(App.Reservations.Single(x => x.Ptr == reservationptr).ToString());
         }
     }
 }

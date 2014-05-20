@@ -3,7 +3,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              x:Class="UniversityReservationSystem.Interface.Views.ReservationsTab" 
-             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400" xmlns:ex="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" d:DesignWidth="999.5" d:DesignHeight="700" xmlns:ex="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:helpers="clr-namespace:UniversityReservationSystem.Interface.Helpers"
              DataContext="{Binding Reservations, Source={StaticResource ViewModelLocator}}">
     <Grid>

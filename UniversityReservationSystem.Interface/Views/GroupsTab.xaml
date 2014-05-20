@@ -5,7 +5,7 @@
              xmlns:helpers="clr-namespace:UniversityReservationSystem.Interface.Helpers"
              xmlns:monthCalendar="clr-namespace:MonthCalendar;assembly=MonthCalendar"
              x:Class="UniversityReservationSystem.Interface.Views.GroupsTab" 
-             mc:Ignorable="d" d:DesignWidth="1052" d:DesignHeight="678"
+             mc:Ignorable="d" d:DesignWidth="999.5" d:DesignHeight="700"
              DataContext="{Binding Groups, Source={StaticResource ViewModelLocator}}">
     <Grid>
         <Grid.RowDefinitions>

@@ -75,8 +75,7 @@ namespace UniversityReservationSystem.Interface.Models
 
         public override string ToString()
         {
-            return String.Format("ID: {0}, DegreeCourse: {1}, Year: {2}, GroupNumber: {3}, NumOfStudents: {4}",
-                Id, DegreeCourse, Year, GroupNumber, NumOfStudents);
+            return Info + "\nGroup number: " + GroupNumber;
         }
 
         #region InterOp Stuff

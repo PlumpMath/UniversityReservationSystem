@@ -155,7 +155,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         public void ReservationClicked(IntPtr reservationptr)
         {
-            throw new NotImplementedException();
+            MessageBox.Show(App.Reservations.Single(x => x.Ptr == reservationptr).ToString());
         }
     }
 }
