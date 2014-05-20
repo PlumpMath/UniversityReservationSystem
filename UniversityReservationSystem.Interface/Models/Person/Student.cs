@@ -60,6 +60,11 @@ namespace UniversityReservationSystem.Interface.Models
                 FirstName, LastName, PassedTerms, AvgOfMarks);
         }
 
+        public void InvokePropertyChanged()
+        {
+            OnPropertyChanged("Group");
+        }
+
         #region InterOp Stuff
 
         [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetStudentGroup(IntPtr studentPtr);
@@ -70,10 +75,5 @@ namespace UniversityReservationSystem.Interface.Models
         [DllImport("UniversityReservationSystem.dll")] private static extern void DeleteStudent(IntPtr studentPtr);
 
         #endregion
-
-        public void InvokePropertyChanged()
-        {
-            OnPropertyChanged("Group");
-        }
     }
 }

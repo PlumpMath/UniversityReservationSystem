@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using UniversityReservationSystem.Interface.ViewModels;
 
 // ReSharper disable once CheckNamespace
 namespace UniversityReservationSystem.Interface.Models
@@ -30,6 +31,12 @@ namespace UniversityReservationSystem.Interface.Models
 
         public IRoom(IntPtr thisPtr) : base(thisPtr) { }
 
+        public void Delete()
+        {
+            DeleteRoom(Ptr);
+        }
+
+
         public override string ToString()
         {
             return String.Format("{0} {1}\nCapacity: {2}", Type, Name, Capacity);
@@ -40,6 +47,7 @@ namespace UniversityReservationSystem.Interface.Models
         [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetRoomName(IntPtr roomPtr);
         [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetRoomType(IntPtr roomPtr);
         [DllImport("UniversityReservationSystem.dll")] private static extern int GetRoomCapacity(IntPtr roomPtr);
+        [DllImport("UniversityReservationSystem.dll")] private static extern void DeleteRoom(IntPtr roomPtr);
 
         #endregion
     }

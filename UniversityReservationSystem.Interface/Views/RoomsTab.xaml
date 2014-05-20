@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:monthCalendar="clr-namespace:MonthCalendar;assembly=MonthCalendar"
              xmlns:helpers="clr-namespace:UniversityReservationSystem.Interface.Helpers"
+             xmlns:viewModels="clr-namespace:UniversityReservationSystem.Interface.ViewModels"
              x:Class="UniversityReservationSystem.Interface.Views.RoomsTab" 
              mc:Ignorable="d" d:DesignWidth="999.5" d:DesignHeight="700"
              DataContext="{Binding Rooms, Source={StaticResource ViewModelLocator}}">
@@ -21,6 +22,7 @@
                 <DataGridTextColumn Binding="{Binding Type}" Width="1*" Header="Room Type" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
                 <DataGridTextColumn Binding="{Binding Name}" Width="2*" Header="Room Name" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
                 <DataGridTextColumn Binding="{Binding Capacity}" Width="2*" Header="Capacity" CellStyle="{StaticResource HorizontalCenterCellStyle}" />
+                <DataGridTextColumn Binding="{Binding AdditionalInfo}" Width="4*" Header="Additional Info" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -66,27 +68,28 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="4*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock HorizontalAlignment="Center" Text="First Name" Grid.Row="0" Grid.Column="0" />
-                <TextBox Margin="5 0 5 0" Text="{Binding FirstName}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="0" helpers:FocusExtension.IsFocused="{Binding IsFirstNameFocused}"
+                <TextBlock HorizontalAlignment="Center" Text="Room Type" Grid.Row="0" Grid.Column="0" />
+                <ComboBox Margin="5 0 5 0" ItemsSource="{helpers:EnumToItemsSource {x:Type viewModels:RoomType}}"
+                          IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0"
+                          SelectedValue="{Binding Path=Type}" DisplayMemberPath="DisplayName"
+                          SelectedValuePath="DisplayName" HorizontalContentAlignment="Center"/>
+                
+                <TextBlock HorizontalAlignment="Center" Text="Room Name" Grid.Row="0" Grid.Column="1" />
+                <TextBox Margin="5 0 5 0" Text="{Binding Name}" TextAlignment="Center" HorizontalAlignment="Stretch"
+                         Grid.Row="1" Grid.Column="1" helpers:FocusExtension.IsFocused="{Binding IsNameFocused}"
                          IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
-                <TextBlock HorizontalAlignment="Center" Text="Last Name" Grid.Row="0" Grid.Column="1" />
-                <TextBox Margin="5 0 5 0" Text="{Binding LastName}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="1" IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
-                <TextBlock HorizontalAlignment="Center" Text="Group" Grid.Row="0" Grid.Column="2" />
-                <ComboBox Margin="5 0 5 0" DisplayMemberPath="ExInfo" ItemsSource="{Binding Groups}" IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
-                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2" SelectedItem="{Binding SelectedGroup}" />
-                <TextBlock HorizontalAlignment="Center" Text="Passed Terms" Grid.Row="0" Grid.Column="3" />
-                <TextBox Margin="5 0 5 0" Text="{Binding PassedTerms}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="3" IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
-                <TextBlock HorizontalAlignment="Center" Text="Avg Of Marks" Grid.Row="0" Grid.Column="4" />
-                <TextBox Margin="5 0 5 0" Text="{Binding AverageOfMarks}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="4" IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
+                
+                <TextBlock HorizontalAlignment="Center" Text="Capacity" Grid.Row="0" Grid.Column="2" />
+                <TextBox Margin="5 0 5 0" Text="{Binding Capacity}" TextAlignment="Center" HorizontalAlignment="Stretch"
+                         Grid.Row="1" Grid.Column="2" IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
+
+                <TextBlock HorizontalAlignment="Center" Text="Additional Info" Grid.Row="0" Grid.Column="3" />
+                
             </Grid>
 
             <Grid Grid.Column="2">

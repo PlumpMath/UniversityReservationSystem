@@ -135,7 +135,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
             ViewModelLocator.Groups.RefreshCalendar();
             ViewModelLocator.Students.RefreshCalendar();
             ViewModelLocator.Teachers.RefreshCalendar();
-            //ViewModelLocator.Rooms.RefreshCalendar();
+            ViewModelLocator.Rooms.RefreshCalendar();
         }
 
         protected override void SaveChanges()
@@ -159,7 +159,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
             ViewModelLocator.Groups.ReservationsOfSelected.Remove(SelectedItem);
             ViewModelLocator.Students.ReservationsOfSelected.Remove(SelectedItem);
             ViewModelLocator.Teachers.ReservationsOfSelected.Remove(SelectedItem);
-            //ViewModelLocator.Rooms.ReservationsOfSelected.Remove(SelectedItem);
+            ViewModelLocator.Rooms.ReservationsOfSelected.Remove(SelectedItem);
 
             SelectedItem.Delete();
             Reservations.Remove(SelectedItem);

@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace MonthCalendar
 {
-    public partial class DayBoxAppointmentControl : Button
+    public partial class DayBoxReservationControl : Button
     {
-        public DayBoxAppointmentControl()
+        public DayBoxReservationControl()
         {
             InitializeComponent();
         }

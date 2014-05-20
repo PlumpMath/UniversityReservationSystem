@@ -22,7 +22,7 @@ namespace MonthCalendar
 	    public event DisplayMonthChangedEventHandler DisplayMonthChanged;
 	    public delegate void DisplayMonthChangedEventHandler(MonthChangedEventArgs e);
 	    public event DayBoxDoubleClickedEventHandler DayBoxDoubleClicked;
-	    public delegate void DayBoxDoubleClickedEventHandler(NewAppointmentEventArgs e);
+	    public delegate void DayBoxDoubleClickedEventHandler(NewReservationEventArgs e);
 	    public event ReservationClickedEventHandler ReservationClicked;
 	    public delegate void ReservationClickedEventHandler(IntPtr reservationPtr);
 
@@ -83,8 +83,6 @@ namespace MonthCalendar
 
         private void MonthView_Loaded(object sender, RoutedEventArgs e)
 	    {
-		    //-- Want to have the calendar show up, even if no appoints are assigned 
-		    //   Note - in my own app, appointments are loaded by a backgroundWorker thread to avoid a laggy UI
 		    if (MonthReservations == null)
 			    BuildCalendarUi();
 	    }
@@ -119,18 +117,18 @@ namespace MonthCalendar
 		        if ((new DateTime(_displayYear, _displayMonth, i)) == DateTime.Today)
 		        {
 		            dayBox.DayLabelRowBorder.Background = (Brush) dayBox.TryFindResource("TodayGradient");
-		            dayBox.DayAppointmentsStack.Background = new SolidColorBrush(Color.FromArgb(87, 188, 206, 125));
+		            dayBox.DayReservationsStack.Background = new SolidColorBrush(Color.FromArgb(87, 188, 206, 125));
 		        }
 		        else
 		        {
-                    dayBox.DayAppointmentsStack.Background = new SolidColorBrush(Color.FromArgb(87, 255, 255, 255));
+                    dayBox.DayReservationsStack.Background = new SolidColorBrush(Color.FromArgb(87, 255, 255, 255));
 		        }
 
-			    //-- for design mode, add appointments to random days for show...
+			    //-- for design mode, add reservations to random days for show...
 			    if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this)) {
 				    if (Math.Round(1d) < 0.25) {
-					    var apt = new DayBoxAppointmentControl {DisplayText = {Text = "Apt on " + i + "th"}};
-				        dayBox.DayAppointmentsStack.Children.Add(apt);
+					    var apt = new DayBoxReservationControl {DisplayText = {Text = "Apt on " + i + "th"}};
+				        dayBox.DayReservationsStack.Children.Add(apt);
 				    }
 
                 }
@@ -141,9 +139,9 @@ namespace MonthCalendar
 				    int iday = i;
                     var aptInDay = MonthReservations.Where(apt => Convert.ToDateTime(apt.StartTime).Day == iday);
 				    foreach (var a in aptInDay) {
-					    var apt = new DayBoxAppointmentControl {DisplayText = {Text = a.Subject}, Tag = a.Ptr};
+					    var apt = new DayBoxReservationControl {DisplayText = {Text = a.Subject}, Tag = a.Ptr};
                         apt.Click += Reservation_Click;
-					    dayBox.DayAppointmentsStack.Children.Add(apt);
+					    dayBox.DayReservationsStack.Children.Add(apt);
 				    }
 			    }
 
@@ -191,13 +189,13 @@ namespace MonthCalendar
 
 	    private void Reservation_Click(object sender, RoutedEventArgs e)
 	    {
-		    if (e.Source is DayBoxAppointmentControl) 
+		    if (e.Source is DayBoxReservationControl) 
             {
-			    if (((DayBoxAppointmentControl)e.Source).Tag != null) 
+			    if (((DayBoxReservationControl)e.Source).Tag != null) 
                 {
-				    //-- You could put your own call to your appointment-displaying code or whatever here..
+				    //-- You could put your own call to your reservation-displaying code or whatever here..
 				    if (ReservationClicked != null) 
-					    ReservationClicked((IntPtr)((DayBoxAppointmentControl)e.Source).Tag);
+					    ReservationClicked((IntPtr)((DayBoxReservationControl)e.Source).Tag);
 			    }
 			    e.Handled = true;
 		    }
@@ -205,11 +203,11 @@ namespace MonthCalendar
 
 	    private void DayBox_DoubleClick(object sender, MouseButtonEventArgs e)
 	    {
-		    //-- call to FindVisualAncestor to make sure they didn't click on existing appointment (in which case,
-		    //   that appointment window is already opened by handler Appointment_DoubleClick)
+		    //-- call to FindVisualAncestor to make sure they didn't click on existing reservation (in which case,
+		    //   that reservation window is already opened by handler Reservation_DoubleClick)
 
-		    if (e.Source is DayBoxControl && Utilities.FindVisualAncestor(typeof(DayBoxAppointmentControl), (Visual)e.OriginalSource) == null) {
-			    var ev = new NewAppointmentEventArgs();
+		    if (e.Source is DayBoxControl && Utilities.FindVisualAncestor(typeof(DayBoxReservationControl), (Visual)e.OriginalSource) == null) {
+			    var ev = new NewReservationEventArgs();
 			    if (((DayBoxControl)e.Source).Tag != null) {
 				    ev.StartDate = new DateTime(_displayYear, _displayMonth, Convert.ToInt32(((DayBoxControl)e.Source).Tag), 10, 0, 0);
 				    ev.EndDate = Convert.ToDateTime(ev.StartDate).AddHours(2);
@@ -235,7 +233,7 @@ namespace MonthCalendar
         public DateTime NewDisplayStartDate { get; set; }
     }
 
-    public class NewAppointmentEventArgs : EventArgs
+    public class NewReservationEventArgs : EventArgs
     {
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }

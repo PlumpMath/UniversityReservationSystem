@@ -48,6 +48,6 @@
             <Label x:Name="DayNumberLabel" Content="1" FontWeight="Bold" FontFamily="Arial"/>
         </Border>
         
-        <StackPanel Grid.Row="1" x:Name="DayAppointmentsStack" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <StackPanel Grid.Row="1" x:Name="DayReservationsStack" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
     </Grid>
 </Button>

@@ -6,13 +6,33 @@ using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface.ViewModels
 {
+    public enum RoomType
+    {
+        Lab,
+        Exercise,
+    };
+
     public class RoomsVM : IReservableViewModel<IRoom>
     {
         private string _name;
+        private RoomType _type;
         private int _capacity;
+        private bool _isNameFocused;
 
         public ObservableCollection<IRoom> Rooms { get; set; }
 
+        public bool IsNameFocused
+        {
+            get { return _isNameFocused; }
+            set
+            {
+                if (_isNameFocused != value)
+                {
+                    _isNameFocused = value;
+                    RaisePropertyChanged("IsNameFocused");
+                }
+            }
+        }
         public string Name
         {
             get { return _name; }
@@ -22,6 +42,18 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 {
                     _name = value;
                     RaisePropertyChanged("Name");
+                }
+            }
+        }
+        public RoomType Type
+        {
+            get { return _type; }
+            set
+            {
+                if (_type != value)
+                {
+                    _type = value;
+                    RaisePropertyChanged("Type");
                 }
             }
         }
@@ -73,12 +105,19 @@ namespace UniversityReservationSystem.Interface.ViewModels
                     MonthChanged(_currentDateOnCalendar);
                 }
 
+                RoomType roomType;
+
+                if(!Enum.TryParse(SelectedItem.Type, true, out roomType))
+                    throw new Exception("Error while parsing the enum!");
+
                 Name = SelectedItem.Name;
+                Type = roomType;
                 Capacity = SelectedItem.Capacity;
             }
             else
             {
                 Name = String.Empty;
+                Type = 0;
                 Capacity = 0;
                 ReservationsOfSelected.Clear();
                 ReservationsOfSelectedOnCalendar.Clear();
