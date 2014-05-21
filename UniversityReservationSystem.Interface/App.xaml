@@ -15,7 +15,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="DataGridCell">
                         <Grid Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" />
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>

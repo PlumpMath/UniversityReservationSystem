@@ -30,6 +30,8 @@ namespace UniversityReservationSystem.Interface
         [DllImport("UniversityReservationSystem.dll")] private static extern uint GetRoomsCount();
         [DllImport("UniversityReservationSystem.dll")] private static extern uint GetReservationsCount();
 
+        [DllImport("UniversityReservationSystem.dll")] public static extern IntPtr GetRoomType(IntPtr roomPtr);
+
         public App()
         {
             LoadDB("home");
@@ -59,7 +61,11 @@ namespace UniversityReservationSystem.Interface
             Rooms = new ObservableCollection<IRoom>();
             for (uint i = 0; i < n; i++)
             {
-                Rooms.Add(new IRoom(GetRoomByIndex(i)));
+                IntPtr currentRoom = GetRoomByIndex(i);
+                if (Marshal.PtrToStringAnsi(GetRoomType(currentRoom)) == "Lab")
+                    Rooms.Add(new LabRoom(currentRoom));
+                else
+                    Rooms.Add(new ExerciseRoom(currentRoom));
             }
 
             n = GetReservationsCount();
