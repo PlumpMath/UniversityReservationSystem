@@ -67,7 +67,7 @@ public:
 		return *(new Student(firstName, lastName, group, passedTerms, average, id ));
 	}
 
-	void Edit(Student& editedStudent)
+	virtual void Edit(Student& editedStudent)
 	{
 		IPerson::Edit(editedStudent);
 		this->PassedTerms = editedStudent.PassedTerms;
@@ -83,7 +83,7 @@ public:
 		}
 	}
 
-	void Serialize(ostream& os)
+	virtual void Serialize(ostream& os)
 	{
 		IPerson::Serialize(os);
 		os << PassedTerms << endl

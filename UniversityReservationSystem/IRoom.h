@@ -38,21 +38,6 @@ public:
 		this->Capacity = roomToEdit.Capacity;
 	}
 
-	bool CheckCollisions(Reservation& reservation)
-	{
-		return Reservations.CheckCollisions(reservation);
-	}
-
-	void AddReservation(Reservation &reservationToAdd)
-	{
-		Reservations.Add(reservationToAdd);
-	}
-
-	void RemoveReservation(Reservation &reservationToRemove)
-	{
-		Reservations.Remove(reservationToRemove);
-	}
-
 	virtual void Serialize(ostream& os)
 	{
 		os << Type << endl;
@@ -61,7 +46,7 @@ public:
 			<< Capacity << endl;
 	}
 
-	virtual ~IRoom();
+	virtual ~IRoom() = 0;
 };
 
 IRoom::~IRoom() { }

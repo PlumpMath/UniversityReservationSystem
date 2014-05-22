@@ -38,7 +38,7 @@ public:
 		return os;
 	}
 
-	virtual ~ISerializable();
+	virtual ~ISerializable() = 0;
 };
 
 ISerializable::~ISerializable() { }

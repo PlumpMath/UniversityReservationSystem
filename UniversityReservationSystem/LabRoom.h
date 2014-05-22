@@ -50,14 +50,14 @@ public:
 		return *(new LabRoom(name, capacity, addEquipment, numComputers, id));
 	}
 
-	void Edit(LabRoom& roomToEdit)
+	virtual void Edit(LabRoom& roomToEdit)
 	{
 		IRoom::Edit(roomToEdit);
 		this->AdditionalEquipment = roomToEdit.AdditionalEquipment;
 		this->NumOfComputers = roomToEdit.NumOfComputers;
 	}
 
-	void Serialize(ostream& os)
+	virtual void Serialize(ostream& os)
 	{
 		IRoom::Serialize(os);
 		os << AdditionalEquipment << endl

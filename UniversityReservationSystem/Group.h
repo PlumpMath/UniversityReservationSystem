@@ -60,24 +60,19 @@ public:
 		this->GroupNumber = groupToEdit.GroupNumber;
 	}
 
-	bool CheckCollisions(Reservation& reservation)
+	virtual void AddReservation(Reservation& reservationToAdd)
 	{
-		return Reservations.CheckCollisions(reservation);
+		IReservable::AddReservation(reservationToAdd);
+		Students.AddReservation(reservationToAdd);
 	}
 
-	void AddReservation(Reservation& reservation)
+	virtual void RemoveReservation(Reservation &reservationToRemove)
 	{
-		Reservations.Add(reservation);
-		Students.AddReservation(reservation);
-	}
-
-	void RemoveReservation(Reservation &reservationToRemove)
-	{
-		Reservations.Remove(reservationToRemove);
+		IReservable::RemoveReservation(reservationToRemove);
 		Students.RemoveReservation(reservationToRemove);
 	}
 
-	void Serialize(ostream& os)
+	virtual void Serialize(ostream& os)
 	{
 		IReservable::ISerializable::Serialize(os);
 		os << DegreeCourse << endl

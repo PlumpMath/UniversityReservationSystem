@@ -56,7 +56,7 @@ public:
 		return *(new Teacher(firstName, lastName, email, phoneNumber, academicTitle, id));
 	}
 
-	void Edit(Teacher& editedTeacher)
+	virtual void Edit(Teacher& editedTeacher)
 	{
 		IPerson::Edit(editedTeacher);
 		this->Email = editedTeacher.Email;
@@ -64,7 +64,7 @@ public:
 		this->AcademicTitle = editedTeacher.AcademicTitle;
 	}
 
-	void Serialize(ostream& os)
+	virtual void Serialize(ostream& os)
 	{
 		IPerson::Serialize(os);
 		os << Email << endl

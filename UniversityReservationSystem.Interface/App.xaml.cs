@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using UniversityReservationSystem.Interface.Models;
 
@@ -8,33 +11,17 @@ namespace UniversityReservationSystem.Interface
 {
     public partial class App
     {
+        private const string SAVE_PATH = "home";
+
         public static ObservableCollection<Group> Groups { get; private set; }
         public static ObservableCollection<Student> Students { get; private set; }
         public static ObservableCollection<Teacher> Teachers { get; private set; }
         public static ObservableCollection<IRoom> Rooms { get; private set; }
         public static ObservableCollection<Reservation> Reservations { get; private set; }
 
-        [DllImport("UniversityReservationSystem.dll")] private static extern bool LoadDB(string filePath);
-        [DllImport("UniversityReservationSystem.dll")] private static extern bool SaveDB();
-        [DllImport("UniversityReservationSystem.dll")] private static extern bool FreeDB();
-
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetGroupByIndex(uint groupIndex);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetStudentByIndex(uint studentIndex);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetTeacherByIndex(uint teacherIndex);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetRoomByIndex(uint roomIndex);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationByIndex(uint reservationIndex);
-
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetGroupsCount();
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetStudentsCount();
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetTeachersCount();
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetRoomsCount();
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetReservationsCount();
-
-        [DllImport("UniversityReservationSystem.dll")] public static extern IntPtr GetRoomType(IntPtr roomPtr);
-
         public App()
         {
-            LoadDB("home");
+            LoadDB(SAVE_PATH);
 
             uint n = GetGroupsCount();
             Groups = new ObservableCollection<Group>();
@@ -78,8 +65,35 @@ namespace UniversityReservationSystem.Interface
 
         protected override void OnExit(ExitEventArgs e)
         {
+            Directory.CreateDirectory(SAVE_PATH);
+
+            // Saving the base to files
+            MessageBox.Show(SaveDB() ? "Pomyślnie zapisano bazę!" : "Wystąpiły błędy przy zapisie bazy!");
+
+            // Freeing the reservated memory in the DLL
             FreeDB();
+
             base.OnExit(e);
         }
+
+        #region InterOp Stuff
+        [DllImport("UniversityReservationSystem.dll")] [return: MarshalAs(UnmanagedType.I1)] private static extern bool LoadDB(string filePath);
+        [DllImport("UniversityReservationSystem.dll")] [return: MarshalAs(UnmanagedType.I1)] private static extern bool SaveDB();
+        [DllImport("UniversityReservationSystem.dll")] private static extern void FreeDB();
+
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetGroupByIndex(uint groupIndex);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetStudentByIndex(uint studentIndex);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetTeacherByIndex(uint teacherIndex);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetRoomByIndex(uint roomIndex);
+        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationByIndex(uint reservationIndex);
+
+        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetGroupsCount();
+        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetStudentsCount();
+        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetTeachersCount();
+        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetRoomsCount();
+        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetReservationsCount();
+
+        [DllImport("UniversityReservationSystem.dll")] public static extern IntPtr GetRoomType(IntPtr roomPtr);
+        #endregion
     }
 }

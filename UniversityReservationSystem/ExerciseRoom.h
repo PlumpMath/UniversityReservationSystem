@@ -50,14 +50,14 @@ public:
 		return *(new ExerciseRoom(name, capacity, numChairs, numTables, id));
 	}
 
-	void Edit(ExerciseRoom& roomToEdit)
+	virtual void Edit(ExerciseRoom& roomToEdit)
 	{
 		IRoom::Edit(roomToEdit);
 		this->NumOfChairs = roomToEdit.NumOfChairs;
 		this->NumOfTables = roomToEdit.NumOfTables;
 	}
 
-	void Serialize(ostream& os) 
+	virtual void Serialize(ostream& os)
 	{
 		IRoom::Serialize(os);
 		os << NumOfChairs << endl

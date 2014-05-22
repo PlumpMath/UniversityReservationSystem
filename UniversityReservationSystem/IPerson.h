@@ -30,21 +30,6 @@ public:
 		LastName = _lastName;
 	}
 
-	virtual bool CheckCollisions(Reservation& reservation)
-	{
-		return Reservations.CheckCollisions(reservation);
-	}
-
-	virtual void AddReservation(Reservation &reservationToAdd)
-	{
-		Reservations.Add(reservationToAdd);
-	}
-
-	virtual void RemoveReservation(Reservation &reservationToRemove)
-	{
-		Reservations.Remove(reservationToRemove);
-	}
-
 	virtual void Edit(IPerson& personToEdit)
 	{
 		this->FirstName = personToEdit.FirstName;
@@ -58,7 +43,7 @@ public:
 			<< LastName << endl;
 	}
 
-	virtual ~IPerson();
+	virtual ~IPerson() = 0;
 };
 
 IPerson::~IPerson() { }
