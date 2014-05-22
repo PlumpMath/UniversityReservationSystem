@@ -23,8 +23,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
         private int _numOfChairs;
         private string _additionalEquipment;
 
-        private bool _labFieldsVisible;
-        private bool _exFieldsVisible;
+        private bool _addingModeActive;
 
         public ObservableCollection<IRoom> Rooms { get; set; }
 
@@ -125,27 +124,15 @@ namespace UniversityReservationSystem.Interface.ViewModels
             }
         }
 
-        public bool LabFieldsVisible
+        public bool AddingModeActive
         {
-            get { return _labFieldsVisible; }
+            get { return _addingModeActive; }
             set
             {
-                if (_labFieldsVisible != value)
+                if (_addingModeActive != value)
                 {
-                    _labFieldsVisible = value;
-                    RaisePropertyChanged("LabFieldsVisible");
-                }
-            }
-        }
-        public bool ExFieldsVisible
-        {
-            get { return _exFieldsVisible; }
-            set
-            {
-                if (_exFieldsVisible != value)
-                {
-                    _exFieldsVisible = value;
-                    RaisePropertyChanged("ExFieldsVisible");
+                    _addingModeActive = value;
+                    RaisePropertyChanged("AddingModeActive");
                 }
             }
         }
@@ -162,12 +149,28 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         protected override void Add()
         {
-            throw new System.NotImplementedException();
+            AddingModeActive = true;
+
+            Name = "Type Room Name";
+            Capacity = 0;
+            NumOfComputers = 0;
+            NumOfChairs = 0;
+            NumOfTables = 0;
+            AdditionalEquipment = "Type additional equipment";
         }
 
         protected override void SaveChanges()
         {
-            throw new System.NotImplementedException();
+            if (AddingModeActive)
+            {
+
+
+                AddingModeActive = false;
+            }
+            else
+            {
+                
+            }
         }
 
         protected override void Delete()
@@ -177,6 +180,8 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         protected override sealed void UpdateAfterSelection(bool isNull)
         {
+            AddingModeActive = false;
+
             if (!isNull)
             {
                 if (ReservationsOfSelected != null)
@@ -192,17 +197,11 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
                 if (roomType == RoomType.Exercise)
                 {
-                    LabFieldsVisible = false;
-                    ExFieldsVisible = true;
-
                     NumOfChairs = ((ExerciseRoom)SelectedItem).NumOfChairs;
                     NumOfTables = ((ExerciseRoom)SelectedItem).NumOfTables;
                 }
                 else
                 {
-                    ExFieldsVisible = false;
-                    LabFieldsVisible = true;
-
                     NumOfComputers = ((LabRoom)SelectedItem).NumOfComputers;
                     AdditionalEquipment = ((LabRoom)SelectedItem).AdditionalEquipment;
                 }
@@ -213,9 +212,6 @@ namespace UniversityReservationSystem.Interface.ViewModels
             }
             else
             {
-                LabFieldsVisible = false;
-                ExFieldsVisible = false;
-
                 Name = String.Empty;
                 Type = 0;
                 Capacity = 0;

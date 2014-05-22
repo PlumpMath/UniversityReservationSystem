@@ -105,6 +105,7 @@
     <Compile Include="Helpers\DateTimeHelpers.cs" />
     <Compile Include="Helpers\EnumToItemsSource.cs" />
     <Compile Include="Helpers\FocusExtension.cs" />
+    <Compile Include="Helpers\RoomTypeToVisibilityConverter.cs" />
     <Compile Include="Models\IReservable.cs" />
     <Compile Include="Models\Room\LabRoom.cs" />
     <Compile Include="Models\Room\IRoom.cs" />

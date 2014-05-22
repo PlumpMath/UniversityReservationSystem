@@ -9,7 +9,7 @@
              mc:Ignorable="d" d:DesignWidth="999.5" d:DesignHeight="700"
              DataContext="{Binding Rooms, Source={StaticResource ViewModelLocator}}">
     <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <helpers:RoomTypeToVisibilityConverter x:Key="RoomTypeToVisibilityConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -77,10 +77,10 @@
 
                 <TextBlock HorizontalAlignment="Center" Text="Room Type" Grid.Row="0" Grid.Column="0" />
                 <ComboBox Margin="5 0 5 0" ItemsSource="{helpers:EnumToItemsSource {x:Type viewModels:RoomType}}"
-                          IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                          IsEnabled="{Binding AddingModeActive}"
                           HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0"
                           SelectedValue="{Binding Path=Type}" DisplayMemberPath="DisplayName"
-                          SelectedValuePath="DisplayName" HorizontalContentAlignment="Center"/>
+                          SelectedValuePath="DisplayName" HorizontalContentAlignment="Center" />
                 
                 <TextBlock HorizontalAlignment="Center" Text="Room Name" Grid.Row="0" Grid.Column="1" />
                 <TextBox Margin="5 0 5 0" Text="{Binding Name}" TextAlignment="Center" HorizontalAlignment="Stretch"
@@ -93,7 +93,7 @@
 
                 <TextBlock HorizontalAlignment="Center" Text="Additional Info" Grid.Row="0" Grid.Column="3" />
                 <StackPanel Grid.Column="3" Grid.Row="1" Margin="0 0 5 0" VerticalAlignment="Center">
-                    <Grid Visibility="{Binding LabFieldsVisible, Converter={StaticResource BoolToVis }}">
+                    <Grid Visibility="{Binding Type, Converter={StaticResource RoomTypeToVisibilityConverter}, ConverterParameter=true}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -106,7 +106,7 @@
                         <TextBlock Grid.Column="3" Text="Additional Equipment: " />
                         <TextBox Grid.Column="4" Text="{Binding AdditionalEquipment}" TextAlignment="Center" />
                     </Grid>
-                    <Grid Visibility="{Binding ExFieldsVisible, Converter={StaticResource BoolToVis }}">
+                    <Grid Visibility="{Binding Type, Converter={StaticResource RoomTypeToVisibilityConverter}, ConverterParameter=false}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
