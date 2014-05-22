@@ -19,6 +19,12 @@ public:
 	bool Edit(IRoom& copyOfRoomToModify)
 	{
 		IRoom& toEdit = Context.Rooms.Find(copyOfRoomToModify);
+
+		if (dynamic_cast<LabRoom*>(&toEdit))
+			((LabRoom*)&toEdit)->Edit(*((LabRoom*)&copyOfRoomToModify));
+		else
+			((ExerciseRoom*)&toEdit)->Edit(*((ExerciseRoom*)&copyOfRoomToModify));
+
 		toEdit.Edit(copyOfRoomToModify);
 		return true;
 	}
