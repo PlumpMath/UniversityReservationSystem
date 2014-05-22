@@ -18,6 +18,13 @@ namespace UniversityReservationSystem.Interface.ViewModels
         private RoomType _type;
         private int _capacity;
         private bool _isNameFocused;
+        private int _numOfComputers;
+        private int _numOfTables;
+        private int _numOfChairs;
+        private string _additionalEquipment;
+
+        private bool _labFieldsVisible;
+        private bool _exFieldsVisible;
 
         public ObservableCollection<IRoom> Rooms { get; set; }
 
@@ -69,6 +76,79 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 }
             }
         }
+        public int NumOfComputers
+        {
+            get { return _numOfComputers; }
+            set
+            {
+                if (_numOfComputers != value)
+                {
+                    _numOfComputers = value;
+                    RaisePropertyChanged("NumOfComputers");
+                }
+            }
+        }
+        public int NumOfTables
+        {
+            get { return _numOfTables; }
+            set
+            {
+                if (_numOfTables != value)
+                {
+                    _numOfTables = value;
+                    RaisePropertyChanged("NumOfTables");
+                }
+            }
+        }
+        public int NumOfChairs
+        {
+            get { return _numOfChairs; }
+            set
+            {
+                if (_numOfChairs != value)
+                {
+                    _numOfChairs = value;
+                    RaisePropertyChanged("NumOfChairs");
+                }
+            }
+        }
+        public string AdditionalEquipment
+        {
+            get { return _additionalEquipment; }
+            set
+            {
+                if (_additionalEquipment != value)
+                {
+                    _additionalEquipment = value;
+                    RaisePropertyChanged("AdditionalEquipment");
+                }
+            }
+        }
+
+        public bool LabFieldsVisible
+        {
+            get { return _labFieldsVisible; }
+            set
+            {
+                if (_labFieldsVisible != value)
+                {
+                    _labFieldsVisible = value;
+                    RaisePropertyChanged("LabFieldsVisible");
+                }
+            }
+        }
+        public bool ExFieldsVisible
+        {
+            get { return _exFieldsVisible; }
+            set
+            {
+                if (_exFieldsVisible != value)
+                {
+                    _exFieldsVisible = value;
+                    RaisePropertyChanged("ExFieldsVisible");
+                }
+            }
+        }
 
         public RoomsVM()
         {
@@ -110,12 +190,32 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 if(!Enum.TryParse(SelectedItem.Type, true, out roomType))
                     throw new Exception("Error while parsing the enum!");
 
+                if (roomType == RoomType.Exercise)
+                {
+                    LabFieldsVisible = false;
+                    ExFieldsVisible = true;
+
+                    NumOfChairs = ((ExerciseRoom)SelectedItem).NumOfChairs;
+                    NumOfTables = ((ExerciseRoom)SelectedItem).NumOfTables;
+                }
+                else
+                {
+                    ExFieldsVisible = false;
+                    LabFieldsVisible = true;
+
+                    NumOfComputers = ((LabRoom)SelectedItem).NumOfComputers;
+                    AdditionalEquipment = ((LabRoom)SelectedItem).AdditionalEquipment;
+                }
+
                 Name = SelectedItem.Name;
                 Type = roomType;
                 Capacity = SelectedItem.Capacity;
             }
             else
             {
+                LabFieldsVisible = false;
+                ExFieldsVisible = false;
+
                 Name = String.Empty;
                 Type = 0;
                 Capacity = 0;

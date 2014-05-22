@@ -8,6 +8,9 @@
              x:Class="UniversityReservationSystem.Interface.Views.RoomsTab" 
              mc:Ignorable="d" d:DesignWidth="999.5" d:DesignHeight="700"
              DataContext="{Binding Rooms, Source={StaticResource ViewModelLocator}}">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -89,7 +92,34 @@
                          Grid.Row="1" Grid.Column="2" IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
 
                 <TextBlock HorizontalAlignment="Center" Text="Additional Info" Grid.Row="0" Grid.Column="3" />
-                
+                <StackPanel Grid.Column="3" Grid.Row="1" Margin="0 0 5 0" VerticalAlignment="Center">
+                    <Grid Visibility="{Binding LabFieldsVisible, Converter={StaticResource BoolToVis }}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Number Of Computers: " />
+                        <TextBox Grid.Column="1" Text="{Binding NumOfComputers}" Margin="0 0 5 0" TextAlignment="Center" />
+                        <TextBlock Grid.Column="3" Text="Additional Equipment: " />
+                        <TextBox Grid.Column="4" Text="{Binding AdditionalEquipment}" TextAlignment="Center" />
+                    </Grid>
+                    <Grid Visibility="{Binding ExFieldsVisible, Converter={StaticResource BoolToVis }}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Number Of Tables: " />
+                        <TextBox Grid.Column="1" Text="{Binding NumOfTables}" TextAlignment="Center" />
+                        <TextBlock Grid.Column="3" Text="Number Of Chairs: " />
+                        <TextBox Grid.Column="4" Text="{Binding NumOfChairs}" TextAlignment="Center" />
+                    </Grid>
+                </StackPanel>
             </Grid>
 
             <Grid Grid.Column="2">
