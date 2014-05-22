@@ -30,7 +30,7 @@ namespace UniversityReservationSystem.Interface.Models
         }
         public string AdditionalInfo { get { return ToString(); }}
 
-        public IRoom(IntPtr thisPtr) : base(thisPtr) { }
+        protected IRoom(IntPtr thisPtr) : base(thisPtr) { }
 
         public void Delete()
         {

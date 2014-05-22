@@ -35,6 +35,7 @@ namespace UniversityReservationSystem.Interface.Models
             OnPropertyChanged("Capacity");
             OnPropertyChanged("NumOfTables");
             OnPropertyChanged("NumOfChairs");
+            OnPropertyChanged("AdditionalInfo");
 
             App.Reservations.Where(x => x.Room.Ptr == Ptr).ToList().ForEach(x => x.InvokePropertyChanged());
         }

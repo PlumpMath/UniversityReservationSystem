@@ -163,19 +163,41 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             if (AddingModeActive)
             {
+                // adding mode
 
+                if (Type == RoomType.Exercise)
+                    Rooms.Add(new ExerciseRoom(Name, Capacity, NumOfChairs, NumOfTables));
+                else
+                    Rooms.Add(new LabRoom(Name, Capacity, AdditionalEquipment, NumOfComputers));
 
+                SelectedItem = Rooms.Last();
                 AddingModeActive = false;
             }
             else
             {
-                
+                // editing mode
+
+                if (Type == RoomType.Exercise)
+                    ((ExerciseRoom)SelectedItem).Edit(Name, Capacity, NumOfChairs, NumOfTables);
+                else
+                    ((LabRoom)SelectedItem).Edit(Name, Capacity, AdditionalEquipment, NumOfComputers);
             }
         }
 
         protected override void Delete()
         {
-            throw new System.NotImplementedException();
+            if (AddingModeActive)
+            {
+                SelectedItem = null;
+                SelectedItem = Rooms.FirstOrDefault();
+                AddingModeActive = false;
+            }
+            else
+            {
+                SelectedItem.Delete();
+                Rooms.Remove(SelectedItem);
+                SelectedItem = Rooms.FirstOrDefault();
+            }
         }
 
         protected override sealed void UpdateAfterSelection(bool isNull)
