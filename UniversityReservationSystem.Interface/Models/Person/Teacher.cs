@@ -59,6 +59,7 @@ namespace UniversityReservationSystem.Interface.Models
         public void Delete()
         {
             DeleteTeacher(Ptr);
+            App.Reservations.Where(x => x.Teacher.Ptr == Ptr).ToList().ForEach(x => App.Reservations.Remove(x));
         }
 
         public override string ToString()

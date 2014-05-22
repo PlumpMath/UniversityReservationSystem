@@ -4,8 +4,10 @@
              StartupUri="Views/MainWindow.xaml" d1p1:Ignorable="d"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewModels="clr-namespace:UniversityReservationSystem.Interface.ViewModels">
+             xmlns:viewModels="clr-namespace:UniversityReservationSystem.Interface.ViewModels"
+             xmlns:helpers="clr-namespace:UniversityReservationSystem.Interface.Helpers">
     <Application.Resources>
+        <helpers:NullToEnableConverter x:Key="NullToVisibilityConverter" />
         <Style x:Key="HorizontalCenterHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />

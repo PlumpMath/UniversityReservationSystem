@@ -75,10 +75,10 @@ public:
 
 		if (*StudentGroup != *editedStudent.StudentGroup)
 		{
-			this->Reservations.Clear();
+			this->Reservations.Clear(true);
 			this->StudentGroup->Students.Remove(*this);
-			editedStudent.StudentGroup->Students.Add(*this);
 			this->StudentGroup = editedStudent.StudentGroup;
+			this->StudentGroup->Students.Add(*this);
 			this->Reservations.AddRange(this->StudentGroup->Reservations);
 		}
 	}

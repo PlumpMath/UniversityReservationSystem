@@ -69,7 +69,6 @@ namespace UniversityReservationSystem.Interface.Models
         public void Delete()
         {
             DeleteGroup(Ptr);
-
             App.Reservations.Where(x => x.Group.Ptr == Ptr).ToList().ForEach(x => App.Reservations.Remove(x));
         }
 

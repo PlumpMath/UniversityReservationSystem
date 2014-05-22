@@ -75,20 +75,20 @@
 
                 <TextBlock HorizontalAlignment="Center" Text="Academic Title" Grid.Row="0" Grid.Column="0" />
                 <TextBox Margin="5 0 5 0" Text="{Binding AcademicTitle}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="0" IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
+                         Grid.Row="1" Grid.Column="0" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" />
                 <TextBlock HorizontalAlignment="Center" Text="First Name" Grid.Row="0" Grid.Column="1" />
                 <TextBox Margin="5 0 5 0" Text="{Binding FirstName}" TextAlignment="Center" HorizontalAlignment="Stretch"
                          Grid.Row="1" Grid.Column="1" helpers:FocusExtension.IsFocused="{Binding IsFirstNameFocused}"
-                         IsEnabled="{Binding SelectedItem, TargetNullValue=False}"/>
+                         IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}"/>
                 <TextBlock HorizontalAlignment="Center" Text="Last Name" Grid.Row="0" Grid.Column="2" />
                 <TextBox Margin="5 0 5 0" Text="{Binding LastName}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="2" IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
+                         Grid.Row="1" Grid.Column="2" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" />
                 <TextBlock HorizontalAlignment="Center" Text="Phone Number" Grid.Row="0" Grid.Column="3" />
                 <TextBox Margin="5 0 5 0" Text="{Binding PhoneNumber}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="3" IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
+                         Grid.Row="1" Grid.Column="3" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" />
                 <TextBlock HorizontalAlignment="Center" Text="Email" Grid.Row="0" Grid.Column="4" />
                 <TextBox Margin="5 0 5 0" Text="{Binding Email}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="4" IsEnabled="{Binding SelectedItem, TargetNullValue=False}" />
+                         Grid.Row="1" Grid.Column="4" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" />
             </Grid>
 
             <Grid Grid.Column="2">
@@ -97,9 +97,9 @@
                     <RowDefinition Height="3" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                <Button IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}"
                         Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
-                <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}" Padding="8 0"
+                <Button IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" Padding="8 0"
                         Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
             </Grid>
         </Grid>

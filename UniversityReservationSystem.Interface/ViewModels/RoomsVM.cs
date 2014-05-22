@@ -198,6 +198,10 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 Rooms.Remove(SelectedItem);
                 SelectedItem = Rooms.FirstOrDefault();
             }
+
+            ViewModelLocator.Teachers.ReloadData();
+            ViewModelLocator.Groups.ReloadData();
+            ViewModelLocator.Students.ReloadData();
         }
 
         protected override sealed void UpdateAfterSelection(bool isNull)

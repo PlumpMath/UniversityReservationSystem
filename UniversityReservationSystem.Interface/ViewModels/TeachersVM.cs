@@ -148,6 +148,10 @@ namespace UniversityReservationSystem.Interface.ViewModels
             SelectedItem.Delete();
             Teachers.Remove(SelectedItem);
             SelectedItem = Teachers.LastOrDefault();
+
+            ViewModelLocator.Groups.ReloadData();
+            ViewModelLocator.Students.ReloadData();
+            ViewModelLocator.Rooms.ReloadData();
         }
 
         public void ReservationClicked(IntPtr reservationptr)

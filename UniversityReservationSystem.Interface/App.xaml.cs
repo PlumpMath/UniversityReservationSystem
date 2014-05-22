@@ -2,8 +2,6 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using UniversityReservationSystem.Interface.Models;
 
@@ -21,7 +19,8 @@ namespace UniversityReservationSystem.Interface
 
         public App()
         {
-            LoadDB(SAVE_PATH);
+            if (!LoadDB(SAVE_PATH))
+                MessageBox.Show("No base files detected. They'll be created after you exit the program!");
 
             uint n = GetGroupsCount();
             Groups = new ObservableCollection<Group>();
@@ -68,7 +67,7 @@ namespace UniversityReservationSystem.Interface
             Directory.CreateDirectory(SAVE_PATH);
 
             // Saving the base to files
-            MessageBox.Show(SaveDB() ? "Pomyślnie zapisano bazę!" : "Wystąpiły błędy przy zapisie bazy!");
+            //MessageBox.Show(SaveDB() ? "Base successfully saved!" : "There was errors while saving the base!");
 
             // Freeing the reservated memory in the DLL
             FreeDB();

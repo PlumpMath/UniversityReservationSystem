@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using UniversityReservationSystem.Interface.ViewModels;
 
@@ -35,6 +36,7 @@ namespace UniversityReservationSystem.Interface.Models
         public void Delete()
         {
             DeleteRoom(Ptr);
+            App.Reservations.Where(x => x.Room.Ptr == Ptr).ToList().ForEach(x => App.Reservations.Remove(x));
         }
 
         public string FullInfo {

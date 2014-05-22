@@ -149,7 +149,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 MessageBox.Show("Collisions detected! Changes not accepted!");
             }
 
-            RefreshDependencies();
+            ViewModelLocator.Teachers.ReloadData();
             ViewModelLocator.Groups.ReloadData();
             ViewModelLocator.Students.ReloadData();
             ViewModelLocator.Rooms.ReloadData();

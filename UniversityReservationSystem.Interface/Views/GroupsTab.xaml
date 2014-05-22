@@ -80,7 +80,7 @@
             </Grid.ColumnDefinitions>
             <Button Content="Add new" Grid.Column="0" Command="{Binding AddCommand}" Padding="8 0"  />
             <Grid Grid.Column="1" VerticalAlignment="Center"
-                  IsEnabled="{Binding SelectedItem, TargetNullValue=False}" >
+                  IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -110,9 +110,9 @@
                     <RowDefinition Height="3" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}"
+                <Button IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}"
                         Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
-                <Button IsEnabled="{Binding SelectedItem, TargetNullValue=False}" Padding="8 0"
+                <Button IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" Padding="8 0"
                         Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
             </Grid>
         </Grid>
