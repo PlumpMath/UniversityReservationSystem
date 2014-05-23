@@ -335,11 +335,11 @@ extern "C"
 	}
 	API long int		GetReservationDateOfStart(Reservation * reservationPtr)
 	{
-		return reservationPtr->DateOfStart;
+		return (long)reservationPtr->DateOfStart;
 	}
 	API long int		GetReservationDateOfEnd(Reservation * reservationPtr)
 	{
-		return reservationPtr->DateOfEnd;
+		return (long)reservationPtr->DateOfEnd;
 	}
 	API Teacher *		GetReservationTeacher(Reservation * reservationPtr)
 	{
@@ -365,7 +365,7 @@ extern "C"
 		Reservation * reservation = new Reservation(name, dateOfStart, dateOfEnd, teacher, room);
 
 		reservation->BoundGroups.Add(*group);
-		if (!reservationCtrl->Add(*reservation)) throw 1;
+		reservationCtrl->Add(*reservation);
 
 		return reservation;
 	}

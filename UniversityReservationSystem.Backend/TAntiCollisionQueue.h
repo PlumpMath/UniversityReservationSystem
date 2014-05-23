@@ -43,7 +43,7 @@ public:
 	{
 		T** toReturn = new T*[this->Count()];
 
-		for (int i = 0; i < this->Count(); i++)
+		for (unsigned int i = 0; i < this->Count(); i++)
 		{
 			toReturn[i] = &((*this)[i]);
 		}
