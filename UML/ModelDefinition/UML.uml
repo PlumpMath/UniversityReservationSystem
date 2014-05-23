@@ -20,167 +20,61 @@
   <packagedElements>
     <packageHasNamedElement>
       <class
-        Id="151c65cf-5a71-4bfd-906c-4ed965fdc660"
-        name="Wydział"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <ownedAttributesInternal>
-          <property
-            Id="ec1f211e-9965-4596-83a6-ebe606d8fb10"
-            name="kolekcja pomieszczeń"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-        </ownedAttributesInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
         Id="cafbad43-d9cb-49ca-892c-04e7630a1bb5"
-        name="IPomieszczenie"
+        name="IRoom"
         isAbstract="true"
-        isLeaf="false"
-        isActiveClass="false">
-        <targetEnds>
-          <association
-            Id="236600da-972e-4303-a0de-f1cddaf10b6f"
-            isDerived="false"
-            sourceEndRoleName="Pomieszczenie"
-            targetEndRoleName="Rezerwacje"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="87a34deb-b0bb-459a-8de5-fac7c6722d6d"
-              LastKnownName="Rezerwacja"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="c5823622-53b7-4d39-93ea-a237066bf5b3"
-                  name="Pomieszczenie"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="b20e3ae0-3e11-4709-9fdf-6bed2f3bdd5d"
-                  name="Rezerwacje"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="47a84e9b-db8a-4a64-ad45-f4395beaf438"
-                      name="Lower"
-                      value="*" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="664d4e61-0762-4161-afd9-5d6d36d2090f"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
-        <ownedAttributesInternal>
-          <property
-            Id="a4ee5fdb-9f4e-445c-8ddf-00fc72026751"
-            name="pojemność"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="220a3521-e091-4221-bae9-3ef9018e845c"
-                LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="e71392a3-baac-4906-b461-4a6019403d27"
-            name="nazwa"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
-                LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="31c744a6-a00e-4691-bbd8-d83f30dca1d3"
-            name="wydział"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
-                LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-        </ownedAttributesInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="aa4d84bb-acd6-47ac-aa49-7e676ab0bdbf"
-        name="Aula"
-        isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
         <generalsInternal>
           <generalization
-            Id="fea9314d-e94e-4ce4-9430-430cc65446a7"
+            Id="c48b3ffb-ed33-4296-afc8-43292edb1e6e"
             isSubstitutable="false">
             <classMoniker
-              Id="cafbad43-d9cb-49ca-892c-04e7630a1bb5"
-              LastKnownName="IPomieszczenie"
-              LastKnownLocation="ModelingProject1.uml" />
+              Id="3f1ec4d4-20f7-45bb-976b-81933a8f2485"
+              LastKnownName="IReservable"
+              LastKnownLocation="UML.uml" />
           </generalization>
         </generalsInternal>
         <ownedAttributesInternal>
           <property
-            Id="4076902f-5cf5-4390-a3c2-4a899c6a7e62"
-            name="ilośćRzutników"
+            Id="a4ee5fdb-9f4e-445c-8ddf-00fc72026751"
+            name="Type"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                LastKnownName="String"
+                LastKnownLocation="UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e71392a3-baac-4906-b461-4a6019403d27"
+            name="Name"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                LastKnownName="String"
+                LastKnownLocation="UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="31c744a6-a00e-4691-bbd8-d83f30dca1d3"
+            name="Capacity"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -193,16 +87,80 @@
               <primitiveTypeMoniker
                 Id="220a3521-e091-4221-bae9-3ef9018e845c"
                 LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="52b0ccd1-c33f-48ed-89fa-e87087f2c81c"
+            name="Edit"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1ca1123d-e965-4fd8-97c3-180b462d6bb5"
+                  name="IRoom&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="46322715-6fbf-4003-86d2-accb25671ecc"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="1f3501bd-2f10-4b54-9dee-f042a34c3099"
+            name="Serialize"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="87a8dea1-1f71-4692-95c9-51a738f4a4f1"
+                  name="ostream&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="35508a92-9fa4-48d9-a267-db6cd4b8d8a4"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
         Id="50210c05-c9cf-4482-b602-66fbb1aad7ad"
-        name="SalaLaboratoryjna"
+        name="LabRoom"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -212,14 +170,14 @@
             isSubstitutable="false">
             <classMoniker
               Id="cafbad43-d9cb-49ca-892c-04e7630a1bb5"
-              LastKnownName="IPomieszczenie"
-              LastKnownLocation="ModelingProject1.uml" />
+              LastKnownName="IRoom"
+              LastKnownLocation="UML.uml" />
           </generalization>
         </generalsInternal>
         <ownedAttributesInternal>
           <property
             Id="9aaac759-f52a-4dbf-90f3-0632d14dd1e9"
-            name="dodatkowySprzęt"
+            name="AdditionalEquipment"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -232,12 +190,12 @@
               <primitiveTypeMoniker
                 Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
                 LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
           <property
             Id="76f8a44a-bf39-4bae-9d16-c4546d093a5d"
-            name="ilośćKomputerów"
+            name="NumOfComputers"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -250,16 +208,80 @@
               <primitiveTypeMoniker
                 Id="220a3521-e091-4221-bae9-3ef9018e845c"
                 LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="ea5f6af9-7d6a-4c4a-811a-cc21888b86d5"
+            name="Edit"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="0f455bbb-0ae9-4ee3-8aeb-841eaed9d4fc"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="84b4b987-0921-46b7-a3c4-ab6ba1d62922"
+                  name="LabRoom&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="a4d6c4e5-c4e2-4fdd-be00-45e7b4e1f1a2"
+            name="Serialize"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="dc1dddef-4955-4755-82c7-63d34c366d81"
+                  name="ostream&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="b86a6dad-2414-4ff5-980d-08bb3aabb815"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
         Id="86b2111e-5e02-4f64-819a-893e3e04430c"
-        name="SalaĆwiczeniowa"
+        name="ExerciseRoom"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -269,14 +291,14 @@
             isSubstitutable="false">
             <classMoniker
               Id="cafbad43-d9cb-49ca-892c-04e7630a1bb5"
-              LastKnownName="IPomieszczenie"
-              LastKnownLocation="ModelingProject1.uml" />
+              LastKnownName="IRoom"
+              LastKnownLocation="UML.uml" />
           </generalization>
         </generalsInternal>
         <ownedAttributesInternal>
           <property
             Id="08688458-9f85-4e4d-8242-4c8e53e8eddd"
-            name="ilośćŁawek"
+            name="NumOfTables"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -289,12 +311,12 @@
               <primitiveTypeMoniker
                 Id="220a3521-e091-4221-bae9-3ef9018e845c"
                 LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
           <property
             Id="09be2628-e844-4e2e-9ff1-25727e7fa7c9"
-            name="ilośćKrzeseł"
+            name="NumOfChairs"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -307,49 +329,110 @@
               <primitiveTypeMoniker
                 Id="220a3521-e091-4221-bae9-3ef9018e845c"
                 LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="73b8bd1a-1156-4069-9454-28bfebb5a95b"
+            name="Edit"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="0ed76024-3da0-4d15-b916-52c12876fcba"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5317f159-a1cc-48e1-a1d9-2465449bd950"
+                  name="ExerciseRoom&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="c6f5f26f-819a-4481-9d88-f1c4bf420c1c"
+            name="Serialize"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="68470725-b312-4025-90b8-d0e58a920e31"
+                  name="ostream&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="39f05599-585a-4353-9394-2ba890cbf456"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
-        Id="82c6ea1f-d434-4fef-beb8-8181a12f248a"
-        name="Wydział"
+        Id="87a34deb-b0bb-459a-8de5-fac7c6722d6d"
+        name="Reservation"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="ec02a083-90e7-4b9c-892b-187f7194f1b4"
+            isSubstitutable="false">
+            <classMoniker
+              Id="db2417f5-fda4-4fe9-891a-7c4421c80bac"
+              LastKnownName="ISerializable"
+              LastKnownLocation="UML.uml" />
+          </generalization>
+        </generalsInternal>
         <targetEnds>
           <association
-            Id="2707df7d-879b-45a9-89eb-d47a2d4ba0fa"
+            Id="f5e9fd57-6d25-4f92-863b-693fe5717cb7"
             isDerived="false"
-            sourceEndRoleName="Wydział"
-            targetEndRoleName="IPomieszczenie"
+            sourceEndRoleName="Reservations"
+            targetEndRoleName="Group"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
-              Id="cafbad43-d9cb-49ca-892c-04e7630a1bb5"
-              LastKnownName="IPomieszczenie"
-              LastKnownLocation="ModelingProject1.uml" />
+              Id="6304224f-bcef-4d98-85e8-52bbdedb9dab"
+              LastKnownName="Group"
+              LastKnownLocation="UML.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="18119965-db64-465d-8caf-dc5086402d67"
-                  name="Wydział"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="397d1c63-a240-4625-adfa-58b51488f864"
-                  name="IPomieszczenie"
+                  Id="7181ddfe-c153-42b9-b0c8-01af47a94a10"
+                  name="Reservations"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -359,116 +442,22 @@
                   isComposite="false">
                   <lowerValueInternal>
                     <literalString
-                      Id="1e722923-e27f-4b51-a117-351c7a3ef45f"
+                      Id="e4c9eaf6-9006-4de2-ac76-f9d6d5d301b0"
                       name="Lower"
                       value="*" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
-                      Id="330d91f8-4af3-4039-9a42-d3ec3fd0f4d0"
+                      Id="967bfc63-1cbb-46e9-9205-f76fc218df38"
                       name="Upper"
                       value="*" />
                   </upperValueInternal>
                 </memberEnd>
               </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
-        <ownedAttributesInternal>
-          <property
-            Id="be92851a-4938-4aed-a342-4806234a27f9"
-            name="dziekan"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <classMoniker
-                Id="2b6ea1b0-40e5-4dc6-b8c5-345d31892cb3"
-                LastKnownName="Dziekan"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="96026dd8-28bc-4291-9e6e-79d47f2e911f"
-            name="nazwa"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
-                LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="03cfb8dc-7a0d-4165-b573-d81e06c380f2"
-            name="przynależność"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
-                LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-        </ownedAttributesInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="87a34deb-b0bb-459a-8de5-fac7c6722d6d"
-        name="Rezerwacja"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <targetEnds>
-          <association
-            Id="80779139-3d95-4cd7-9702-ccad1cf0b47b"
-            isDerived="false"
-            sourceEndRoleName="IRezerwacja"
-            targetEndRoleName="Grupa ludzi"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="aeacf21a-95f1-47ee-9caa-aae25386a38c"
-              LastKnownName="IGrupaLudzi"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="f89c3598-7e96-4ad5-88a1-f5a44561f9fe"
-                  name="IRezerwacja"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="7af02507-7a6b-483e-b0dd-76edd859c704"
-                  name="Grupa ludzi"
+                  Id="976889bd-5531-4e1b-b9e0-54ca1b82f1fa"
+                  name="Group"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -476,70 +465,6 @@
                   isDerivedUnion="false"
                   aggregation="None"
                   isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="5bfc8fe2-d774-4f4d-8d3a-074a090f92c9"
-            isDerived="false"
-            sourceEndRoleName="Rezerwacje"
-            targetEndRoleName="GrupyDziekańskie"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="6304224f-bcef-4d98-85e8-52bbdedb9dab"
-              LastKnownName="GrupaDziekańska"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="96ef0c68-a710-4b1c-ab7d-0214dee730ab"
-                  name="Rezerwacje"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="1eb98392-6378-41e2-a625-7489cfba079f"
-                      name="Lower"
-                      value="*" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="c8ba00a3-ff7d-48ef-a5c1-cefc802e32e7"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="ab2f340d-0cea-45a5-9380-11762a770284"
-                  name="GrupyDziekańskie"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="c291851a-0a12-4f4a-8b4f-38707211bf13"
-                      name="Lower"
-                      value="1" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="7e2dcea2-4835-4f5e-bb80-dea10eda2db9"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
@@ -547,7 +472,7 @@
         <ownedAttributesInternal>
           <property
             Id="074ad64d-39fd-4b59-a208-5b1df2a9ac24"
-            name="nazwa"
+            name="Name"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -560,200 +485,174 @@
               <primitiveTypeMoniker
                 Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
                 LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ccc940c6-77f8-47e8-9350-6ee550a1971a"
+            name="DateOfStart"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="903b0c79-311d-435a-ba18-e869c6b7b8fc"
+                LastKnownName="time_t"
+                LastKnownLocation="UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5ec3b752-e46d-4d5c-bfa7-a722394e8d3e"
+            name="DateOfEnd"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="903b0c79-311d-435a-ba18-e869c6b7b8fc"
+                LastKnownName="time_t"
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="c13e50b3-4a87-4a63-bfa0-5da788e08e17"
+            name="Deserialize"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="618153ff-ed64-4e40-a3ac-f2af8eb93788"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="98eb98b8-36c3-4e81-b62d-e11bad2a2c0e"
+                      LastKnownName="Reservation&amp;"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="22df3c0f-98e2-4bc8-956c-2799cb2650d5"
+                  name="ifstream&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="15a5cfbb-8262-4cbf-ba78-9d7df7f57c9c"
+                  name="DataContext&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="e58c7862-7e71-460a-aed9-995a95d14f4c"
+            name="Edit"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e57057c8-d214-49eb-af28-b73b158fb1fa"
+                  name="Reservation&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3ed16c20-03af-4fb3-b0d3-c0f977bffc0b"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="fc0ddfdd-1071-4f22-859e-80b67eb93a4a"
+            name="CheckCollisions"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fd2924bd-787f-4916-b6e9-e868e6b5381a"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d74a8669-0a1a-4625-9136-34fa5e27d80e"
+                  name="Reservation&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="28563651-2c17-4ec9-aceb-7de8ac6bf380"
+            name="ValidateDates"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e45935ee-4e35-4ae1-94b4-e765f1c875ea"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="c499a9a0-da2a-42bc-bb1f-13021721e1a9"
-        name="StałaRezerwacja"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <generalsInternal>
-          <generalization
-            Id="c0b8838a-8072-413f-89b5-7ad4876be678"
-            isSubstitutable="false">
-            <classMoniker
-              Id="87a34deb-b0bb-459a-8de5-fac7c6722d6d"
-              LastKnownName="Rezerwacja"
-              LastKnownLocation="ModelingProject1.uml" />
-          </generalization>
-        </generalsInternal>
-        <ownedAttributesInternal>
-          <property
-            Id="0198546e-b2db-40d9-910d-917f28755d24"
-            name="dzieńTygodnia"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <enumerationMoniker
-                Id="663bef9a-05ab-45ee-879c-baf6732e29b6"
-                LastKnownName="DzieńTygodnia"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="ed9c65d6-b85b-49dd-aab0-00c6d5cbc8d0"
-            name="występowanie"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="b05a25f9-5ef4-4364-8168-d9780759a27f"
-                LastKnownName="Występowanie"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="94527443-01ed-4f22-83ea-01effc016353"
-            name="czasTrwania"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="8f142b0b-cc8b-4aa4-bf79-5fe52801b8ab"
-                LastKnownName="TimeSpan"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-        </ownedAttributesInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="8baa5db4-c4e6-4949-85de-82882cd2a3c6"
-        name="WyjątkowaRezerwacja"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <generalsInternal>
-          <generalization
-            Id="9052b902-469a-4e36-b6ae-c3499603c0e7"
-            isSubstitutable="false">
-            <classMoniker
-              Id="87a34deb-b0bb-459a-8de5-fac7c6722d6d"
-              LastKnownName="Rezerwacja"
-              LastKnownLocation="ModelingProject1.uml" />
-          </generalization>
-        </generalsInternal>
-        <ownedAttributesInternal>
-          <property
-            Id="5d7bdf96-f377-4794-b0e6-c3cb615169ab"
-            name="czasTrwania"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="8f142b0b-cc8b-4aa4-bf79-5fe52801b8ab"
-                LastKnownName="TimeSpan"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="39bba869-6abf-41ec-85c3-ad6f6afeb16f"
-            name="dataRozpoczęcia"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="41fc7354-8207-4f9f-a2c7-98347ead12d5"
-                LastKnownName="DateTime"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-        </ownedAttributesInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="aeacf21a-95f1-47ee-9caa-aae25386a38c"
-        name="IGrupaLudzi"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <Interface
-        Id="02ff13ef-e4c5-4f4e-8b43-c42b5bd0064d"
-        name="IGrupaLudzi"
-        isAbstract="false"
-        isLeaf="false">
-        <targetEnds>
-          <association
-            Id="d5f39211-9861-4fa8-8996-2d45a17570b9"
-            isDerived="false"
-            sourceEndRoleName="IGrupaLudzi"
-            targetEndRoleName="IRezerwacja"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="87a34deb-b0bb-459a-8de5-fac7c6722d6d"
-              LastKnownName="Rezerwacja"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="f104cf3f-987e-4dd2-a632-1ad7668405b5"
-                  name="IGrupaLudzi"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="b5f8bf1b-d1fa-4d6a-9c0d-8f7cf3237e57"
-                  name="IRezerwacja"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
-      </Interface>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -762,15 +661,6 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
-        <suppliersInternal>
-          <interfaceRealization
-            Id="830bda6d-6ad9-43d1-9d11-2c7fb88015e0">
-            <interfaceMoniker
-              Id="02ff13ef-e4c5-4f4e-8b43-c42b5bd0064d"
-              LastKnownName="IGrupaLudzi"
-              LastKnownLocation="ModelingProject1.uml" />
-          </interfaceRealization>
-        </suppliersInternal>
         <targetEnds>
           <association
             Id="2aee4ff5-19c0-4b63-b2d0-df0b14d766d0"
@@ -781,8 +671,8 @@
             isAbstract="false">
             <classMoniker
               Id="6304224f-bcef-4d98-85e8-52bbdedb9dab"
-              LastKnownName="GrupaDziekańska"
-              LastKnownLocation="ModelingProject1.uml" />
+              LastKnownName="Group"
+              LastKnownLocation="UML.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
@@ -841,7 +731,7 @@
               <undefinedTypeMoniker
                 Id="41fc7354-8207-4f9f-a2c7-98347ead12d5"
                 LastKnownName="DateTime"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
@@ -850,14 +740,24 @@
     <packageHasNamedElement>
       <class
         Id="172ba97b-c55e-46e1-bb18-3271e5c1c176"
-        name="IOsoba"
+        name="IPerson"
         isAbstract="true"
         isLeaf="false"
         isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="bc4348b8-8e1e-4980-9b51-3c4d4c7d5389"
+            isSubstitutable="false">
+            <classMoniker
+              Id="3f1ec4d4-20f7-45bb-976b-81933a8f2485"
+              LastKnownName="IReservable"
+              LastKnownLocation="UML.uml" />
+          </generalization>
+        </generalsInternal>
         <ownedAttributesInternal>
           <property
             Id="da3e6cd4-5d02-4fb9-9648-ae1c726d685b"
-            name="imię"
+            name="FirstName"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -870,12 +770,12 @@
               <primitiveTypeMoniker
                 Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
                 LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
           <property
             Id="df7dc366-874d-48eb-a049-3b06923b41a7"
-            name="nazwisko"
+            name="LastName"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -888,10 +788,74 @@
               <primitiveTypeMoniker
                 Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
                 LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="28de2d28-262c-43d6-b750-88bcadba3919"
+            name="Edit"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ee411656-fd27-4d8c-a5b0-5e8b0b0713a6"
+                  name="IPerson&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1cb09188-24de-4753-b1a0-5cecf29f8fc8"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="58df6063-9ee8-4bfc-ab88-0d4083d78dfb"
+            name="Serialize"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="27cf7545-1728-4ad6-877a-6516873b7698"
+                  name="ostream&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4119931f-624b-42f9-a80a-07a4f9715b8a"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -907,51 +871,10 @@
             isSubstitutable="false">
             <classMoniker
               Id="172ba97b-c55e-46e1-bb18-3271e5c1c176"
-              LastKnownName="IOsoba"
-              LastKnownLocation="ModelingProject1.uml" />
+              LastKnownName="IPerson"
+              LastKnownLocation="UML.uml" />
           </generalization>
         </generalsInternal>
-        <targetEnds>
-          <association
-            Id="7fae3bf3-3506-485b-ae81-3c60748cab49"
-            isDerived="false"
-            sourceEndRoleName="Dziekan"
-            targetEndRoleName="Wydział"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="82c6ea1f-d434-4fef-beb8-8181a12f248a"
-              LastKnownName="Wydział"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="4d5ab70c-ff14-43e0-8599-1c604865c1c7"
-                  name="Dziekan"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="68786e27-a019-4069-a96c-d6c6b9e1f5dd"
-                  name="Wydział"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="878a9e6a-6211-4b4e-bc1c-0764f7906cd3"
@@ -968,7 +891,7 @@
               <primitiveTypeMoniker
                 Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
                 LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
           <property
@@ -986,7 +909,7 @@
               <primitiveTypeMoniker
                 Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
                 LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
           <property
@@ -999,14 +922,7 @@
             isDerived="false"
             isDerivedUnion="false"
             aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <classMoniker
-                Id="151c65cf-5a71-4bfd-906c-4ed965fdc660"
-                LastKnownName="Wydział"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
+            isComposite="false" />
         </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
@@ -1023,98 +939,14 @@
             isSubstitutable="false">
             <classMoniker
               Id="172ba97b-c55e-46e1-bb18-3271e5c1c176"
-              LastKnownName="IOsoba"
-              LastKnownLocation="ModelingProject1.uml" />
+              LastKnownName="IPerson"
+              LastKnownLocation="UML.uml" />
           </generalization>
         </generalsInternal>
-        <targetEnds>
-          <association
-            Id="727c9fd6-80e8-4b4c-9415-379c73e2abd4"
-            isDerived="false"
-            sourceEndRoleName=""
-            targetEndRoleName="Rezerwacje"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="87a34deb-b0bb-459a-8de5-fac7c6722d6d"
-              LastKnownName="Rezerwacja"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="4170711b-ff46-44d5-8319-10821795c1a8"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="4d6104df-860a-4664-b937-505188e3fee2"
-                      name="Lower"
-                      value="1" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="e205e32c-380d-4fe5-b366-97cd65726994"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="60ecc409-0c97-41f2-9f46-b3b47e4492fe"
-                  name="Rezerwacje"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="46821b6c-fb26-4dd2-8806-e619e8f16f7f"
-                      name="Lower"
-                      value="*" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="6f5dd04e-e5dd-4d68-8d56-776b5f45943c"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="9f6d90cc-4b94-4db6-8ccf-7241dfa56595"
-            name="zdaneSemestry"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="220a3521-e091-4221-bae9-3ef9018e845c"
-                LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="f6923f50-e046-4fd3-8f93-30bb8d1ad80a"
-            name="średniaBieżSem"
+            name="AverageOfMarksOfLastTerm"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1127,16 +959,167 @@
               <undefinedTypeMoniker
                 Id="016440dc-ca36-4391-a3a3-41bef3917211"
                 LastKnownName="Double"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="f6923f50-e046-4fd3-8f93-30bb8d1ad80a"
+            name="PassedTerms"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="119183b2-e848-4c9f-83fe-d21a9714791d"
+            name="Edit"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6f6e85e7-a954-4fd3-ad82-a857ffbff71f"
+                  name="Student&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="53917c38-5524-4a8b-a768-218286b33d59"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="69d79744-d6f8-4b9c-ad8a-c511a96db665"
+            name="Deserialize"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7c3c43c6-d20a-410c-b09f-a630cb253fdd"
+                  name="ifstream&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="76126c37-c054-4d95-ace1-72d4b175fbf5"
+                  name="DataContext&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="90ee000c-d711-4c1f-90a2-0183b89863e5"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="e08afb8d-0f8b-4c47-88ef-0b4a0ed3fd2a"
+                      LastKnownName="Student&amp;"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="b9a25eaa-308e-4d3a-8db2-5f1b031ff16b"
+            name="Serialize"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c47dbb4b-7ec1-4e3a-969c-04cbfd4c4159"
+                  name="ostream&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2fbf17c4-c79e-4cd0-b67f-decd357068eb"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="9e8c32d2-f569-4d1f-af77-b54117e77616"
+            name="CheckCollisions"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ba9032b6-1f4a-4e22-a284-6e9d9001f4cb"
+                  name="Reservation&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e5aa6aa2-a219-40af-bbb0-989cae86e91c"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
         Id="e05fd956-0265-4591-b465-74565269057a"
-        name="Prowadzący"
+        name="Teacher"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -1146,27 +1129,27 @@
             isSubstitutable="false">
             <classMoniker
               Id="172ba97b-c55e-46e1-bb18-3271e5c1c176"
-              LastKnownName="IOsoba"
-              LastKnownLocation="ModelingProject1.uml" />
+              LastKnownName="IPerson"
+              LastKnownLocation="UML.uml" />
           </generalization>
         </generalsInternal>
         <targetEnds>
           <association
-            Id="4f7dd0fe-2044-4199-9cd1-a9a97b68a523"
+            Id="8d0479eb-1ac6-4bce-aeb1-dc6b4599da29"
             isDerived="false"
-            sourceEndRoleName="Prowadzący"
-            targetEndRoleName="Rezerwacje"
+            sourceEndRoleName="Teacher"
+            targetEndRoleName="Reservations"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
               Id="87a34deb-b0bb-459a-8de5-fac7c6722d6d"
-              LastKnownName="Rezerwacja"
-              LastKnownLocation="ModelingProject1.uml" />
+              LastKnownName="Reservation"
+              LastKnownLocation="UML.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="d8608417-c96a-4594-928f-caa5de1c8692"
-                  name="Prowadzący"
+                  Id="0f60c21e-fafb-4118-a28d-81fdd41ffea4"
+                  name="Teacher"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -1177,8 +1160,8 @@
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="937e871e-f3d4-41b3-8990-2c9b00700ffa"
-                  name="Rezerwacje"
+                  Id="7755383b-924e-46a0-bb6b-1d50d7f6da1c"
+                  name="Reservations"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -1188,13 +1171,13 @@
                   isComposite="false">
                   <lowerValueInternal>
                     <literalString
-                      Id="5f1da892-24ea-494f-8f0a-0332779d2e69"
+                      Id="6f8ec90e-ccae-4572-9238-ce84e43837d9"
                       name="Lower"
                       value="*" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
-                      Id="3bdcd408-9046-4bf4-ac90-6369a31ded92"
+                      Id="d361b8bc-7037-4a90-b0d5-d756cc05cd44"
                       name="Upper"
                       value="*" />
                   </upperValueInternal>
@@ -1206,7 +1189,7 @@
         <ownedAttributesInternal>
           <property
             Id="c18aabf8-668f-4a36-8af0-1f5e57123ba1"
-            name="adres email"
+            name="Email"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1219,12 +1202,12 @@
               <primitiveTypeMoniker
                 Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
                 LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
           <property
             Id="313f3e33-53fc-4bfa-b3b8-a3f356620521"
-            name="numer telefonu"
+            name="PhoneNumber"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1237,12 +1220,12 @@
               <primitiveTypeMoniker
                 Id="220a3521-e091-4221-bae9-3ef9018e845c"
                 LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
           <property
             Id="c744f0ba-56d6-4002-a29c-624ee7f74afc"
-            name="tytuł"
+            name="AcademicTitle"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1255,10 +1238,112 @@
               <primitiveTypeMoniker
                 Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
                 LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="32009ecd-205d-42aa-89f5-986c59f0a3e6"
+            name="Deserialize"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ee369093-e08b-4b3a-a62b-638b242b9bf8"
+                  name="ifstream&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="65c2d1f0-94c6-432c-bc9c-7435c8573c4d"
+                  name="DataContext&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="0c551dd3-ca06-44fb-9774-e3541150d7fd"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="e08afb8d-0f8b-4c47-88ef-0b4a0ed3fd2a"
+                      LastKnownName="Student&amp;"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="a0a207fe-c6e7-4d55-8547-0d3c33244ce8"
+            name="Edit"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d570e3ec-5f9a-41a0-b9c9-259aa6919f71"
+                  name="Teacher&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6c059d95-2d58-48fa-a751-dc8dd1f8670a"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="2557d285-f580-4251-a37b-9831d30ccffa"
+            name="Serialize"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="731551b8-134e-44cf-9aa7-da7b1e99cc33"
+                  name="ostream&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7c912916-d564-42ab-bc39-60a7f9ae6c15"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1267,138 +1352,67 @@
         name="integer" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <enumeration
-        Id="663bef9a-05ab-45ee-879c-baf6732e29b6"
-        name="DzieńTygodnia"
-        isAbstract="false"
-        isLeaf="false">
-        <targetEnds>
-          <association
-            Id="6f57c275-355c-4fd5-8ed5-68c2e72c61bc"
-            isDerived="false"
-            sourceEndRoleName="DzieńTygodnia"
-            targetEndRoleName="StałaRezerwacja"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="c499a9a0-da2a-42bc-bb1f-13021721e1a9"
-              LastKnownName="StałaRezerwacja"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="275dab25-68a9-40d7-a6fc-a493afd79346"
-                  name="DzieńTygodnia"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="41582752-d11c-4cfd-aae8-84342c05a753"
-                  name="StałaRezerwacja"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
-        <ownedLiterals>
-          <enumerationLiteral
-            Id="b9aa2a15-9882-4710-ad96-4455e59b0604"
-            name="+ Poniedziałek" />
-          <enumerationLiteral
-            Id="048d7c28-bd2a-4484-adfb-ce36f37433bc"
-            name="+ Wtorek" />
-          <enumerationLiteral
-            Id="1dbe54a2-8bfe-4391-9897-c878277ae7e9"
-            name="+ Środa" />
-          <enumerationLiteral
-            Id="5e38955f-3ca3-4a1f-848d-b6a17d45b9a0"
-            name="+ Czwartek" />
-          <enumerationLiteral
-            Id="fc28650b-18f3-45e0-b9e0-dec9e13228c5"
-            name="+ Piątek" />
-          <enumerationLiteral
-            Id="9f90db01-7e6c-486e-93da-68693aebfafc"
-            name="+ Sobota" />
-          <enumerationLiteral
-            Id="a6d3c438-c540-4dad-979b-50f525774577"
-            name="+ Niedziela" />
-        </ownedLiterals>
-      </enumeration>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <class
         Id="6304224f-bcef-4d98-85e8-52bbdedb9dab"
-        name="GrupaDziekańska"
+        name="Group"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
-        <suppliersInternal>
-          <interfaceRealization
-            Id="22acb54b-9454-45da-bae7-f2caa7fa55eb">
-            <interfaceMoniker
-              Id="02ff13ef-e4c5-4f4e-8b43-c42b5bd0064d"
-              LastKnownName="IGrupaLudzi"
-              LastKnownLocation="ModelingProject1.uml" />
-          </interfaceRealization>
-        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="fe6283b5-a19f-4146-8081-255ecccbb3f9"
+            isSubstitutable="false">
+            <classMoniker
+              Id="3f1ec4d4-20f7-45bb-976b-81933a8f2485"
+              LastKnownName="IReservable"
+              LastKnownLocation="UML.uml" />
+          </generalization>
+        </generalsInternal>
         <targetEnds>
           <association
-            Id="8f119340-e23b-4c5c-b2d9-44cbdb06b73d"
+            Id="f8e78c43-ef7b-4a2f-a3fd-81a933be3a86"
             isDerived="false"
-            sourceEndRoleName="GrupaDziekańska"
-            targetEndRoleName="Studenci"
+            sourceEndRoleName="Group"
+            targetEndRoleName="Student"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
               Id="0649b482-9bc1-4c9f-a444-3e3b021981c7"
               LastKnownName="Student"
-              LastKnownLocation="ModelingProject1.uml" />
+              LastKnownLocation="UML.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="de2a2412-4082-409d-8c33-c42c54cc252c"
-                  name="GrupaDziekańska"
+                  Id="3878b2df-a432-401b-94ed-7e7d4b90cf7b"
+                  name="Group"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
-                  aggregation="None"
+                  aggregation="Composite"
                   isComposite="false" />
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="a13447ba-1396-475a-8f37-fb8db24a440b"
-                  name="Studenci"
+                  Id="8b74e83c-bd20-4ea7-9796-38b856fb2111"
+                  name="Student"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="false">
+                  isComposite="true">
                   <lowerValueInternal>
                     <literalString
-                      Id="d0b4ca1d-8531-46b8-a03c-2e7d787518c3"
+                      Id="34f6733a-c2e3-4c83-a36e-88f3981b964b"
                       name="Lower"
                       value="*" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
-                      Id="cfcd699b-0cdb-4e0a-b3c2-9cbd1fd450ec"
+                      Id="9aab493f-957c-429d-82cc-278545159235"
                       name="Upper"
                       value="*" />
                   </upperValueInternal>
@@ -1410,7 +1424,7 @@
         <ownedAttributesInternal>
           <property
             Id="5deea8f0-f00c-4cd6-b014-0634fad68a1b"
-            name="numer"
+            name="Year"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1423,10 +1437,210 @@
               <primitiveTypeMoniker
                 Id="220a3521-e091-4221-bae9-3ef9018e845c"
                 LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
+                LastKnownLocation="UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="08863a83-d1da-433d-bc37-e1ade699340a"
+            name="GroupNumber"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="01399887-12e6-4e9a-90b9-683d112f9dee"
+            name="DegreeCourse"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                LastKnownName="String"
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="9eb4086e-4ff9-475a-9a8e-c607ef7789e4"
+            name="Edit"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ff53477c-159d-4851-9e80-19acb2df4d2e"
+                  name="Group&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a18e05b2-7b69-4b69-b9d9-55108bf848c8"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="c0d2f265-8721-4028-84ce-bcd3a9f2e83c"
+            name="Deserialize"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8df71527-8f7e-4924-9a42-44ab088cb32f"
+                  name="ifstream&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="84cbbd98-3328-4199-bdfc-6bece8fc8128"
+                  name="DataContext"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a6cf8eb8-4da2-4596-b237-ff982a404962"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="251dc9b6-e7ac-4e7d-8037-1a12cfc5fe42"
+                      LastKnownName="Group&amp;"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="3b450ebe-8245-4a2b-97ea-8a9d22e68901"
+            name="Serialize"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5a04a978-6a59-4162-8f2b-a646b0840608"
+                  name="ostream&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6df0343d-1143-4057-b91e-2ddf3b08deb8"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="7813dbf0-a4c3-435b-b1a6-7968b4838f26"
+            name="AddReservation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2738760e-9de9-44c7-be31-155b76bbdde6"
+                  name="Reservation&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="9175891e-7e80-434e-9a41-7610727ec23c"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="bc9fc029-a400-4c4e-a1cc-8472003f2576"
+            name="RemoveReservation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fc4804b6-aa8a-4ff5-a51f-6332f6d5e014"
+                  name="Reservation&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="57053e22-a73c-41f7-9d6a-96ef0dc66d0b"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1450,144 +1664,26 @@
         name="TypZajęć" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <enumeration
-        Id="bbcec9da-f65a-4a97-9cd7-2bc35db1748a"
-        name="Występowanie"
-        isAbstract="false"
-        isLeaf="false">
-        <targetEnds>
-          <association
-            Id="56a39539-a3cd-429b-b8b2-9b17fcdcf941"
-            isDerived="false"
-            sourceEndRoleName="Występowanie"
-            targetEndRoleName="StałaRezerwacja"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="c499a9a0-da2a-42bc-bb1f-13021721e1a9"
-              LastKnownName="StałaRezerwacja"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="fa401667-93c1-42cc-954f-087f9664f4c4"
-                  name="Występowanie"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="39a86001-bce6-4a78-8dcb-82e935ac6e60"
-                  name="StałaRezerwacja"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
-        <ownedLiterals>
-          <enumerationLiteral
-            Id="6f528278-ad7c-4f2a-bc18-981633231b6c"
-            name="+ parzysty" />
-          <enumerationLiteral
-            Id="e7cad579-c066-4e97-bc10-8e4b9e613c5f"
-            name="+ nieparzysty" />
-          <enumerationLiteral
-            Id="719cd7a2-10cc-47d7-840d-e6d38bc58b1b"
-            name="+ oba" />
-        </ownedLiterals>
-      </enumeration>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <undefinedType
         Id="b05a25f9-5ef4-4364-8168-d9780759a27f"
         name="Występowanie" />
     </packageHasNamedElement>
     <packageHasNamedElement>
+      <undefinedType
+        Id="016440dc-ca36-4391-a3a3-41bef3917211"
+        name="Double" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
       <class
-        Id="65ddcee2-dcf8-4c18-b8f2-7db9ee79b7ee"
-        name="GrupaNiezależna"
-        isAbstract="false"
+        Id="db2417f5-fda4-4fe9-891a-7c4421c80bac"
+        name="ISerializable"
+        isAbstract="true"
         isLeaf="false"
         isActiveClass="false">
-        <suppliersInternal>
-          <interfaceRealization
-            Id="a5a95fd5-2355-40e3-87c4-00efc46ba7bc">
-            <interfaceMoniker
-              Id="02ff13ef-e4c5-4f4e-8b43-c42b5bd0064d"
-              LastKnownName="IGrupaLudzi"
-              LastKnownLocation="ModelingProject1.uml" />
-          </interfaceRealization>
-        </suppliersInternal>
-        <targetEnds>
-          <association
-            Id="60207a6f-73a3-4380-a07d-2adf5d3e95dc"
-            isDerived="false"
-            sourceEndRoleName="GrupaNiezależna"
-            targetEndRoleName="IOsoba"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="172ba97b-c55e-46e1-bb18-3271e5c1c176"
-              LastKnownName="IOsoba"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="c6808ccb-960e-4bd0-8345-33f1f620c1c5"
-                  name="GrupaNiezależna"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="54b8e00a-f005-45e0-811e-0017bfd4a5db"
-                  name="IOsoba"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="79f6de40-2a4a-4563-b74f-9b6d5b0da674"
-                      name="Lower"
-                      value="*" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="d67b7819-75bf-421e-8f51-a7f2c9ad3405"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
         <ownedAttributesInternal>
           <property
-            Id="b2768e2d-e2f1-4055-8f4b-ea1b362e38fc"
-            name="nazwaEventu"
+            Id="5386e725-78fe-49b9-b5e1-24f050cd13b4"
+            name="Id"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1598,18 +1694,214 @@
             isComposite="false">
             <type_NamedElement>
               <primitiveTypeMoniker
-                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
-                LastKnownName="String"
-                LastKnownLocation="ModelingProject1.uml" />
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="UML.uml" />
             </type_NamedElement>
+            <defaultValue>
+              <literalString
+                Id="16c8885c-9eb1-49e1-b757-652ad332e0c0"
+                name="DefaultValue"
+                value="-1" />
+            </defaultValue>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="506fdb12-cb39-4a4c-9317-9dd5d18f9e82"
+            name="Serialize"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3a8657ff-5234-45df-abad-61aa7cfb53ae"
+                  name="ostream&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c2111472-1686-40ed-a065-285b052ee7ba"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <undefinedType
-        Id="016440dc-ca36-4391-a3a3-41bef3917211"
-        name="Double" />
+        Id="d3791e7e-8505-4ec0-ad64-14f74e963718"
+        name="int" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="6e360072-eedf-480e-9013-f49d531baf24"
+        name="void(" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3f1ec4d4-20f7-45bb-976b-81933a8f2485"
+        name="IReservable"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="4448f4d4-b6f0-44bd-9269-d571af11b9ee"
+            isSubstitutable="false">
+            <classMoniker
+              Id="db2417f5-fda4-4fe9-891a-7c4421c80bac"
+              LastKnownName="ISerializable"
+              LastKnownLocation="UML.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="a2268d9d-ca2c-490e-a5ca-03331c0779ca"
+            name="TAntiCollisionQueue&lt;Reservation&gt;"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="255dfae2-962c-4310-9d9f-2f8083e388d3"
+            name="CheckCollisions"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4d94396c-a973-48c9-8141-2156e83e85f4"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="25a71d55-445c-4711-bc38-e13f52326b70"
+                  name="Reservation&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="0e143d1a-3a10-4d05-9390-2b269bc715bf"
+            name="AddReservation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="50a08960-429a-445d-8290-7ec9f98269a5"
+                  name="Reservation&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a0ad166e-5eaa-46cd-909f-cbaed111e691"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="7fbd55e8-9a90-4d14-94da-e7d7e761025e"
+            name="RemoveReservation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="732409c2-dffb-49ba-b221-c4ee6719edff"
+                  name="Reservation&amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4f1f333c-2e1d-4a04-8864-82d6c7854bae"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+                      LastKnownName="void"
+                      LastKnownLocation="UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="9f979724-a146-4fe9-8148-b14b366bbb8f"
+        name="void" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="e08afb8d-0f8b-4c47-88ef-0b4a0ed3fd2a"
+        name="Student&amp;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="903b0c79-311d-435a-ba18-e869c6b7b8fc"
+        name="time_t" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="251dc9b6-e7ac-4e7d-8037-1a12cfc5fe42"
+        name="Group&amp;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="98eb98b8-36c3-4e81-b62d-e11bad2a2c0e"
+        name="Reservation&amp;" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

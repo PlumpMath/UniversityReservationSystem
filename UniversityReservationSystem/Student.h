@@ -34,7 +34,7 @@ public:
 		AverageOfMarksOfLastTerm = _averageOfMarksOfLastTerm;
 	}
 
-	bool CheckCollisions(Reservation& reservation)
+	virtual bool CheckCollisions(Reservation& reservation)
 	{
 		// Since groups have to check it
 		return false;
