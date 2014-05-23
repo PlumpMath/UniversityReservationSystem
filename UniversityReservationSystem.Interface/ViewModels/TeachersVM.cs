@@ -110,6 +110,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 "dr");
             Teachers.Add(teacherToAdd);
             SelectedItem = Teachers.Last();
+            IsFirstNameFocused = false;
             IsFirstNameFocused = true;
         }
 

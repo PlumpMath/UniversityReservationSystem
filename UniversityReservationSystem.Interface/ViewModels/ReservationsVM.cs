@@ -121,12 +121,11 @@ namespace UniversityReservationSystem.Interface.ViewModels
         protected override void Add()
         {
             var reservationToAdd = new Reservation(
-                "Type description", DateTime.Today.AddYears(10),
-                DateTime.Today.AddYears(10).AddHours(1),
                 Teachers.First(), Rooms.First(), Groups.First());
 
             Reservations.Add(reservationToAdd);
             SelectedItem = Reservations.Last();
+            IsNameFocused = false;
             IsNameFocused = true;
         }
 

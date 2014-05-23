@@ -164,6 +164,8 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             IsControlPanelActive = true;
             AddingModeActive = true;
+            IsNameFocused = false;
+            IsNameFocused = true;
 
             Name = "Type Room Name";
             Capacity = 0;

@@ -84,6 +84,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 DateTime.Today.Year, 1);
             Groups.Add(groupToAdd);
             SelectedItem = Groups.Last();
+            IsDegreeFocused = false;
             IsDegreeFocused = true;
         }
 

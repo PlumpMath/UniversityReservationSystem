@@ -349,10 +349,6 @@ extern "C"
 	{
 		return reservationPtr->Room;
 	}
-	API uint			GetReservationGroupsCount(Reservation * reservationPtr)
-	{
-		return reservationPtr->BoundGroups.Count();
-	}
 	API Group *			GetReservationGroup(Reservation * reservationPtr)
 	{
 		return &(reservationPtr->BoundGroups[0]);
@@ -369,7 +365,7 @@ extern "C"
 		Reservation * reservation = new Reservation(name, dateOfStart, dateOfEnd, teacher, room);
 
 		reservation->BoundGroups.Add(*group);
-		reservationCtrl->Add(*reservation);
+		if (!reservationCtrl->Add(*reservation)) throw 1;
 
 		return reservation;
 	}

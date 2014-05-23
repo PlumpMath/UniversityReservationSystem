@@ -109,6 +109,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 Groups.First(), 0, 0);
             Students.Add(studentToAdd);
             SelectedItem = Students.Last();
+            IsFirstNameFocused = false;
             IsFirstNameFocused = true;
         }
 

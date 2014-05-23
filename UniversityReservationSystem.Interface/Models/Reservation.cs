@@ -64,11 +64,6 @@ namespace UniversityReservationSystem.Interface.Models
             }
         }
 
-        //public uint GroupsCount
-        //{
-        //    get { return GetReservationGroupsCount(Ptr); }
-        //}
-
         public Reservation(IntPtr thisPtr) : base(thisPtr)
         {
             Teacher = App.Teachers.SingleOrDefault(x => x.Ptr == GetReservationTeacher(thisPtr));
@@ -76,15 +71,34 @@ namespace UniversityReservationSystem.Interface.Models
             Group = App.Groups.SingleOrDefault(x => x.Ptr == GetReservationGroup(thisPtr));
         }
 
-        public Reservation(string name, DateTime dateOfStart, DateTime dateOfEnd, Teacher teacher, IRoom room, Group group)
-            : base(CreateNewReservation(name, dateOfStart.ToUnixTimestamp(), dateOfEnd.ToUnixTimestamp(), teacher.Ptr, room.Ptr, group.Ptr))
+        public Reservation(Teacher teacher, IRoom room, Group group)
+            : base(FindSpaceForNewReservation(teacher, room, group))
         {
             Teacher = teacher;
             Room = room;
             Group = group;
         }
 
-        public static bool CheckCollisionsBeforeAdding(DateTime dateOfStart, DateTime dateOfEnd, Teacher teacher, IRoom room, Group group)
+        private static IntPtr FindSpaceForNewReservation(Teacher teacher, IRoom room, Group group)
+        {
+            var start = DateTime.Now.Subtract(TimeSpan.FromMinutes(DateTime.Now.Minute)).AddHours(1);
+            var end = start.AddHours(1);
+
+            while (!CheckCollisionsBeforeAdding(start, end, teacher, room, group))
+            {
+                start += TimeSpan.FromHours(1);
+                end += TimeSpan.FromHours(1);
+            }
+
+            return CreateNewReservation(
+                "Type the name",
+                start.ToUnixTimestamp(),
+                end.ToUnixTimestamp(),
+                teacher.Ptr,
+                room.Ptr, group.Ptr);
+        }
+
+        private static bool CheckCollisionsBeforeAdding(DateTime dateOfStart, DateTime dateOfEnd, Teacher teacher, IRoom room, Group group)
         {
             return CheckCollisions(dateOfStart.ToUnixTimestamp(), dateOfEnd.ToUnixTimestamp(), teacher.Ptr, room.Ptr, group.Ptr);
         }
@@ -133,8 +147,6 @@ namespace UniversityReservationSystem.Interface.Models
         [DllImport("UniversityReservationSystem.dll")] private static extern int GetReservationDateOfEnd(IntPtr reservPtr);
         [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationTeacher(IntPtr reservPtr);
         [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationRoom(IntPtr reservPtr);
-
-        //[DllImport("UniversityReservationSystem.dll")] private static extern uint GetReservationGroupsCount(IntPtr reservPtr);
         [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationGroup(IntPtr reservPtr);
         [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr CreateNewReservation(string name, int dateOfStart, int dateOfEnd, IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
         [DllImport("UniversityReservationSystem.dll")] [return: MarshalAs(UnmanagedType.I1)] private static extern bool CheckCollisions(int dateOfStart, int dateOfEnd, IntPtr teacherPtr, IntPtr roomPtr, IntPtr groupPtr);
