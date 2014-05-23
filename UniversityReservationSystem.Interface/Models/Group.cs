@@ -79,15 +79,15 @@ namespace UniversityReservationSystem.Interface.Models
 
         #region InterOp Stuff
 
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetGroupDegreeCourse(IntPtr groupPtr);
-        [DllImport("UniversityReservationSystem.dll")] private static extern int GetGroupYear(IntPtr groupPtr);
-        [DllImport("UniversityReservationSystem.dll")] private static extern int GetGroupNumber(IntPtr groupPtr);
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetGroupStudentsCount(IntPtr groupPtr);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr CreateNewGroup(string degreeCourse, int year, int groupNumber);
-        [DllImport("UniversityReservationSystem.dll")] private static extern void EditGroup(IntPtr groupPtr, string degreeCourse, int year, int groupNumber);
-        [DllImport("UniversityReservationSystem.dll")] private static extern void DeleteGroup(IntPtr groupPtr);
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint FreeArrayOfPointersOnStudents(IntPtr groupPtr);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetArrayOfPointersOnStudents(IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr GetGroupDegreeCourse(IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern int GetGroupYear(IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern int GetGroupNumber(IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern uint GetGroupStudentsCount(IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr CreateNewGroup(string degreeCourse, int year, int groupNumber);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern void EditGroup(IntPtr groupPtr, string degreeCourse, int year, int groupNumber);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern void DeleteGroup(IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern uint FreeArrayOfPointersOnStudents(IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr GetArrayOfPointersOnStudents(IntPtr groupPtr);
 
         #endregion
     }

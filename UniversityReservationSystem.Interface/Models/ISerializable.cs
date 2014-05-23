@@ -30,7 +30,7 @@ namespace UniversityReservationSystem.Interface.Models
 
         #region InterOpStuff
 
-        [DllImport("UniversityReservationSystem.dll")] private static extern int GetID(IntPtr groupPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern int GetID(IntPtr groupPtr);
 
         #endregion
     }

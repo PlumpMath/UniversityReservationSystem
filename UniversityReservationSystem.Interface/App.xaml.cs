@@ -81,23 +81,23 @@ namespace UniversityReservationSystem.Interface
         }
 
         #region InterOp Stuff
-        [DllImport("UniversityReservationSystem.dll")] [return: MarshalAs(UnmanagedType.I1)] private static extern bool LoadDB(string filePath);
-        [DllImport("UniversityReservationSystem.dll")] [return: MarshalAs(UnmanagedType.I1)] private static extern bool SaveDB();
-        [DllImport("UniversityReservationSystem.dll")] private static extern void FreeDB();
+        [DllImport("UniversityReservationSystem.Backend.dll")] [return: MarshalAs(UnmanagedType.I1)] private static extern bool LoadDB(string filePath);
+        [DllImport("UniversityReservationSystem.Backend.dll")] [return: MarshalAs(UnmanagedType.I1)] private static extern bool SaveDB();
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern void FreeDB();
 
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetGroupByIndex(uint groupIndex);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetStudentByIndex(uint studentIndex);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetTeacherByIndex(uint teacherIndex);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetRoomByIndex(uint roomIndex);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationByIndex(uint reservationIndex);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr GetGroupByIndex(uint groupIndex);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr GetStudentByIndex(uint studentIndex);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr GetTeacherByIndex(uint teacherIndex);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr GetRoomByIndex(uint roomIndex);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr GetReservationByIndex(uint reservationIndex);
 
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetGroupsCount();
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetStudentsCount();
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetTeachersCount();
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetRoomsCount();
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetReservationsCount();
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern uint GetGroupsCount();
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern uint GetStudentsCount();
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern uint GetTeachersCount();
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern uint GetRoomsCount();
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern uint GetReservationsCount();
 
-        [DllImport("UniversityReservationSystem.dll")] public static extern IntPtr GetRoomType(IntPtr roomPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] public static extern IntPtr GetRoomType(IntPtr roomPtr);
         #endregion
     }
 }

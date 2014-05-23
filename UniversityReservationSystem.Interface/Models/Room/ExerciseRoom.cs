@@ -48,10 +48,10 @@ namespace UniversityReservationSystem.Interface.Models
 
         #region InterOp Stuff
 
-        [DllImport("UniversityReservationSystem.dll")] private static extern int GetExerciseRoomNumOfTables(IntPtr exRoomPtr);
-        [DllImport("UniversityReservationSystem.dll")] private static extern int GetExerciseRoomNumOfChairs(IntPtr exRoomPtr);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr CreateNewExerciseRoom(string name, int capacity, int numOfChairs, int numOfTables);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr EditExerciseRoom(IntPtr exRoomPtr, string name, int capacity, int numOfChairs, int numOfTables);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern int GetExerciseRoomNumOfTables(IntPtr exRoomPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern int GetExerciseRoomNumOfChairs(IntPtr exRoomPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr CreateNewExerciseRoom(string name, int capacity, int numOfChairs, int numOfTables);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr EditExerciseRoom(IntPtr exRoomPtr, string name, int capacity, int numOfChairs, int numOfTables);
 
         #endregion
     }

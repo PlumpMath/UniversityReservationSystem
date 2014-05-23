@@ -32,8 +32,8 @@ namespace UniversityReservationSystem.Interface.Models
 
         #region InterOp Stuff
 
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetPersonFirstName(IntPtr personPtr);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetPersonLastName(IntPtr personPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr GetPersonFirstName(IntPtr personPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr GetPersonLastName(IntPtr personPtr);
 
         #endregion
     }

@@ -27,8 +27,8 @@ namespace UniversityReservationSystem.Interface.Models
 
         #region InterOp Stuff
 
-        [DllImport("UniversityReservationSystem.dll")] private static extern uint GetReservationsOfReservableCount(IntPtr reservationPtr);
-        [DllImport("UniversityReservationSystem.dll")] private static extern IntPtr GetReservationOfReservableByIndex(IntPtr reservationPtr, uint reservationIndex);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern uint GetReservationsOfReservableCount(IntPtr reservationPtr);
+        [DllImport("UniversityReservationSystem.Backend.dll")] private static extern IntPtr GetReservationOfReservableByIndex(IntPtr reservationPtr, uint reservationIndex);
 
         #endregion
     }
