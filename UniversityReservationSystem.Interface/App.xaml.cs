@@ -67,7 +67,12 @@ namespace UniversityReservationSystem.Interface
             Directory.CreateDirectory(SAVE_PATH);
 
             // Saving the base to files
-            //MessageBox.Show(SaveDB() ? "Base successfully saved!" : "There was errors while saving the base!");
+            if (MessageBox.Show("Do you want to save changes?", "Saving changes", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                if (!SaveDB())
+                    MessageBox.Show("There was errors during the process of saving the base!", "Error",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             // Freeing the reservated memory in the DLL
             FreeDB();
