@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Navigation;
 using UniversityReservationSystem.Interface.Models;
 
 namespace UniversityReservationSystem.Interface
@@ -10,6 +11,7 @@ namespace UniversityReservationSystem.Interface
     public partial class App
     {
         private const string SAVE_PATH = "home";
+        private readonly bool _dbExists;
 
         public static ObservableCollection<Group> Groups { get; private set; }
         public static ObservableCollection<Student> Students { get; private set; }
@@ -17,11 +19,16 @@ namespace UniversityReservationSystem.Interface
         public static ObservableCollection<IRoom> Rooms { get; private set; }
         public static ObservableCollection<Reservation> Reservations { get; private set; }
 
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            if (!_dbExists) MessageBox.Show("No base files detected. They'll be created after you exit the program!");
+            base.OnStartup(e);
+        }
+
         public App()
         {
-            if (!LoadDB(SAVE_PATH))
-                MessageBox.Show("No base files detected. They'll be created after you exit the program!");
-
+            _dbExists = LoadDB(SAVE_PATH);
+                
             uint n = GetGroupsCount();
             Groups = new ObservableCollection<Group>();
             for (uint i = 0; i < n; i++)
