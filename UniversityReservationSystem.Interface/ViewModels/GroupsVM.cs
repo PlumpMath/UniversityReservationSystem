@@ -94,7 +94,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         protected override sealed void UpdateAfterSelection(bool isNull)
         {
-            if (!isNull)
+            if (!isNull && SelectedItem != null)
             {
                 if (ReservationsOfSelected != null)
                 {
@@ -129,7 +129,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
             SelectedItem.Delete();
             Groups.Remove(SelectedItem);
-            SelectedItem = Groups.LastOrDefault();
+            SelectedItem = Groups.FirstOrDefault();
 
             ViewModelLocator.Teachers.ReloadData();
             ViewModelLocator.Rooms.ReloadData();

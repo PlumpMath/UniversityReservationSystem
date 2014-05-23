@@ -164,14 +164,14 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
             SelectedItem.Delete();
             Reservations.Remove(SelectedItem);
-            SelectedItem = Reservations.LastOrDefault();
+            SelectedItem = Reservations.FirstOrDefault();
 
             RefreshDependencies();
         }
 
         protected override void UpdateAfterSelection(bool isNull)
         {
-            if (!isNull)
+            if (!isNull && SelectedItem != null)
             {
                 Name = SelectedItem.Name;
                 DateOfStart = SelectedItem.DateOfStart;

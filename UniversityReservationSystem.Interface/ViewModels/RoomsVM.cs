@@ -22,6 +22,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
         private int _numOfTables;
         private int _numOfChairs;
         private string _additionalEquipment;
+        private bool _isControlPanelActive;
 
         private bool _addingModeActive;
 
@@ -123,6 +124,18 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 }
             }
         }
+        public bool IsControlPanelActive
+        {
+            get { return _isControlPanelActive; }
+            set
+            {
+                if (_isControlPanelActive != value)
+                {
+                    _isControlPanelActive = value;
+                    RaisePropertyChanged("IsControlPanelActive");
+                }
+            }
+        }
 
         public bool AddingModeActive
         {
@@ -149,6 +162,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
 
         protected override void Add()
         {
+            IsControlPanelActive = true;
             AddingModeActive = true;
 
             Name = "Type Room Name";
@@ -191,6 +205,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 SelectedItem = null;
                 SelectedItem = Rooms.FirstOrDefault();
                 AddingModeActive = false;
+                IsControlPanelActive = false;
             }
             else
             {
@@ -208,7 +223,7 @@ namespace UniversityReservationSystem.Interface.ViewModels
         {
             AddingModeActive = false;
 
-            if (!isNull)
+            if (!isNull && SelectedItem != null)
             {
                 if (ReservationsOfSelected != null)
                 {
@@ -235,14 +250,20 @@ namespace UniversityReservationSystem.Interface.ViewModels
                 Name = SelectedItem.Name;
                 Type = roomType;
                 Capacity = SelectedItem.Capacity;
+                IsControlPanelActive = true;
             }
             else
             {
                 Name = String.Empty;
                 Type = 0;
                 Capacity = 0;
+                NumOfChairs = 0;
+                NumOfComputers = 0;
+                NumOfTables = 0;
+                AdditionalEquipment = String.Empty;
                 ReservationsOfSelected.Clear();
                 ReservationsOfSelectedOnCalendar.Clear();
+                IsControlPanelActive = false;
             }
         }
 

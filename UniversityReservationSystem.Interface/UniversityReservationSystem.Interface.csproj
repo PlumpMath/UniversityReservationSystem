@@ -106,6 +106,7 @@
     <Compile Include="Helpers\EnumToItemsSource.cs" />
     <Compile Include="Helpers\FocusExtension.cs" />
     <Compile Include="Helpers\NullToVisibilityConverter.cs" />
+    <Compile Include="Helpers\ReservationsMultiBindingConverter.cs" />
     <Compile Include="Helpers\RoomTypeToVisibilityConverter.cs" />
     <Compile Include="Models\IReservable.cs" />
     <Compile Include="Models\Room\LabRoom.cs" />

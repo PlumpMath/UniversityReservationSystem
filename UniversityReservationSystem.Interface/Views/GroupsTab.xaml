@@ -104,16 +104,14 @@
                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2" />
             </Grid>
 
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="2" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="3" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Button IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}"
-                        Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
-                <Button IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" Padding="8 0"
-                        Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
+                <Button Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
+                <Button Padding="8 0" Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
             </Grid>
         </Grid>
     </Grid>

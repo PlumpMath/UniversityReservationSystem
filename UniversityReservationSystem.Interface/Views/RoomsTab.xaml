@@ -62,8 +62,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Content="Add new" Grid.Column="0" Command="{Binding AddCommand}" IsEnabled="{Binding Rooms.Count}" Padding="8 0"  />
-            <Grid Grid.Column="1" VerticalAlignment="Center">
+            <Button Content="Add new" Grid.Column="0" Command="{Binding AddCommand}" Padding="8 0"  />
+            <Grid Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding IsControlPanelActive}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -84,12 +84,11 @@
                 
                 <TextBlock HorizontalAlignment="Center" Text="Room Name" Grid.Row="0" Grid.Column="1" />
                 <TextBox Margin="5 0 5 0" Text="{Binding Name}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="1" helpers:FocusExtension.IsFocused="{Binding IsNameFocused}"
-                         IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" />
+                         Grid.Row="1" Grid.Column="1" helpers:FocusExtension.IsFocused="{Binding IsNameFocused}" />
                 
                 <TextBlock HorizontalAlignment="Center" Text="Capacity" Grid.Row="0" Grid.Column="2" />
                 <TextBox Margin="5 0 5 0" Text="{Binding Capacity}" TextAlignment="Center" HorizontalAlignment="Stretch"
-                         Grid.Row="1" Grid.Column="2" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" />
+                         Grid.Row="1" Grid.Column="2" />
 
                 <TextBlock HorizontalAlignment="Center" Text="Additional Info" Grid.Row="0" Grid.Column="3" />
                 <StackPanel Grid.Column="3" Grid.Row="1" Margin="0 0 5 0" VerticalAlignment="Center">
@@ -122,16 +121,14 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="2" IsEnabled="{Binding IsControlPanelActive}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="3" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Button IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}"
-                        Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
-                <Button IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" Padding="8 0"
-                        Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
+                <Button Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
+                <Button Padding="8 0" Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
             </Grid>
         </Grid>
     </Grid>

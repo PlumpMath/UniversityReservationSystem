@@ -6,6 +6,9 @@
              mc:Ignorable="d" d:DesignWidth="999.5" d:DesignHeight="700" xmlns:ex="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:helpers="clr-namespace:UniversityReservationSystem.Interface.Helpers"
              DataContext="{Binding Reservations, Source={StaticResource ViewModelLocator}}">
+    <UserControl.Resources>
+        <helpers:ReservationsMultiBindingConverter x:Key="ReservationsMultiBindingConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -29,8 +32,16 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Content="Add new" Grid.Column="0" Command="{Binding AddCommand}" Padding="8 0"  />
-            <Grid Grid.Column="1" VerticalAlignment="Center">
+            <Button Content="Add new" Grid.Column="0" Command="{Binding AddCommand}" Padding="8 0">
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource ReservationsMultiBindingConverter}">
+                        <Binding Path="Rooms.Count" />
+                        <Binding Path="Teachers.Count" />
+                        <Binding Path="Groups.Count" />
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
+            <Grid Grid.Column="1" VerticalAlignment="Center" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -46,44 +57,40 @@
 
                 <TextBlock HorizontalAlignment="Center" Text="Description" Grid.Row="0" Grid.Column="0" />
                 <TextBox Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Text="{Binding Name}"
-                         HorizontalContentAlignment="Center" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}"
+                         HorizontalContentAlignment="Center" 
                          helpers:FocusExtension.IsFocused="{Binding IsNameFocused}"/>
 
                 <TextBlock HorizontalAlignment="Center" Text="Date Of Start" Grid.Row="0" Grid.Column="1" />
                 <ex:DateTimePicker Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1"
                                    HorizontalContentAlignment="Center" Value="{Binding DateOfStart}"
-                                   TextAlignment="Center" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}"
-                                   TimeFormatString="dd MM yyyy\, HH:mm"/>
+                                   TextAlignment="Center" TimeFormatString="dd MM yyyy\, HH:mm"/>
 
                 <TextBlock HorizontalAlignment="Center" Text="Date Of End" Grid.Row="0" Grid.Column="2" />
                 <ex:DateTimePicker Margin="5 0 5 0" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2"
                                    HorizontalContentAlignment="Center" Value="{Binding DateOfEnd}"
-                                   TextAlignment="Center" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}"
-                                   TimeFormatString="dd MM yyyy\, HH:mm"/>
+                                   TextAlignment="Center" TimeFormatString="dd MM yyyy\, HH:mm"/>
 
                 <TextBlock HorizontalAlignment="Center" Text="Room" Grid.Row="0" Grid.Column="3" />
-                <ComboBox Margin="5 0 5 0" DisplayMemberPath="Name" ItemsSource="{Binding Rooms}" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}"
-                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="3" SelectedItem="{Binding SelectedRoom}" HorizontalContentAlignment="Center" />
+                <ComboBox Margin="5 0 5 0" DisplayMemberPath="Name" ItemsSource="{Binding Rooms}" HorizontalContentAlignment="Center"
+                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="3" SelectedItem="{Binding SelectedRoom}" />
 
                 <TextBlock HorizontalAlignment="Center" Text="Teacher" Grid.Row="0" Grid.Column="4" />
-                <ComboBox Margin="5 0 5 0" DisplayMemberPath="FullName" ItemsSource="{Binding Teachers}" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}"
-                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="4" SelectedItem="{Binding SelectedTeacher}" HorizontalContentAlignment="Center" />
+                <ComboBox Margin="5 0 5 0" DisplayMemberPath="FullName" ItemsSource="{Binding Teachers}" HorizontalContentAlignment="Center"
+                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="4" SelectedItem="{Binding SelectedTeacher}"  />
 
                 <TextBlock HorizontalAlignment="Center" Text="Group" Grid.Row="0" Grid.Column="5" />
-                <ComboBox Margin="5 0 5 0" DisplayMemberPath="ExInfo" ItemsSource="{Binding Groups}" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}"
-                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="5" SelectedItem="{Binding SelectedGroup}" HorizontalContentAlignment="Center" />
+                <ComboBox Margin="5 0 5 0" DisplayMemberPath="ExInfo" ItemsSource="{Binding Groups}" HorizontalContentAlignment="Center"
+                          HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="5" SelectedItem="{Binding SelectedGroup}"  />
             </Grid>
 
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="2" IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="3" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Button IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}"
-                        Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
-                <Button IsEnabled="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" Padding="8 0"
-                        Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
+                <Button Command="{Binding SaveChangesCommand}" Content="Save" Grid.Row="0" />
+                <Button Padding="8 0" Command="{Binding DeleteCommand}" Content="Delete" Grid.Row="2" />
             </Grid>
         </Grid>
     </Grid>
