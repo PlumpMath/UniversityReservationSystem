@@ -140,6 +140,11 @@ namespace UniversityReservationSystem.Interface.ViewModels
         protected override void SaveChanges()
         {
             if (DateOfEnd == null || DateOfStart == null) return;
+            if (DateOfStart >= DateOfEnd)
+            {
+                MessageBox.Show("Date of start can't be after or equal to date of end!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             if (!SelectedItem.Edit(
                 Name, DateOfStart.Value, DateOfEnd.Value,
