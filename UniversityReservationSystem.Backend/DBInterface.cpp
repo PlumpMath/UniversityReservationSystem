@@ -358,7 +358,10 @@ extern "C"
 		Reservation * reservation = new Reservation("test", dateOfStart, dateOfEnd, teacher, room);
 		reservation->BoundGroups.Add(*group);
 
-		return reservationCtrl->CheckCollisions(*reservation);
+		bool success = reservationCtrl->CheckCollisions(*reservation);
+		delete reservation;
+
+		return success;
 	}
 	API Reservation *	CreateNewReservation(strPtr name, long int dateOfStart, long int dateOfEnd, Teacher * teacher, IRoom * room, Group * group)
 	{

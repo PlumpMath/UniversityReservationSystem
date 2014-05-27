@@ -103,9 +103,9 @@ public:
 	{
 		Students		.Clear();
 		Groups			.Clear();
-		Reservations	.Clear();
 		Teachers		.Clear();
 		Rooms			.Clear();
+		Reservations    .Clear();
 	}
 
 	~DataContext()
