@@ -4,6 +4,8 @@
 #include "IRoom.h"
 #include "DataContext.h"
 
+/* Class-controller - management over operations on rooms */
+
 class RoomController : public IController<IRoom>
 {
 public:

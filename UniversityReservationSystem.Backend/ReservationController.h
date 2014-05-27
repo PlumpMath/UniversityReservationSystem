@@ -4,6 +4,8 @@
 #include "Reservation.h"
 #include "DataContext.h"
 
+/* Class-controller - management over operations on reservations */
+
 class ReservationController : public IController<Reservation>
 {
 public:

@@ -4,6 +4,9 @@
 #include "IReservable.h"
 #include "ISerializable.h"
 
+/* Abstract class which aggregate common values
+   which are present in the every Person */
+
 class IRoom : public IReservable
 {
 public:

@@ -4,6 +4,8 @@
 #include "Student.h"
 #include "DataContext.h"
 
+/* Class-controller - management over operations on students */
+
 class StudentController : public IController<Student>
 {
 public:

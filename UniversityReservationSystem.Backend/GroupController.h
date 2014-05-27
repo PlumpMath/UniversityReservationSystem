@@ -4,6 +4,8 @@
 #include "Group.h"
 #include "DataContext.h"
 
+/* Class-controller - management over operations on groups */
+
 class GroupController : public IController<Group>
 {
 public:

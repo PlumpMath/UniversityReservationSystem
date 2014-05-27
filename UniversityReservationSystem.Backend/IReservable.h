@@ -4,6 +4,9 @@
 
 using namespace std;
 
+/* Abstract class which describes an every reservable
+   class and its capabilities and methods */
+
 class IReservable : public ISerializable
 {
 public:

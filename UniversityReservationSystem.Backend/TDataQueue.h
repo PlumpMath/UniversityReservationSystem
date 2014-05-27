@@ -4,6 +4,10 @@
 
 using namespace std;
 
+/* Queue-generic-class which is responsible for storing
+objects of model classes. Besides has a lot of method
+to handle encapsulated STL vector property */
+
 template <class T>
 class TDataQueue
 {

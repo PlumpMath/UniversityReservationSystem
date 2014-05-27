@@ -4,6 +4,9 @@
 
 using namespace std;
 
+/* Class which is responsible for returning appropriate type of controller
+   depending on the type in the parameter of static method CreateController */
+
 template <class T>
 class ControllerFactory
 {

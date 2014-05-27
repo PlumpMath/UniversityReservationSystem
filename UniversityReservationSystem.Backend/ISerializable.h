@@ -2,6 +2,11 @@
 
 using namespace std;
 
+/* Abstract class which is the "highest" class in the UML tree. 
+   and guarantees that every inherited class has capabilities
+   resulting from this class. It is Id property and methods
+   connected with this property */
+
 class ISerializable
 {
 public:
