@@ -4,6 +4,8 @@
 #include "Teacher.h"
 #include "DataContext.h"
 
+/* Class-controller - management over operations on teachers */
+
 class TeacherController : public IController<Teacher>
 {
 public:

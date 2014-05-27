@@ -6,6 +6,9 @@ using namespace std;
 
 class Reservation;
 
+/* Extends the basic queue-generic-class and adds methods
+   which queue of every reservable class should have */
+
 template <class T>
 class TAntiCollisionQueue : public TDataQueue<T>
 {

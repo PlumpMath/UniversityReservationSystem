@@ -15,6 +15,8 @@ TeacherController		* teacherCtrl;
 RoomController			* roomCtrl;
 ReservationController	* reservationCtrl;
 
+/* Externs API methods to handle in the interface executable */
+
 extern "C"
 {
 	////////////////////////////////////

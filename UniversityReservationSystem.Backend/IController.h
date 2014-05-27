@@ -4,6 +4,9 @@ template <class T>
 class TDataQueue;
 class DataContext;
 
+/* Abstract class which tells which methods in every class-controller
+   have to be implemented */
+
 template <class T>
 class IController
 {
